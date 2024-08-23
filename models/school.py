@@ -14,5 +14,5 @@ class School(BaseModel, Base):
     school_name = Column(String(100), nullable=False)
     logo = Column(LargeBinary)
     dean_name = Column(String(100), nullable=False)
-    lecturer_id = Column(String, ForeignKey('lecturers.id', ondelete='SET NULL'))
+    lecturer_id = Column(String, ForeignKey('lecturers.id'))
 
