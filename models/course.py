@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-
-"""Course model representing academic courses."""
+"""Course model implementation using SQLAlchemy."""
 
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
@@ -8,7 +7,7 @@ from models.base_model import Base, BaseModel
 
 
 class Course(BaseModel, Base):
-    """Represents academic courses and their details."""
+    """Course class represents a course in the grading system."""
 
     __tablename__ = 'courses'
 
@@ -16,21 +15,8 @@ class Course(BaseModel, Base):
     course_code = Column(String(20), nullable=False, unique=True)
     credit_load = Column(Integer, nullable=False)
     semester = Column(String(20), nullable=False)
-    lecturer_id = Column(
-                            Integer,
-                            ForeignKey(
-                                        'lecturers.id',
-                                        ondelete='SET NULL'
-                                    )
-                        )
-    lecturer = relationship('Lecturer', back_populates='courses')
-    enrollments = relationship(
-                            'Enrollment',
-                            back_populates='course',
-                            cascade='all, delete-orphan'
-                        )
-    grades = relationship(
-                            'Grade',
-                            back_populates='course',
-                            cascade='all, delete-orphan'
-                        )
+    lecturer_id = Column(String, ForeignKey('lecturers.id'))
+
+    lecturer = relationship('Lecturer', backref='courses', cascade='all, delete-orphan')
+    enrollments = relationship('Enrollment', backref='course', cascade='all, delete-orphan')
+    grades = relationship('Grade', backref='course', cascade='all, delete-orphan')

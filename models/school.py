@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-
-"""School model representing educational institutions."""
+"""School model implementation using SQLAlchemy."""
 
 from sqlalchemy import Column, Integer, String, ForeignKey, LargeBinary
 from sqlalchemy.orm import relationship
@@ -8,19 +7,12 @@ from models.base_model import Base, BaseModel
 
 
 class School(BaseModel, Base):
-    """Represents educational institutions and their details."""
+    """School class represents a school in the grading system."""
 
     __tablename__ = 'schools'
 
     school_name = Column(String(100), nullable=False)
     logo = Column(LargeBinary)
     dean_name = Column(String(100), nullable=False)
-    lecturer_id = Column(
-                            Integer,
-                            ForeignKey(
-                                        'lecturers.id',
-                                        ondelete='SET NULL'
-                                        )
-                        )
+    lecturer_id = Column(String, ForeignKey('lecturers.id', ondelete='SET NULL'))
 
-    lecturer = relationship('Lecturer', back_populates='schools')

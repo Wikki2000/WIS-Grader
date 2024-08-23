@@ -5,10 +5,11 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
+import bcrypt
 
 
 class Lecturer(BaseModel, Base):
-    """Represents faculty members and their details."""
+    """Lecturer class represents a lecturer in the grading system."""
 
     __tablename__ = 'lecturers'
 
@@ -17,30 +18,15 @@ class Lecturer(BaseModel, Base):
     email = Column(String(100), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
 
-    courses = relationship(
-                            'Course',
-                            back_populates='lecturer',
-                            cascade='all, delete-orphan'
-                        )
-    schools = relationship(
-                            'School',
-                            back_populates='lecturer',
-                            cascade='all, delete-orphan'
-                        )
+    schools = relationship('School', backref='lecturer', cascade='all, delete-orphan')
 
     def hash_password(self, password: str) -> None:
         """Hash the password and store it."""
 
-        hashed = bcrypt.hashpw(
-                                password.encode('utf-8'),
-                                bcrypt.gensalt()
-                            )
+        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self.password = hashed.decode('utf-8')
 
     def check_password(self, password: str) -> bool:
         """Check if the provided password matches the stored hash."""
 
-        return bcrypt.checkpw(
-                                password.encode('utf-8'),
-                                self.password.encode('utf-8')
-                )
+        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))

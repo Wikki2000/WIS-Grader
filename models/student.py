@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-
-"""Student model representing learners in the system."""
+"""Student model implementation using SQLAlchemy."""
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
@@ -8,7 +7,7 @@ from models.base_model import Base, BaseModel
 
 
 class Student(BaseModel, Base):
-    """Represents students and their personal details."""
+    """Student class represents a student in the grading system."""
 
     __tablename__ = 'students'
 
@@ -17,13 +16,6 @@ class Student(BaseModel, Base):
     last_name = Column(String(100), nullable=False)
     reg_number = Column(String(50), nullable=False, unique=True)
 
-    enrollments = relationship(
-                                'Enrollment',
-                                back_populates='student',
-                                cascade='all, delete-orphan'
-                            )
-    grades = relationship(
-                                'Grade',
-                                back_populates='student',
-                                cascade='all, delete-orphan'
-                            )
+    enrollments = relationship('Enrollment', backref='student', cascade='all, delete-orphan')
+    grades = relationship('Grade', backref='student', cascade='all, delete-orphan')
+
