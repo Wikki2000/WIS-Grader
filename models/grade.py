@@ -12,7 +12,6 @@ class Grade(BaseModel, Base):
 
     __tablename__ = 'grades'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
     test_score = Column(Float, nullable=False)
     exam_score = Column(Float, nullable=False)
     grade = Column(String(10), nullable=False)

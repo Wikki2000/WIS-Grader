@@ -12,7 +12,6 @@ class Course(BaseModel, Base):
 
     __tablename__ = 'courses'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
     course_title = Column(String(100), nullable=False)
     course_code = Column(String(20), nullable=False, unique=True)
     credit_load = Column(Integer, nullable=False)

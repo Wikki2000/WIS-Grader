@@ -12,7 +12,6 @@ class School(BaseModel, Base):
 
     __tablename__ = 'schools'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
     school_name = Column(String(100), nullable=False)
     logo = Column(LargeBinary)
     dean_name = Column(String(100), nullable=False)
