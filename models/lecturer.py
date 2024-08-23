@@ -12,7 +12,6 @@ class Lecturer(BaseModel, Base):
 
     __tablename__ = 'lecturers'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False, unique=True)
@@ -28,3 +27,20 @@ class Lecturer(BaseModel, Base):
                             back_populates='lecturer',
                             cascade='all, delete-orphan'
                         )
+
+    def hash_password(self, password: str) -> None:
+        """Hash the password and store it."""
+
+        hashed = bcrypt.hashpw(
+                                password.encode('utf-8'),
+                                bcrypt.gensalt()
+                            )
+        self.password = hashed.decode('utf-8')
+
+    def check_password(self, password: str) -> bool:
+        """Check if the provided password matches the stored hash."""
+
+        return bcrypt.checkpw(
+                                password.encode('utf-8'),
+                                self.password.encode('utf-8')
+                )
