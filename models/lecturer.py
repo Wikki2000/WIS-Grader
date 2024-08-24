@@ -3,6 +3,8 @@
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
+from models.course import Course
+from models.school import School
 import bcrypt
 
 
@@ -18,6 +20,8 @@ class Lecturer(BaseModel, Base):
 
     courses = relationship("Course", backref="lecturer",
                             cascade="all, delete-orphan")
+    schools = relationship("School", backref="lecturer",
+                           cascade="all, delete-orphan")
 
     def hash_password(self, password: str) -> None:
         """Hash the password and store it."""
