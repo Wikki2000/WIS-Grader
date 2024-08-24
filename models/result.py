@@ -14,4 +14,4 @@ class Result(BaseModel, Base):
     grade = Column(String(10), nullable=False)
     mark = Column(Integer, nullable=False)
     course_id = Column(String(60), ForeignKey('courses.id'))
-    #student_id = Column(String(60), ForeignKey('students.id'))
+    student_id = Column(String(60), ForeignKey('students.id'))
