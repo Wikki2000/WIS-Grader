@@ -10,7 +10,8 @@ Base = declarative_base()
 class BaseModel:
     """Defines common attributes/methods for other class.
     """
-    id = Column(String(60), nullable=False, primary_key=True, default=uuid4())
+    id = Column(String(60), nullable=False, primary_key=True,
+                default=lambda: str(uuid4()))
 
     def __init__(self, *args, **kwargs):
         """Define the constructor of the class."""
