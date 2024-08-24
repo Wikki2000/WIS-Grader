@@ -9,12 +9,15 @@ import bcrypt
 class Lecturer(BaseModel, Base):
     """Lecturer class represents a lecturer in the grading system."""
 
-    __tablename__ = 'lecturers'
+    __tablename__ = "lecturers"
 
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
+
+    courses = relationship("Course", backref="lecturers",
+                            cascade="all, delete-orphan")
 
     def hash_password(self, password: str) -> None:
         """Hash the password and store it."""
