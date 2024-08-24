@@ -19,7 +19,15 @@ class TestModels(unittest.TestCase):
 
     def tearDown(self):
         """Tear down test environment by closing the session."""
-        self.session.close()  # Close the session
+
+        # Delete any remaining school
+        self.session.query(Course).delete()
+
+        # Delete any remaining lecturer
+        self.session.query(Lecturer).delete()
+
+        self.session.commit()  # Commit the changes
+        self.session.close()   # Close the session
 
     def test_create_lecturers(self):
         """Test creating multiple lecturers."""
@@ -83,11 +91,6 @@ class TestModels(unittest.TestCase):
         self.assertEqual(obj.course_title, "Operating Systems - II")
         self.assertEqual(obj.lecturer_id, lecturer.id)
 
-        # Clean up - delete the created course and lecturer
-        self.session.delete(course)
-        self.session.delete(lecturer)
-        self.session.commit()
-
     def test_create_multiple_courses(self):
         """Test creating multiple courses and assigning them to different lecturers."""
 
@@ -138,13 +141,6 @@ class TestModels(unittest.TestCase):
         self.assertEqual(obj2.course_title, "FINANCIAL ACCOUNTING")
         self.assertEqual(obj1.lecturer_id, lecturer1.id)
         self.assertEqual(obj2.lecturer_id, lecturer2.id)
-
-        # Clean up - delete the created courses and lecturers
-        self.session.delete(course1)
-        self.session.delete(course2)
-        self.session.delete(lecturer1)
-        self.session.delete(lecturer2)
-        self.session.commit()
 
 
 if __name__ == "__main__":
