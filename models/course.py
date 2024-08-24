@@ -2,7 +2,6 @@
 """Course model implementation using SQLAlchemy."""
 
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
 
 
