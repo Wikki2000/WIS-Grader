@@ -14,4 +14,4 @@ class Course(BaseModel, Base):
     course_code = Column(String(20), nullable=False, unique=True)
     credit_load = Column(Integer, nullable=False)
     semester = Column(String(20), nullable=False)
-    lecturer_id = Column(String, ForeignKey('lecturers.id'))
+    lecturer_id = Column(String(60), ForeignKey('lecturers.id'))
