@@ -4,6 +4,7 @@
 from faker import Faker
 from models.school import School
 from models.lecturer import Lecturer
+from models.course import Course
 from models.storage import Storage
 import unittest
 
