@@ -17,7 +17,7 @@ class Storage:
     def __init__(self):
         """Create the session to connect with db."""
         username = getenv("WIS_USER")
-        password = getenv("WIS_PASSWORWD")
+        password = getenv("WIS_PASSWORD")
         database = getenv("WIS_DATABASE")
 
         url = f"mysql://{username}:{password}@localhost:5432/{database}"
@@ -67,3 +67,7 @@ class Storage:
     def get_session(self):
         """Retrieve session engine to connect with database."""
         return self.__session
+    
+    def get_engine(self):
+        """Retrieved engine object."""
+        return self.__engine
