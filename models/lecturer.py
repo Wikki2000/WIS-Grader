@@ -18,7 +18,8 @@ class Lecturer(BaseModel, Base):
     email = Column(String(100), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
 
-    schools = relationship('School', backref='lecturer', cascade='all, delete-orphan')
+    school = relationship('School', backref='lecturer', uselist=False, cascade='all, delete-orphan')
+    courses = relationship('Course', backref='lecturer', cascade='all, delete-orphan')
 
     def hash_password(self, password: str) -> None:
         """Hash the password and store it."""
