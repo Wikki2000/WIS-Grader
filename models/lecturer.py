@@ -16,7 +16,7 @@ class Lecturer(BaseModel, Base):
     email = Column(String(100), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
 
-    courses = relationship("Course", backref="lecturers",
+    courses = relationship("Course", backref="lecturer",
                             cascade="all, delete-orphan")
 
     def hash_password(self, password: str) -> None:
