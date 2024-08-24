@@ -42,7 +42,16 @@ class TestLecturer(unittest.TestCase):
 
     def test_hash_password(self):
         """Test that password is correctly hash."""
-        hash_pwd = self.user.hash_password
+        hash_pwd = self.user.hash_password(self.attr["password"])
+        self.assertNotEqual(hash_pwd, self.attr["password"])
+
+    def test_check_password(self):
+        """Test that password is correctly verified."""
+        hash_pwd = self.user.hash_password(self.attr["password"])
+        self.assertTrue(self.user.check_password(self.attr["password"]))
+
+        # Test for wrong password
+        self.assertFalse(self.user.check_password("wrong password"))
 
 
 if __name__ == "__main__":
