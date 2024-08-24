@@ -16,6 +16,3 @@ class Course(BaseModel, Base):
     credit_load = Column(Integer, nullable=False)
     semester = Column(String(20), nullable=False)
     lecturer_id = Column(String, ForeignKey('lecturers.id'))
-
-    enrollments = relationship('Enrollment', backref='course', cascade='all, delete-orphan')
-    grades = relationship('Grade', backref='course', cascade='all, delete-orphan')
