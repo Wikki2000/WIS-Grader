@@ -16,3 +16,5 @@ class Student(BaseModel, Base):
     last_name = Column(String(100), nullable=False)
     reg_number = Column(String(50), nullable=False, unique=True)
 
+    results = relationship('Result', backref='student',
+            cascade='all, delete-orphan')
