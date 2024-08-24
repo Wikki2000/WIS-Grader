@@ -15,3 +15,4 @@ class Student(BaseModel, Base):
     middle_name = Column(String(100))
     last_name = Column(String(100), nullable=False)
     reg_number = Column(String(50), nullable=False, unique=True)
+
