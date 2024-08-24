@@ -17,10 +17,14 @@ class Storage:
     def __init__(self):
         """Create the session to connect with db."""
         username = getenv("WIS_USER")
+<<<<<<< Updated upstream
         password = getenv("WIS_PASSWORD")
+=======
+        password = getenv("WIS_PASSWORD")  # Corrected the typo here
+>>>>>>> Stashed changes
         database = getenv("WIS_DATABASE")
 
-        url = f"mysql://{username}:{password}@localhost:5432/{database}"
+        url = f"mysql+pymysql://{username}:{password}@localhost:3306/{database}"
         self.__engine = create_engine(url)
         Base.metadata.create_all(self.__engine)
         session = sessionmaker(bind=self.__engine)

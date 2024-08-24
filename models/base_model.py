@@ -6,12 +6,17 @@ from uuid import uuid4
 
 Base = declarative_base()
 
-
 class BaseModel:
+<<<<<<< Updated upstream
     """Defines common attributes/methods for other class.
     """
     id = Column(String(60), nullable=False, primary_key=True,
                 default=lambda: str(uuid4()))
+=======
+    """Defines common attributes/methods for other classes."""
+    __tablename__ = 'base_model'  # You should define a table name for BaseModel if it's to be used directly
+    id = Column(String(60), nullable=False, primary_key=True, default=lambda: str(uuid4()))
+>>>>>>> Stashed changes
 
     def __init__(self, *args, **kwargs):
         """Define the constructor of the class."""
@@ -19,11 +24,11 @@ class BaseModel:
             setattr(self, key, value)
 
     def __str__(self):
-        """returns a string reps. of obj."""
+        """Return a string representation of the object."""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def to_dict(self):
-        """Return the dict representation of a class instance."""
+        """Return the dictionary representation of a class instance."""
         new_dict = self.__dict__.copy()
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
