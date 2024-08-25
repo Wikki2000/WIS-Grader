@@ -20,4 +20,4 @@ class Course(BaseModel, Base):
     lecturer_id = Column(String(60), ForeignKey('lecturers.id'))
 
     students = relationship("Student", secondary="enrollments",
-                            backref="course")
+                            backref="courses")
