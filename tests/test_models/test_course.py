@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Test cases for the Lecturer and Course models."""
-
 from faker import Faker
 from models.lecturer import Lecturer
 from models.course import Course
+from models.student import Student
 from models.storage import Storage
 import unittest
 
@@ -20,12 +20,10 @@ class TestModels(unittest.TestCase):
     def tearDown(self):
         """Tear down test environment by closing the session."""
 
-        # Delete any remaining school
+        # Remove test data after each test.
         self.session.query(Course).delete()
-
-        # Delete any remaining lecturer
+        self.session.query(Student).delete()
         self.session.query(Lecturer).delete()
-
         self.session.commit()  # Commit the changes
         self.session.close()   # Close the session
 
@@ -141,6 +139,74 @@ class TestModels(unittest.TestCase):
         self.assertEqual(obj2.course_title, "FINANCIAL ACCOUNTING")
         self.assertEqual(obj1.lecturer_id, lecturer1.id)
         self.assertEqual(obj2.lecturer_id, lecturer2.id)
+
+    def test_add_student_to_course(self):
+        """Test that a student can be assign to a course."""
+        lecturer = Lecturer(
+                first_name="John",
+                last_name="Doe",
+                email="johndoe@gnail.com",
+                password="12345"
+        )
+
+        # Added student instance to database
+        student1 = Student(
+                first_name="Thomas",
+                last_name="Moses",
+                reg_number="AK/4001",
+        )
+        student2 = Student(
+                first_name="James",
+                last_name="Mata",
+                reg_number="AK/4002"
+        )
+
+        # Added course instance to db for test
+        course = Course(
+                course_title="FINANCIAL ACCOUNTING",
+                course_code="BUS 3301",
+                credit_load=4,
+                semester="Spring 2025",
+                lecturer_id=lecturer.id
+        )
+        course.students.extend([student1, student2])
+        self.session.commit()
+        self.assertEqual(len(course.students), 2)
+        self.assertEqual(course.students[0].first_name, "Thomas")
+        self.assertEqual(course.students[1].first_name, "James")
+
+    def test_add_course_to_student(self):
+        """Test that course can be assign to a student."""
+        lecturer = Lecturer(
+                first_name="John",
+                last_name="Doe",
+                email="johndoe@gnail.com",
+                password="12345"
+        )
+        student = Student(
+                first_name="Thomas",
+                last_name="Moses",
+                reg_number="AK/4001",
+        )
+        course1 = Course(
+                course_title="FINANCIAL ACCOUNTING",
+                course_code="BUS 3301",
+                credit_load=4,
+                semester="Spring 2025",
+                lecturer_id=lecturer.id
+        )
+        course2 = Course(
+                course_title="Pysics",
+                course_code="PHY101",
+                credit_load=4,
+                semester="Fall",
+                lecturer_id=lecturer.id
+        )
+        student.courses.extend([course1, course2])
+        self.session.commit()
+        self.assertEqual(len(student.courses), 2)
+        self.assertEqual(student.courses[0].course_code, "BUS 3301")
+        self.assertEqual(student.courses[1].course_code, "PHY101")
 
 
 if __name__ == "__main__":
