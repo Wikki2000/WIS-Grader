@@ -6,7 +6,7 @@ from models.lecturer import Lecturer
 from models.school import School
 from models import Storage
 import unittest
-
+import bcrypt
 
 class TestLecturer(unittest.TestCase):
     """Define test cases for Lecturer class."""

@@ -5,6 +5,7 @@ from models.enrollment import Enrollment
 from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
 from models.student import Student
+from models.result import Result
 
 
 class Course(BaseModel, Base):
@@ -19,4 +20,4 @@ class Course(BaseModel, Base):
     lecturer_id = Column(String(60), ForeignKey('lecturers.id'))
 
     students = relationship("Student", secondary="enrollments",
-                            backref="courses")
+                            backref="course")

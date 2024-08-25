@@ -67,7 +67,7 @@ class Storage:
     def get_session(self):
         """Retrieve session engine to connect with database."""
         return self.__session
-    
+
     def get_engine(self):
         """Retrieved engine object."""
         return self.__engine
