@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Course model implementation using SQLAlchemy."""
-
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey
+from models.enrollment import Enrollment
+from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
+from models.student import Student
 
 
 class Course(BaseModel, Base):
@@ -15,3 +17,6 @@ class Course(BaseModel, Base):
     credit_load = Column(Integer, nullable=False)
     semester = Column(String(20), nullable=False)
     lecturer_id = Column(String(60), ForeignKey('lecturers.id'))
+
+    students = relationship("Student", secondary="enrollments",
+                            backref="courses")
