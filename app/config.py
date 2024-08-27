@@ -8,7 +8,6 @@ that can be inherited and overridden by environment-specific configurations.
 Key configurations include:
 
 - SECRET_KEY: Use for session management and other security-related features.
-- SWAGGER: Use for Swagger UI, including the title and UI version.
 """
 from os import environ
 
