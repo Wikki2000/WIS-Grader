@@ -14,4 +14,4 @@ from os import environ
 
 class Config:
     """Base configuration."""
-    SECRET_KEY = getenv("FLASK_SECRET_KEY")
+    SECRET_KEY = environ["FLASK_SECRET_KEY"]
