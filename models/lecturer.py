@@ -1,4 +1,4 @@
-!/usr/bin/env python3
+#!/usr/bin/env python3
 """Lecturer model representing our end user."""
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
