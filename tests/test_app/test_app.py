@@ -12,7 +12,7 @@ class TestFlaskApp(unittest.TestCase):
         app.config['TESTING'] = True
         self.app = app.test_client()
 
-    def test_404_error(self):
+    def test_not_found(self):
         """Test for 404 error handling."""
         response = self.app.get('/nonexistent-url')
         self.assertEqual(response.status_code, 404)
