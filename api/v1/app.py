@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Setuo Flask Appplication."""
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -20,10 +20,15 @@ jwt = JWTManager(app)
 swagger = Swagger(app)
 
 # Allow cross-origin requests from port 5000
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:5000"}})
+cors = CORS(app, resources={
+    r"/*": {
+        "origins": "http://localhost:5000"
+        }
+    })
 
 # Register blueprint
 app.register_blueprint(app_views, url_prefix='/api/v1')
+
 
 
 if __name__ == '__main__':
