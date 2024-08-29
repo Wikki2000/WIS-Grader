@@ -17,7 +17,8 @@ app.config.from_object(Config)
 
 # Initialize extensions
 jwt = JWTManager(app)
-swagger = Swagger(app, template_file='views/documentation/auth/auth.yaml')
+#swagger = Swagger(app, template_file='views/documentation/auth/auth.yaml')
+Swagger(app)
 
 # Allow cross-origin requests from port 5000
 cors = CORS(app, resources={
@@ -32,4 +33,4 @@ app.register_blueprint(app_views, url_prefix='/api/v1')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5001)
