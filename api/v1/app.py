@@ -17,7 +17,6 @@ app.config.from_object(Config)
 
 # Initialize extensions
 jwt = JWTManager(app)
-#swagger = Swagger(app, template_file='views/documentation/auth/auth.yaml')
 Swagger(app)
 
 # Allow cross-origin requests from port 5000
