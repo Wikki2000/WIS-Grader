@@ -1,60 +1,67 @@
-openapi: "3.0.0"
+swagger: "2.0"
+
 info:
-  title: "Auth API"
+  title: "WIS_Grader RESTful API"
   description: "API for user authentication."
   version: "1.0.0"
 
 paths:
-  /login:
+  /api/v1/login:
     post:
+      tags:
+        - "Authentication"
       summary: "Login to the system"
       description: "Authenticate user by email and password to get an access token."
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: "User's email"
-                  example: "johndoe@example.com"
-                password:
-                  type: string
-                  description: "User's password"
-                  example: "password123"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: "Login credentials"
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                description: "User's email"
+                example: "johndoe@example.com"
+              password:
+                type: string
+                description: "User's password"
+                example: "password123"
       responses:
         '200':
           description: "Login successful"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Login successful"
-                  access_token:
-                    type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "Success"
+                description: "Indicates the status of the request"
+              message:
+                type: string
+                example: "Login successful"
+              access_token:
+                type: string
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
         '400':
           description: "Invalid request data"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: "No input data provided"
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "No input data provided"
         '401':
           description: "Invalid email or password"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: "Invalid email or password"
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Invalid email or password"
+
