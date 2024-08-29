@@ -51,10 +51,6 @@ responses:
             name:
               type: string
               example: John Doe
-            username:
-              type: string
-              description: User display name
-              example: john232
             email:
               type: string
               example: example@email.com
