@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flasgger import Swagger
 from api.v1.views import app_views
-from .config import Config
+from api.v1.config import Config
 from models.storage import Storage
 
 # Initialize storage
@@ -17,7 +17,7 @@ app.config.from_object(Config)
 
 # Initialize extensions
 jwt = JWTManager(app)
-swagger = Swagger(app)
+swagger = Swagger(app, template_file='views/documentation/auth/auth.yaml')
 
 # Allow cross-origin requests from port 5000
 cors = CORS(app, resources={
