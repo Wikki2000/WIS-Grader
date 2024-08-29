@@ -45,6 +45,7 @@ def login():
     return jsonify(
             {
                 "message": "Login successful",
-                "access_token": access_token
+                "access_token": access_token,
+                "status": "Success"
             }
         ), 200
