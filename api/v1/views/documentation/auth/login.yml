@@ -1,0 +1,79 @@
+Sign in User
+---
+tags:
+  - Authentication
+
+description: |
+  This end point allows user to sign in with valid credentials.
+
+parameters:
+  - in: body
+    description: Credentials to Sign in
+    name: body
+    required: True
+    schema:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: exampl@gmail.com
+        password:
+          type: string
+          example: 12345
+
+responses:
+  200:
+    description: User Successfully Login
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Login successful
+        access_token:
+          type: string
+          example: jwt_token
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: er364feruy7t6463t5
+            name:
+              type: string
+              example: John Doe
+            username:
+              type: string
+              description: User display name
+              example: john232
+            email:
+              type: string
+              example: example@email.com
+  400:
+    description: Invalid or empty request body
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: Empty request body
+  401:
+    description: User enter invalid credentials
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Unauthorized Access
+        message:
+          type: string
+          example: Invalide email or password

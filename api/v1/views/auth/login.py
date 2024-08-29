@@ -4,13 +4,13 @@ from flask import request, jsonify
 from models.lecturer import Lecturer
 from flask_jwt_extended import create_access_token
 import datetime
-from .. import app_views
+from api.v1.views import app_views
 from models.storage import Storage
 from flasgger.utils import swag_from
 
 
 @app_views.route('/login', methods=['POST'])
-@swag_from('../documentation/auth/auth.yaml')
+@swag_from('../documentation/auth/login.yml')
 def login():
     """Route for user login with JSON data."""
 
@@ -24,7 +24,7 @@ def login():
     required_fields = ['email', 'password']
     missing_fields = [field for field in required_fields if field not in data]
     if missing_fields:
-        return jsonify({"error": f"Missing fields: {', '.join(missing_fields)}"}), 400
+        return jsonify({"error": f"Missing fields: {' '.join(missing_fields)}"}), 400
 
     email = data['email']
     password = data['password']
