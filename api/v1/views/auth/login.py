@@ -10,7 +10,7 @@ from flasgger.utils import swag_from
 
 
 @app_views.route('/login', methods=['POST'])
-@swag_from('../../documentation/auth/auth.yaml', methods=['POST'])
+@swag_from('../documentation/auth/auth.yaml', methods=['POST'])
 def login():
     """Route for user login with JSON data."""
 
