@@ -9,7 +9,7 @@ from models.storage import Storage
 from flasgger.utils import swag_from
 
 
-@app_views.route('/login', methods=['POST'])
+@app_views.route('/auth/login', methods=['POST'])
 @swag_from('../documentation/auth/login.yml')
 def login():
     """Route for user login with JSON data."""
