@@ -8,9 +8,9 @@ description: |
 
 parameters:
   - in: body
-    description: Credentials to Sign in
+    description: "Login credentials"
     name: body
-    required: True
+    required: true
     schema:
       type: object
       required:
@@ -19,9 +19,11 @@ parameters:
       properties:
         email:
           type: string
-          example: exampl@gmail.com
+          description: "User's email"
+          example: "johndoe@example.com"
         password:
           type: string
+          description: "User's password"
           example: 12345
 
 responses:
@@ -32,13 +34,14 @@ responses:
       properties:
         status:
           type: string
-          example: success
+          description: "Indicates the status of the request"
+          example: "Success"
         message:
           type: string
           example: Login successful
         access_token:
           type: string
-          example: jwt_token
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
         user:
           type: object
           properties:
@@ -76,4 +79,4 @@ responses:
           example: Unauthorized Access
         message:
           type: string
-          example: Invalide email or password
+          example: Invalid email or password
