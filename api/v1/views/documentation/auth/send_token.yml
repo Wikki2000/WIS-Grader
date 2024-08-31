@@ -1,0 +1,53 @@
+Sent confirmation code for email verification
+---
+tags:
+  - Authentication
+description: This end endpoint generate token and send to email
+             for verification.
+
+parameters:
+  - in: body
+    name: body
+    description: The user valid email and name.
+    required: true
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Bush
+        email:
+          type: string
+          example: example@gmail.com
+
+responses:
+  200:
+    description: Successful request
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Success
+        token:
+          type: string
+          example: 978543
+        message:
+          type: string
+          example: Confirmation code sent to email
+  400:
+    description: Invalid input or empty request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Bad Request
+  500:
+    description: Server encounter error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Token Delivery Failed
