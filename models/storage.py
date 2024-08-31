@@ -68,6 +68,14 @@ class Storage:
         """Retrieve session engine to connect with database."""
         return self.__session
 
+    def close(self):
+        """Close database session."""
+        self.__session.close()
+
+    def rollback(self):
+        """Rollback session incase of error"""
+        self.__session.rollback()
+
     def get_engine(self):
         """Retrieved engine object."""
         return self.__engine
