@@ -30,6 +30,5 @@ cors = CORS(app, resources={
 app.register_blueprint(app_views, url_prefix='/api/v1')
 
 
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
