@@ -1,0 +1,99 @@
+Update a Specific Course
+---
+tags:
+  - Courses
+
+description: |
+  This endpoint allows you to update details of a specific course by its ID.
+
+parameters:
+  - in: path
+    name: course_id
+    required: true
+    description: "The UUID of the course to be updated."
+    schema:
+      type: string
+      format: uuid
+      example: "1e5f7e2a-8094-4f69-b1c5-9d4a4e749abc"
+
+  - in: body
+    name: body
+    required: true
+    description: "Course details to be updated."
+    schema:
+      type: object
+      properties:
+        course_title:
+          type: string
+          description: "Title of the course"
+          example: "Advanced Mathematics"
+        course_code:
+          type: string
+          description: "Code of the course"
+          example: "MATH401"
+        credit_load:
+          type: integer
+          description: "Credit load of the course"
+          example: 4
+        semester:
+          type: string
+          description: "Semester during which the course is offered"
+          example: "Fall 2024"
+
+responses:
+  200:
+    description: Course successfully updated.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: "1e5f7e2a-8094-4f69-b1c5-9d4a4e749abc"
+            course_title:
+              type: string
+              example: "Advanced Mathematics"
+            course_code:
+              type: string
+              example: "MATH401"
+            credit_load:
+              type: integer
+              example: 4
+            semester:
+              type: string
+              example: "Fall 2024"
+  400:
+    description: Invalid or empty request body.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Request body is empty"
+  404:
+    description: Course not found.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Course not found"
+  500:
+    description: Internal Server Error.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "An error occurred while updating the course"
+            message:
+              type: string
+              example: "Detailed error message here"
