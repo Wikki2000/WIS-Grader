@@ -14,5 +14,11 @@ class Result(BaseModel, Base):
     total_score = Column(Integer)
     grade = Column(String(10))
     remark = Column(Integer)
-    course_id = Column(String(60), ForeignKey('courses.id', ondelete='CASCADE'), nullable=False)
-    student_id = Column(String(60), ForeignKey('students.id', ondelete='CASCADE'), nullable=False)
+    course_id = Column(
+            String(60), nullable=False,
+            ForeignKey('courses.id', ondelete='CASCADE')
+    )
+    student_id = Column(
+            String(60), nullable=False,
+            ForeignKey('students.id', ondelete='CASCADE')
+    )
