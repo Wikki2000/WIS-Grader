@@ -51,6 +51,7 @@ def create_course(lecturer_id):
         session.commit()
         return jsonify(
             {
+                "id": new_course.id,
                 "course_code": new_course.course_code,
                 "course_title": new_course.course_title,
                 "credit_load": new_course.credit_load,
@@ -106,7 +107,8 @@ def delete_course(course_id):
         session.commit()
         return jsonify(
             {
-                'message': f'Course {course_name} deleted successfully'
+                'message': f'Course {course_name} deleted successfully',
+                "id": course.id
             }
         ), 200
 
@@ -150,7 +152,15 @@ def update_course(course_id):
     try:
         # Commit changes to the database
         session.commit()
-        return jsonify(course.to_dict()), 200
+        return jsonify(
+            {
+                "id": course.id,
+                "course_name": course.course_title,
+                "course_code": course.course_code,
+                "credit_load": course.credit_load,
+                "semester": course.semester
+            }
+        ), 200
 
     except Exception as e:
         session.rollback()
