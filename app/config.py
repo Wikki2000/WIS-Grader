@@ -10,7 +10,9 @@ Key configurations include:
 - SECRET_KEY: Use for session management and other security-related features.
 """
 from os import environ
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class Config:
     """Base configuration."""
