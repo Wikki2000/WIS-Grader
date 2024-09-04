@@ -37,7 +37,8 @@ $(document).ready(function () {
     ajaxRequest(url, "POST", data,
       (response) => {
         if (response.status == "Success") {
-          window.location.href = 'http://127.0.0.1:5000//account/verify-email';
+          window.location.href = `http://127.0.0.1:5000/account/verify-email?email=${email}`;
+
          }
       },
       (error) => {
