@@ -1,0 +1,74 @@
+Register a new user
+---
+tags:
+  - Authentication
+description: This endpoint allows new users to create an account by providing their details.
+parameters:
+  - in: body
+    name: body
+    description: The user's registration information
+    required: true
+    schema:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - email
+        - password
+        - token
+      properties:
+        first_name:
+          type: string
+          description: The user's Full Name
+          example: John
+        last_name:
+          type: string
+          description: The user's username
+          example: Doe
+        email:
+          type: string
+          description: The user's email address
+          example: johndoe@example.com
+        password:
+          type: string
+          description: The user's password
+          example: securepassword123
+        token:
+          type: string
+          example: 12345
+responses:
+  201:
+    description: User registered successfully
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Registration successfully
+  400:
+    description: Invalid Request
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Bad Request
+  409:
+    description: User already exists
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "User already exists"
+  422:
+    description: Validation Error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Validation Error 
