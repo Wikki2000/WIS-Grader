@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REGISTER</title>
   <link rel="stylesheet" href="../static/css/authenication.css" />
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="module" src="../static/js/register.js?{{ cache_id }}"></script>
 </head>
 
 <body>
@@ -37,7 +40,7 @@
       <div class="glassmorphism">
         <div class="form__container">
           <h1>Sign <span style="color: #ffb44b;">Up</span></h1>
-          <form action="{{ url_for('app.register') }}" method="POST" class="register__form">
+          <form id="reg-form" class="register__form">
             <input type="text" name="firstname" id="firstname" placeholder="Firstname" />
             <input type="text" name="lastname" id="lastname" placeholder="Lastname" />
             <input type="email" name="email" id="email" placeholder="Email" />
