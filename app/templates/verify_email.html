@@ -23,13 +23,14 @@
       <h1 class="title">Verify your email address</h1>
 
       <p class="subtitle">Please enter the six-digit code sent to Hela@gmail.com</p>
-      <form method="POST" class="verify__form">
-        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+      <form method="POST" class="verify__form" action="{{ url_for('app.verify_email') }}" >
+        <input type="text" name="f1" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" name="f2" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" name="f3" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" name="f4" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" name="f5" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" name="f6" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="submit" class="signup__btn" value="Confirm email" />
       </form>
 
       <p><a class="alt__option" href="#">Resend Code</a></p>
