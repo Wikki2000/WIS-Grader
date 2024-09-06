@@ -1,10 +1,17 @@
 #!/usr/bin/python3
 """ Model for handling user registration, email verification, and login routes. """
 from app.routes import app
-from flask import render_template, request, redirect, url_for, jsonify
-from flask import flash, session
+from flask import (
+    render_template, request, redirect,
+    url_for, jsonify, abort, session
+)
 import requests
 from uuid import uuid4
+from models.storage import Storage
+from models.lecturer import Lecturer
+
+
+storage = Storage()
 
 
 @app.route('/account/signup', methods=['GET', 'POST'])
@@ -26,6 +33,12 @@ def register():
     email = data.get('email')
     password = data.get('password')
 
+    sess = storage.get_session()
+    user = sess.query(Lecturer).filter_by(email=email).first()
+    sess.close()
+    if user:
+        return jsonify({"error": "User Exist Already"}), 422
+
     # Save data in the session
     session['registration_data'] = {
         'firstname': firstname,
@@ -40,28 +53,31 @@ def register():
         url,
         json={'email': email, 'name': f'{firstname} {lastname}'}
     )
-    token = res.json().get('token')
+    json_res = res.json()
+    token = json_res.get('token')
 
     if token:
         return jsonify({'status': 'Success'}), 200
     return jsonify({'error': 'Internal Error Occured'}), 500
 
 
-
 @app.route('/account/verify-email', methods=['GET', 'POST'])
 def verify_email():
     """Verify the email using a token."""
     if request.method == 'GET':
-        email = request.args.get("email")
+        email = session.get('registration_data').get('email')
         data = {'email': email, 'cache_id': uuid4()}
         return render_template('verify_email.html', **data)
 
+    data = request.get_json()
+    if not data.get("token"):
+        abort(400, "Bad Request")
 
-
+    token = data.get("token")
     # Retrieve registration data from session
     registration_data = session.get('registration_data')
     if not registration_data:
-        return redirect(url_for('app.register'))
+        abort(404, "Registration Data Not Found in Session")
 
     email = registration_data['email']
     firstname = registration_data['firstname']
@@ -82,25 +98,12 @@ def verify_email():
             )
 
     if response.status_code == 200:
-        return render_template('confirm_email.html')
+        return jsonify({"status": "Success"}), 200
     else:
-        print("Error: Verification failed", response.status_code)
-        return render_template('verify_email.html')
+        return jsonify({"error": "Registration Failed"}), 422
 
 
-@app.route('/account/signin')
-def signin():
-    """Render the login page."""
-    return render_template('login.html')
-
-
-@app.route('/account/signup')
-def signup():
-    """Redirect to the registration page."""
-    return redirect(url_for('app.register'))
-
-
-@app.route('/login')
-def login():
-    """Render the login page."""
-    return render_template('login.html')
+@app.route('/account/verify-success', methods=['GET'])
+def verify_success():
+    """Render template for successfull email registration."""
+    return render_template("confirm_email.html")

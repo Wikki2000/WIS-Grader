@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FORGOT PASSWORD</title>
-  <link rel="stylesheet" href="../static/css/components.css" />
+  <title>VERIFY EMAIL</title>
+  <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="module" src="../static/js/verify_email.js?{{ cache_id }}"></script>
 </head>
 
 <body>
@@ -21,20 +23,21 @@
       </svg>
 
       <h1 class="title">Verify your email address</h1>
+      <div class="auth__alert__msg"></div>
 
-      <p class="subtitle">Please enter the six-digit code sent to Hela@gmail.com</p>
-      <form method="POST" class="verify__form" action="{{ url_for('app.verify_email') }}" >
-        <input type="text" name="f1" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" name="f2" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" name="f3" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" name="f4" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" name="f5" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="text" name="f6" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-        <input type="submit" class="signup__btn" value="Confirm email" />
+      <p class="subtitle">Please enter the six-digit code {{ email }}</p>
+      <form id="verify-form" class="verify__form" >
+        <input type="text" id="f1" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" id="f2" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" id="f3" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" id="f4" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" id="f5" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+        <input type="text" id="f6" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+	<button type="submit" class="primary__btn">Verify Email</button>
       </form>
+      <div class="loader"></div>
 
       <p><a class="alt__option" href="#">Resend Code</a></p>
-      <button class="primary__btn"><a href="#" class="link">Reset Password</a></button>
       <p><a class="alt__option" href="#">Change Email</a></p>
     </div>
   </div>

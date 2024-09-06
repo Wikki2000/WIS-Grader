@@ -35,3 +35,26 @@ export function togglePasswordVisibility(passwordFieldId, toggleButtonId) {
     }
   });
 }
+
+/**
+ * Alert box for success and error.
+ *
+ * @param {string} alertDivClass - The class of the Alert DIV.
+ * @param {bool} isError - Give a true or false value if it is an error alert.
+ * @param {string} successClass - Class for successfull alert with default value.
+ * @param {string} errorClass - Class for error alert with default value.
+ * @param {string} msg - Message to be display on alert box.
+ */
+export function alertBox(
+  alertDivClass, msg, isError = true,
+  successClass = 'auth__success__alert', 
+  errorClass = 'auth__error__alert'
+) {
+  if (isError) {
+    $(`.${alertDivClass}`).removeClass(successClass)
+      .addClass(errorClass).text(msg).show();
+  } else {
+    $(`.${alertDivClass}`).removeClass(errorClass)
+      .addClass(successClass).text(msg).show();
+  }
+}

@@ -68,19 +68,49 @@ body {
 }
 
 /* ==== Success components ==== */
-.register__success__conatiner,
-.login__success__conatiner,
-.reset__pwd__success__container
+.auth__success__alert
 {
-  background: #ffffff;
-  text-align: center;
-  padding: 2em 0;
-  margin-top: 2em;
-  font-weight: bold;
+  background: #28a745;
+  border: 1px solid #1e7e34;
 }
 
+/* ==== Failure components ==== */
+.auth__error__alert
+{
+  background: red;
+  color: white;
+}
 
+/* ==== Message components ==== */
+.auth__alert__msg
+{
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 16px;
+  width: 350px;
+  padding: 15px;
+  border-radius: 5px;
+  display: none;
+}
 
+/* ==== Animate while waiting for server response ==== */
+.loader
+{
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 20px auto;
+}
+@keyframes spin
+{
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
 /* Responsive styles */
 @media (min-width: 600px) {
   .auth__conatiner {

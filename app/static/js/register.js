@@ -1,7 +1,9 @@
-import { ajaxRequest } from './utils.js';
+import { ajaxRequest, alertBox } from './utils.js';
 
 
 $(document).ready(function () {
+
+  const alertDivClass = 'auth__alert__msg';
 
   // Ensure password match and meet some criteria.
   $('.signup__btn').click(function (event) {
@@ -12,16 +14,26 @@ $(document).ready(function () {
 
     if (pwd1 !== pwd2) {
       event.preventDefault();
-      alert('Password Must Match');
+      const msg = 'Password Must Match';
+      alertBox(alertDivClass, msg);
     } else if (!passwordPattern.test(pwd1)) {
       event.preventDefault();
-      alert('Must pass password criteria');
+      const msg = 'Password must be atleast 8 characters and ' + 
+                  'contains uper, lowercase and special character';
+      alertBox(alertDivClass, msg);
     }
   });
 
   //Handles Form Submission
   $('#reg-form').submit(function (event) {
     event.preventDefault();
+
+    // Show loader and hide button each time form is submitted
+    $('.loader').show();
+    $('.signup__btn').hide()
+
+    // Clear Previous Message
+    $(`.${alertDivClass}`).hide();
 
     const firstName = $('#firstname').val();
     const lastName = $('#lastname').val();
@@ -37,12 +49,22 @@ $(document).ready(function () {
     ajaxRequest(url, "POST", data,
       (response) => {
         if (response.status == "Success") {
-          window.location.href = `http://127.0.0.1:5000/account/verify-email?email=${email}`;
+          const msg = 'Registration Successfull. Continue to Verify Email';
+          alertBox(alertDivClass, msg, false);
+
+          setTimeout(() => {
+            window.location.href = 'http://127.0.0.1:5000/account/verify-email';
+          }, 2000);
 
          }
       },
       (error) => {
-        console.error('An error occurred while submitting form');
+        const msg = 'User With This Email Exists Already';
+        alertBox(alertDivClass, msg);
+
+        // Hide loader and display button to user on error
+        $('.loader').hide();
+        $('.signup__btn').show()
       }
     );
   });

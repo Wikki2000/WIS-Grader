@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REGISTER</title>
-  <link rel="stylesheet" href="../static/css/authenication.css" />
+  <link rel="stylesheet" href="../static/css/authenication.css?{{ cache_id }}" />
+  <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="module" src="../static/js/register.js?{{ cache_id }}"></script>
@@ -35,11 +36,14 @@
       </div>
     </div>
 
+    <!--auth__error__alert -->
+    <!--auth__success__alert-->
     <!-- ======== REGISTRATION MARKUP ========== -->
     <div class="form_bg_image">
       <div class="glassmorphism">
         <div class="form__container">
           <h1>Sign <span style="color: #ffb44b;">Up</span></h1>
+          <div id="message" class="auth__alert__msg"></div>
           <form id="reg-form" class="register__form">
             <input type="text" name="firstname" id="firstname" placeholder="Firstname" />
             <input type="text" name="lastname" id="lastname" placeholder="Lastname" />
@@ -48,6 +52,7 @@
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" />
             <input type="submit" class="signup__btn" value="Sign Up" />
           </form>
+	  <div class="loader"></div>
 
           <hr />
           <p class="or_text">or</p>
