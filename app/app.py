@@ -14,8 +14,9 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.config['JWT_TOKEN_LOCATION'] = ['cookies'] 
 app.config['JWT_ACCESS_COOKIE_PATH'] = '/'  # Specify the cookie path
-app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # Optionally disable CSRF protection for development
+#app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # Optionally disable CSRF protection for development
 app.config['JWT_COOKIE_SECURE'] = True  # Only transmit cookies over HTTPS
+
 # Initialize the JWT Manager
 jwt = JWTManager(app)
 

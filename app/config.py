@@ -17,3 +17,4 @@ load_dotenv()
 class Config:
     """Base configuration."""
     SECRET_KEY = environ["FLASK_SECRET_KEY"]
+    JWT_SECRET_KEY = environ['JWT_SECRET_KEY']
