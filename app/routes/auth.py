@@ -2,7 +2,7 @@
 """ Model for handling user registration, email verification, and login routes. """
 from app.routes import app
 from flask import render_template, request, redirect, url_for, jsonify
-from flask import flash, session
+from flask import flash, session, make_response
 import requests
 from uuid import uuid4
 
@@ -36,10 +36,25 @@ def signin():
         res_json = response.json()
         access_token = res_json.get('access_token')
 
-        return jsonify({'access_token': access_token}), 200
+        # Create a response object
+        resp = make_response(jsonify({'message': 'Login Successful'}), 200)
+
+        # Set the access token as a secure, HTTP-only cookie
+        resp.set_cookie('access_token_cookie', access_token, httponly=True, secure=True)
+
+        # Clear registration data from session
+        session.pop('registration_data', None)
+
+        return resp
 
     elif response.status_code == 401:
         return jsonify({"error": "Invalid Email or Password"}), 401
 
     else:
         return jsonify({"error": "Invalid Email or Password"}), response.status_code
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
+    """Render the dummy dashboard."""
+    # This is a dummy dashboard route
+    return render_template('dashboard.html')
