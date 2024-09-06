@@ -6,6 +6,9 @@ from flask import flash, session, make_response
 import requests
 from uuid import uuid4
 from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies
+from models.course import Course
+from models.lecturer import Lecturer
+from models.storage import Storage
 
 @app.route('/account/signin', methods=['GET', 'POST'])
 def signin():
@@ -45,9 +48,26 @@ def signin():
 @app.route('/dashboard', methods=['GET'])
 @jwt_required()
 def dashboard():
-    # Retrieve user identity from the JWT token
-    current_user = get_jwt_identity()
-    full_name = current_user.get('first_name')
+    # Retrieve lecturer's ID from the JWT token
+    lecturer_id = get_jwt_identity()
 
-    # Render or return the dashboard content with the user's full name
-    return jsonify(message=f"Welcome to the dashboard, {full_name}!"), 200
+    storage = Storage()
+    session = storage.get_session()
+
+    # Query the lecturer's information from the database using the lecturer ID
+    lecturer = session.get(Lecturer, lecturer_id)
+
+    if not lecturer:
+        return jsonify({"error": "Lecturer not found"}), 404
+
+    # Retrieve lecturer's full name
+    full_name = f"{lecturer.first_name} {lecturer.last_name}"
+
+    # Query courses associated with the lecturer
+    courses = lecturer.courses
+
+    # Create a list of course names with course codes
+    course_names = [{course.course_code: course.course_title} for course in courses]
+
+    # Render the dashboard template and pass the lecturer's full name and courses
+    return render_template('dashboard.html', full_name=full_name, courses=course_names)
