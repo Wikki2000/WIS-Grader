@@ -13,7 +13,6 @@ def signin():
     if request.method == 'GET':
         return render_template('login.html')
 
-    # For POST request, process the login form data
     data = request.get_json()
 
     # Check if required fields are present
@@ -30,43 +29,17 @@ def signin():
 
     # Make a request to the API to login the user
     url = 'http://127.0.0.1:5001/api/v1/auth/login'
-    response = requests.post(
-        url,
-        json={'email': email, 'password': password}
-    )
+    response = requests.post(url, json={'email': email, 'password': password})
 
     if response.status_code == 200:
-        # Successful login
+        # Forward the access token to the frontend
         res_json = response.json()
         access_token = res_json.get('access_token')
 
-        # Set token in cookies
-        response = jsonify(
-            {
-                'status': 'Success',
-                'msg': 'Login Successful'
-            }
-        )
-        response.set_cookie('access_token_cookie',
-                            access_token, httponly=True, secure=True)
-
-        # Clear the registration data from session
-        session.pop('registration_data', None)
-
-        return response, 200
+        return jsonify({'access_token': access_token}), 200
 
     elif response.status_code == 401:
-        # Invalid credentials
-        return jsonify(
-            {
-                "error": "Invalid Email or Password"
-            }
-        ), 401
+        return jsonify({"error": "Invalid Email or Password"}), 401
 
     else:
-        # Handle any other errors (e.g., bad request)
-        return jsonify(
-            {
-                "error": "Invalid Email or Password"
-            }
-        ), response.status_code
+        return jsonify({"error": "Invalid Email or Password"}), response.status_code
