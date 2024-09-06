@@ -5,7 +5,7 @@ from flask import render_template, request, redirect, url_for, jsonify
 from flask import flash, session, make_response
 import requests
 from uuid import uuid4
-
+from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies
 
 @app.route('/account/signin', methods=['GET', 'POST'])
 def signin():
@@ -17,12 +17,7 @@ def signin():
 
     # Check if required fields are present
     if not data or 'email' not in data or 'password' not in data:
-        return jsonify(
-            {
-                "message": "Empty request body",
-                "status": "Bad Request"
-            }
-        ), 400
+        return jsonify({"message": "Empty request body", "status": "Bad Request"}), 400
 
     email = data.get('email')
     password = data.get('password')
@@ -32,29 +27,27 @@ def signin():
     response = requests.post(url, json={'email': email, 'password': password})
 
     if response.status_code == 200:
-        # Forward the access token to the frontend
         res_json = response.json()
         access_token = res_json.get('access_token')
 
-        # Create a response object
-        resp = make_response(jsonify({'message': 'Login Successful'}), 200)
-
-        # Set the access token as a secure, HTTP-only cookie
-        resp.set_cookie('access_token_cookie', access_token, httponly=True, secure=True)
-
-        # Clear registration data from session
+        # Set cookie for access token
+        response = jsonify({"message": "Login Successful"})
+        set_access_cookies(response, access_token)  # Set JWT in cookie
+        #response.set_cookie('access_token', access_token, httponly=True)
         session.pop('registration_data', None)
-
-        return resp
+        return response, 200
 
     elif response.status_code == 401:
         return jsonify({"error": "Invalid Email or Password"}), 401
 
-    else:
-        return jsonify({"error": "Invalid Email or Password"}), response.status_code
+    return jsonify({"error": "Something went wrong"})
 
 @app.route('/dashboard', methods=['GET'])
+@jwt_required()
 def dashboard():
-    """Render the dummy dashboard."""
-    # This is a dummy dashboard route
-    return render_template('dashboard.html')
+    # Retrieve user identity from the JWT token
+    current_user = get_jwt_identity()
+    full_name = current_user.get('first_name')
+
+    # Render or return the dashboard content with the user's full name
+    return jsonify(message=f"Welcome to the dashboard, {full_name}!"), 200
