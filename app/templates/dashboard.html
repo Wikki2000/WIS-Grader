@@ -1,13 +1,72 @@
-<!-- templates/dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.dashboard {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    color: #555;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 4px solid #2196F3;
+}
+
+li strong {
+    color: #2196F3;
+}
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Dashboard</h1>
-    <p>This is a dummy dashboard page.</p>
+
+    <div class="dashboard">
+        <h1>Welcome, {{ full_name }}!</h1>
+        
+        <section>
+            <h2>Your Courses</h2>
+            {% if courses %}
+                <ul>
+                    {% for course in courses %}
+                        {% for course_code, course_title in course.items() %}
+                            <li><strong>{{ course_code }}:</strong> {{ course_title }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You are not assigned to any courses at the moment.</p>
+            {% endif %}
+        </section>
+    </div>
+
 </body>
 </html>
