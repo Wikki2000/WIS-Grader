@@ -24,14 +24,9 @@ $(document).ready(function () {
 
     ajaxRequest(url, "POST", data,
       (response) => {
-        if (response.access_token) {
-          // Set the access token as a cookie
-          document.cookie = `access_token_cookie=${response.access_token}; secure=true; httponly=true`;
-          alert("Login Successful");
-          sessionStorage.removeItem('registration_data');
-          
-          // Redirect to dashboard
-          window.location.href = '/dashboard';  // Dashboard dummy route
+        if (response.message === "Login Successful") {
+          // Redirect to the dashboard after successful login
+          window.location.href = 'http://127.0.0.1:5000/dashboard';  // Redirect to the dashboard
         } else {
           alert("Invalid Email or Password");
         }
@@ -43,3 +38,4 @@ $(document).ready(function () {
     );
   });
 });
+
