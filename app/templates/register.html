@@ -36,8 +36,6 @@
       </div>
     </div>
 
-    <!--auth__error__alert -->
-    <!--auth__success__alert-->
     <!-- ======== REGISTRATION MARKUP ========== -->
     <div class="form_bg_image">
       <div class="glassmorphism">
@@ -84,7 +82,7 @@
 
             <a href="#">Continue with google</a>
           </button>
-          <p>Already a member? <a class="signin__text" href="#">Sign in</a></p>
+	  <p>Already a member? <a class="signin__text" href="{{ url_for('app.signin') }}">Sign in</a></p>
         </div>
       </div>
     </div>

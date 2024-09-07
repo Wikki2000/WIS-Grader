@@ -46,7 +46,7 @@ $(document).ready(function () {
       firstname: firstName, email: email,
       lastname: lastName, password: password
     });
-    const url = 'http://127.0.0.1:5000/account/signup';
+    const url = '/account/signup';
 
     ajaxRequest(url, "POST", data,
       (response) => {
@@ -55,7 +55,7 @@ $(document).ready(function () {
           alertBox(alertDivClass, msg, false);
 
           setTimeout(() => {
-            window.location.href = 'http://127.0.0.1:5000/account/verify-email';
+            window.location.href = '/account/verify-email';
           }, 2000);
 
          }

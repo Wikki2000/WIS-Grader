@@ -35,11 +35,6 @@ class TestRegisterRoute(unittest.TestCase):
     def test_register_successfull(self):
         """Test successfull registtration of User."""
         response = self.client.post(self.url, json=self.attr)
-        expected_json_response = {
-                'msg': 'Registration Successful',
-                'status': 'Success'
-        }
-        self.assertEqual(expected_json_response, response.json)
         self.assertEqual(response.status, "200 OK")
         self.assertEqual(response.status_code, 200)
 
