@@ -15,12 +15,12 @@ $(document).ready(function () {
     )
 
     const data = JSON.stringify({ token: token});
-    const url = 'http://127.0.0.1:5000/account/verify-email';
+    const url = '/account/verify';
 
     ajaxRequest(url, "POST", data,
       (response) => {
         if (response.status == "Success") {
-          window.location.href = 'http://127.0.0.1:5000/account/verify-success';
+          window.location.href = '/account/verify-success';
          }
       },
       (error) => {

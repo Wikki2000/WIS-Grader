@@ -19,7 +19,7 @@ $(document).ready(function () {
       password: password
     });
 
-    ajaxRequest('http://127.0.0.1:5000/account/signin', 'POST', data,
+    ajaxRequest('/account/signin', 'POST', data,
       function (response) {
         if (response.message === "Login Successful") {
           const msg = 'Login Successfull';

@@ -101,8 +101,8 @@ def signup():
     return jsonify({'error': 'Internal Error Occured'}), 500
 
 
-@app.route('/account/verify-email', methods=['GET', 'POST'])
-def verify_email():
+@app.route('/account/verify', methods=['GET', 'POST'])
+def verify():
     """Verify the email using a token."""
     if request.method == 'GET':
         email = session.get('registration_data').get('email')
