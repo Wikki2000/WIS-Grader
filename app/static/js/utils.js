@@ -47,7 +47,7 @@ export function togglePasswordVisibility(passwordFieldId, toggleButtonId) {
  */
 export function alertBox(
   alertDivClass, msg, isError = true,
-  successClass = 'auth__success__alert', 
+  successClass = 'auth__success__alert',
   errorClass = 'auth__error__alert'
 ) {
   if (isError) {

@@ -161,6 +161,11 @@ a {
   box-sizing: border-box;
 }
 
+.highlight__pwd__input {
+  background: #F9DEDC;
+  border: 2px solid #dc362e !important;
+}
+
 .signup__btn {
   background: #000000;
   color: #ffffff;

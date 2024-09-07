@@ -84,14 +84,17 @@ body {
 /* ==== Message components ==== */
 .auth__alert__msg
 {
+  display: none;
+  background: #f9dedc;
+  color: #000000;
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   letter-spacing: 1px;
   font-size: 16px;
-  width: 350px;
-  padding: 15px;
-  border-radius: 5px;
-  display: none;
+  width: 250px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 20px;
 }
 
 /* ==== Animate while waiting for server response ==== */
