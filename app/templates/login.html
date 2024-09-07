@@ -39,11 +39,10 @@
     <div class="form_bg_image">
       <div class="glassmorphism">
         <div class="form__container">
+          <!-- Alert Message To User -->
+          <div id="message" class="auth__alert__msg"></div>
+
           <h1>Sign <span style="color: #ffb44b;">In</span></h1>
-
-	  <!-- Alert Message To User -->
-	  <div id="message" class="auth__alert__msg"></div>
-
           <form action="" method="POST" class="register__form">
             <input type="email" name="email" id="email" placeholder="Email" required />
             <input type="password" name="password" id="password" placeholder="Enter password" required />
@@ -53,8 +52,8 @@
             <input type="submit" name="submit" id="submit" class="signup__btn" value="Sign In" />
           </form>
 
-	  <!-- Animate while waiting for server response. -->
-	  <div class="loader"></div>
+          <!-- Animate while waiting for server response. -->
+          <div class="loader"></div>
 
           <hr />
           <p class="or_text">or</p>
@@ -76,7 +75,7 @@
 
             <a href="#">Continue with google</a>
           </button>
-	  <p>Not a member? <a class="signup__text" href="{{ url_for('app.signup') }}">Sign up</a></p>
+          <p>Not a member? <a class="signup__text" href="{{ url_for('app.signup') }}">Sign up</a></p>
         </div>
       </div>
     </div>

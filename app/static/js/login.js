@@ -5,6 +5,9 @@ $(document).ready(function () {
   $('.register__form').submit(function (event) {
     event.preventDefault();
     const alertDivClass = 'auth__alert__msg';
+
+    const email_input_border = $('input[type="email"]');
+    const pwd_input_border = $('input[type="password"]');
     // Clear Previous Message
     $(`.${alertDivClass}`).hide();
 
@@ -33,11 +36,13 @@ $(document).ready(function () {
       function (error) {
         const msg = 'Invalid Email or Password';
 
+        email_input_border.addClass('highlight__pwd__input');
+        pwd_input_border.addClass('highlight__pwd__input');
         // Hide loader and display button to user on error
         alertBox(alertDivClass, msg);
         $('.loader').hide();
         $('.signup__btn').show()
-        
+
       }
     );
   });
