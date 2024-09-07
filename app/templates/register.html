@@ -41,9 +41,18 @@
     <!-- ======== REGISTRATION MARKUP ========== -->
     <div class="form_bg_image">
       <div class="glassmorphism">
+
+      <!-- SignUp password error alert -->
+      <!-- <div class="auth__error__alert">
+        <p>Password does not match</p>
+      </div>
+       -->
+      <div id="message" class="auth__alert__msg"></div>
         <div class="form__container">
           <h1>Sign <span style="color: #ffb44b;">Up</span></h1>
-          <div id="message" class="auth__alert__msg"></div>
+
+
+
           <form id="reg-form" class="register__form">
             <input type="text" name="firstname" id="firstname" placeholder="Firstname" />
             <input type="text" name="lastname" id="lastname" placeholder="Lastname" />
@@ -52,7 +61,7 @@
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" />
             <input type="submit" class="signup__btn" value="Sign Up" />
           </form>
-	  <div class="loader"></div>
+          <div class="loader"></div>
 
           <hr />
           <p class="or_text">or</p>
