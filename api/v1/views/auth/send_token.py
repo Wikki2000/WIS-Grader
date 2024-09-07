@@ -4,7 +4,7 @@ from api.v1.views import app_views
 from flask import request, jsonify
 from flasgger.utils import swag_from
 from datetime import timedelta
-from os import getenv
+from os import environ
 import sib_api_v3_sdk
 from redis import Redis
 from random import randint
@@ -66,13 +66,13 @@ def fwd_token(token, mail, kwargs):
         kwargs (dict): Key-value pairs of recipient info.
     """
     config = sib_api_v3_sdk.Configuration()
-    config.api_key["api-key"] = getenv("MAIL_API_KEY")
+    config.api_key["api-key"] = environ["MAIL_API_KEY"]
 
     # Create an instance of the API class
     api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
         sib_api_v3_sdk.ApiClient(config)
     )
-    email = getenv("SENDER_EMAIL")
+    email = environ["SENDER_EMAIL"]
     sender = {"name": "WIS_Grader", "email": email}
     email_subject = "[Wis_Grader] Complete your registration"
     recipient = [kwargs]
