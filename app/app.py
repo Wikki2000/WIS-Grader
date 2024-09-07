@@ -1,13 +1,11 @@
 #!/usr/bin/python3
 """ Create Flask Application. """
 from app.config import Config
-from flask import Flask, jsonify
 from app.routes import app as bp
-import sys
-import os
+from flask import Flask, jsonify, redirect, url_for
 from flask_jwt_extended import JWTManager
-
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+import os
+import sys
 
 # Setting up Flask Application.
 app = Flask(__name__)
@@ -18,6 +16,12 @@ jwt = JWTManager(app)
 
 # Register blueprint
 app.register_blueprint(bp)
+
+# Handle expired tokens
+@jwt.expired_token_loader
+def expired_token_callback(jwt_header, jwt_payload):
+    # Redirect to login page on token expiry
+    return redirect(url_for('app.signin'))
 
 @app.errorhandler(404)
 def not_found(error):
