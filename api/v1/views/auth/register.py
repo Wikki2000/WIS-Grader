@@ -7,6 +7,7 @@ from redis import Redis
 from models.lecturer import Lecturer
 from models import storage
 from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import create_access_token
 
 r = Redis(host="localhost", port=6379, db=0)
 
@@ -29,7 +30,7 @@ def register():
 
     # Retrieved user data using dictionary comprehension
     registration_data = {
-            key: data.get(key) for key in required_fields if key != "token"
+        key: data.get(key) for key in required_fields if key != "token"
     }
 
     if not r.get(token):
@@ -41,8 +42,10 @@ def register():
         storage.new(lecturer)
         storage.save()
         r.delete(token)
+        access_token = create_access_token(identity=lecturer.id)
         return jsonify({
             "status": "Success",
+            "access_token": access_token,
             "msg": "Registration Successful"
         }), 200
     except IntegrityError:

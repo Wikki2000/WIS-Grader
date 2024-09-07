@@ -3,14 +3,17 @@
 from app.config import Config
 from flask import Flask, jsonify
 from app.routes import app as bp
+from flask_jwt_extended import JWTManager
 import sys
 import os
 
-#sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # Setting up Flask Application.
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Initialization of flask app
+JWTManager(app)
 
 
 # Register blueprint

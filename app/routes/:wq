@@ -3,7 +3,7 @@
 from app.routes import app
 from flask import (
     render_template, request, redirect,
-    jsonify, abort, session
+    make_response, jsonify, abort, session
 )
 from flask_jwt_extended import set_access_cookies
 import requests
@@ -97,19 +97,13 @@ def verify_email():
                 'token': token
                 }
             )
-    if response.status_code != 200:
-        return jsonify({"error": "Registration Failed"}), 422
-    elif response.status_code == 200:
+    if response.status_code == 200:
         access_token = response.json().get("access_token")
-        print(access_token)
-        response = jsonify(
-            {
-                "msg": "Login successful",
-                "status": "Success"
-            }
-        )
+        response = make_response(jsonify({"status": "Success"}))
         set_access_cookies(response, access_token)
-    return response, 200
+        return response
+    else:
+        return jsonify({"error": "Registration Failed"}), 422
 
 
 @app.route('/account/verify-success', methods=['GET'])
