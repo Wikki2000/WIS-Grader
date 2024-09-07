@@ -72,8 +72,8 @@ def fwd_token(token, mail, kwargs):
     api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
         sib_api_v3_sdk.ApiClient(config)
     )
-
-    sender = {"name": "WIS_Grader", "email": "wisdomokposin@gmail.com"}
+    email = getenv("SENDER_EMAIL")
+    sender = {"name": "WIS_Grader", "email": email}
     email_subject = "[Wis_Grader] Complete your registration"
     recipient = [kwargs]
 

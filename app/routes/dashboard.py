@@ -12,8 +12,3 @@ from uuid import uuid4
 def dashboard():
     """Render template for successfull email registration."""
     return "Welcome to WIS_Grader Dashboard"
-
-
-@app.route("/redirect")
-def red():
-    return redirect(url_for('app.dashboard'))

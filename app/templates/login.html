@@ -5,9 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LOGIN</title>
-  <link rel="stylesheet" href="/static/css/authenication.css" />
+  <link rel="stylesheet" href="/static/css/authenication.css?{{ cache_id }}" />
+  <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
+
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="module" src="../static/js/login.js"></script>
+  <script type="module" src="../static/js/login.js?{{ cache_id }}"></script>
 </head>
 
 <body>
@@ -33,19 +35,26 @@
       </div>
     </div>
 
-    <!-- ======== REGISTRATION MARKUP ========== -->
+    <!-- ======== LOGIN MARKUP ========== -->
     <div class="form_bg_image">
       <div class="glassmorphism">
         <div class="form__container">
           <h1>Sign <span style="color: #ffb44b;">In</span></h1>
+
+	  <!-- Alert Message To User -->
+	  <div id="message" class="auth__alert__msg"></div>
+
           <form action="" method="POST" class="register__form">
-            <input type="email" name="email" id="email" placeholder="Email" />
-            <input type="password" name="password" id="password" placeholder="Enter password" />
+            <input type="email" name="email" id="email" placeholder="Email" required />
+            <input type="password" name="password" id="password" placeholder="Enter password" required />
 
             <p><a href="#" class="link">Forgot password</a></p>
 
             <input type="submit" name="submit" id="submit" class="signup__btn" value="Sign In" />
           </form>
+
+	  <!-- Animate while waiting for server response. -->
+	  <div class="loader"></div>
 
           <hr />
           <p class="or_text">or</p>
@@ -67,7 +76,7 @@
 
             <a href="#">Continue with google</a>
           </button>
-          <p>Already a member? <a class="signin__text" href="#">Sign in</a></p>
+	  <p>Not a member? <a class="signup__text" href="{{ url_for('app.signup') }}">Sign up</a></p>
         </div>
       </div>
     </div>

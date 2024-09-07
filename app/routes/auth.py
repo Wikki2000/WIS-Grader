@@ -4,13 +4,8 @@
     email verification, and login routes.
 """
 from app.routes import app
-from flask import render_template, request, redirect, url_for, jsonify
-from flask import flash, session, make_response
+from flask import render_template, request, redirect, url_for, jsonify, session
 from flask_jwt_extended import set_access_cookies
-import requests
-from uuid import uuid4
-from models.storage import Storage
-from models.lecturer import Lecturer
 import requests
 from uuid import uuid4
 from models.storage import Storage
@@ -51,7 +46,6 @@ def signin():
         # Set cookie for access token
         response = jsonify({"message": "Login Successful"})
         set_access_cookies(response, access_token)  # Set JWT in cookie
-        #session.pop('registration_data', None)
         return response, 200
 
     elif response.status_code == 401:
@@ -61,7 +55,7 @@ def signin():
 
 
 @app.route('/account/signup', methods=['GET', 'POST'])
-def register():
+def signup():
     """Handle user registration."""
     if request.method == 'GET':
         return render_template('register.html', cache_id=uuid4())
@@ -142,19 +136,20 @@ def verify_email():
                 'token': token
                 }
             )
-    if response.status_code != 200:
-        return jsonify({"error": "Registration Failed"}), 422
 
-    access_token = response.json().get("access_token")
-    print(access_token)
-    response = jsonify(
-            {
-                "msg": "Login successful",
-                "status": "Success"
-            }
-    )
-    set_access_cookies(response, access_token)
-    return response, 200
+    if response.status_code == 200:
+        access_token = response.json().get("access_token")
+        session.clear() # Clear session
+        response = jsonify(
+                {
+                    "msg": "Login successful",
+                    "status": "Success"
+                }
+        )
+        set_access_cookies(response, access_token)
+        return response, 200
+    else:
+        return jsonify({"error": "Registration Failed"}), 422
 
 
 @app.route('/account/verify-success', methods=['GET'])
