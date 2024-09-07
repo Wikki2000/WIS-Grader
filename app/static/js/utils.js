@@ -14,7 +14,7 @@ export function ajaxRequest(url, method, data = {}, onSuccess, onError) {
     contentType: 'application/json',
     data: data,
     success: onSuccess,
-    error: onError
+    error: onError,
   });
 }
 
