@@ -1,14 +1,22 @@
 #!/usr/bin/python3
-""" Model for handling user registration, email verification, and login routes. """
+"""
+    Model for handling user registration,
+    email verification, and login routes.
+"""
 from app.routes import app
 from flask import render_template, request, redirect, url_for, jsonify
 from flask import flash, session, make_response
-import requests
-from uuid import uuid4
-from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies
+from flask_jwt_extended import (
+    jwt_required,
+    get_jwt_identity,
+    set_access_cookies
+)
 from models.course import Course
 from models.lecturer import Lecturer
 from models.storage import Storage
+import requests
+from uuid import uuid4
+
 
 @app.route('/account/signin', methods=['GET', 'POST'])
 def signin():
@@ -20,7 +28,12 @@ def signin():
 
     # Check if required fields are present
     if not data or 'email' not in data or 'password' not in data:
-        return jsonify({"message": "Empty request body", "status": "Bad Request"}), 400
+        return jsonify(
+            {
+                "message": "Empty request body",
+                "status": "Bad Request"
+            }
+        ), 400
 
     email = data.get('email')
     password = data.get('password')
@@ -36,7 +49,6 @@ def signin():
         # Set cookie for access token
         response = jsonify({"message": "Login Successful"})
         set_access_cookies(response, access_token)  # Set JWT in cookie
-        #response.set_cookie('access_token', access_token, httponly=True)
         session.pop('registration_data', None)
         return response, 200
 
@@ -45,9 +57,11 @@ def signin():
 
     return jsonify({"error": "Something went wrong"})
 
+
 @app.route('/dashboard', methods=['GET'])
 @jwt_required()
 def dashboard():
+    """ Lecturer Dashboard. """
     # Retrieve lecturer's ID from the JWT token
     lecturer_id = get_jwt_identity()
 
@@ -67,7 +81,13 @@ def dashboard():
     courses = lecturer.courses
 
     # Create a list of course names with course codes
-    course_names = [{course.course_code: course.course_title} for course in courses]
+    course_names = [
+        {course.course_code: course.course_title} for course in courses
+    ]
 
-    # Render the dashboard template and pass the lecturer's full name and courses
-    return render_template('dashboard.html', full_name=full_name, courses=course_names)
+    # Render the dashboard template.
+    return render_template(
+        'dashboard.html',
+        full_name=full_name,
+        courses=course_names
+    )
