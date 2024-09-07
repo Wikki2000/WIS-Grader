@@ -23,6 +23,7 @@ def expired_token_callback(jwt_header, jwt_payload):
     # Redirect to login page on token expiry
     return redirect(url_for('app.signin'))
 
+
 @app.errorhandler(404)
 def not_found(error):
     """Handle 404 error in the application scope."""
