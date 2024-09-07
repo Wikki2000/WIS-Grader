@@ -55,7 +55,7 @@ $(document).ready(function () {
           alertBox(alertDivClass, msg, false);
 
           setTimeout(() => {
-            window.location.href = '/account/verify-email';
+            window.location.href = '/account/verify';
           }, 2000);
 
          }
