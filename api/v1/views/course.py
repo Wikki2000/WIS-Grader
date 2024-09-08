@@ -61,7 +61,9 @@ def create_course():
                 "course_code": new_course.course_code,
                 "course_title": new_course.course_title,
                 "credit_load": new_course.credit_load,
-                "semester": new_course.semester
+                "semester": new_course.semester,
+                "status": "success",
+                "msg": "Course Created Successfully"
             }
         ), 201
 

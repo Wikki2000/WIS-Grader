@@ -62,4 +62,8 @@ def get_post_course():
             }
         ), 200
     else:
-        return jsonify({"error": response.status_code}), response.status_code
+        return jsonify(
+            {
+                "error": "Unable to retrieve courses."
+            }
+        ), response.status_code
