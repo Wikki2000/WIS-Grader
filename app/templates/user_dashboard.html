@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USER DASHBOARD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/user_dashboard.css">
+</head>
+<body>
+<object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
+
+  <!-- ===== USER DASHBOARD DESIGN ===== -->
+  <div class="dashboard__container">
+    <section class="side__nav">
+      <div class="logo__content">
+        <img src="/static/images/logo.png" alt="" class="logo">
+      </div>
+
+      <nav class="nav__conatainer">
+        <ul class="nav__ul">
+          <li class="nav__list"><i class="fa fa-th-large"></i>Dashboard</li>
+          <li class="nav__list"><i class="fa fa-user"></i>Course Management</li>
+          <li class="nav__list"><i class="fa fa-user"></i>Student Management</li>
+          <li class="nav__list"><i class="fa fa-user"></i>Grade Book</li>
+          <li class="nav__list"><i class="fa fa-user"></i>Settings</li>
+          <li class="nav__list"><i class="fa fa-user"></i>Help & Support</li>
+          <li class="nav__list"><i class="fa fa-user"></i>Logout</li>
+        </ul>
+      </nav>
+
+      <div class="user__container">
+        <img src="/static/images/idris.jpeg" alt="" class="user__avatar">
+        <div class="user__data">
+          <h3 class="user__title">Wisdom Solomon Idris</h3>
+          <h4 class="user_subtitile">wisolid@gmail.com</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= DASHBOARD SECTION ======== -->
+    <section class="dashboard">
+      <div class="dashboard__header">
+        <h1>Dashboard</h1>
+        <div class="top__right__contents">
+          <span class="search__box">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="search" placeholder="Search">
+          </span>
+
+          <button>Generate Report</button>
+        </div>
+      </div>
+
+      <div class="intro__container">
+        <div class="welcome__content ">
+          <div class="welcome__message">
+            <h2>Hello Jason!</h2>
+            <span>It's good to see you again.</span>
+          </div>
+
+          <img src="/static/images/waving_lady.svg" alt="" srcset="" class="waving__lady">
+        </div>
+
+        <div class="calender">
+          <img src="/static/images/calendar.jpeg" alt="" srcset="" class="calendar">
+        </div>
+      </div>
+
+      <div class="courses__container">
+        <h3>Courses</h3>
+
+        <div class="course__card__container">
+          <div class="course__card">English - Unit I</div>
+          <div class="course__card">English - Unit II</div>
+          <div class="course__card">English - Unit III</div>
+          <div class="add__course">Add new course</div>
+        </div>
+      </div>
+
+      <div class="course__management">
+        <div class="course__headings">
+          <h3>Course Management</h3>
+          <button>View all</button>
+        </div>
+
+        <table class="course__management__table">
+          <tr class="course__mg__tr">
+            <th class="first__th">Course Icon</th>
+            <th>Course Code</th>
+            <th>Course name</th>
+            <th>Credit</th>
+            <th>Number of students</th>
+            <th class="last__th">Manage course</th>
+          </tr>
+          <tr>
+            <td><i class="fa fa-book" aria-hidden="true"></i></td>
+            <td>ENG-101</td>
+            <td>English</td>
+            <td>3</td>
+            <td>30</td>
+            <td><button><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-book" aria-hidden="true"></i></td>
+            <td>MATH-101</td>
+            <td>Mathematics</td>
+            <td>5</td>
+            <td>50</td>
+            <td><button><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

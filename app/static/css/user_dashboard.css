@@ -1,0 +1,234 @@
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard__container {
+  display: flex;
+}
+
+.logo__content,
+.nav__ul,
+.user__container {
+  width: 100%;
+}
+
+.side__nav {
+  background: #ff9f1c;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.nav__conatainer {
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+.nav__ul {
+  list-style: none;
+  word-break: keep-all;
+  padding: 0;
+  margin: 0;
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+.nav__ul .nav__list {
+  padding: 15px 20px;
+  margin: 10px 0;
+  font-size: 17px;
+}
+
+.nav__ul .nav__list:first-child {
+  background: #ffffff33;
+}
+
+.nav__list .fa {
+  margin-right: 20px;
+}
+
+.logo {
+  display: block;
+  height: 65px;
+  margin: 20px auto;
+}
+
+.user__container {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 20px;
+}
+
+.user__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.user_subtitile {
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+
+/* ===== The Dashboard Area ===== */
+.dashboard {
+  width: 75%;
+  margin: 0 auto;
+  height: 500px;
+  padding: 50px 0;
+  /* border: 2px solid red; */
+}
+
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search__box {
+  background: #E7E7E7;
+  margin-right: 20px;
+  padding: 15px;
+  border-radius: 50px;
+}
+
+.search__box input {
+  background: #E7E7E7;
+  height: 25px;
+  width: 250px;
+  border: none;
+}
+
+
+.fa-search {
+  padding: 5px;
+}
+
+.top__right__contents button {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  width: 180px;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.intro__container,
+.course__card__container,
+.course__headings {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.welcome__content {
+  background: #F0FFB6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px 0px 15px;
+  border-radius: 20px;
+}
+
+.welcome__message h2 {
+  color: #D98D55;
+  font-size: 48px;
+}
+
+.welcome__message span {
+  font-weight: 700;
+}
+
+.waving__lady {
+  margin-left: 30px;
+}
+
+.calendar {
+  width: 500px;
+}
+
+/*======= TABLE STYLING ========*/
+.course__headings button {
+  background: #F0FFB6;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+}
+
+.course__card {
+  background: #333333;
+  width: 300px;
+  height: 150px;
+  border-radius: 20px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+.add__course {
+  background: #524f4d;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+.course__management__table{
+  text-align: center;
+  width: 100%;
+  border-spacing: 0;
+}
+
+.course__mg__tr {
+  background: #E7E7E7;
+  color: #24232399;
+}
+
+.first__th{
+  border-top-left-radius: 10px;
+}
+
+.last__th {
+  border-top-right-radius: 10px;
+}
+
+.course__management__table th, td {
+  border-bottom: 1px solid #706e6e99;
+  padding: 10px 0;
+}
+
+.course__management__table .fa-book {
+  background: #F0FFB6;
+  color: #D98D55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.course__management__table button {
+  background: #007AFF66;
+  color: #007AFF;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 100px;
+  padding: 10px 0;
+}
+
+.course__management__table .fa-pencil {
+  margin-right: 10px;
+}
