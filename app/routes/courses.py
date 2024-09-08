@@ -42,7 +42,7 @@ def get_post_course():
             headers=headers
         )
 
-        if response:
+        if response.status_code:
             return jsonify(response.json()), response.status_code
 
     # Make a GET request to the API to retrieve all courses for the lecturer
@@ -54,7 +54,12 @@ def get_post_course():
     # Check if the API response is successful (200)
     if response.status_code == 200:
         courses = response.json()
-        courses['status'] = 'Success'
-        return jsonify(courses), 200
+        # Wrap the array in a dictionary to include the status
+        return jsonify(
+            {
+                'status': 'Success',
+                'courses': courses
+            }
+        ), 200
     else:
-        return jsonify(response.json()), response.status_code
+        return jsonify({"error": response.status_code}), response.status_code
