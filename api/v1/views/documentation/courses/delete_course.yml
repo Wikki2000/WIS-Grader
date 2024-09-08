@@ -1,0 +1,52 @@
+Delete a Specific Course
+---
+tags:
+  - Courses
+
+description: |
+  This endpoint allows you to delete a specific course by its ID.
+
+parameters:
+  - in: path
+    name: course_id
+    required: true
+    description: "The UUID of the course to be deleted."
+    schema:
+      type: string
+      format: uuid
+      example: "1e5f7e2a-8094-4f69-b1c5-9d4a4e749abc"
+
+responses:
+  200:
+    description: Course successfully deleted.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: "Course deleted successfully"
+  404:
+    description: Course not found.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Course not found"
+  500:
+    description: Internal Server Error.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "An error occurred while deleting the course"
+            message:
+              type: string
+              example: "Detailed error message here"
