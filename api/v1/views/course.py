@@ -13,8 +13,8 @@ session = storage.get_session()
 
 
 @app_views.route('/lecturer/courses', methods=['POST'])
-@swag_from('./documentation/courses/course.yml')
 @jwt_required()
+@swag_from('./documentation/courses/course.yml')
 def create_course():
     """
     Create a new course under the lecturer's profile
@@ -91,8 +91,8 @@ def create_course():
 
 
 @app_views.route('/lecturer/courses', methods=['GET'])
-@swag_from('./documentation/courses/get_course.yml')
 @jwt_required()
+@swag_from('./documentation/courses/get_course.yml')
 def get_courses():
     """
     Retrieve all courses created by the authenticated lecturer.
@@ -115,8 +115,8 @@ def get_courses():
 
 
 @app_views.route('/courses/<string:course_id>', methods=['DELETE'])
-@swag_from('./documentation/courses/delete_course.yml')
 @jwt_required()
+@swag_from('./documentation/courses/delete_course.yml')
 def delete_course(course_id):
     """
     Delete a specific course by its ID.
@@ -149,8 +149,8 @@ def delete_course(course_id):
 
 
 @app_views.route('/courses/<string:course_id>', methods=['PUT'])
-@swag_from('./documentation/courses/update_course.yml')
 @jwt_required()
+@swag_from('./documentation/courses/update_course.yml')
 def update_course(course_id):
     """
     Update details of a specific course by its ID.
