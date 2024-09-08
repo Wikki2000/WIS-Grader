@@ -42,8 +42,7 @@ def get_post_course():
             headers=headers
         )
 
-        if response.status_code:
-            return jsonify(response.json()), response.status_code
+        return jsonify(response.json()), response.status_code
 
     # Make a GET request to the API to retrieve all courses for the lecturer
     response = requests.get(
