@@ -1,4 +1,4 @@
-#!/usr/bin/pythpn3
+#!/usr/bin/python3
 """ Handle course API CRUD operations. """
 from flask import request, jsonify
 from models.course import Course
@@ -6,17 +6,22 @@ from models.lecturer import Lecturer
 from models.storage import Storage
 from . import app_views
 from flasgger.utils import swag_from
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 storage = Storage()
 session = storage.get_session()
 
 
-@app_views.route('/lecturer/<string:lecturer_id>/courses', methods=['POST'])
+@app_views.route('/lecturer/courses', methods=['POST'])
+@jwt_required()
 @swag_from('./documentation/courses/course.yml')
-def create_course(lecturer_id):
+def create_course():
     """
-    Create a new course under a lecturer's profile.
+    Create a new course under the lecturer's profile
+    retrieved from the JWT token.
     """
+    # Retrieve lecturer's ID from the token
+    lecturer_id = get_jwt_identity()
     data = request.get_json()
 
     # Validate request data
@@ -35,6 +40,22 @@ def create_course(lecturer_id):
     lecturer = session.get(Lecturer, lecturer_id)
     if not lecturer:
         return jsonify({'error': 'Lecturer not found'}), 404
+
+    # Check if the course already exists
+    existing_course = (
+                        session.query(Course)
+                        .filter_by(
+                                    course_code=data['course_code'],
+                                    lecturer_id=lecturer_id
+                                    )
+                        .first()
+                    )
+    if existing_course:
+        return jsonify(
+            {
+                'error': 'Course already exists with the provided course code'
+            }
+        ), 409
 
     # Create a new Course instance
     new_course = Course(
@@ -69,12 +90,16 @@ def create_course(lecturer_id):
         ), 500
 
 
-@app_views.route('/lecturer/<string:lecturer_id>/courses', methods=['GET'])
+@app_views.route('/lecturer/courses', methods=['GET'])
+@jwt_required()
 @swag_from('./documentation/courses/get_course.yml')
-def get_courses(lecturer_id):
+def get_courses():
     """
-    Retrieve all courses created by a lecturer.
+    Retrieve all courses created by the authenticated lecturer.
     """
+    # Retrieve lecturer's ID from the JWT token
+    lecturer_id = get_jwt_identity()
+
     # Check if the lecturer exists
     lecturer = session.get(Lecturer, lecturer_id)
     if not lecturer:
@@ -90,6 +115,7 @@ def get_courses(lecturer_id):
 
 
 @app_views.route('/courses/<string:course_id>', methods=['DELETE'])
+@jwt_required()
 @swag_from('./documentation/courses/delete_course.yml')
 def delete_course(course_id):
     """
@@ -123,6 +149,7 @@ def delete_course(course_id):
 
 
 @app_views.route('/courses/<string:course_id>', methods=['PUT'])
+@jwt_required()
 @swag_from('./documentation/courses/update_course.yml')
 def update_course(course_id):
     """

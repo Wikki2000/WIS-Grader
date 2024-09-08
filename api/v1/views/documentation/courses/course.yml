@@ -4,16 +4,16 @@ tags:
   - Courses
 
 description: |
-  This endpoint allows a lecturer to create a new course under their profile.
+  This endpoint allows a lecturer to create a new course under their profile using JWT for authentication.
 
 parameters:
-  - in: path
-    name: lecturer_id
+  - in: header
+    name: Authorization
     required: true
-    description: "ID of the lecturer under whose profile the course will be created"
+    description: "JWT access token for the lecturer, retrieved from the login session."
     schema:
       type: string
-      example: 1
+      example: "Bearer <JWT_TOKEN>"
 
   - in: body
     name: body
@@ -76,14 +76,11 @@ responses:
           example: 1
 
   400:
-    description: Missing or invalid input data
+    description: Missing or invalid input data.
     schema:
       type: object
       properties:
-        status:
-          type: string
-          example: Bad Request
-        message:
+        error:
           type: string
           example: "course_title is required"
 
@@ -92,21 +89,27 @@ responses:
     schema:
       type: object
       properties:
-        status:
-          type: string
-          example: Not Found
-        message:
+        error:
           type: string
           example: "Lecturer not found"
+
+  409:
+    description: Course already exists with the provided course code.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Course already exists with the provided course code"
 
   500:
     description: Internal server error.
     schema:
       type: object
       properties:
-        status:
-          type: string
-          example: Internal Server Error
-        message:
+        error:
           type: string
           example: "An error occurred while creating the course"
+        message:
+          type: string
+          example: "Database error message"

@@ -4,17 +4,16 @@ tags:
   - Courses
 
 description: |
-  This endpoint allows you to retrieve all courses created by a specific lecturer.
+  This endpoint allows you to retrieve all courses created by the authenticated lecturer.
 
 parameters:
-  - in: path
-    name: lecturer_id
+  - in: header
+    name: Authorization
     required: true
-    description: "The UUID of the lecturer whose courses are being retrieved."
+    description: "JWT access token for the lecturer, retrieved from the login session."
     schema:
       type: string
-      format: uuid
-      example: "6b16d149-dc2b-4db3-9f75-3bb794c7f898"
+      example: "Bearer <JWT_TOKEN>"
 
 responses:
   200:
@@ -52,6 +51,7 @@ responses:
                 format: uuid
                 description: "The UUID of the lecturer who created the course."
                 example: "6b16d149-dc2b-4db3-9f75-3bb794c7f898"
+
   404:
     description: Lecturer not found.
     content:
@@ -62,6 +62,7 @@ responses:
             error:
               type: string
               example: "Lecturer not found"
+
   500:
     description: Internal Server Error.
     content:
