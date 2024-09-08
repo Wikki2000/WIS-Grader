@@ -10,7 +10,7 @@ API_BASE_URL = "http://127.0.0.1:5001/api/v1"
 
 # Helper function to retrieve access token from cookie and set header
 def get_auth_headers():
-    token = request.cookies.get('access_token')
+    token = request.cookies.get('access_token_cookie')
     if not token:
         return None
     return {'Authorization': f'Bearer {token}'}
