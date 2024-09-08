@@ -8,15 +8,16 @@ from app.routes import app
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
 
 
-# Helper function to retrieve access token from cookie and set header
 def get_auth_headers():
+    """
+    Helper function to retrieve access token from cookie and set header
+    """
     token = request.cookies.get('access_token_cookie')
     if not token:
         return None
     return {'Authorization': f'Bearer {token}'}
 
 
-# Route to handle POST (create course) and GET (retrieve courses)
 @app.route("/courses", methods=["POST", "GET"])
 @jwt_required()
 def get_post_course():
