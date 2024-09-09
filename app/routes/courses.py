@@ -67,3 +67,46 @@ def get_post_course():
                 "error": "Unable to retrieve courses."
             }
         ), response.status_code
+
+
+@app.route('/courses/<string:course_id>', methods=['DELETE', 'PUT'])
+@jwt_required()
+def put_del_course(course_id):
+    """
+    Handle DELETE and PUT (update) requests for a specific course by its ID.
+    """
+
+    lecturer_id = get_jwt_identity()
+
+    headers = get_auth_headers()
+    if not headers:
+        return jsonify(
+            {
+                'error': 'Missing or invalid access token'
+            }
+        ), 401
+
+    if request.method == 'DELETE':
+        # Make a DELETE request to the external API to delete the course
+        response = requests.delete(
+            f"{API_BASE_URL}/courses/{course_id}",
+            headers=headers
+        )
+
+        # Send API response back into client
+        return jsonify(response.json()), response.status_code
+
+    # Extract the data to be updated from the request body
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+
+    # Make a PUT request to the external API to update the course
+    response = requests.put(
+        f"{API_BASE_URL}/courses/{course_id}",
+        headers=headers,
+        json=data
+    )
+
+    # Send API response back into client
+    return jsonify(response.json()), response.status_code
