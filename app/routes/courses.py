@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-from flask import request, jsonify, make_response
-import requests
-from flask_jwt_extended import get_jwt_identity, jwt_required
 from app.routes import app
+from flask import request, jsonify, make_response
+from flask_jwt_extended import get_jwt_identity, jwt_required
+import requests
 
 # Define the base API URL
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
