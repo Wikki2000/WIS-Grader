@@ -1,52 +1,62 @@
-Delete a Specific Course
+Delete Course
 ---
-tags:
-  - Courses
+  tags:
+    - Courses
 
-description: |
-  This endpoint allows you to delete a specific course by its ID.
+  description: |
+    This endpoint allows a lecturer to delete a specific course by its ID. The lecturer must be authenticated using a JWT token.
 
-parameters:
-  - in: path
-    name: course_id
-    required: true
-    description: "The UUID of the course to be deleted."
-    schema:
-      type: string
-      format: uuid
-      example: "1e5f7e2a-8094-4f69-b1c5-9d4a4e749abc"
+  parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: "JWT access token for the lecturer, retrieved from the login session."
+      schema:
+        type: string
+        example: "Bearer <JWT_TOKEN>"
 
-responses:
-  200:
-    description: Course successfully deleted.
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            message:
-              type: string
-              example: "Course deleted successfully"
-  404:
-    description: Course not found.
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            error:
-              type: string
-              example: "Course not found"
-  500:
-    description: Internal Server Error.
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            error:
-              type: string
-              example: "An error occurred while deleting the course"
-            message:
-              type: string
-              example: "Detailed error message here"
+    - in: path
+      name: course_id
+      required: true
+      description: "Unique identifier of the course to be deleted."
+      schema:
+        type: string
+        example: "01937489-75b5-4939-986a-6bf2fb29101a"
+
+  responses:
+    200:
+      description: Course deleted successfully.
+      schema:
+        type: object
+        properties:
+          status:
+            type: string
+            example: "success"
+          mesg:
+            type: string
+            example: "Course Advanced Mathematics deleted successfully"
+          id:
+            type: string
+            description: "ID of the deleted course"
+            example: "1"
+
+    404:
+      description: Course not found.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Course not found"
+
+    500:
+      description: Internal server error.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "An error occurred while deleting the course"
+          message:
+            type: string
+            example: "Database error message"
