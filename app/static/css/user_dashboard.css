@@ -306,3 +306,36 @@
   margin-right: 10px;
 }
 
+
+/* === Course management form === */
+.course__modal {
+  background: #007AFF;
+  position: absolute;
+  left: 45%;
+  width: 400px;
+  height: 200px;
+  padding: 15px;
+}
+
+.course__modal .cancel {
+  background: #D98D55;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 40px;
+  text-align: center;
+  padding: 5px 0;
+  color: #e7e7e7;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.course__management__form input {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.course__management__form .submit,
+.course__management__form .reset {
+  width: 100px;
+}
