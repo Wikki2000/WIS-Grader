@@ -1,75 +1,70 @@
-Retrieve All Courses by Lecturer
+Retrieve Courses
 ---
-tags:
-  - Courses
+  tags:
+    - Courses
 
-description: |
-  This endpoint allows you to retrieve all courses created by the authenticated lecturer.
+  description: |
+    This endpoint allows a lecturer to retrieve all courses they have created. The lecturer must be authenticated using a JWT token.
 
-parameters:
-  - in: header
-    name: Authorization
-    required: true
-    description: "JWT access token for the lecturer, retrieved from the login session."
-    schema:
-      type: string
-      example: "Bearer <JWT_TOKEN>"
+  parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: "JWT access token for the lecturer, retrieved from the login session."
+      schema:
+        type: string
+        example: "Bearer <JWT_TOKEN>"
 
-responses:
-  200:
-    description: A list of courses created by the lecturer.
-    content:
-      application/json:
-        schema:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: "The UUID of the course."
-                example: "1e5f7e2a-8094-4f69-b1c5-9d4a4e749abc"
-              course_title:
-                type: string
-                description: "The title of the course."
-                example: "Advanced Mathematics"
-              course_code:
-                type: string
-                description: "The code of the course."
-                example: "MATH401"
-              credit_load:
-                type: integer
-                description: "The credit load of the course."
-                example: 4
-              semester:
-                type: string
-                description: "The semester when the course is offered."
-                example: "Fall 2024"
-              lecturer_id:
-                type: string
-                format: uuid
-                description: "The UUID of the lecturer who created the course."
-                example: "6b16d149-dc2b-4db3-9f75-3bb794c7f898"
-
-  404:
-    description: Lecturer not found.
-    content:
-      application/json:
-        schema:
+  responses:
+    200:
+      description: A list of all courses created by the lecturer.
+      schema:
+        type: array
+        items:
           type: object
           properties:
-            error:
+            id:
+              type: integer
+              description: "Unique identifier for the course"
+              example: 1
+            course_title:
               type: string
-              example: "Lecturer not found"
+              description: "Title of the course"
+              example: "Advanced Mathematics"
+            course_code:
+              type: string
+              description: "Code of the course"
+              example: "MATH401"
+            credit_load:
+              type: integer
+              description: "Credit load of the course"
+              example: 4
+            semester:
+              type: string
+              description: "Semester in which the course is offered"
+              example: "Fall"
+            lecturer_id:
+              type: integer
+              description: "ID of the lecturer who created the course"
+              example: 1
 
-  500:
-    description: Internal Server Error.
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            error:
-              type: string
-              example: "Internal Server Error"
+    404:
+      description: Lecturer not found.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Lecturer not found"
+
+    500:
+      description: Internal server error.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "An error occurred while retrieving courses"
+          message:
+            type: string
+            example: "Database error message"

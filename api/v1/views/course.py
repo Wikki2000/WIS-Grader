@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """ Handle course API CRUD operations. """
+from . import app_views
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from flasgger.utils import swag_from
 from flask import request, jsonify
 from models.course import Course
 from models.lecturer import Lecturer
 from models.storage import Storage
-from . import app_views
-from flasgger.utils import swag_from
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from sqlalchemy.exc import IntegrityError
 
 storage = Storage()
 session = storage.get_session()
@@ -41,22 +42,6 @@ def create_course():
     if not lecturer:
         return jsonify({'error': 'Lecturer not found'}), 404
 
-    # Check if the course already exists
-    existing_course = (
-                        session.query(Course)
-                        .filter_by(
-                                    course_code=data['course_code'],
-                                    lecturer_id=lecturer_id
-                                    )
-                        .first()
-                    )
-    if existing_course:
-        return jsonify(
-            {
-                'error': 'Course already exists with the provided course code'
-            }
-        ), 409
-
     # Create a new Course instance
     new_course = Course(
         course_title=data['course_title'],
@@ -72,22 +57,33 @@ def create_course():
         session.commit()
         return jsonify(
             {
-                "id": new_course.id,
-                "course_code": new_course.course_code,
-                "course_title": new_course.course_title,
-                "credit_load": new_course.credit_load,
-                "semester": new_course.semester
+                "course": {
+                    "id": new_course.id,
+                    "course_code": new_course.course_code,
+                    "course_title": new_course.course_title,
+                    "credit_load": new_course.credit_load,
+                    "semester": new_course.semester
+                },
+                "status": "success",
+                "msg": "Course Created Successfully"
             }
         ), 201
 
-    except Exception as e:
+    except IntegrityError:
+        # Rollback the session if an IntegrityError occurs
         session.rollback()
         return jsonify(
             {
-                'error': 'An error occurred while creating the course',
-                'message': str(e)
+                'error': 'Course already exists with the provided course code'
             }
-        ), 500
+        ), 409
+
+    except Exception as e:
+        # Catch the exception and return the error message as JSON
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        session.close()
 
 
 @app_views.route('/lecturer/courses', methods=['GET'])
