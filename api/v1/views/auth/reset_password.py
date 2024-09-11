@@ -34,7 +34,7 @@ def verify_token():
     "../documentation/auth/password_recovery/sent_pwd_reset_link.yml"
 )
 def pwd_reset_link():
-    """Handle password recovery request from user."""
+    """Append access token to url to ensure integrity ."""
 
     # Handle missing field error
     data = request.get_json()
