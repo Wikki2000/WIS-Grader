@@ -15,7 +15,7 @@ from datetime import timedelta
     "../documentation/auth/password_recovery/verify_link_token.yml"
 )
 def verify_token():
-    """Verify if token append to reset link url."""
+    """Verify if token append to reset link url is valid."""
     if "token" not in request.get_json():
         return jsonify({"error": "token Field Required"}), 400
 
