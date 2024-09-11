@@ -72,6 +72,7 @@ def pwd_reset_link():
     "../documentation/auth/password_recovery/sent_pwd_reset_link.yml"
 )
 def update_password():
+    """Update new password to database as enter by user."""
 
     body = request.get_json()
 
