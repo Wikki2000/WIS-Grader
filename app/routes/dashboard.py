@@ -11,4 +11,4 @@ from uuid import uuid4
 @jwt_required()
 def dashboard():
     """Render template for successfull email registration."""
-    return "Welcome to WIS_Grader Dashboard"
+    return render_template("user_dashboard.html")

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FORGOT PASSWORD</title>
     <link rel="stylesheet" href="../static/css/components.css" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="module" src="../static/js/forgot_pwd.js?{{ cache_id }}"></script>
   </head>
   <body>
     <div class="auth__conatiner">
@@ -37,14 +40,16 @@
           </defs>
         </svg>
 
+	<div id="message" class="auth__alert__msg"></div>
         <h1 class="title">Forgot Password</h1>
 
         <p class="subtitle">Please enter email address to reset password</p>
-        <form method="POST">
-          <input type="email" placeholder="Email" required />
+        <form id="forgot-form">
+          <input id="email" type="email" placeholder="Email" required />
+	  <button type="submit" class="primary__btn">Reset Password</button>
         </form>
-        <button class="primary__btn"><a href="#" class="link">Reset Password</a></button>
-        <p><a class="alt__option" href="#">Back to Login</a></p>
+	<div class="loader"></div>
+	<p><a class="alt__option" href="{{ url_for('app.signin') }}">Back to Login</a></p>
       </div>
     </div>
   </body>
