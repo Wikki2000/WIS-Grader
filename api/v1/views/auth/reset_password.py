@@ -38,7 +38,7 @@ def pwd_reset_link():
 
     # Handle missing field error
     data = request.get_json()
-    if "email" not in data or not "link" in data:
+    if "email" not in data or "link" not in data:
         return jsonify({"error": f"Bad Request"}), 400
 
     email = data.get("email")
