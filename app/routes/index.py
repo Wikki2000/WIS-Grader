@@ -19,7 +19,7 @@ def template(page):
     Responsible for rendering template that do not need
     further processing (e.g., Registration Success Page).
 
-    :template => Path to html file to be render.
+    :page => Html file to be render without including`.html`.
     """
     allowed_pages = ["reset-password-success", "reset-password-email-sent",
                      "email-confirmed"]
