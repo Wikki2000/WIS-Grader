@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>USER DASHBOARD</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/user_dashboard.css">
 </head>
+
 <body>
-<object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
+  <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
 
   <!-- ===== USER DASHBOARD DESIGN ===== -->
   <div class="dashboard__container">
@@ -150,14 +152,36 @@
     </section>
 
     <section class="course__modal">
-      <h2>Course details</h2>
+      <h2>Add New Course</h2>
       <span class="cancel">X</span>
       <form action="" method="" class="course__management__form">
-        <input type="text" placeholder="Course code">
-        <input type="text" placeholder="Course name">
-        <input type="text" placeholder="Credit unit">
-        <input type="submit" value="Submit" class="submit">
-        <input type="reset" value="reset" class="reset">
+        <label id="course_name_label">Course name<input type="text" id="course__name" placeholder="E.g: English Language"></label>
+        <label id="course_code_label">Course code<input type="text" id="course__code" placeholder="E.g: ENG-202"></label>
+        <p id="course__description">Description
+          <textarea name="" id="" rows="8" placeholder="Course description"></textarea>
+        </label>
+
+        <p>Course Level</p>
+        <div class="course__level">
+          <label id="">Introductory<input type="checkbox"></label>
+          <label id="">Undergraduate<input type="checkbox"></label>
+          <label id="">Masters<input type="checkbox"></label>
+          <label id="">Advanced<input type="checkbox"></label>
+        </div>
+
+        <p class="commence">Commence date</p>
+        <div class="date__course">
+          <div class="date__range">
+            <label id="">Start date<input type="date"></label>
+            <label id="">End date<input type="date"></label>
+          </div>
+          <div class="course__credit">
+            <label id="">Total capacity<input type="number"></label>
+            <label id="">Credit<input type="number"></label>
+          </div>
+        </div>
+
+        <label id=""><input type="submit" value="Create course" class="create__course"></label>
       </form>
     </section>
   </div>
