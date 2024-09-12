@@ -1,7 +1,17 @@
 #!/usr/bin/python3
 """Define function needed accross different files."""
 import requests
-from flask import jsonify
+from flask import jsonify, request
+
+
+def get_auth_headers():
+    """
+    Helper function to retrieve access token from cookie and set header
+    """
+    token = request.cookies.get('access_token_cookie')
+    if not token:
+        return None
+    return {'Authorization': f'Bearer {token}'}
 
 
 def safe_api_request(url, method='GET', params=None, headers=None, timeout=10):

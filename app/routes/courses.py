@@ -2,20 +2,11 @@
 from app.routes import app
 from flask import request, jsonify, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
+from app.routes.utils import get_auth_headers
 import requests
 
 # Define the base API URL
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
-
-
-def get_auth_headers():
-    """
-    Helper function to retrieve access token from cookie and set header
-    """
-    token = request.cookies.get('access_token_cookie')
-    if not token:
-        return None
-    return {'Authorization': f'Bearer {token}'}
 
 
 @app.route("/courses", methods=["POST", "GET"])
