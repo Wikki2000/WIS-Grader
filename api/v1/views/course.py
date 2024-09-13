@@ -12,7 +12,7 @@ from sqlalchemy.exc import IntegrityError
 
 @app_views.route('/lecturer/courses', methods=['POST'])
 @jwt_required()
-@swag_from('./documentation/courses/course.yml')
+@swag_from('./documentation/courses/create_course.yml')
 def create_course():
     """
     Create a new course under the lecturer's profile
@@ -56,9 +56,11 @@ def create_course():
             {
                 "course": {
                     "id": new_course.id,
+                    "course_name": new_course.course_title,
                     "course_code": new_course.course_code,
-                    "course_title": new_course.course_title,
                     "credit_load": new_course.credit_load,
+                    "lecturer_id": new_course.lecturer_id,
+                    "description": new_course.description,
                     "semester": new_course.semester
                 },
                 "status": "Success",
@@ -85,7 +87,7 @@ def create_course():
 
 @app_views.route('/lecturer/courses', methods=['GET'])
 @jwt_required()
-@swag_from('./documentation/courses/get_course.yml')
+@swag_from('./documentation/courses/get_courses.yml')
 def get_courses():
     """
     Retrieve all courses created by the authenticated lecturer.
@@ -195,3 +197,22 @@ def update_course(course_id):
         ), 500
     finally:
         storage.close()
+
+
+@app_views.route('/lecturer/courses/<string:course_id>', methods=['GET'])
+@jwt_required()
+@swag_from('./documentation/courses/get_course.yml')
+def get_course_id(course_id):
+
+    # Retrieve lecturer's ID from the JWT token
+    lecturer_id = get_jwt_identity()
+
+    # Fetch course from db
+    course_obj = storage.get_by_field(Course, "id", course_id)
+
+    if not course_obj:
+        abort(404)
+
+    # Return course dic
+    course_dict = course_obj.to_dict()
+    return jsonify(course_dict), 200 
