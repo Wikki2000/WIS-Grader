@@ -13,7 +13,7 @@ storage = Storage()
 
 @app_views.route('/lecturers', methods=["GET"])
 @jwt_required()
-@swag_from('./documentation/courses/get_course.yml')
+@swag_from('./documentation/lecturers/get_lecturer.yml')
 def get_lecturer():
     """
     Retrieve a lecturer object by it ID.
@@ -28,5 +28,3 @@ def get_lecturer():
         abort(404)
     lect_dict = user_obj.to_dict()
     return jsonify(lect_dict), 200
-
-
