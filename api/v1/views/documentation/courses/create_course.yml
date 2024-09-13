@@ -46,6 +46,10 @@ Create Course
             type: string
             description: "Brief description of the course"
             example: "This course covers advanced topics in mathematics."
+          student_count: 
+            type: integer
+            description: "Number of currently enrolled students."
+            example: 53
 
   responses:
     201:

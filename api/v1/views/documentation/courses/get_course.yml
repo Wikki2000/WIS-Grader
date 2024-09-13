@@ -57,6 +57,10 @@ Get Course
             type: string
             description: "ID of the lecturer who created the course"
             example: "abc123"
+          student_count:
+            type: integer
+            description: "Number of currently enrolled students."
+            example: 35
 
     404:
       description: Course not found.
