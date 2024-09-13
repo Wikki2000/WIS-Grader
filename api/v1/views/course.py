@@ -6,11 +6,8 @@ from flasgger.utils import swag_from
 from flask import request, jsonify
 from models.course import Course
 from models.lecturer import Lecturer
-from models.storage import Storage
+from models import storage
 from sqlalchemy.exc import IntegrityError
-
-storage = Storage()
-session = storage.get_session()
 
 
 @app_views.route('/lecturer/courses', methods=['POST'])
@@ -38,7 +35,7 @@ def create_course():
             return jsonify({'error': f'{field} is required'}), 400
 
     # Check if the lecturer exists
-    lecturer = session.get(Lecturer, lecturer_id)
+    lecturer = storage.get_by_id(Lecturer, lecturer_id)
     if not lecturer:
         return jsonify({'error': 'Lecturer not found'}), 404
 
@@ -53,8 +50,8 @@ def create_course():
 
     try:
         # Add the new course to the database
-        session.add(new_course)
-        session.commit()
+        storage.new(new_course)
+        storage.save()
         return jsonify(
             {
                 "course": {
@@ -64,14 +61,14 @@ def create_course():
                     "credit_load": new_course.credit_load,
                     "semester": new_course.semester
                 },
-                "status": "success",
+                "status": "Success",
                 "msg": "Course Created Successfully"
             }
         ), 201
 
     except IntegrityError:
         # Rollback the session if an IntegrityError occurs
-        session.rollback()
+        storage.rollback()
         return jsonify(
             {
                 'error': 'Course already exists with the provided course code'
@@ -83,7 +80,7 @@ def create_course():
         return jsonify({"error": str(e)}), 500
 
     finally:
-        session.close()
+        storage.close()
 
 
 @app_views.route('/lecturer/courses', methods=['GET'])
@@ -97,7 +94,7 @@ def get_courses():
     lecturer_id = get_jwt_identity()
 
     # Check if the lecturer exists
-    lecturer = session.get(Lecturer, lecturer_id)
+    lecturer = storage.get_by_id(Lecturer, lecturer_id)
     if not lecturer:
         return jsonify({'error': 'Lecturer not found'}), 404
 
@@ -107,6 +104,7 @@ def get_courses():
     # Convert the list of Course objects to a list of dictionaries
     courses_list = [course.to_dict() for course in courses]
 
+    storage.close()
     return jsonify(courses_list), 200
 
 
@@ -118,15 +116,16 @@ def delete_course(course_id):
     Delete a specific course by its ID.
     """
     # Check if the course exists
-    course = session.get(Course, course_id)
+    course = storage.get_by_id(Course,  course_id)
     if not course:
         return jsonify({'error': 'Course not found'}), 404
 
     try:
         # Delete the course from the database
         course_name = course.course_title
-        session.delete(course)
-        session.commit()
+        print(course_name)
+        storage.delete(course)
+        storage.save()
         return jsonify(
             {
                 'message': f'Course {course_name} deleted successfully',
@@ -135,7 +134,8 @@ def delete_course(course_id):
         ), 200
 
     except Exception as e:
-        session.rollback()
+        storage.rollback()
+        print(str(e))
         return jsonify(
             {
                 'error': 'An error occurred while deleting the course',
@@ -158,7 +158,7 @@ def update_course(course_id):
         return jsonify({'error': 'Request body is empty'}), 400
 
     # Check if the course exists
-    course = session.get(Course, course_id)
+    course = storage.get_by_id(Course, course_id)
     if not course:
         return jsonify({'error': 'Course not found'}), 404
 
@@ -174,7 +174,7 @@ def update_course(course_id):
 
     try:
         # Commit changes to the database
-        session.commit()
+        storage.save()
         return jsonify(
             {
                 "id": course.id,
@@ -186,10 +186,12 @@ def update_course(course_id):
         ), 200
 
     except Exception as e:
-        session.rollback()
+        storage.rollback()
         return jsonify(
             {
                 'error': 'An error occurred while updating the course',
                 'message': str(e)
             }
         ), 500
+    finally:
+        storage.close()
