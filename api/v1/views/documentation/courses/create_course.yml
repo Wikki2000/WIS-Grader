@@ -1,0 +1,133 @@
+Create Course
+--- 
+  tags:
+    - Courses
+
+  description: |
+    This endpoint allows a lecturer to create a new course under their profile using JWT for authentication.
+
+  parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: "JWT access token for the lecturer, retrieved from the login session."
+      schema:
+        type: string
+        example: "Bearer <JWT_TOKEN>"
+
+    - in: body
+      name: body
+      required: true
+      description: "Details of the course to be created"
+      schema:
+        type: object
+        required:
+          - course_title
+          - course_code
+          - credit_load
+        properties:
+          course_title:
+            type: string
+            description: "Title of the course"
+            example: "Advanced Mathematics"
+          course_code:
+            type: string
+            description: "Code of the course"
+            example: "MATH4781"
+          credit_load:
+            type: integer
+            description: "Credit load of the course"
+            example: 4
+          semester:
+            type: string
+            description: "Semester in which the course is offered"
+            example: "Fall"
+          description:
+            type: string
+            description: "Brief description of the course"
+            example: "This course covers advanced topics in mathematics."
+
+  responses:
+    201:
+      description: Course created successfully.
+      schema:
+        type: object
+        properties:
+          course:
+            type: object
+            properties:
+              id:
+                type: string
+                description: "Unique identifier for the course"
+                example: "40c897b1-46f0-41d5-9b80-09afa4847738"
+              course_title:
+                type: string
+                description: "Title of the course"
+                example: "Advanced Mathematics"
+              course_code:
+                type: string
+                description: "Code of the course"
+                example: "MATH4781"
+              credit_load:
+                type: integer
+                description: "Credit load of the course"
+                example: 4
+              semester:
+                type: string
+                description: "Semester in which the course is offered"
+                example: null
+              description:
+                type: string
+                description: "Brief description of the course"
+                example: null
+              lecturer_id:
+                type: string
+                description: "ID of the lecturer who created the course"
+                example: "044712e7-7891-44d7-ae43-92db12f51ec4"
+          msg:
+            type: string
+            description: "Message indicating successful creation"
+            example: "Course Created Successfully"
+          status:
+            type: string
+            description: "Response status"
+            example: "Success"
+
+    400:
+      description: Missing or invalid input data.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "course_title is required"
+
+    404:
+      description: Lecturer not found.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Lecturer not found"
+
+    409:
+      description: Course already exists with the provided course code.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Course already exists with the provided course code"
+
+    500:
+      description: Internal server error.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "An error occurred while creating the course"
+          message:
+            type: string
+            example: "Database error message"
