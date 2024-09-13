@@ -16,7 +16,8 @@ class Course(BaseModel, Base):
     course_title = Column(String(100), nullable=False)
     course_code = Column(String(20), nullable=False, unique=True)
     credit_load = Column(Integer, nullable=False)
-    semester = Column(String(20), nullable=False)
+    semester = Column(String(20))
+    description = Column(String(500))
     lecturer_id = Column(String(60), ForeignKey('lecturers.id'))
 
     students = relationship("Student", secondary="enrollments",

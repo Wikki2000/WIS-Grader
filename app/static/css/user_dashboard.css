@@ -309,12 +309,14 @@
 
 /* === Course management form === */
 .course__modal {
-  background: #007AFF;
+  background: #ffffff;
   position: absolute;
   left: 45%;
-  width: 400px;
-  height: 200px;
+  width: 700px;
   padding: 15px;
+  z-index: 99;
+  border: 1px solid #333333;
+  display: none;
 }
 
 .course__modal .cancel {
@@ -330,12 +332,81 @@
   cursor: pointer;
 }
 
-.course__management__form input {
+#course__name,
+#course__code,
+textarea {
   width: 100%;
-  margin: 5px 0;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 20px;
 }
 
-.course__management__form .submit,
-.course__management__form .reset {
+.course__management__form input,
+textarea {
+  background: #e7e7e7;
+  border: none;
+}
+
+textarea {
+  -moz-resize: vertical;
+  resize: vertical;
+}
+
+.course__level {
+  display: flex;
+  justify-content: space-around;
+}
+
+.course__management__form input[type="checkbox"] {
+  margin: 10px;
+}
+
+.commence {
+  margin: 10px 0;
+}
+
+.date__course {
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 10px; */
+}
+
+.date__range input[type="date"] {
+  height: 40px;
+  margin: 5px 0 0 10px;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+
+.course__credit label {
+  display: inline-block;
   width: 100px;
+  margin-top: -20px;
+}
+
+.course__credit {
+  display: flex;
+  column-gap: 15px;
+}
+
+.course__credit input[type="number"] {
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin-top: 5px;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+
+.course__management__form .create__course {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 15px 25px;
+  margin: 20px 0 10px 535px;
+  border-radius: 15px;
+}
+
+.create__course:hover {
+  cursor: pointer;
 }

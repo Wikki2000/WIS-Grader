@@ -36,6 +36,7 @@ def get_post_course():
 
         return jsonify(response.json()), response.status_code
 
+    # ===================== GET ================================ #
     # Make a GET request to the API to retrieve all courses for the lecturer
     response = requests.get(
         f"{API_BASE_URL}/lecturer/courses",

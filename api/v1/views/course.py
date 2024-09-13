@@ -30,7 +30,7 @@ def create_course():
         'course_title',
         'course_code',
         'credit_load',
-        'semester'
+        #'semester'
     ]
 
     for field in required_fields:
@@ -47,7 +47,7 @@ def create_course():
         course_title=data['course_title'],
         course_code=data['course_code'],
         credit_load=data['credit_load'],
-        semester=data['semester'],
+        #semester=data['semester'],
         lecturer_id=lecturer_id
     )
 

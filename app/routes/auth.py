@@ -75,9 +75,8 @@ def signup():
     email = data.get('email')
     password = data.get('password')
 
-    sess = storage.get_session()
-    user = sess.query(Lecturer).filter_by(email=email).first()
-    sess.close()
+    user = storage.get_by_field(Lecturer, "email", email)
+    storage.close()
     if user:
         return jsonify({"error": "User Exist Already"}), 422
 
