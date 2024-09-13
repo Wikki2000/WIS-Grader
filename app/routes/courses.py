@@ -23,6 +23,7 @@ def get_post_course():
             }
         ), 401
 
+    # ===================== POST ================================ #
     if request.method == "POST":
         # Retrieve the JSON data from the request body
         data = request.get_json()
@@ -33,7 +34,6 @@ def get_post_course():
             json=data,
             headers=headers
         )
-
         return jsonify(response.json()), response.status_code
 
     # ===================== GET ================================ #
@@ -67,7 +67,7 @@ def put_del_course(course_id):
     """
     Handle DELETE and PUT (update) requests for a specific course by its ID.
     """
-
+    # ===================== GET ================================ #
     lecturer_id = get_jwt_identity()
 
     headers = get_auth_headers()

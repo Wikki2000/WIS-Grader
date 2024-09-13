@@ -7,8 +7,7 @@
  * @param {function} onSuccess - Callback function to execute if the request succeeds.
  * @param {function} onError - Callback function to execute if the request fails.
  */
-export function ajaxRequest(url, method, data = {}, onSuccess, onError) {
-  $.ajax({
+export function ajaxRequest(url, method, data = {}, onSuccess, onError) { $.ajax({
     url: url,
     method: method,
     contentType: 'application/json',
