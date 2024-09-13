@@ -47,6 +47,10 @@ Retrieve Courses
               type: integer
               description: "ID of the lecturer who created the course"
               example: 1
+            student_count:
+              type: integer
+              description: "Number of currently enrolled students."
+              example: 95
 
     404:
       description: Lecturer not found.
