@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from os import getenv
 from models.base_model import Base
+from typing import Type, Any, Optional
 
 
 classes = ["Lecturer", "Student", "Result", "School", "Course"]
@@ -79,3 +80,22 @@ class Storage:
     def get_engine(self):
         """Retrieved engine object."""
         return self.__engine
+
+    def get_by_field(self, model: Type, field: str, value: Any) -> object:
+        """
+        General function to filter a model by it field and class.
+
+        :param model - SQLAlchemy model class (e.g., Lecturer, Student etc.)
+        :param field - The colum or attribute to filter for in the model
+        :param value - The corresponding value of field to filter on
+
+        :rtype - The first matching object or None if not found
+        """
+        try:
+
+            # Get the attributes and filter by it corresponding value.
+            return self.__session.query(model).filter(
+                getattr(model, field) == value
+            ).first()
+        except AttributeError:
+            return None

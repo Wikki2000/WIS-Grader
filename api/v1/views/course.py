@@ -1,22 +1,28 @@
-#!/usr/bin/pythpn3
+#!/usr/bin/python3
 """ Handle course API CRUD operations. """
+from . import app_views
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from flasgger.utils import swag_from
 from flask import request, jsonify
 from models.course import Course
 from models.lecturer import Lecturer
 from models.storage import Storage
-from . import app_views
-from flasgger.utils import swag_from
+from sqlalchemy.exc import IntegrityError
 
 storage = Storage()
 session = storage.get_session()
 
 
-@app_views.route('/lecturer/<string:lecturer_id>/courses', methods=['POST'])
+@app_views.route('/lecturer/courses', methods=['POST'])
+@jwt_required()
 @swag_from('./documentation/courses/course.yml')
-def create_course(lecturer_id):
+def create_course():
     """
-    Create a new course under a lecturer's profile.
+    Create a new course under the lecturer's profile
+    retrieved from the JWT token.
     """
+    # Retrieve lecturer's ID from the token
+    lecturer_id = get_jwt_identity()
     data = request.get_json()
 
     # Validate request data
@@ -24,7 +30,7 @@ def create_course(lecturer_id):
         'course_title',
         'course_code',
         'credit_load',
-        'semester'
+        #'semester'
     ]
 
     for field in required_fields:
@@ -41,7 +47,7 @@ def create_course(lecturer_id):
         course_title=data['course_title'],
         course_code=data['course_code'],
         credit_load=data['credit_load'],
-        semester=data['semester'],
+        #semester=data['semester'],
         lecturer_id=lecturer_id
     )
 
@@ -51,30 +57,45 @@ def create_course(lecturer_id):
         session.commit()
         return jsonify(
             {
-                "id": new_course.id,
-                "course_code": new_course.course_code,
-                "course_title": new_course.course_title,
-                "credit_load": new_course.credit_load,
-                "semester": new_course.semester
+                "course": {
+                    "id": new_course.id,
+                    "course_code": new_course.course_code,
+                    "course_title": new_course.course_title,
+                    "credit_load": new_course.credit_load,
+                    "semester": new_course.semester
+                },
+                "status": "success",
+                "msg": "Course Created Successfully"
             }
         ), 201
 
-    except Exception as e:
+    except IntegrityError:
+        # Rollback the session if an IntegrityError occurs
         session.rollback()
         return jsonify(
             {
-                'error': 'An error occurred while creating the course',
-                'message': str(e)
+                'error': 'Course already exists with the provided course code'
             }
-        ), 500
+        ), 409
+
+    except Exception as e:
+        # Catch the exception and return the error message as JSON
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        session.close()
 
 
-@app_views.route('/lecturer/<string:lecturer_id>/courses', methods=['GET'])
+@app_views.route('/lecturer/courses', methods=['GET'])
+@jwt_required()
 @swag_from('./documentation/courses/get_course.yml')
-def get_courses(lecturer_id):
+def get_courses():
     """
-    Retrieve all courses created by a lecturer.
+    Retrieve all courses created by the authenticated lecturer.
     """
+    # Retrieve lecturer's ID from the JWT token
+    lecturer_id = get_jwt_identity()
+
     # Check if the lecturer exists
     lecturer = session.get(Lecturer, lecturer_id)
     if not lecturer:
@@ -90,6 +111,7 @@ def get_courses(lecturer_id):
 
 
 @app_views.route('/courses/<string:course_id>', methods=['DELETE'])
+@jwt_required()
 @swag_from('./documentation/courses/delete_course.yml')
 def delete_course(course_id):
     """
@@ -123,6 +145,7 @@ def delete_course(course_id):
 
 
 @app_views.route('/courses/<string:course_id>', methods=['PUT'])
+@jwt_required()
 @swag_from('./documentation/courses/update_course.yml')
 def update_course(course_id):
     """

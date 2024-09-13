@@ -1,0 +1,50 @@
+Create password reset link and sent to user.
+---
+tags:
+  - Authentication
+description: This end endpoint create link for password reset
+        and sent to user.
+
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@gmail.com
+
+responses:
+  200:
+    description: Successful request
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Success
+        message:
+          type: string
+          example: Token Successfully Sent to Email
+        token:
+          type: string
+          example: https://www.wisgrader.com?token=ou67tfteeswawgfe
+  400:
+    description: Invalid input or empty request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: email Field Missing
+ 
+  500:
+    description: Server encounter error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Token Delivery Failed

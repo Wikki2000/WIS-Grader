@@ -14,10 +14,7 @@ def status():
 # Use app_errorhandler to register the handler globall
 @app_views.app_errorhandler(404)
 def not_found_error(error):
-    response = {
-        "error": "Not Found",
-        "message": "The requested URL was not found on the server."
-    }
+    response = {"error": "Not Found"}
     # Create a JSON response with indentation
     response_json = json.dumps(response, indent=2) + "\n"
     return make_response(

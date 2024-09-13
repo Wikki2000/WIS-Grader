@@ -1,0 +1,56 @@
+Validate token from password rest link
+---
+tags:
+  - Authentication
+description: This end endpoint verify if access token is valid and
+        and not expired
+
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        token:
+          type: string
+          example: zxreygt767yh88y65
+
+responses:
+  200:
+    description: Successful request
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Success
+        message:
+          type: string
+          example: Token is Valid
+  400:
+    description: Invalid input or empty request body
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: token Field Missing
+
+  401:
+    description: Authorization failed
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Invalid or Expired Token
+ 
+  500:
+    description: Server encounter error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Internal Error Occured

@@ -17,10 +17,9 @@ jwt = JWTManager(app)
 app.register_blueprint(bp)
 
 
-# Handle expired tokens
 @jwt.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
-    # Redirect to login page on token expiry
+    """Redirect to login page on token expiry."""
     return redirect(url_for('app.signin'))
 
 

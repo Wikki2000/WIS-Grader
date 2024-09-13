@@ -40,14 +40,14 @@ def send_token():
     recipient = {"name": data.get("name"), "email": data.get("email")}
     file_path = "api/v1/views/auth/email_content.html"
     email_content = read_html_file(file_path, recipient["name"], token)
-    response = fwd_token(token, email_content, recipient)
+    response = fwd_token(email_content, recipient)
     if response:
         return jsonify({
             "status": "Success",
             "token": token,
             "expiring_time": f"{mins} minute"
         })
-    return jsonify({"error": "Token Delivery Failed"})
+    return jsonify({"error": "Token Delivery Failed"}), 500
 
 
 # ------------------HelperFunctionDefinition------------------ #
@@ -57,7 +57,7 @@ def generate_token():
     return str(randint(100000, 999999))
 
 
-def fwd_token(token, mail, kwargs):
+def fwd_token(mail, kwargs):
     """Send token to email.
 
     Args:

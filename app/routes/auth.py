@@ -4,6 +4,7 @@
     email verification, and login routes.
 """
 from app.routes import app
+from app.routes.utils import safe_api_request
 from flask import render_template, request, redirect, url_for, jsonify, session
 from flask_jwt_extended import set_access_cookies
 import requests
@@ -14,6 +15,7 @@ from models.lecturer import Lecturer
 
 storage = Storage()
 
+API_BASE_URL = 'http://127.0.0.1:5001/api/v1/auth'
 
 @app.route('/account/signin', methods=['GET', 'POST'])
 def signin():
@@ -36,7 +38,7 @@ def signin():
     password = data.get('password')
 
     # Make a request to the API to login the user
-    url = 'http://127.0.0.1:5001/api/v1/auth/login'
+    url = f'{API_BASE_URL}/login'
     response = requests.post(url, json={'email': email, 'password': password})
 
     if response.status_code == 200:
@@ -73,9 +75,8 @@ def signup():
     email = data.get('email')
     password = data.get('password')
 
-    sess = storage.get_session()
-    user = sess.query(Lecturer).filter_by(email=email).first()
-    sess.close()
+    user = storage.get_by_field(Lecturer, "email", email)
+    storage.close()
     if user:
         return jsonify({"error": "User Exist Already"}), 422
 
@@ -88,7 +89,7 @@ def signup():
     }
 
     # Send verification token
-    url = 'http://127.0.0.1:5001/api/v1/auth/send-token'
+    url = f'{API_BASE_URL}/send-token'
     res = requests.post(
         url,
         json={'email': email, 'name': f'{firstname} {lastname}'}
@@ -125,7 +126,7 @@ def verify():
     password = registration_data['password']
 
     # Send token and registration data to the API
-    url = 'http://127.0.0.1:5001/api/v1/auth/register'
+    url = f'{API_BASE_URL}/register'
     response = requests.post(
             url,
             json={
@@ -152,7 +153,79 @@ def verify():
         return jsonify({"error": "Registration Failed"}), 422
 
 
-@app.route('/account/verify-success', methods=['GET'])
-def verify_success():
-    """Render template for successfull email registration."""
-    return render_template("confirm_email.html", cache_id=uuid4())
+@app.route('/account/forgot-password', methods=["GET", "POST"])
+def forgot_password():
+    """
+    Render template for user to enter email,
+    to get password reset link.
+    """
+    # ================ GET REQUEST ================== #
+    if request.method == "GET":
+        return render_template("forgot_pwd.html", cache_id=uuid4())
+
+    # ================ POST REQUEST ================== #
+    # Recieved json of email and sent in request body.
+    # To create a magic link and sent to email for password reset.
+    data = request.get_json()
+
+    email = data.get("email")
+
+    # Set email in session to be proccess in account recovery route.
+    session["email"] = email
+
+    # Add url to append token to request body.
+    rest_pwd_link = "http://127.0.0.1:5000/account/password-recovery"
+    data["link"] = rest_pwd_link
+    url = f'{API_BASE_URL}/password-recovery'
+    json_response, status_code = safe_api_request(
+        url, method='POST', params=data
+    )
+    if status_code == 200:
+        jsonify({
+            "status": "Success",
+            "msg": "Link with Token Sent to Email"
+        }), 200
+    return json_response, status_code
+
+
+@app.route('/account/password-recovery', methods=['GET', 'PUT'])
+def password_recovery():
+    """Routes definition for recovering user password."""
+
+    # ================ GET REQUEST ================== #
+    if request.method == 'GET':
+        token = request.args.get("token") # Get the token from the url
+        url = f'{API_BASE_URL}/verify-token'
+
+        # Send request to API to validate token and,
+        # Render template if valid.
+        json_respons, status_code = safe_api_request(
+                url, method='POST', params={"token": token}
+        )
+        if status_code == 200:
+            return render_template("reset_pwd.html", cache_id=uuid4())
+        return jsonify({"error": "Invalid or Expired Token"}), 401
+
+
+    # ================ PUT REQUEST ================== #
+    # Retrive the password from the user form,
+    # and the token which is in the hidden input field.
+    if request.method == "PUT":
+        body = request.get_json() # Get password from user
+
+        # Retrieve email in session and add to request body
+        email = session.get("email")
+        body["email"] = email
+        session.pop("email", None)
+        body["email"] = email
+
+        url = f'{API_BASE_URL}/password-recovery'
+        json_response, status_code = safe_api_request(
+            url, method='PUT', params=body
+        )
+        if status_code == 200:
+            return jsonify({
+                "status": "Success",
+                "msg": "Password Reset Successfully"
+            }), 200
+        return json_response, status_code
