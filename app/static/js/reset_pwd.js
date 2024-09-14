@@ -8,7 +8,7 @@ $(document).ready(function () {
     // Show animation and hide butthon
     // while waiting for server response
     $('.loader').show();
-    $('.primary__btn').hide();
+    $('.auth-card__button').hide();
 
     const alertDivClass = 'auth__alert__msg';
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
@@ -19,14 +19,14 @@ $(document).ready(function () {
       const msg = 'Password must match';
       alertBox(alertDivClass, msg);
       $('.loader').hide();
-      $('.primary__btn').show();
+      $('.auth-card__button').show();
       return;
     } else if (!passwordPattern.test(pwd1)) {
       const msg = 'Password must be atleast 8 characters and ' +
                   'contains uper, lowercase and special character';
       alertBox(alertDivClass, msg);
       $('.loader').hide();
-      $('.primary__btn').show();
+      $('.auth-card__button').show();
       return;
     }
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
         const msg = 'Inalid or Expired Token';
         alertBox(alertDivClass, msg);
         $('.loader').hide();
-        $('.primary__btn').show();
+        $('.auth-card__button').show();
       }
     );
   });

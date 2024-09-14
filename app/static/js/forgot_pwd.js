@@ -7,7 +7,7 @@ $(document).ready(function () {
     // Show animation and hide butthon
     // while waiting for server response
     $('.loader').show();
-    $('.primary__btn').hide();
+    $('.auth-card__button').hide();
 
     const data = JSON.stringify({ email: $('#email').val() });
     const url = '/account/forgot-password';
@@ -24,7 +24,7 @@ $(document).ready(function () {
         const msg = 'Email does not exists';
         alertBox(alertDivClass, msg);
         $('.loader').hide();
-        $('.primary__btn').show();
+        $('.auth-card__button').show();
       }
     );
   });

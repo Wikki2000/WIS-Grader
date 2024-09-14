@@ -11,9 +11,9 @@
 </head>
 
 <body>
-  <div class="auth__conatiner">
-    <div class="auth__content">
-      <svg width="132" height="82" viewBox="0 0 132 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="auth-card">
+    <div class="auth-card__content">
+      <svg width="132" height="82" viewBox="0 0 132 82" fill="none">
         <path
           d="M25.4073 21.1541C29.3177 11.7894 41.9197 10.2106 48.0194 18.3212C53.0538 25.0153 62.9839 25.3486 68.4558 19.0073L77.5662 8.44942C82.1957 3.08437 88.9311 0 96.0174 0H96.8932C114.434 0 127.053 16.8548 122.113 33.6858L116.366 53.2651C111.367 70.2992 95.738 82 77.9853 82H64.015H41.0851C21.5474 82 8.30272 62.1165 15.8311 44.0875L25.4073 21.1541Z"
           fill="#F7F7F2" />
@@ -22,23 +22,23 @@
           fill="#FF9F1C" />
       </svg>
 
-      <h1 class="title">Verify your email address</h1>
-      <div class="auth__alert__msg"></div>
+      <h1 class="auth-card__title">Verify your email address</h1>
+      <div class="auth-alert"></div>
 
-      <p class="subtitle">Please enter the six-digit code {{ email }}</p>
-      <form id="verify-form" class="verify__form" >
+      <p class="auth-card__subtitle">Please enter the six-digit code {{ email }}</p>
+      <form id="verify-form" class="auth-card__verify-form">
         <input type="text" id="f1" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
         <input type="text" id="f2" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
         <input type="text" id="f3" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
         <input type="text" id="f4" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
         <input type="text" id="f5" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
         <input type="text" id="f6" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
-	<button type="submit" class="primary__btn">Verify Email</button>
+        <button type="submit" class="button auth-card__button">Verify Email</button>
       </form>
       <div class="loader"></div>
 
-      <p><a class="alt__option" href="#">Resend Code</a></p>
-      <p><a class="alt__option" href="#">Change Email</a></p>
+      <p><a class="auth-card__alt-option" href="#">Resend Code</a></p>
+      <p><a class="auth-card__alt-option" href="#">Change Email</a></p>
     </div>
   </div>
 </body>

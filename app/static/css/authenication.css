@@ -18,14 +18,14 @@ a {
   align-items: center;
 }
 
-.auth__bg {
+.app-background {
   display: flex;
   height: 100vh;
 }
 
 /* ========Form styling begins here======== */
-.form_bg_image {
-   background-image: url(../images/form_bg_img.png);
+.auth-background-image {
+  background-image: url(../images/form_bg_img.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -47,7 +47,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.form__container {
+.auth-form-container {
   position: relative;
   text-align: center;
   color: #ffffff;
@@ -57,13 +57,13 @@ a {
   font-weight: 700;
 }
 
-.register__form {
+.auth-form {
   width: 100%;
 }
 
-.register__form input,
-.register__form .button--signup,
-.register__form .button--signin {
+.auth-form input,
+.auth-form .button--signup,
+.auth-form .button--signin {
   border: none;
   font-weight: 500;
   font-size: 16px;
@@ -78,7 +78,7 @@ a {
   border: 2px solid #dc362e !important;
 }
 
-.form__container hr {
+.auth-form-container hr {
   border-width: 1.5px;
   border-top: 1px solid #ffffff;
   max-width: 250px;
@@ -86,7 +86,7 @@ a {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.or_text {
+.or-text {
   background: #000000;
   position: absolute;
   bottom: 90px;
@@ -98,26 +98,7 @@ a {
   color: #ffffff;
 }
 
-.google__btn {
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 10px 0;
-  margin-top: 30px;
-  border-radius: 16px;
-  border: 2px solid #ffffff;
-}
-
-.google__btn a {
-  color: #ffffff;
-}
-
-.signin__text {
+.signin-text {
   color: #ff9f1c;
 }
 
@@ -139,13 +120,13 @@ a {
     font-size: 48px;
   }
 
-  .auth__bg {
+  .app-background {
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .gradient_rect_container,
-  .form_bg_image {
+  .auth-background-image {
     width: 100%;
   }
 }
@@ -159,7 +140,7 @@ a {
     padding: 20px;
   }
 
-  .form__container {
+  .auth-form-container {
     width: 90%;
   }
 
@@ -167,11 +148,11 @@ a {
     padding: 12px;
   }
 
-  .or_text {
+  .or-text {
     bottom: 85px;
   }
 
-  .google__btn {
+  .button--google {
     padding: 8px 0;
   }
 }

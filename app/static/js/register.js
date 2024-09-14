@@ -3,7 +3,7 @@ import { ajaxRequest, alertBox } from './utils.js';
 
 $(document).ready(function () {
 
-  const alertDivClass = 'auth__alert__msg';
+  const alertDivClass = 'auth-alert';
   const pwd_input_border = $('input[type="password"]');
 
   // Ensure password match and meet some criteria.

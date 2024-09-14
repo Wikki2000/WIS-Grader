@@ -7,7 +7,7 @@ $(document).ready(function () {
     // Show animation and hide butthon
     // while waiting for server response
     $('.loader').show();
-    $('.primary__btn').hide();
+    $('.auth-card__button').hide();
 
     const token = (
       $('#f1').val() + $('#f2').val() + $('#f3').val() +
@@ -25,11 +25,11 @@ $(document).ready(function () {
          }
       },
       (error) => {
-	const alertDivClass = 'auth__alert__msg';
+	const alertDivClass = 'auth-alert';
         const msg = 'Invalid or Expired Token';
         alertBox(alertDivClass, msg);
         $('.loader').hide();
-        $('.primary__btn').show();
+        $('.auth-card__button').show();
       }
     );
   });

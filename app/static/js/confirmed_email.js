@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.primary__btn').click(function () {
+  $('.auth-card__button').click(function () {
     window.location.href = '/dashboard';
   });
 });
