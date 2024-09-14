@@ -26,5 +26,3 @@ def get_by_id():
     del lect_dict["password"] # Delete user password from json
     print(lect_dict)
     return jsonify(lect_dict), 200
-
-

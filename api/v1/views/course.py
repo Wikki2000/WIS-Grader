@@ -12,7 +12,7 @@ from sqlalchemy.exc import IntegrityError
 
 @app_views.route('/lecturer/courses', methods=['POST'])
 @jwt_required()
-@swag_from('./documentation/courses/course.yml')
+@swag_from('./documentation/courses/create_course.yml')
 def create_course():
     """
     Create a new course under the lecturer's profile
@@ -56,10 +56,13 @@ def create_course():
             {
                 "course": {
                     "id": new_course.id,
+                    "course_name": new_course.course_title,
                     "course_code": new_course.course_code,
-                    "course_title": new_course.course_title,
                     "credit_load": new_course.credit_load,
-                    "semester": new_course.semester
+                    "lecturer_id": new_course.lecturer_id,
+                    "description": new_course.description,
+                    "semester": new_course.semester,
+                    "student_count": len(new_course.students)
                 },
                 "status": "Success",
                 "msg": "Course Created Successfully"
@@ -85,7 +88,7 @@ def create_course():
 
 @app_views.route('/lecturer/courses', methods=['GET'])
 @jwt_required()
-@swag_from('./documentation/courses/get_course.yml')
+@swag_from('./documentation/courses/get_courses.yml')
 def get_courses():
     """
     Retrieve all courses created by the authenticated lecturer.
@@ -102,7 +105,10 @@ def get_courses():
     courses = lecturer.courses
 
     # Convert the list of Course objects to a list of dictionaries
-    courses_list = [course.to_dict() for course in courses]
+    courses_list = [{
+        **course.to_dict(),  # Include all course fields
+        'student_count': len(course.students)  # Add student count
+    } for course in courses]
 
     storage.close()
     return jsonify(courses_list), 200
@@ -181,7 +187,8 @@ def update_course(course_id):
                 "course_name": course.course_title,
                 "course_code": course.course_code,
                 "credit_load": course.credit_load,
-                "semester": course.semester
+                "semester": course.semester,
+                "description": course.description
             }
         ), 200
 
@@ -195,3 +202,23 @@ def update_course(course_id):
         ), 500
     finally:
         storage.close()
+
+
+@app_views.route('/lecturer/courses/<string:course_id>', methods=['GET'])
+@jwt_required()
+@swag_from('./documentation/courses/get_course.yml')
+def get_course_id(course_id):
+    """ Retrieve a course by its ID. """
+    # Retrieve lecturer's ID from the JWT token
+    lecturer_id = get_jwt_identity()
+
+    # Fetch course from db
+    course_obj = storage.get_by_field(Course, "id", course_id)
+
+    if not course_obj:
+        abort(404)
+
+    # Return course dic
+    course_dict = course_obj.to_dict()
+    course_dict['student_count'] = len(course_obj.students)
+    return jsonify(course_dict), 200 
