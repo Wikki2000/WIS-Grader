@@ -1,13 +1,161 @@
-body {
+* {
   font-family: Arial, sans-serif;
-  background-color: #FF9F1C;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  background-color: #FF9F1C;
 }
 
 
 /* THE DESIGN STARTS HERE */
+/* ===== Primary button =====*/
+.button {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  /* width: 100%; */
+  padding: 15px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #333333;
+}
+
+.button--share,
+.button--profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 200px;
+  padding: 12px 0;
+  font-size: 17px;
+}
+
+.button--share .fa-share-alt,
+.button--profile .fa-long-arrow-right {
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.button--profile {
+  margin-top: 40px;
+}
+
+/* Delete modal alert style */
+.modal__span {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.button--delete,
+.button--cancel,
+.button--continue {
+  width: 180px;
+  font-size: medium;
+}
+
+.button--delete {
+  background: #dc362e;
+}
+
+.button--cancel {
+  background: transparent;
+  border: 2px solid #333333;
+  color: #333333;
+}
+
+.button--cancel:hover {
+  background: #333333;
+  color: #ffffff;
+}
+
+/* ==================== RECTANGLES ======================= */
+
+.gradient_rect_container {
+  width: 50%;
+}
+
+/* ==================== RIGHT RECTANGLES ======================= */
+.right__rect__container {
+  position: relative;
+  top: 50px;
+  left: 50%;
+  width: 255px;
+  height: 262px;
+  margin-top: 40px;
+
+}
+
+.right__base__rect {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+  mix-blend-mode: color-dodge;
+}
+
+
+.right__rotated__rect {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+/* ==================== LEFT RECTANGLES ======================= */
+.left__rect__container {
+  position: relative;
+  left: 50px;
+  bottom: -200px;
+  width: 255px;
+  height: 262px;
+  margin-top: -100px;
+}
+
+.left__base__rect {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+
+}
+
+.left__rotated__rect {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  mix-blend-mode: color-dodge;
+}
 
 .auth__conatiner {
   background: white;
@@ -33,7 +181,6 @@ body {
   font-weight: 500;
   border-radius: 16px;
   margin: 10px 0;
-  box-sizing: border-box; /*remember to move this tho the right place*/
 }
 
 .auth__content .reset__input {
@@ -68,22 +215,19 @@ body {
 }
 
 /* ==== Success components ==== */
-.auth__success__alert
-{
+.auth__success__alert {
   background: #28a745;
   border: 1px solid #1e7e34;
 }
 
 /* ==== Failure components ==== */
-.auth__error__alert
-{
+.auth__error__alert {
   background: red;
   color: white;
 }
 
 /* ==== Message components ==== */
-.auth__alert__msg
-{
+.auth__alert__msg {
   display: none;
   background: #f9dedc;
   color: #000000;
@@ -96,9 +240,8 @@ body {
   border-radius: 20px;
 }
 
-/* ==== Animate while waiting for server response ==== */
-.loader
-{
+/* ==== Spiner animation while waiting for server response ==== */
+.loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #3498db;
   border-radius: 50%;
@@ -108,12 +251,74 @@ body {
   display: none;
   margin: 20px auto;
 }
-@keyframes spin
-{
+
+@keyframes spin {
   0% {transform: rotate(0deg);}
   100% {transform: rotate(360deg);}
 }
-/* Responsive styles */
+
+/* ====== Dashboard cards components ====== */
+.modal {
+  position: relative;
+  background: #ffffff;
+  width: 800px;
+  padding: 15px;
+  border-radius: 20px;
+  margin-top: 20px; /* Ro be removed later */
+}
+
+.modal--course,
+.modal--profile {
+  display: flex;
+}
+
+.modal--delete,
+.modal--delete-success {
+  text-align: center;
+}
+
+.modal__image {
+  width: 250px;
+  height: 280px;
+}
+
+.fa-times {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal__card {
+ margin-left: 20px;
+}
+
+.modal__title {
+  font-size: 36px;
+  font-weight: 500;
+  padding: 20px 0;
+  margin-top: 25px;
+}
+
+.modal__subtitle {
+  font-size: 25px;
+  /* line-height: 30px; */
+}
+
+.modal__link {
+  padding: 20px 0;
+}
+
+/* Delet Course modal style */
+.delete__course__modal .sub__title {
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+
+
+/*====== Responsive styles =======*/
 @media (min-width: 600px) {
   .auth__conatiner {
     max-width: 400px;
@@ -135,3 +340,4 @@ body {
     font-size: 1.1em;
   }
 }
+
