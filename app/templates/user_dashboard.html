@@ -60,7 +60,7 @@
       <div class="intro__container">
         <div class="welcome__content ">
           <div class="welcome__message">
-	    <h2>Hello {{ last_name }}!</h2>
+            <h2>Hello {{ last_name }}!</h2>
             <span>It's good to see you again.</span>
           </div>
 
@@ -123,20 +123,20 @@
         </div>
 
         <table class="course__management__table">
-	<thead>
-          <tr class="course__mg__tr">
-            <th class="first__th">Course Icon</th>
-            <th>Course Code</th>
-            <th>Course name</th>
-            <th>Credit</th>
-            <th>Number of students</th>
-            <th>Manage course</th>
-            <th class="last__th"></th>
-          </tr>
-	  </thead>
+          <thead>
+            <tr class="course__mg__tr">
+              <th class="first__th">Course Icon</th>
+              <th>Course Code</th>
+              <th>Course name</th>
+              <th>Credit</th>
+              <th>Number of students</th>
+              <th>Manage course</th>
+              <th class="last__th"></th>
+            </tr>
+          </thead>
 
-	  <tbody>
-<!--
+          <tbody>
+          <!--
           <tr>
             <td><i class="fa fa-book" aria-hidden="true"></i></td>
             <td>ENG-101</td>
@@ -155,8 +155,8 @@
             <td><button><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button></td>
             <td><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
--->
-	  </tbody>
+          -->
+          </tbody>
         </table>
       </div>
     </section>
@@ -165,11 +165,13 @@
       <h2>Add New Course</h2>
       <span class="cancel">X</span>
       <form class="course__management__form">
-        <label id="course_name_label">Course name<input type="text" id="course__name" placeholder="E.g: English Language"></label>
-        <label id="course_code_label">Course code<input type="text" id="course__code" placeholder="E.g: ENG-202"></label>
+        <label id="course_name_label">Course name<input type="text" id="course__name"
+            placeholder="E.g: English Language"></label>
+        <label id="course_code_label">Course code<input type="text" id="course__code"
+            placeholder="E.g: ENG-202"></label>
         <p>Description
           <textarea name="" id="course__description" rows="8" placeholder="Course description"></textarea>
-        </label>
+          </label>
 
         <p>Course Level</p>
         <div class="course__level">
@@ -197,4 +199,5 @@
   </div>
 
 </body>
+
 </html>
