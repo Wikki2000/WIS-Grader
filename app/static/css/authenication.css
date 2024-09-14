@@ -3,8 +3,8 @@ body {
   background-color: #ff9f1c;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
 
 a {
   text-decoration: none;
@@ -16,94 +16,12 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red */
 }
 
 .auth__bg {
   display: flex;
   height: 100vh;
 }
-
-/* ==================== RECTANGLES ======================= */
-
-.gradient_rect_container {
-  width: 50%;
-}
-
-/* ==================== RIGHT RECTANGLES ======================= */
-.right__rect__container {
-  position: relative;
-  top: 50px;
-  left: 50%;
-  width: 255px;
-  height: 262px;
-  margin-top: 40px;
-
-}
-
-.right__base__rect {
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(94, 94, 94, 0.13);
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(10px);
-  mix-blend-mode: color-dodge;
-}
-
-
-.right__rotated__rect {
-  position: absolute;
-  top: 62.0689px;
-  left: 101.955px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(128, 128, 128, 0.3);
-}
-
-/* ==================== LEFT RECTANGLES ======================= */
-.left__rect__container {
-  position: relative;
-  left: 50px;
-  bottom: -200px;
-  width: 255px;
-  height: 262px;
-  margin-top: -100px;
-}
-
-.left__base__rect {
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(128, 128, 128, 0.3);
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(10px);
-
-}
-
-
-.left__rotated__rect {
-  position: absolute;
-  top: 62.0689px;
-  left: 101.955px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(94, 94, 94, 0.13);
-  mix-blend-mode: color-dodge;
-}
-
 
 /* ========Form styling begins here======== */
 .form_bg_image {
@@ -119,8 +37,8 @@ a {
 }
 
 .glassmorphism {
-  width: 100%;
-  padding: 40px;
+  width: 70%;
+  padding: 40px 0;
   background: rgba(128, 128, 128, 0.3);
   border-radius: 20px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -139,18 +57,13 @@ a {
   font-weight: 700;
 }
 
-.form__container hr {
-  border-width: 1.5px;
-  border-top: 1px solid #ffffff;
-  max-width: 250px;
-  margin: 20px auto;
-}
-
 .register__form {
   width: 100%;
 }
 
-.register__form input {
+.register__form input,
+.register__form .button--signup,
+.register__form .button--signin {
   border: none;
   font-weight: 500;
   font-size: 16px;
@@ -158,7 +71,6 @@ a {
   padding: 15px;
   border-radius: 16px;
   margin: 10px 0;
-  box-sizing: border-box;
 }
 
 .highlight__pwd__input {
@@ -166,29 +78,16 @@ a {
   border: 2px solid #dc362e !important;
 }
 
-.signup__btn {
-  background: #000000;
-  color: #ffffff;
-  font-weight: 700;
-  width: 100%;
-  padding: 15px;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.signup__btn:hover {
-  background-color: #333333;
-}
-
 .form__container hr {
+  border-width: 1.5px;
+  border-top: 1px solid #ffffff;
   max-width: 250px;
   margin: 20px auto;
   border-color: rgba(255, 255, 255, 0.3);
 }
 
 .or_text {
-  background: black;
+  background: #000000;
   position: absolute;
   bottom: 90px;
   left: 50%;
@@ -222,9 +121,10 @@ a {
   color: #ff9f1c;
 }
 
-@media (max-width: 1200px) {
+/* ======= Responsive Design ======== */
+@media (max-width: 1300px) {
   .glassmorphism {
-    padding: 10px;
+    padding: 40px;
   }
 }
 
@@ -263,7 +163,7 @@ a {
     width: 90%;
   }
 
-  .signup__btn {
+  .button {
     padding: 12px;
   }
 

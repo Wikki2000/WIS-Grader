@@ -12,7 +12,7 @@ $(document).ready(function () {
     $(`.${alertDivClass}`).hide();
 
     $('.loader').show();
-    $('.signup__btn').hide()
+    $('.signin__btn').hide()
 
     const email = $('#email').val();
     const password = $('#password').val();
@@ -41,7 +41,7 @@ $(document).ready(function () {
         // Hide loader and display button to user on error
         alertBox(alertDivClass, msg);
         $('.loader').hide();
-        $('.signup__btn').show()
+        $('.signin__btn').show()
 
       }
     );

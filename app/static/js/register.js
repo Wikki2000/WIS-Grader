@@ -7,7 +7,7 @@ $(document).ready(function () {
   const pwd_input_border = $('input[type="password"]');
 
   // Ensure password match and meet some criteria.
-  $('.signup__btn').click(function (event) {
+  $('.button--signup').click(function (event) {
 
     const pwd1 = $("#password").val();
     const pwd2 = $("#confirm_password").val();
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // Show loader and hide button each time form is submitted
     $('.loader').show();
-    $('.signup__btn').hide()
+    $('.button--signup').hide()
 
     // Clear Previous Message
     $(`.${alertDivClass}`).hide();
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
         // Hide loader and display button to user on error
         $('.loader').hide();
-        $('.signup__btn').show()
+        $('.button--signup').show()
       }
     );
   });
