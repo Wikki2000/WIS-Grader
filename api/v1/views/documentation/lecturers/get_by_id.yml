@@ -1,0 +1,56 @@
+Retrieve a lecturer object by it ID.
+---
+  tags:
+    - Lecturers
+
+  description: |
+    This endpoint retrieve the data of a lecturer with it ID. The lecturer must be authenticated using a JWT token.
+
+  parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: "JWT access token for the lecturer, retrieved from the login session."
+      schema:
+        type: string
+        example: "Bearer <JWT_TOKEN>"
+
+  responses:
+    200:
+      description: A Dictionary of lecturer data.
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            example: Lecturer
+          id:
+            type: uuid
+            example: "1hutyr6rdyuytjy643509-9e4wsr"
+          first_name:
+            type: string
+            example: "John"
+          last_name:
+            type: string
+            example: "Doe"
+          email:
+            type: string
+            example: "john@gmail.com"
+
+    404:
+      description: Lecturer not found.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "Not Found"
+
+    500:
+      description: Internal server error.
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            example: "An error occurred while retrieving Lecturer"

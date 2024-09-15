@@ -6,16 +6,13 @@ from flasgger.utils import swag_from
 from flask import request, jsonify
 from models.course import Course
 from models.lecturer import Lecturer
-from models.storage import Storage
+from models import storage
 from sqlalchemy.exc import IntegrityError
-
-storage = Storage()
-session = storage.get_session()
 
 
 @app_views.route('/lecturer/courses', methods=['POST'])
 @jwt_required()
-@swag_from('./documentation/courses/course.yml')
+@swag_from('./documentation/courses/create_course.yml')
 def create_course():
     """
     Create a new course under the lecturer's profile
@@ -38,7 +35,7 @@ def create_course():
             return jsonify({'error': f'{field} is required'}), 400
 
     # Check if the lecturer exists
-    lecturer = session.get(Lecturer, lecturer_id)
+    lecturer = storage.get_by_id(Lecturer, lecturer_id)
     if not lecturer:
         return jsonify({'error': 'Lecturer not found'}), 404
 
@@ -53,25 +50,28 @@ def create_course():
 
     try:
         # Add the new course to the database
-        session.add(new_course)
-        session.commit()
+        storage.new(new_course)
+        storage.save()
         return jsonify(
             {
                 "course": {
                     "id": new_course.id,
+                    "course_name": new_course.course_title,
                     "course_code": new_course.course_code,
-                    "course_title": new_course.course_title,
                     "credit_load": new_course.credit_load,
-                    "semester": new_course.semester
+                    "lecturer_id": new_course.lecturer_id,
+                    "description": new_course.description,
+                    "semester": new_course.semester,
+                    "student_count": len(new_course.students)
                 },
-                "status": "success",
+                "status": "Success",
                 "msg": "Course Created Successfully"
             }
         ), 201
 
     except IntegrityError:
         # Rollback the session if an IntegrityError occurs
-        session.rollback()
+        storage.rollback()
         return jsonify(
             {
                 'error': 'Course already exists with the provided course code'
@@ -83,12 +83,12 @@ def create_course():
         return jsonify({"error": str(e)}), 500
 
     finally:
-        session.close()
+        storage.close()
 
 
 @app_views.route('/lecturer/courses', methods=['GET'])
 @jwt_required()
-@swag_from('./documentation/courses/get_course.yml')
+@swag_from('./documentation/courses/get_courses.yml')
 def get_courses():
     """
     Retrieve all courses created by the authenticated lecturer.
@@ -97,7 +97,7 @@ def get_courses():
     lecturer_id = get_jwt_identity()
 
     # Check if the lecturer exists
-    lecturer = session.get(Lecturer, lecturer_id)
+    lecturer = storage.get_by_id(Lecturer, lecturer_id)
     if not lecturer:
         return jsonify({'error': 'Lecturer not found'}), 404
 
@@ -105,8 +105,12 @@ def get_courses():
     courses = lecturer.courses
 
     # Convert the list of Course objects to a list of dictionaries
-    courses_list = [course.to_dict() for course in courses]
+    courses_list = [{
+        **course.to_dict(),  # Include all course fields
+        'student_count': len(course.students)  # Add student count
+    } for course in courses]
 
+    storage.close()
     return jsonify(courses_list), 200
 
 
@@ -118,24 +122,26 @@ def delete_course(course_id):
     Delete a specific course by its ID.
     """
     # Check if the course exists
-    course = session.get(Course, course_id)
+    course = storage.get_by_id(Course,  course_id)
     if not course:
         return jsonify({'error': 'Course not found'}), 404
 
     try:
         # Delete the course from the database
         course_name = course.course_title
-        session.delete(course)
-        session.commit()
+        storage.delete(course)
+        storage.save()
         return jsonify(
             {
+                "status": "Success",
                 'message': f'Course {course_name} deleted successfully',
                 "id": course.id
             }
         ), 200
 
     except Exception as e:
-        session.rollback()
+        storage.rollback()
+        print(str(e))
         return jsonify(
             {
                 'error': 'An error occurred while deleting the course',
@@ -158,7 +164,7 @@ def update_course(course_id):
         return jsonify({'error': 'Request body is empty'}), 400
 
     # Check if the course exists
-    course = session.get(Course, course_id)
+    course = storage.get_by_id(Course, course_id)
     if not course:
         return jsonify({'error': 'Course not found'}), 404
 
@@ -174,22 +180,45 @@ def update_course(course_id):
 
     try:
         # Commit changes to the database
-        session.commit()
+        storage.save()
         return jsonify(
             {
                 "id": course.id,
                 "course_name": course.course_title,
                 "course_code": course.course_code,
                 "credit_load": course.credit_load,
-                "semester": course.semester
+                "semester": course.semester,
+                "description": course.description
             }
         ), 200
 
     except Exception as e:
-        session.rollback()
+        storage.rollback()
         return jsonify(
             {
                 'error': 'An error occurred while updating the course',
                 'message': str(e)
             }
         ), 500
+    finally:
+        storage.close()
+
+
+@app_views.route('/lecturer/courses/<string:course_id>', methods=['GET'])
+@jwt_required()
+@swag_from('./documentation/courses/get_course.yml')
+def get_course_id(course_id):
+    """ Retrieve a course by its ID. """
+    # Retrieve lecturer's ID from the JWT token
+    lecturer_id = get_jwt_identity()
+
+    # Fetch course from db
+    course_obj = storage.get_by_field(Course, "id", course_id)
+
+    if not course_obj:
+        abort(404)
+
+    # Return course dic
+    course_dict = course_obj.to_dict()
+    course_dict['student_count'] = len(course_obj.students)
+    return jsonify(course_dict), 200 

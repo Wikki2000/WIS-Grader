@@ -2,7 +2,7 @@
 from app.routes import app
 from flask import request, jsonify, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from app.routes.utils import get_auth_headers
+from app.routes.utils import get_auth_headers, safe_api_request
 import requests
 
 # Define the base API URL
@@ -23,6 +23,7 @@ def get_post_course():
             }
         ), 401
 
+    # ===================== POST ================================ #
     if request.method == "POST":
         # Retrieve the JSON data from the request body
         data = request.get_json()
@@ -33,7 +34,6 @@ def get_post_course():
             json=data,
             headers=headers
         )
-
         return jsonify(response.json()), response.status_code
 
     # ===================== GET ================================ #
@@ -61,22 +61,24 @@ def get_post_course():
         ), response.status_code
 
 
-@app.route('/courses/<string:course_id>', methods=['DELETE', 'PUT'])
+@app.route('/courses/<string:course_id>', methods=['DELETE', 'PUT', 'GET'])
 @jwt_required()
 def put_del_course(course_id):
     """
     Handle DELETE and PUT (update) requests for a specific course by its ID.
     """
-
-    lecturer_id = get_jwt_identity()
-
     headers = get_auth_headers()
     if not headers:
-        return jsonify(
-            {
-                'error': 'Missing or invalid access token'
-            }
-        ), 401
+        return jsonify({'error': 'Missing or invalid access token'}), 401
+
+    # ===================== GET ================================ #
+    if request.method == 'GET':
+        json_response, status_code = safe_api_request(
+            f"{API_BASE_URL}/lecturer/courses/{course_id}", headers=headers
+        )
+        return json_response, status_code
+
+    # ===================== DELETET ================================ #
 
     if request.method == 'DELETE':
         # Make a DELETE request to the external API to delete the course
@@ -88,6 +90,7 @@ def put_del_course(course_id):
         # Send API response back into client
         return jsonify(response.json()), response.status_code
 
+    # ===================== PUT ================================ #
     # Extract the data to be updated from the request body
     data = request.get_json()
     if not data:

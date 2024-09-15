@@ -21,8 +21,11 @@ def template(page):
 
     :page => Html file to be render without including `.html`.
     """
-    allowed_pages = ["reset-password-success", "reset-password-email-sent",
-                     "email-confirmed"]
+    allowed_pages = [
+        "reset-password-success", "modal-confirm-delete", "modal-success",
+        "reset-password-email-sent", "email-confirmed", "modal-course-form",
+        "modal-course-added-success",
+    ]
     template_directory = "static_pages/"
     if page in allowed_pages:
         return render_template(template_directory + page + ".html")

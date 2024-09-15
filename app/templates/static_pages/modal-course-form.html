@@ -1,0 +1,35 @@
+<div class="course__modal">      
+  <h2>Add New Course</h2>
+  <span class="cancel">X</span>
+  <form class="course__management__form">
+    <label id="course_name_label">Course name<input type="text" id="course__name"
+                                                                placeholder="E.g: English Language"></label>
+    <label id="course_code_label">Course code<input type="text" id="course__code"
+                                                                placeholder="E.g: ENG-202"></label>
+    <p>Description
+    <textarea name="" id="course__description" rows="8" placeholder="Course description"></textarea>
+    </label>
+
+    <p>Course Level</p>
+    <div class="course__level">
+      <label id="">Introductory<input type="checkbox"></label>
+      <label id="">Undergraduate<input type="checkbox"></label>
+      <label id="">Masters<input type="checkbox"></label>
+      <label id="">Advanced<input type="checkbox"></label>
+    </div>
+
+    <p class="commence">Commence date</p>
+    <div class="date__course">
+      <div class="date__range">
+        <label id="">Start date<input type="date"></label>
+        <label id="">End date<input type="date"></label>
+      </div>
+      <div class="course__credit">
+        <label id="">Total capacity<input type="number"></label>
+        <label id="">Credit Load<input id="credit__load" type="number"></label>
+      </div>
+    </div>
+
+    <input type="submit" value="Create course" class="create__course">
+  </form>
+</div>

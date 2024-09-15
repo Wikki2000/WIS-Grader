@@ -2,6 +2,7 @@
 
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 
@@ -22,8 +23,9 @@ class Config:
                     - "uiversion" (int): The version of the
                                      Swagger UI interface to be used.
     """
-
     SECRET_KEY = os.environ['FLASK_SECRET_KEY']
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1) 
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     JWT_SECRET_KEY = os.environ['JWT_SECRET_KEY']
     SWAGGER = {
         "title": "WIS_Grader RESTful API",
