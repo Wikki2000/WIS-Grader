@@ -16,12 +16,12 @@
   <!-- ============= AUTHENTICATION BACKGROUND =========== -->
 
   <!-- GRADIENT RECTANGLES -->
-  <section class="auth__bg">
-    <div class="gradient_rect_container">
+  <section class="app-background">
+    <div class="app-background__card">
 
-      <div class="right__rect__container">
-        <div class="right__base__rect"></div>
-        <div class="right__rotated__rect"></div>
+      <div class="app-background__card--right">
+        <div class="app-background__card--right-base"></div>
+        <div class="app-background__card--right-alt"></div>
       </div>
 
       <h1 class="title">
@@ -29,35 +29,36 @@
         You have been missed.
       </h1>
 
-      <div class="left__rect__container">
-        <div class="left__base__rect"></div>
-        <div class="left__rotated__rect"></div>
+      <div class="app-background__card--left">
+        <div class="app-background__card--left-base"></div>
+        <div class="app-background__card--left-alt"></div>
       </div>
     </div>
 
     <!-- ======== LOGIN MARKUP ========== -->
-    <div class="form_bg_image">
+    <div class="auth-background-image">
       <div class="glassmorphism">
-        <div class="form__container">
-          <!-- Alert Message To User -->
-          <div id="message" class="auth__alert__msg"></div>
+
+        <div class="auth-alert auth-alert--success auth-alert--error" id="message">
+        </div>
+        <div class="auth-form-container">
 
           <h1>Sign <span style="color: #ffb44b;">In</span></h1>
-          <form action="" method="POST" class="register__form">
+          <form action="" method="POST" class="auth-form">
             <input type="email" name="email" id="email" placeholder="Email" required />
             <input type="password" name="password" id="password" placeholder="Enter password" required />
 
-	    <p><a href="{{ url_for('app.forgot_password') }}" class="link">Forgot password</a></p>
+            <p><a href="{{ url_for('app.forgot_password') }}" class="link">Forgot password</a></p>
 
-            <button type="submit" name="submit" id="submit" class="cta__btn signin__btn">Sign In</button>
+            <button type="submit" name="submit" id="submit" class="button button--signin">Sign In</button>
           </form>
 
           <!-- Animate while waiting for server response. -->
           <div class="loader"></div>
 
           <hr />
-          <p class="or_text">or</p>
-          <button class="google__btn">
+          <p class="or-text">or</p>
+          <button class="button button--google">
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
               <path
                 d="M22.3055 10.0415H21.5V10H12.5V14H18.1515C17.327 16.3285 15.1115 18 12.5 18C9.1865 18 6.5 15.3135 6.5 12C6.5 8.6865 9.1865 6 12.5 6C14.0295 6 15.421 6.577 16.4805 7.5195L19.309 4.691C17.523 3.0265 15.134 2 12.5 2C6.9775 2 2.5 6.4775 2.5 12C2.5 17.5225 6.9775 22 12.5 22C18.0225 22 22.5 17.5225 22.5 12C22.5 11.3295 22.431 10.675 22.3055 10.0415Z"
@@ -75,7 +76,7 @@
 
             <a href="#">Continue with google</a>
           </button>
-          <p>Not a member? <a class="signup__text" href="{{ url_for('app.signup') }}">Sign up</a></p>
+          <p>Not a member? <a class="signin-text" href="{{ url_for('app.signup') }}">Sign up</a></p>
         </div>
       </div>
     </div>

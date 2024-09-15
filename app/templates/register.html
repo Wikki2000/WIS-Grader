@@ -16,12 +16,12 @@
   <!-- ============= AUTHENTICATION BACKGROUND =========== -->
 
   <!-- GRADIENT RECTANGLES -->
-  <section class="auth__bg">
-    <div class="gradient_rect_container">
+  <section class="app-background">
+    <div class="app-background__card">
 
-      <div class="right__rect__container">
-        <div class="right__base__rect"></div>
-        <div class="right__rotated__rect"></div>
+      <div class="app-background__card--right">
+        <div class="app-background__card--right-base"></div>
+        <div class="app-background__card--right-alt"></div>
       </div>
 
       <h1 class="title">
@@ -30,38 +30,36 @@
         Join Us Today.
       </h1>
 
-      <div class="left__rect__container">
-        <div class="left__base__rect"></div>
-        <div class="left__rotated__rect"></div>
+      <div class="app-background__card--left">
+        <div class="app-background__card--left-base"></div>
+        <div class="app-background__card--left-alt"></div>
       </div>
     </div>
 
     <!-- ======== REGISTRATION MARKUP ========== -->
-    <div class="form_bg_image">
+    <div class="auth-background-image">
       <div class="glassmorphism">
 
-      <!-- SignUp password error alert -->
-      <!-- <div class="auth__error__alert">
-        <p>Password does not match</p>
-      </div>
-       -->
-      <div id="message" class="auth__alert__msg"></div>
-        <div class="form__container">
+        <div class="auth-alert auth-alert--success auth-alert--error" id="message">
+        </div>
+        <div class="auth-form-container">
           <h1>Sign <span style="color: #ffb44b;">Up</span></h1>
 
-          <form id="reg-form" class="register__form">
-            <input type="text" name="firstname" id="firstname" placeholder="Firstname" required/>
+          <form id="reg-form" method="POST" class="auth-form">
+            <input type="text" name="firstname" id="firstname" placeholder="Firstname" required />
             <input type="text" name="lastname" id="lastname" placeholder="Lastname" required />
             <input type="email" name="email" id="email" placeholder="Email" />
             <input type="password" name="password" id="password" placeholder="Enter password" required />
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required />
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password"
+              required />
             <button type="submit" class="button button--signup">Sign Up</button>
           </form>
+
           <div class="loader"></div>
 
           <hr />
-          <p class="or_text">or</p>
-          <button class="google__btn">
+          <p class="or-text">or</p>
+          <button class="button button--google">
 
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
               <path
@@ -80,7 +78,7 @@
 
             <a href="#">Continue with google</a>
           </button>
-	  <p>Already a member? <a class="signin__text" href="{{ url_for('app.signin') }}">Sign in</a></p>
+          <p>Already a member? <a class="signin-text" href="{{ url_for('app.signin') }}">Sign in</a></p>
         </div>
       </div>
     </div>

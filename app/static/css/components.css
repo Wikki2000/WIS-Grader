@@ -9,14 +9,90 @@ body {
   background-color: #FF9F1C;
 }
 
+/* ==================== App Background Style ======================= */
 
-/* THE DESIGN STARTS HERE */
-/* ===== Primary button =====*/
+.app-background__card {
+  width: 50%;
+}
+
+/* ==================== RIGHT RECTANGLES ======================= */
+.app-background__card--right {
+  position: relative;
+  top: 50px;
+  left: 50%;
+  width: 255px;
+  height: 262px;
+  margin-top: 40px;
+
+}
+
+.app-background__card--right-base {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+  mix-blend-mode: color-dodge;
+}
+
+
+.app-background__card--right-alt {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+/* ==================== LEFT RECTANGLES ======================= */
+.app-background__card--left {
+  position: relative;
+  left: 50px;
+  bottom: -200px;
+  width: 255px;
+  height: 262px;
+  margin-top: -100px;
+}
+
+.app-background__card--left-base {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+
+}
+
+.app-background__card--left-alt {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  mix-blend-mode: color-dodge;
+}
+
+/* ===== Button components =====*/
 .button {
   background: #000000;
   color: #ffffff;
   font-weight: 700;
-  /* width: 100%; */
   padding: 15px;
   border-radius: 16px;
   border: none;
@@ -25,6 +101,25 @@ body {
 
 .button:hover {
   background-color: #333333;
+}
+
+.button--google {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 0;
+  margin: 30px 0;
+  border-radius: 16px;
+  border: 2px solid #ffffff;
+}
+
+.button--google a {
+  color: #ffffff;
 }
 
 .button--share,
@@ -48,7 +143,18 @@ body {
   margin-top: 40px;
 }
 
-/* Delete modal alert style */
+.auth-card__button {
+  background: #000000;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 16px;
+  margin-top: 30px;
+}
+
+/*===== Dashboard modal component =====*/
 .modal__span {
   display: flex;
   justify-content: center;
@@ -78,86 +184,8 @@ body {
   color: #ffffff;
 }
 
-/* ==================== RECTANGLES ======================= */
-
-.gradient_rect_container {
-  width: 50%;
-}
-
-/* ==================== RIGHT RECTANGLES ======================= */
-.right__rect__container {
-  position: relative;
-  top: 50px;
-  left: 50%;
-  width: 255px;
-  height: 262px;
-  margin-top: 40px;
-
-}
-
-.right__base__rect {
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(94, 94, 94, 0.13);
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(10px);
-  mix-blend-mode: color-dodge;
-}
-
-
-.right__rotated__rect {
-  position: absolute;
-  top: 62.0689px;
-  left: 101.955px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(128, 128, 128, 0.3);
-}
-
-/* ==================== LEFT RECTANGLES ======================= */
-.left__rect__container {
-  position: relative;
-  left: 50px;
-  bottom: -200px;
-  width: 255px;
-  height: 262px;
-  margin-top: -100px;
-}
-
-.left__base__rect {
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(128, 128, 128, 0.3);
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(10px);
-
-}
-
-.left__rotated__rect {
-  position: absolute;
-  top: 62.0689px;
-  left: 101.955px;
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-  transform: rotate(17.0399deg);
-  background-color: rgba(94, 94, 94, 0.13);
-  mix-blend-mode: color-dodge;
-}
-
-.auth__conatiner {
+/* ===== Authentication cards components ==== */
+.auth-card {
   background: white;
   display: flex;
   justify-content: center;
@@ -168,11 +196,11 @@ body {
   border-radius: 10px;
 }
 
-.auth__content .subtitle {
+.auth-card__subtitle {
   color: #1A1919;
 }
 
-.auth__content input {
+.auth-card__content input {
   background: #E7E7E7;
   border: none;
   width: 80%;
@@ -183,53 +211,35 @@ body {
   margin: 10px 0;
 }
 
-.auth__content .reset__input {
-/* Maybe used later */
-}
-
-.verify__form input {
+.auth-card__verify-form input {
   text-align: center;
   width: 50px;
   border-radius: 5px;
 }
 
-.auth__content .primary__btn {
-  background: #000000;
-  color: #ffffff;
-  font-weight: bold;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  border-radius: 16px;
-  margin-top: 30px;
-}
-
-.auth__content .link {
+.auth-card__content .link {
   text-decoration: none;
   color: #ffffff;
 }
 
-.auth__content .alt__option {
+.auth-card__alt-option {
   text-decoration: none;
   color: #FF9F1C;
 }
 
-/* ==== Success components ==== */
-.auth__success__alert {
+/* ==== Authentication alert components ==== */
+.auth-alert--success {
   background: #28a745;
   border: 1px solid #1e7e34;
 }
 
-/* ==== Failure components ==== */
-.auth__error__alert {
-  background: red;
+.auth-alert--error {
+  background: #f9dedc;
   color: white;
 }
 
-/* ==== Message components ==== */
-.auth__alert__msg {
+.auth-alert {
   display: none;
-  background: #f9dedc;
   color: #000000;
   text-align: center;
   letter-spacing: 1px;
@@ -311,7 +321,7 @@ body {
 }
 
 /* Delet Course modal style */
-.delete__course__modal .sub__title {
+.delete__course__modal .sub__title { /*Fix this class name later*/
   font-size: 30px;
   font-weight: lighter;
 }
@@ -320,23 +330,23 @@ body {
 
 /*====== Responsive styles =======*/
 @media (min-width: 600px) {
-  .auth__conatiner {
+  .auth-card {
     max-width: 400px;
     padding: 60px;
   }
 
-  .auth__content input,
-  .primary__btn {
+  .auth-card__content input,
+  .auth-card__button {
     max-width: 350px;
   }
 }
 
 @media (min-width: 768px) {
-  .auth__content .title {
+  .auth-card__title {
     font-size: 2em;
   }
 
-  .auth__content .subtitle {
+  .auth-card__subtitle {
     font-size: 1.1em;
   }
 }
