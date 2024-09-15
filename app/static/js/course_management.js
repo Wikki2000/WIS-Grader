@@ -17,7 +17,7 @@ $(document).ready(function () {
             <td>${course.course_code}</td>
             <td>${course.course_title}</td>
             <td>${course.credit_load}</td>
-	    <td>${course.student_count}</td>
+            <td>${course.student_count}</td>
             <td><button class="edit__btn" data-id="${course.id}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
             <td><button class="delete__btn" data-id="${course.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>`
@@ -32,7 +32,7 @@ $(document).ready(function () {
     });
 
 
-  /* =============== POST REQUEST ================*/
+  /* =============== Handle PUT $ POST REQUEST ================*/
   $('.popup__modal').on('submit', '.course__management__form', function (event) {
 
     event.preventDefault();
@@ -43,12 +43,17 @@ $(document).ready(function () {
     const credit_load = parseInt($('#credit__load').val());
     const description = $('#course__description').val();
 
+    // Retreive method and id set in hidden input during loading of form
+    const method = $('#method').val();
+    const courseId = $('#course__id').val();
+    const url = method == 'POST' ? courseEndpoint : `${courseEndpoint}/${courseId}`;
+
     const data = JSON.stringify({
       course_title: course_title, course_code: course_code,
       credit_load: credit_load, description: description
     });
 
-    ajaxRequest(courseEndpoint, 'POST', data,
+    ajaxRequest(url, method, data,
       (response) => {
         if (response.status === 'Success') {
           const newCourse = `<tr id="course_${response.course.id}">
@@ -60,17 +65,19 @@ $(document).ready(function () {
             <td><button class="edit__btn" data-id="${response.course.id}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
             <td><button class="delete__btn" data-id="${response.course.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>`
-          $('table tbody').append(newCourse);
+
+          if (method === 'POST') {
+            $('table tbody').append(newCourse);
+            $('.popup__modal').load('/static/modal-course-added-success', function () {
+              $('.fa-times').click(function () {
+                $('.popup__modal').empty();
+              });
+            });
+          } else {
+            window.location.reload(); // Refresh to get the update from Database
+          }
 
           $('.course__modal').remove();
-
-          $('.popup__modal').load('/static/modal-course-added-success', function () {
-            $('.fa-times').click(function () {
-              $('.popup__modal').empty();
-            });
-
-          });
-
         }
       },
       (error) => {
@@ -118,33 +125,14 @@ $(document).ready(function () {
       });
 
     });
-
   });
 
 
-  /* =============== PUT REQUEST ================*/
-/*
-  $('tbody').on('click', '.edit-btn', function () {
-    const course_id = $(this).data('id');
-    ajaxRequest(`${courseEndpoint}/${course_id}`, 'PUT', null,
-      (response) => {
-        $(`#course_${course_id}`).remove();
-        alert("deleted successfully");
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  });
-*/
-
-
-  /* =============== Program Functionality ================*/
-
-  // Dynamically Load the Course Creation Form for POST and PUT request
+  /* =============== Load Form for PUT or POST Request ================*/
   $('body').on('click', '.add__course, .edit__btn', function () {
 
     const $clickedBtn = $(this);
+    const courseId = $(this).data('id');
 
     $('.popup__modal').load('/static/modal-course-form', function () {
 
@@ -158,6 +146,11 @@ $(document).ready(function () {
             $('#credit__load').val(response.credit_load);
             $('#course__description').val(response.description);
 
+            // hide id and HTTP request in input field
+            $('#method').val('PUT');
+            $('#course__id').val(courseId);
+
+
             console.log(response);
           })
           .fail((jqXHR, textStatus, errorThrown) => {
@@ -165,11 +158,15 @@ $(document).ready(function () {
             console.log('Error thrown:', errorThrown);
             console.log('Error text:', textStatus);
           });
+      } else {
+        // Store method (POST) to be use in form submission
+        $('#method').val('POST');
       }
 
       $('.cancel').click(function () {
         $('.course__modal').remove();
       });
+
     });
   });
 });
