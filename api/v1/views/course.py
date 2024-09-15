@@ -183,15 +183,20 @@ def update_course(course_id):
         storage.save()
         return jsonify(
             {
-                "id": course.id,
-                "course_name": course.course_title,
-                "course_code": course.course_code,
-                "credit_load": course.credit_load,
-                "semester": course.semester,
-                "description": course.description
+                "course": {
+                    "id": course.id,
+                    "course_name": course.course_title,
+                    "course_code": course.course_code,
+                    "credit_load": course.credit_load,
+                    "lecturer_id": course.lecturer_id,
+                    "description": course.description,
+                    "semester": course.semester,
+                    "student_count": len(course.students)
+                },
+                "status": "Success",
+                "msg": "Course Updated Successfully"
             }
         ), 200
-
     except Exception as e:
         storage.rollback()
         return jsonify(
@@ -221,4 +226,4 @@ def get_course_id(course_id):
     # Return course dic
     course_dict = course_obj.to_dict()
     course_dict['student_count'] = len(course_obj.students)
-    return jsonify(course_dict), 200 
+    return jsonify(course_dict), 200
