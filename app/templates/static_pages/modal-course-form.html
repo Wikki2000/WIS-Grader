@@ -2,6 +2,11 @@
   <h2>Add New Course</h2>
   <span class="cancel">X</span>
   <form class="course__management__form">
+
+    <!-- Set data and retrieved data from form field.  -->
+    <input type="hidden" id="method" \>
+    <input type="hidden" id="course__id" \>
+
     <label id="course_name_label">Course name<input type="text" id="course__name"
                                                                 placeholder="E.g: English Language"></label>
     <label id="course_code_label">Course code<input type="text" id="course__code"
@@ -30,6 +35,6 @@
       </div>
     </div>
 
-    <input type="submit" value="Create course" class="create__course">
+    <input type="submit" value="Save" class="create__course">
   </form>
 </div>
