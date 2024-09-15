@@ -26,3 +26,7 @@ def dashboard():
     data = {"email": email, "first_name": first_name,
             "last_name": last_name, "cache_id": uuid4()}
     return render_template("user_dashboard.html", **data)
+
+@app.route("/test", methods=['GET'])
+def test():
+    return render_template("components/confirm_delete.html")

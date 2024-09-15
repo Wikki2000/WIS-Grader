@@ -24,5 +24,4 @@ def get_by_id():
         abort(404)
     lect_dict = user_obj.to_dict()
     del lect_dict["password"] # Delete user password from json
-    print(lect_dict)
     return jsonify(lect_dict), 200

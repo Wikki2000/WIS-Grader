@@ -308,15 +308,15 @@
 
 
 /* === Course management form === */
-.course__modal {
+.popup__modal {
   background: #ffffff;
   position: absolute;
   left: 45%;
   width: 700px;
   padding: 15px;
   z-index: 99;
-  border: 1px solid #333333;
-  display: none;
+  #border: 1px solid #333333;
+  #display: none;
 }
 
 .course__modal .cancel {
