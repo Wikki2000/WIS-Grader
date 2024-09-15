@@ -129,11 +129,11 @@ def delete_course(course_id):
     try:
         # Delete the course from the database
         course_name = course.course_title
-        print(course_name)
         storage.delete(course)
         storage.save()
         return jsonify(
             {
+                "status": "Success",
                 'message': f'Course {course_name} deleted successfully',
                 "id": course.id
             }
