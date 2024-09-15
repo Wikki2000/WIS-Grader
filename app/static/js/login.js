@@ -2,7 +2,7 @@ import { ajaxRequest, alertBox } from './utils.js';
 
 $(document).ready(function () {
 
-  $('.register__form').submit(function (event) {
+  $('.auth-form').submit(function (event) {
     event.preventDefault();
     const alertDivClass = 'auth-alert';
 
