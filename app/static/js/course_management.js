@@ -18,7 +18,7 @@ $(document).ready(function () {
             <td>${course.course_title}</td>
             <td>${course.credit_load}</td>
             <td>${course.student_count}</td>
-            <td><button class="edit__btn" data-id="${course.id}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
+            <td><button class="edit__btn" data-id="${course.id}"><i class="fa fa-pencil dashboard__edit-pencil" aria-hidden="true"></i> Edit</button></td>
             <td><button class="delete__btn" data-id="${course.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>`
           $('table tbody').append(newCourse);
