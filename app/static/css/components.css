@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #FF9F1C;
+  /* background-color: #FF9F1C; */
 }
 
 /* ==================== App Background Style ======================= */
@@ -152,6 +152,21 @@ body {
   width: 100%;
   border-radius: 16px;
   margin-top: 30px;
+}
+
+.button--report {
+  width: 180px;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.button--view-all {
+  background: #F0FFB6;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
 }
 
 /*===== Dashboard modal component =====*/
@@ -326,7 +341,97 @@ body {
   font-weight: lighter;
 }
 
+/* ===== Dashboard form component ===== */
+.modal__close-icon {
+  background: #D98D55;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 40px;
+  text-align: center;
+  padding: 5px 0;
+  color: #e7e7e7;
+  font-weight: bolder;
+  cursor: pointer;
+}
 
+.form__input--text,
+.form__textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.course__management__form input,
+.form__textarea {
+  background: #e7e7e7;
+  border: none;
+}
+
+.form__textarea {
+  -moz-resize: vertical;
+  resize: vertical;
+}
+
+.form__group--course-level {
+  display: flex;
+  justify-content: space-around;
+}
+
+.course__management__form input[type="checkbox"] {
+  margin: 10px;
+}
+
+.form__heading--commence {
+  margin: 10px 0;
+}
+
+.date__course { /* <- The class name will change later */
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 10px; */
+}
+
+.form__group--date input[type="date"] {
+  height: 40px;
+  margin: 5px 0 0 10px;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+
+.form__group--course-details label {
+  display: inline-block;
+  width: 100px;
+  margin-top: -20px;
+}
+
+.form__group--course-details {
+  display: flex;
+  column-gap: 15px;
+}
+
+.form__group--course-details input[type="number"] {
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin-top: 5px;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+
+.course__management__form .create__course {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 15px 25px;
+  margin: 20px 0 10px 535px;
+  border-radius: 15px;
+}
+
+.button--save:hover {
+  cursor: pointer;
+}
 
 /*====== Responsive styles =======*/
 @media (min-width: 600px) {
@@ -350,4 +455,3 @@ body {
     font-size: 1.1em;
   }
 }
-

@@ -17,50 +17,49 @@
   <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
 
   <!-- ===== USER DASHBOARD DESIGN ===== -->
-  <div class="dashboard__container">
-    <section class="side__nav">
-      <div class="logo__content">
+  <div class="dashboard">
+    <section class="dashboard__nav">
+      <div class="dashboard__logo">
         <img src="/static/images/logo.png" alt="" class="logo">
       </div>
 
-      <nav class="nav__conatainer">
-        <ul class="nav__ul">
-          <li class="nav__list"><i class="fa fa-th-large"></i>Dashboard</li>
-          <li class="nav__list"><i class="fa fa-user"></i>Course Management</li>
-          <li class="nav__list"><i class="fa fa-user"></i>Student Management</li>
-          <li class="nav__list"><i class="fa fa-user"></i>Grade Book</li>
-          <li class="nav__list"><i class="fa fa-user"></i>Settings</li>
-          <li class="nav__list"><i class="fa fa-user"></i>Help & Support</li>
-          <li class="nav__list"><i class="fa fa-user"></i>Logout</li>
+      <nav class="dashboard__nav-element">
+        <ul class="dashboard__nav-list">
+          <li class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
+          <li class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
+          <li class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
+          <li class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
+          <li class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
+          <li class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
         </ul>
       </nav>
 
-      <div class="user__container">
-        <img src="../static/images/idris.jpeg" alt="" class="user__avatar">
-        <div class="user__data">
-          <h3 class="user__title">{{ first_name + ' ' + last_name }}</h3>
-          <h4 class="user_subtitile">{{ email }}</h4>
+      <div class="dashboard__user">
+        <img src="../static/images/idris.jpeg" alt="" class="dashboard__user-avatar">
+        <div class="dashboard__user-info">
+          <h3 class="dashboard__user-name">{{ first_name + ' ' + last_name }}</h3>
+          <h4 class="dashboard__user-email">{{ email }}</h4>
         </div>
       </div>
     </section>
 
-    <!-- ========= DASHBOARD SECTION ======== -->
-    <section class="dashboard">
+    <!-- ========= DASHBOARD MAIN SECTION ======== -->
+    <section class="dashboard__main">
       <div class="dashboard__header">
         <h1>Dashboard</h1>
-        <div class="top__right__contents">
-          <span class="search__box">
+        <div class="dashboard__top-right">
+          <span class="dashboard__search-box">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input type="search" placeholder="Search">
           </span>
 
-          <button>Generate Report</button>
+          <button class="button button--report">Generate Report</button>
         </div>
       </div>
 
-      <div class="intro__container">
-        <div class="welcome__content ">
-          <div class="welcome__message">
+      <div class="dashboard__intro">
+        <div class="dashboard__welcome ">
+          <div class="dashboard__welcome-message">
             <h2>Hello {{ last_name }}!</h2>
             <span>It's good to see you again.</span>
           </div>
@@ -68,17 +67,17 @@
           <img src="../static/images/waving_lady.svg" alt="" srcset="" class="waving__lady">
         </div>
 
-        <div class="calender">
-          <img src="../static/images/calendar.jpeg" alt="" srcset="" class="calendar">
+        <div class="dashboard__calendar">
+          <img src="../static/images/calendar.jpeg" alt="" srcset="" class="dashboard__calendar-image">
         </div>
       </div>
 
-      <div class="courses__container">
+      <div class="dashboard__courses">
         <h3>Courses</h3>
 
-        <div class="course__card__container">
-          <div class="course__card">
-            <div class="eclipse__1"></div>
+        <div class="courses-cards">
+          <div class="card">
+            <div class="card__eclipse card__eclipse--top"></div>
             <i class="fa fa-book" aria-hidden="true"></i>
             <span>
               <h4 class="cousre__title">  __ __ __ __ __ __ </h4>
@@ -86,54 +85,56 @@
             </span>
             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
             <img src="../static/images/stacked_avatar.png" alt="" class="stacked__avatar">
-            <div class="eclipse__2"></div>
+            <div class="card__eclipse card__eclipse--bottom"></div>
           </div>
 
-          <div class="course__card">
-            <div class="eclipse__1"></div>
+          <div class="card">
+            <div class="card__eclipse card__eclipse--top"></div>
             <i class="fa fa-book" aria-hidden="true"></i>
             <span>
-              <h4 class="cousre__title">English - Unit II</h4>
-              <h6 class="course_tagline">Business English</h6>
-            </span>
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-            <img src="/static/images/stacked_avatar.png" alt="" class="stacked__avatar">
-            <div class="eclipse__2"></div>
-          </div>
-          <div class="course__card">
-            <div class="eclipse__1"></div>
-            <i class="fa fa-book" aria-hidden="true"></i>
-            <span>
-              <h4 class="cousre__title">English - Unit III</h4>
+              <h4 class="cousre__title">English - Unit I</h4>
               <h6 class="course_tagline">Business English</h6>
             </span>
             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
             <img src="../static/images/stacked_avatar.png" alt="" class="stacked__avatar">
-            <div class="eclipse__2"></div>
+            <div class="card__eclipse card__eclipse--bottom"></div>
           </div>
-          <div id="add__course" class="add__course">
-            <img src="../static/images/stacked_books.png" alt="" class="stacked__books">
-            <p>Add new course</p>
+
+          <div class="card">
+            <div class="card__eclipse card__eclipse--top"></div>
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <span>
+              <h4 class="cousre__title">English - Unit I</h4>
+              <h6 class="course_tagline">Business English</h6>
+            </span>
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <img src="../static/images/stacked_avatar.png" alt="" class="stacked__avatar">
+            <div class="card__eclipse card__eclipse--bottom"></div>
+          </div>
+
+          <div id="add__course" class="dashboard__add-course">
+            <img src="../static/images/stacked_books.png" alt="" class="dashboard__add-course-image">
+            <p class="dashboard__add-course-text">Add new course</p>
           </div>
         </div>
       </div>
 
-      <div class="course__management">
-        <div class="course__headings">
+      <div class="dashboard__course-management">
+        <div class="dashboard__course-headings">
           <h3>Course Management</h3>
-          <button>View all</button>
+          <button class="button--view-all">View all</button>
         </div>
 
-        <table class="course__management__table">
+        <table class="dashboard__table">
           <thead>
-            <tr class="course__mg__tr">
-              <th class="first__th">Course Icon</th>
+            <tr class="dashboard__table-row">
+              <th class="dashboard__table-th--first">Course Icon</th>
               <th>Course Code</th>
               <th>Course name</th>
               <th>Credit</th>
               <th>Number of students</th>
               <th>Manage course</th>
-              <th class="last__th"></th>
+              <th class="dashboard__table-th--last"></th>
             </tr>
           </thead>
 
@@ -145,7 +146,7 @@
       </div>
     </section>
 
-    <section class="popup__modal">
+    <section id="popup__modal" class="dashboard__dynamic">
       <!-- This will be loaded dynamically from a file  -->
     </section>
 
