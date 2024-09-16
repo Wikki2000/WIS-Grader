@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 
   /* =============== Handle PUT $ POST REQUEST ================*/
-  $('.popup__modal').on('submit', '.course__management__form', function (event) {
+  $('#popup__modal').on('submit', '.course__management__form', function (event) {
 
     event.preventDefault();
 
@@ -68,22 +68,22 @@ $(document).ready(function () {
 
           if (method === 'POST') {
             $('table tbody').append(newCourse);
-            $('.popup__modal').load('/static/modal-course-added-success', function () {
+            $('#popup__modal').load('/static/modal-course-added-success', function () {
               $('.fa-times').click(function () {
-                $('.popup__modal').empty();
+                $('#popup__modal').empty();
               });
             });
           } else {
             window.location.reload(); // Refresh to get the update from Database
           }
 
-          $('.course__modal').remove();
+          $('#course__modal').remove();
         }
       },
       (error) => {
         alert("Alert Courses exist already");
         console.log(error);
-        $('.course__modal').hide();
+        $('#course__modal').hide();
       }
     );
   });
@@ -93,7 +93,7 @@ $(document).ready(function () {
   $('tbody').on('click', '.delete__btn', function () {
     const courseId = $(this).data('id');
 
-    $('.popup__modal').load('/static/modal-confirm-delete', function () {
+    $('#popup__modal').load('/static/modal-confirm-delete', function () {
 
       // Send request to delete after clicking delete button
       $('.button--delete').click(function () {
@@ -101,7 +101,7 @@ $(document).ready(function () {
           (response) => {
             if (response.status == 'Success') {
 
-              $('.popup__modal').load('/static/modal-success', function () {
+              $('#popup__modal').load('/static/modal-success', function () {
                 const $popupModal = $(this);
 
                 $('P.modal__subtitle').append('Item deleted successfully!');
@@ -129,12 +129,12 @@ $(document).ready(function () {
 
 
   /* =============== Load Form for PUT or POST Request ================*/
-  $('body').on('click', '.add__course, .edit__btn', function () {
+  $('body').on('click', '#add__course, .edit__btn', function () {
 
     const $clickedBtn = $(this);
     const courseId = $(this).data('id');
 
-    $('.popup__modal').load('/static/modal-course-form', function () {
+    $('#popup__modal').load('/static/modal-course-form', function () {
 
       // Update input field with value when Edit btn is pressed.
       if ($clickedBtn.hasClass('edit__btn')) {
@@ -164,7 +164,7 @@ $(document).ready(function () {
       }
 
       $('.cancel').click(function () {
-        $('.course__modal').remove();
+        $('#course__modal').remove();
       });
 
     });
