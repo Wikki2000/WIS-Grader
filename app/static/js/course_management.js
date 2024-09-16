@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 
   /* =============== Handle PUT $ POST REQUEST ================*/
-  $('#popup__modal').on('submit', '.course__management__form', function (event) {
+  $('#popup__modal').on('submit', '#course-management', function (event) {
 
     event.preventDefault();
 
@@ -163,7 +163,7 @@ $(document).ready(function () {
         $('#method').val('POST');
       }
 
-      $('.cancel').click(function () {
+      $('#close-icon').click(function () {
         $('#course__modal').remove();
       });
 
