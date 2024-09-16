@@ -1,0 +1,97 @@
+
+/*===== Manage courses styles =====*/
+* {
+  box-sizing: border-box;
+}
+
+.dashboard__nav--top { /* Parent element in user_dasboard.css */
+  font-size: 18px;
+}
+
+.dashboard__nav--top-title,
+.dashboard__nav--top-label,
+.fa-chevron-down {
+  cursor: pointer;
+}
+
+.dashboard__nav--top-titles {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.dashboard__nav--top-checkbox {
+  background: #333333; /* Need to be customized to work */
+}
+
+.dashboard__nav--top-group {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.dashboard__nav--top-checkbox,
+.fa-chevron-down {
+  margin-left: 15px;
+}
+
+.button--add-course {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 150px;
+}
+
+.dashboard__table-th--checkbox {
+  margin-left: 20px;
+}
+
+.fa-ellipsis-v {
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.dashboard__table-close-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/*==== Course management table popup modal component =====*/
+tr {
+  position: relative;
+}
+
+.manage {
+  background: #e7e7e7e7;
+  color: #24232399;
+  position: absolute;
+  top: 50%;
+  right: 70px;
+  width: 200px;
+  border: 1px solid #706e6e99;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+}
+
+.manage__nav {
+  text-align: left;
+}
+
+.manage__list {
+  list-style: none;
+}
+
+.manage__item {
+  padding: 15px 0;
+}
+
+.manage__item i {
+  padding: 0 15px;
+}
+
+.manage__item--border {
+  outline: 1px solid #706e6e99;
+}
+
+/*===== Manage students styles =====*/
