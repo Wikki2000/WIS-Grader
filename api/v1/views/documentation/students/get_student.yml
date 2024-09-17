@@ -1,0 +1,71 @@
+Retrieve a Student
+---
+tags:
+  - Students
+
+description: |
+  This endpoint retrieves detailed information about a specific student using their unique `student_id`.
+
+parameters:
+  - in: header
+    name: Authorization
+    description: Bearer token for JWT authentication.
+    required: true
+    type: string
+    example: Bearer <your_token_here>
+    
+  - in: path
+    name: student_id
+    description: The unique identifier of the student to retrieve.
+    required: true
+    type: string
+    example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+
+responses:
+  200:
+    description: Successfully retrieved student record.
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+        first_name:
+          type: string
+          example: John
+        middle_name:
+          type: string
+          example: Michael
+        last_name:
+          type: string
+          example: Doe
+        reg_number:
+          type: string
+          example: 12345
+
+  404:
+    description: Student not found. The provided `student_id` does not match any existing student records.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Student not found
+
+  401:
+    description: Unauthorized. The request requires authentication.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized Access
+
+  500:
+    description: Internal Server Error. An error occurred on the server.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Server error details.

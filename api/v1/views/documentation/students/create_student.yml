@@ -1,0 +1,110 @@
+Create a Student
+---
+tags:
+  - Students
+
+description: |
+  This endpoint allows for the creation of a new student record. The student must have a `first_name`, `last_name`, and a unique `reg_number`. The `middle_name` field is optional.
+
+parameters:
+  - in: header
+    name: Authorization
+    description: Bearer token for JWT authentication.
+    required: true
+    type: string
+    example: Bearer <your_token_here>
+    
+  - in: body
+    name: body
+    description: Student information for creating a new record.
+    required: True
+    schema:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - reg_number
+      properties:
+        first_name:
+          type: string
+          description: The student's first name.
+          example: John
+        last_name:
+          type: string
+          description: The student's last name.
+          example: Doe
+        reg_number:
+          type: string
+          description: The student's unique registration number.
+          example: 12345
+        middle_name:
+          type: string
+          description: The student's middle name (optional).
+          example: Michael
+
+responses:
+  201:
+    description: Student record successfully created.
+    schema:
+      type: object
+      properties:
+        student:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+            first_name:
+              type: string
+              example: John
+            middle_name:
+              type: string
+              example: Michael
+            last_name:
+              type: string
+              example: Doe
+            reg_number:
+              type: string
+              example: 12345
+        status:
+          type: string
+          example: Success
+        msg:
+          type: string
+          example: Student Created Successfully
+
+  400:
+    description: Bad Request. The request was invalid or cannot be served.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Missing first_name or reg_number must be unique.
+
+  401:
+    description: Unauthorized. The request requires authentication.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized Access.
+
+  409:
+    description: Conflict. The student with the given reg_number already exists.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Student already exists with the provided reg_number.
+
+  500:
+    description: Internal Server Error. An error occurred on the server.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Server error details.

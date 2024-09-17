@@ -1,0 +1,125 @@
+Update a Student
+---
+tags:
+  - Students
+
+description: |
+  This endpoint updates the details of an existing student record using their unique `student_id`.
+  You can update the `first_name`, `last_name`, `middle_name`, and `reg_number` fields.
+  The `reg_number` must remain unique, and any attempt to use a duplicate registration number will result in an error.
+
+parameters:
+  - in: header
+    name: Authorization
+    description: Bearer token for JWT authentication.
+    required: true
+    type: string
+    example: Bearer <your_token_here>
+
+  - in: path
+    name: student_id
+    description: The unique identifier of the student to update.
+    required: true
+    type: string
+    example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+
+  - in: body
+    name: body
+    description: The fields to update for the student record.
+    required: true
+    schema:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The student's first name.
+          example: John
+        last_name:
+          type: string
+          description: The student's last name.
+          example: Doe
+        middle_name:
+          type: string
+          description: The student's middle name (optional).
+          example: Michael
+        reg_number:
+          type: string
+          description: The student's unique registration number.
+          example: 12345
+
+responses:
+  200:
+    description: Successfully updated student record.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            student:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of the student.
+                  example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+                first_name:
+                  type: string
+                  description: The updated first name of the student.
+                  example: John
+                middle_name:
+                  type: string
+                  description: The updated middle name of the student.
+                  example: Michael
+                last_name:
+                  type: string
+                  description: The updated last name of the student.
+                  example: Doe
+                reg_number:
+                  type: string
+                  description: The updated registration number of the student.
+                  example: 12345
+            status:
+              type: string
+              example: "Success"
+            msg:
+              type: string
+              example: "Student Updated Successfully"
+
+  400:
+    description: Bad request (e.g., missing or invalid fields, or duplicate `reg_number`).
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message describing the issue.
+              example: "reg_number must be unique."
+
+  404:
+    description: Student not found. The provided `student_id` does not match any existing student records.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message indicating the student was not found.
+              example: "Student not found."
+
+  500:
+    description: Internal Server Error. An error occurred while updating the student.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message indicating the error encountered during the update process.
+              example: "An error occurred while updating the student"
+            message:
+              type: string
+              example: "Error details here"
