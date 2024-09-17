@@ -107,7 +107,7 @@
 
 .dashboard__intro,
 .courses-cards,
-.dashboard__course-headings {
+.dashboard__nav--top {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
@@ -243,7 +243,7 @@
   padding: 10px 0;
 }
 
-.dashboard__table .fa-book, .fa-trash {
+.dashboard__table .fa-book {
 
   color: #D98D55;
   display: flex;
@@ -274,7 +274,7 @@
   padding: 10px 0;
 }
 
-.dashboard__table .fa-pencil {
+.dashboard__edit-pencil { /*==== Take note of this chnage on th JS file ===*/
   margin-right: 10px;
 }
 
