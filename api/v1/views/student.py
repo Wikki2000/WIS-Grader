@@ -11,7 +11,6 @@ from flasgger.utils import swag_from
 from sqlalchemy.exc import IntegrityError
 
 storage = Storage()
-session = storage.get_session()
 
 
 @app_views.route('/students', methods=['POST'], strict_slashes=False)
@@ -35,9 +34,9 @@ def create_student():
             return jsonify({'error': f'{field} is required'}), 400
 
     # Ensure reg_number is unique
-    existing_student = session.query(Student).filter_by(reg_number=data['reg_number']).first()
+    existing_student = storage.get_by_field(Student,  "reg_no", data['reg_number'])
     if existing_student:
-        session.close()
+        storage.close()
         return jsonify({"error": "reg_number must be unique"}), 400
     
     # Create new student instance
@@ -169,9 +168,9 @@ def update_student(student_id):
     if 'reg_number' in data:
 
         # Ensure reg_number is unique if it's being changed
-        existing_student = session.query(Student).filter_by(reg_number=data['reg_number']).first()
+        existing_student = storage.get_by_field(Student,  "reg_no", data['reg_number'])
         if existing_student and existing_student.id != student.id:
-            session.close()
+            storage.close()
             return jsonify({"error": "reg_number must be unique"}), 400
 
         student.reg_number = data['reg_number']
