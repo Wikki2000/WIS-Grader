@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Base Styles */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.form-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.form__close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form__body {
+  margin-top: 20px;
+}
+
+.form__group {
+  margin-bottom: 15px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.form__input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+.form__input--disabled {
+  background-color: #f4f2e7;
+}
+
+.form__row {
+  display: flex;
+  gap: 15px;
+}
+
+.form__levels {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.form__level {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form__radio {
+  margin: 0;
+}
+
+.form__submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+}
+
+.form__submit-btn:hover {
+  background-color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form__header">
+      <h2 class="form__title">Course enrollment</h2>
+      <button class="form__close-btn">&times;</button>
+    </div>
+
+    <form class="form__body">
+      <div class="form__group">
+        <label for="course-name" class="form__label">Course Name</label>
+        <input type="text" id="course-name" class="form__input form__input--disabled" value="English Language" readonly>
+      </div>
+
+      <div class="form__row">
+        <div class="form__group">
+          <label for="course-code" class="form__label">Course Code</label>
+          <input type="text" id="course-code" class="form__input" placeholder="@example">
+        </div>
+        <div class="form__group">
+          <label for="student-id" class="form__label">Student ID</label>
+          <input type="text" id="student-id" class="form__input" placeholder="@example">
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label for="student-department" class="form__label">Student Department</label>
+        <input type="text" id="student-department" class="form__input" placeholder="@example">
+      </div>
+
+      <div class="form__group">
+        <label class="form__label">Program Level</label>
+        <div class="form__levels">
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="100"> 100 Level
+          </label>
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="200" checked> 200 Level
+          </label>
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="300"> 300 Level
+          </label>
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="400"> 400 Level
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="form__submit-btn">Enroll</button>
+    </form>
+  </div>
+
+</body>
+</html>
