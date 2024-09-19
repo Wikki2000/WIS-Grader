@@ -1,0 +1,76 @@
+Delete a Student
+---
+tags:
+  - Students
+
+description: |
+  This endpoint deletes a student record from the database using their unique `student_id`.
+
+parameters:
+  - in: header
+    name: Authorization
+    description: Bearer token for JWT authentication.
+    required: true
+    type: string
+    example: Bearer <your_token_here>
+
+  - in: path
+    name: student_id
+    description: The unique identifier of the student to delete.
+    required: true
+    type: string
+    example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+
+responses:
+  200:
+    description: Successfully deleted student record.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: "Success"
+            message:
+              type: string
+              example: "Student John Doe deleted successfully."
+            id:
+              type: string
+              example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+
+  404:
+    description: Student not found. The provided `student_id` does not match any existing student records.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Student not found"
+
+  401:
+    description: Unauthorized. The request requires authentication.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Unauthorized Access"
+
+  500:
+    description: Internal Server Error. An error occurred while deleting the student.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "An error occurred while deleting the student"
+            message:
+              type: string
+              example: "Error details here"
