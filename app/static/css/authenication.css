@@ -78,24 +78,23 @@ a {
   border: 2px solid #dc362e !important;
 }
 
-.auth-form-container hr {
+.horizontal-line {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  margin: auto;
+}
+
+.line {
   border-width: 1.5px;
-  border-top: 1px solid #ffffff;
-  max-width: 250px;
+  border: 1px solid #ffffff;
+  width: 125px;
   margin: 20px auto;
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .or-text {
-  background: #000000;
-  position: absolute;
-  bottom: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  padding: 5px 8px;
-  font-size: 12px;
-  color: #ffffff;
+  padding: 8px;
+  font-size: 16px;
 }
 
 .signin-text {

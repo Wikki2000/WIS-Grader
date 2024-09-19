@@ -5,8 +5,8 @@
   box-sizing: border-box;
 }
 
-body {
-  /* background-color: #FF9F1C; */
+a {
+  text-decoration: none;
 }
 
 /* ==================== App Background Style ======================= */
@@ -23,7 +23,15 @@ body {
   width: 255px;
   height: 262px;
   margin-top: 40px;
+}
 
+.app-background__card--right-secondary {
+  position: relative;
+  top: 50px;
+  left: 80%;
+  width: 255px;
+  height: 262px;
+  margin-top: 0px;
 }
 
 .app-background__card--right-base {
@@ -60,6 +68,15 @@ body {
   width: 255px;
   height: 262px;
   margin-top: -100px;
+}
+
+.app-background__card--left-secondary {
+  position: relative;
+  left: 50px;
+  bottom: -200px;
+  width: 255px;
+  height: 262px;
+  margin-top: -400px;
 }
 
 .app-background__card--left-base {
@@ -151,7 +168,7 @@ body {
   padding: 10px;
   width: 100%;
   border-radius: 16px;
-  margin-top: 30px;
+  margin: 20px 0;
 }
 
 .button--report {
@@ -199,16 +216,40 @@ body {
   color: #ffffff;
 }
 
+/* === Global Icons ==== */
+.fa-ellipsis-v {
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.close-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
 /* ===== Authentication cards components ==== */
+.app-background__card--auth-card {
+  background: #FF9F1C;
+  height: 100vh;
+  margin: 0;
+}
+
 .auth-card {
+  position: relative;
   background: white;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  max-width: 400px;
-  margin: 25vh auto;
+  max-width: 350px;
+  margin: auto;
   border-radius: 10px;
+  padding: 60px 20px;
+  z-index: 9;
+}
+
+.auth-card__title {
+  margin: 10px 0;
 }
 
 .auth-card__subtitle {
@@ -232,14 +273,12 @@ body {
   border-radius: 5px;
 }
 
-.auth-card__content .link {
-  text-decoration: none;
+.link {
   color: #ffffff;
 }
 
 .auth-card__alt-option {
-  text-decoration: none;
-  color: #FF9F1C;
+  color: #000000;
 }
 
 /* ==== Authentication alert components ==== */
@@ -284,12 +323,12 @@ body {
 
 /* ====== Dashboard cards components ====== */
 .modal {
-  position: relative;
   background: #ffffff;
+  position: relative;
+  margin: 25vh auto;
   width: 800px;
   padding: 15px;
   border-radius: 20px;
-  margin-top: 20px; /* Ro be removed later */
 }
 
 .modal--course,
@@ -342,17 +381,33 @@ body {
 }
 
 /* ===== Dashboard form component ===== */
-.modal__close-icon {
-  background: #D98D55;
+.modal-container {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.modal--dashboard-form {
+  background: #ffffff;
+  position: relative;
+  width: 700px;
+  margin: 15vh auto;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.close-icon--modal {
   position: absolute;
   right: 15px;
   top: 10px;
   width: 40px;
   text-align: center;
   padding: 5px 0;
-  color: #e7e7e7;
   font-weight: bolder;
-  cursor: pointer;
 }
 
 .form__input--text,
@@ -363,7 +418,7 @@ body {
   border-radius: 20px;
 }
 
-.course__management__form input,
+.form--course-management input,
 .form__textarea {
   background: #e7e7e7;
   border: none;
@@ -379,7 +434,7 @@ body {
   justify-content: space-around;
 }
 
-.course__management__form input[type="checkbox"] {
+.form--course-management input[type="checkbox"] {
   margin: 10px;
 }
 
@@ -420,11 +475,9 @@ body {
   border-radius: 10px;
 }
 
-.course__management__form .create__course {
-  background: #000000;
-  color: #ffffff;
+.button--save {
   font-weight: 700;
-  padding: 15px 25px;
+  padding: 15px 35px;
   margin: 20px 0 10px 535px;
   border-radius: 15px;
 }
@@ -432,6 +485,8 @@ body {
 .button--save:hover {
   cursor: pointer;
 }
+
+
 
 /*====== Responsive styles =======*/
 @media (min-width: 600px) {
@@ -447,6 +502,11 @@ body {
 }
 
 @media (min-width: 768px) {
+  .auth-card {
+    max-width: 500px;
+    padding: 60px;
+  }
+
   .auth-card__title {
     font-size: 2em;
   }

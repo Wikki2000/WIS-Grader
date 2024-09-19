@@ -46,16 +46,6 @@
   margin-left: 20px;
 }
 
-.fa-ellipsis-v {
-  margin-right: 25px;
-  cursor: pointer;
-}
-
-.dashboard__table-close-icon {
-  font-size: 25px;
-  cursor: pointer;
-}
-
 /*==== Course management table popup modal component =====*/
 tr {
   position: relative;

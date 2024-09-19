@@ -48,7 +48,7 @@
             <input type="email" name="email" id="email" placeholder="Email" required />
             <input type="password" name="password" id="password" placeholder="Enter password" required />
 
-            <p><a href="{{ url_for('app.forgot_password') }}" class="link">Forgot password</a></p>
+            <p><a href="{{ url_for('app.forgot_password') }}" class="link">Forgot password?</a></p>
 
             <button type="submit" name="submit" id="submit" class="button button--signin">Sign In</button>
           </form>
@@ -56,8 +56,12 @@
           <!-- Animate while waiting for server response. -->
           <div class="loader"></div>
 
-          <hr />
-          <p class="or-text">or</p>
+          <div class="horizontal-line">
+            <hr class="line"/>
+            <p class="or-text">or</p>
+            <hr class="line"/>
+          </div>
+
           <button class="button button--google">
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
               <path

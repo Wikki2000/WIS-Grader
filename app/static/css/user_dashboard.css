@@ -76,9 +76,10 @@
 .dashboard__main {
   width: 75%;
   margin: 0 auto;
-  height: 500px;
+  height: 100vh;
   padding: 50px 0;
-  /* border: 2px solid red; */
+  overflow-y: auto;
+  border: 2px solid red;
 }
 
 .dashboard__header {
@@ -278,13 +279,3 @@
   margin-right: 10px;
 }
 
-
-/* === Dashboard dynamic section === */
-.dashboard__dynamic {
-  background: #ffffff;
-  position: absolute;
-  left: 45%;
-  width: 700px;
-  padding: 15px;
-  z-index: 99;
-}
