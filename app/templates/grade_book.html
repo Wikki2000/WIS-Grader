@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRADE BOOK</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/user_dashboard.css">
+  <link rel="stylesheet" href="/static/css/course_management.css">
+  <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="module" src="../static/js/course_management.js?{{ cache_id }}"></script>
+</head>
+
+<body>
+  <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
+
+  <!-- ===== USER DASHBOARD DESIGN ===== -->
+  <div class="dashboard">
+    <section class="dashboard__nav">
+      <div class="dashboard__logo">
+        <img src="/static/images/logo.png" alt="" class="logo">
+      </div>
+
+      <nav class="dashboard__nav-element">
+        <ul class="dashboard__nav-list">
+          <li class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
+          <li class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
+          <li class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
+          <li class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
+          <li class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
+          <li class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
+        </ul>
+      </nav>
+
+      <div class="dashboard__user">
+        <img src="../static/images/idris.jpeg" alt="" class="dashboard__user-avatar">
+        <div class="dashboard__user-info">
+          <h3 class="dashboard__user-name">{{ first_name + ' ' + last_name }}</h3>
+          <h4 class="dashboard__user-email">{{ email }}</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= DASHBOARD MAIN SECTION ======== -->
+    <section class="dashboard__main">
+      <div class="dashboard__header">
+        <h1>Grade Book</h1>
+        <div class="dashboard__top-right">
+          <span class="dashboard__search-box">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="search" placeholder="Search">
+          </span>
+
+          <button class="button button--report">Generate Report</button>
+        </div>
+      </div>
+
+
+      <div class="dashboard__course-management">
+        <div class="dashboard__nav--top">
+          <div class="dashboard__nav--top-titles">
+            <span class="dashboard__nav--top-title">English Language</span>
+            <span class="dashboard__nav--top-title">Mathematics</span>
+          </div>
+
+          <div class="dashboard__nav--top-group">
+            <span>All<i class="fa fa-chevron-down"></i></span>
+            <button class="button button--add-course"><i class="fa fa-save"></i>Save Changes</button>
+          </div>
+
+        </div>
+
+        <table class="dashboard__table">
+          <thead>
+            <tr class="dashboard__table-row">
+              <th class="dashboard__table-th--first">S/N</th>
+              <th>Student Reg. No.</th>
+              <th>Student Name</th>
+              <th>Test score</th>
+              <th>Exam score</th>
+              <th>Total / 100</th>
+              <th class="dashboard__table-th--last">Grade</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- Table body will be loaded dynamically given value from database. -->
+            <tr class="result">
+              <td>1</td>
+              <td>72581946</td>
+              <td>Wisdom Okposin</td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="30" placeholder="0-30"></td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="70" placeholder="0-70"></td>
+              <td class="score-td"><input type="text" class="score-input total-score" disabled></td>
+              <td class="grade-td"><input type="text" class="score-grade" disabled></td>
+            </tr>
+            <!-- Add more rows as necessary -->
+            <tr class="result">
+              <td>2</td>
+              <td>72594681</td>
+              <td>Solomon Chuks</td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="30" placeholder="0-30"></td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="70" placeholder="0-70"></td>
+              <td class="score-td"><input type="text" class="score-input total-score" disabled></td>
+              <td class="grade-td"><input type="text" class="score-grade" disabled></td>
+            </tr>
+            <!-- Add more rows as necessary -->
+            <tr class="result">
+              <td>3</td>
+              <td>59724681</td>
+              <td>Idris Elgarrab</td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="30" placeholder="0-30"></td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="70" placeholder="0-70"></td>
+              <td class="score-td"><input type="text" class="score-input total-score" disabled></td>
+              <td class="grade-td"><input type="text" class="score-grade" disabled></td>
+            </tr>
+            <!-- Add more rows as necessary -->
+          </tbody>
+
+        </table>
+      </div>
+    </section>
+
+    <section id="popup__modal" class="dashboard__dynamic">
+      <!-- This will be loaded dynamically from a file  -->
+    </section>
+
+  </div>
+
+
+  <script>
+    $(document).ready(function () {
+      // Automatically calculate total and grade
+      $('.score-input').on('input', function () {
+        let row = $(this).closest('tr');
+        let testScore = parseFloat(row.find('input').eq(0).val()) || 0;
+        let examScore = parseFloat(row.find('input').eq(1).val()) || 0;
+        let total = testScore + examScore;
+
+        // Update total score
+        row.find('.total-score').val(total);
+
+        // Calculate grade based on total
+        let grade;
+        if (total >= 70) {
+          grade = 'A';
+        } else if (total >= 60) {
+          grade = 'B';
+        } else if (total >= 50) {
+          grade = 'C';
+        } else if (total >= 40) {
+          grade = 'D';
+        } else {
+          grade = 'F';
+        }
+
+        // Update grade
+        row.find('.score-grade').val(grade);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

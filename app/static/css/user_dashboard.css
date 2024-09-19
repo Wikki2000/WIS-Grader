@@ -220,7 +220,7 @@
 }
 
 /*======= TABLE STYLING ========*/
-.dashboard__table{
+.dashboard__table {
   text-align: center;
   width: 100%;
   border-spacing: 0;
@@ -231,7 +231,7 @@
   color: #24232399;
 }
 
-.dashboard__table-th--first{
+.dashboard__table-th--first {
   border-top-left-radius: 10px;
 }
 
@@ -239,7 +239,8 @@
   border-top-right-radius: 10px;
 }
 
-.dashboard__table th, td {
+.dashboard__table th,
+td {
   border-bottom: 1px solid #706e6e99;
   padding: 10px 0;
 }
@@ -275,7 +276,33 @@
   padding: 10px 0;
 }
 
-.dashboard__edit-pencil { /*==== Take note of this chnage on th JS file ===*/
+.dashboard__edit-pencil {
+  /*==== Take note of this chnage on th JS file ===*/
   margin-right: 10px;
 }
 
+
+/* ===== Grade Book (Result Computation) Styling ===== */
+.dashboard__table .result:nth-child(even) {
+  background: #f8f7f7;
+}
+
+.dashboard__table .result:hover {
+  background-color: #f1f1f1;
+}
+
+.score-input,
+.score-grade {
+  width: 80px;
+  height: 36px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.score-grade {
+  width: 50px;
+  background-color: #eee;
+  border: none;
+  font-weight: bold;
+}
