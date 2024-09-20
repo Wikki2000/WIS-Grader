@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MANAGE STUDENTS</title>
+  <title>GRADE BOOK</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/user_dashboard.css">
   <link rel="stylesheet" href="/static/css/course_management.css">
@@ -47,7 +47,7 @@
     <!-- ========= DASHBOARD MAIN SECTION ======== -->
     <section class="dashboard__main">
       <div class="dashboard__header">
-        <h1>Course Management</h1>
+        <h1>Grade Book</h1>
         <div class="dashboard__top-right">
           <span class="dashboard__search-box">
             <i class="fa fa-search" aria-hidden="true"></i>
@@ -62,16 +62,13 @@
       <div class="dashboard__course-management">
         <div class="dashboard__nav--top">
           <div class="dashboard__nav--top-titles">
-            <span class="dashboard__nav--top-title">Manage courses</span>
-            <span class="dashboard__nav--top-title">Manage students</span>
+            <span class="dashboard__nav--top-title">English Language</span>
+            <span class="dashboard__nav--top-title">Mathematics</span>
           </div>
 
           <div class="dashboard__nav--top-group">
-            <label class="dashboard__nav--top-label">Mark
-              <input type="checkbox" class="dashboard__nav--top-checkbox">
-            </label>
             <span>All<i class="fa fa-chevron-down"></i></span>
-            <button class="button button--add-course"><i class="fa fa-plus"></i>New Course</button>
+            <button class="button button--add-course"><i class="fa fa-save"></i>Save Changes</button>
           </div>
 
         </div>
@@ -79,42 +76,48 @@
         <table class="dashboard__table">
           <thead>
             <tr class="dashboard__table-row">
-              <th class="dashboard__table-th--first"></th>
-              <th>S/N</th>
+              <th class="dashboard__table-th--first">S/N</th>
+              <th>Student Reg. No.</th>
               <th>Student Name</th>
-              <th>Course enrolled</th>
-              <th>Student ID</th>
-              <th>Deoartment</th>
-              <th class="dashboard__table-th--last"></th>
+              <th>Test score</th>
+              <th>Exam score</th>
+              <th>Total / 100</th>
+              <th class="dashboard__table-th--last">Grade</th>
             </tr>
           </thead>
 
           <tbody>
             <!-- Table body will be loaded dynamically given value from database. -->
-            <tr>
-              <td><input type="checkbox" class="dashboard__table-th--checkbox"></td>
+            <tr class="result">
               <td>1</td>
-              <td>Solomon Chuks</td>
-              <td>Software Enginering</td>
               <td>72581946</td>
-              <td>Computer Science</td>
-              <td>
-                <i class="fa fa-ellipsis-v"></i>
-                <span class="close-icon">&times;</span>
-              </td>
-
-              <!-- Table popup mennu -->
-              <td class="manage">
-                <nav class="manage__nav">
-                  <ul class="manage__list">
-                    <li class="manage__item"><i class="fa fa-pencil"></i>Edit student data</li>
-                    <li class="manage__item manage__item--border"><i class="fa fa-user-plus"></i>Enroll student</li>
-                    <li class="manage__item"><i class="fa fa-trash"></i>Remove student</li>
-
-                  </ul>
-                </nav>
-              </td>
+              <td>Wisdom Okposin</td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="30" placeholder="0-30"></td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="70" placeholder="0-70"></td>
+              <td class="score-td"><input type="text" class="score-input total-score" disabled></td>
+              <td class="grade-td"><input type="text" class="score-grade" disabled></td>
             </tr>
+            <!-- Add more rows as necessary -->
+            <tr class="result">
+              <td>2</td>
+              <td>72594681</td>
+              <td>Solomon Chuks</td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="30" placeholder="0-30"></td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="70" placeholder="0-70"></td>
+              <td class="score-td"><input type="text" class="score-input total-score" disabled></td>
+              <td class="grade-td"><input type="text" class="score-grade" disabled></td>
+            </tr>
+            <!-- Add more rows as necessary -->
+            <tr class="result">
+              <td>3</td>
+              <td>59724681</td>
+              <td>Idris Elgarrab</td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="30" placeholder="0-30"></td>
+              <td class="score-td"><input type="number" class="score-input" min="0" max="70" placeholder="0-70"></td>
+              <td class="score-td"><input type="text" class="score-input total-score" disabled></td>
+              <td class="grade-td"><input type="text" class="score-grade" disabled></td>
+            </tr>
+            <!-- Add more rows as necessary -->
           </tbody>
 
         </table>
@@ -126,6 +129,39 @@
     </section>
 
   </div>
+
+
+  <script>
+    $(document).ready(function () {
+      // Automatically calculate total and grade
+      $('.score-input').on('input', function () {
+        let row = $(this).closest('tr');
+        let testScore = parseFloat(row.find('input').eq(0).val()) || 0;
+        let examScore = parseFloat(row.find('input').eq(1).val()) || 0;
+        let total = testScore + examScore;
+
+        // Update total score
+        row.find('.total-score').val(total);
+
+        // Calculate grade based on total
+        let grade;
+        if (total >= 70) {
+          grade = 'A';
+        } else if (total >= 60) {
+          grade = 'B';
+        } else if (total >= 50) {
+          grade = 'C';
+        } else if (total >= 40) {
+          grade = 'D';
+        } else {
+          grade = 'F';
+        }
+
+        // Update grade
+        row.find('.score-grade').val(grade);
+      });
+    });
+  </script>
 
 </body>
 

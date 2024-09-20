@@ -121,7 +121,7 @@ $(document).ready(function () {
       });
 
       $('.button--cancel, .fa-times').click(function () {
-        $('.modal--delete').remove();
+        $('#modal-container').remove();
       });
 
     });
