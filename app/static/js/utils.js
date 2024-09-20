@@ -8,13 +8,13 @@
  * @param {function} onError - Callback function to execute if the request fails.
  */
 export function ajaxRequest(url, method, data = {}, onSuccess, onError) { $.ajax({
-    url: url,
-    method: method,
-    contentType: 'application/json',
-    data: data,
-    success: onSuccess,
-    error: onError,
-  });
+  url: url,
+  method: method,
+  contentType: method == 'GET' ? null: 'application/json',
+  data: method == 'POST' || method == 'PUT' ? data : null,
+  success: onSuccess,
+  error: onError,
+});
 }
 
 /**
@@ -56,4 +56,44 @@ export function alertBox(
     $(`.${alertDivClass}`).removeClass(errorClass)
       .addClass(successClass).text(msg).show();
   }
+}
+
+/**
+ * Send DELETE request to API to delete an object using it ID.
+ *
+ * @param {string} entityEndpoint - Endpoint for DELETE request in server side.
+ * @param {string} entityId - Unique identifier of object to be deleted
+ */
+export function deleteEntity(entityEndpoint, entityId) {
+  $('#popup__modal').load('/static/modal-confirm-delete', function () {
+
+    // Send request to delete after clicking delete button
+    $('#button__confirm-delete').click(function () {
+      ajaxRequest(`${entityEndpoint}/${entityId}`, 'DELETE', null,
+        (response) => {
+          if (response.status == 'Success') {
+
+            $('#popup__modal').load('/static/modal-success', function () {
+
+              $('P.modal__subtitle').append('Item deleted successfully!');
+
+              $('body').on('click', '#button__confirm-continue', function () {
+                $('#popup__modal').empty();
+                $(`#course_${entityId}`).remove();
+              });
+
+            });
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+
+    $('#button__confirm-cancel, .fa-times').click(function () {
+      $('#modal__delete').remove();
+    });
+
+  });
 }
