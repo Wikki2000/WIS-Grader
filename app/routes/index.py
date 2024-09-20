@@ -37,12 +37,12 @@ def template(page):
     public_pages = [
         "reset-password-success", "modal-confirm-delete", "modal-success",
         "reset-password-email-sent", "email-confirmed",
-        "modal-course-added-success",
+        "modal-course-added-success", "loading",
     ]
 
     # Pages that require authentication
     authenticated_pages = [
-        "modal-course-form", "modal-manage-course"
+        "modal-course-form" 
     ]
 
     template_directory = "static_pages/"

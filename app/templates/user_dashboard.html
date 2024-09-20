@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>USER DASHBOARD</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../static/css/user_dashboard.css">
-  <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER DASHBOARD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/user_dashboard.css">
+    <link rel="stylesheet" href="../static/css/course_management.css">
+    <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="module" src="../static/js/user_dashboard.js?{{ cache_id }}"></script>
-  <script type="module" src="../static/js/menu.js?{{ cache_id }}"></script>
-</head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="module" src="../static/js/menu.js?{{ cache_id }}"></script>
+    <script type="module" src="../static/js/user_dashboard.js?{{ cache_id }}"></script>
+  </head>
 
-<body>
-  <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
+  <body>
+    <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
 
-  <!-- ===== USER DASHBOARD DESIGN ===== -->
-  <div class="dashboard">
-    <section class="dashboard__nav">
-      <div class="dashboard__logo">
-        <img src="../static/images/logo.png" alt="" class="logo">
-      </div>
-
-      <nav class="dashboard__nav-element">
-        <ul class="dashboard__nav-list">
-          <li id="main__nav-item" class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
-          <li id="course__nav-item" class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
-	  <li id="grade__nav-item" class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
-          <li id="setting__nav-item" class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
-          <li id="help__nav-item" class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
-          <li id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
-        </ul>
-      </nav>
-
-      <div class="dashboard__user">
-        <img src="../static/images/idris.jpeg" alt="" class="dashboard__user-avatar">
-        <div class="dashboard__user-info">
-          <h3 class="dashboard__user-name">{{ first_name + ' ' + last_name }}</h3>
-          <h4 class="dashboard__user-email">{{ email }}</h4>
+    <!-- ===== USER DASHBOARD DESIGN ===== -->
+    <div class="dashboard">
+      <section  class="dashboard__nav">
+        <div class="dashboard__logo">
+          <img src="../static/images/logo.png" alt="" class="logo">
         </div>
-      </div>
-    </section>
 
-    <!-- ========= DASHBOARD MAIN SECTION ======== -->
-   <div id="dashboard-container" class="dashboard__main">
-      <section>
+        <nav class="dashboard__nav-element">
+          <ul class="dashboard__nav-list">
+            <li id="main__nav-item" class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
+            <li id="course__nav-item" class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
+            <li id="grade__nav-item" class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
+            <li id="setting__nav-item" class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
+            <li id="help__nav-item" class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
+            <li id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
+          </ul>
+        </nav>
+
+        <div class="dashboard__user">
+          <img src="../static/images/idris.jpeg" alt="" class="dashboard__user-avatar">
+          <div class="dashboard__user-info">
+            <h3 class="dashboard__user-name">{{ first_name + ' ' + last_name }}</h3>
+            <h4 class="dashboard__user-email">{{ email }}</h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========= DASHBOARD MAIN SECTION ======== -->
+
+      <section id="dashboard__main" class="dashboard__main">
         <div class="dashboard__header">
           <h1>Dashboard</h1>
           <div class="dashboard__top-right">
@@ -135,7 +136,6 @@
                 <th>Course name</th>
                 <th>Credit</th>
                 <th>Number of students</th>
-                <th>Manage course</th>
                 <th class="dashboard__table-th--last"></th>
               </tr>
             </thead>
@@ -147,14 +147,17 @@
           </table>
         </div>
       </section>
+
+      <section id="popup__modal">
+        <!-- This will be loaded dynamically from a file -->
+      </section>
+
     </div>
 
-    <section id="popup__modal">
-      <!-- This will be loaded dynamically from a file  -->
-    </section>
+    <div id="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
 
-  </div>
-
-</body>
+  </body>
 
 </html>

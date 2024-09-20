@@ -3,7 +3,7 @@
 from . import app_views
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger.utils import swag_from
-from flask import request, jsonify
+from flask import request, jsonify, abort
 from models.course import Course
 from models.lecturer import Lecturer
 from models import storage
@@ -56,7 +56,7 @@ def create_course():
             {
                 "course": {
                     "id": new_course.id,
-                    "course_name": new_course.course_title,
+                    "course_title": new_course.course_title,
                     "course_code": new_course.course_code,
                     "credit_load": new_course.credit_load,
                     "lecturer_id": new_course.lecturer_id,
@@ -185,7 +185,7 @@ def update_course(course_id):
             {
                 "course": {
                     "id": course.id,
-                    "course_name": course.course_title,
+                    "course_title": course.course_title,
                     "course_code": course.course_code,
                     "credit_load": course.credit_load,
                     "lecturer_id": course.lecturer_id,

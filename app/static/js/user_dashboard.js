@@ -2,9 +2,11 @@ import { ajaxRequest } from './utils.js';
 
 $(document).ready(function () {
 
-  // Define course managemnt API globally
+
   const courseEndpoint = '/courses';
 
+  // Highlight course navbar upon click
+  $('#main__nav-item').addClass('dashboard__nav-item-highlight');
 
   /* =============== GET REQUEST ================*/
   $.get(courseEndpoint)
@@ -17,9 +19,7 @@ $(document).ready(function () {
             <td>${course.course_code}</td>
             <td>${course.course_title}</td>
             <td>${course.credit_load}</td>
-            <td>${course.student_count}</td>
-            <td><button class="edit__btn" data-id="${course.id}"><i class="fa fa-pencil dashboard__edit-pencil" aria-hidden="true"></i> Edit</button></td>
-            <td><button class="delete__btn" data-id="${course.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+	    <td>${course.student_count}</td>
           </tr>`
           $('table tbody').append(newCourse);
         });
@@ -59,11 +59,9 @@ $(document).ready(function () {
           const newCourse = `<tr id="course_${response.course.id}">
             <td><i class="fa fa-book" aria-hidden="true"></i></td>
             <td>${response.course.course_code}</td>
-            <td>${response.course.course_name}</td>
+            <td>${response.course.course_title}</td>
             <td>${response.course.credit_load}</td>
             <td>${response.course.student_count}</td>
-            <td><button class="edit__btn" data-id="${response.course.id}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
-            <td><button class="delete__btn" data-id="${response.course.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
           </tr>`
 
           if (method === 'POST') {
@@ -126,9 +124,7 @@ $(document).ready(function () {
 
     });
   });
-
-
-  /* =============== Load Form for PUT or POST Request ================*/
+  /* =============== Load Form for PUT Request ================*/
   $('body').on('click', '#add__course, .edit__btn', function () {
 
     const $clickedBtn = $(this);

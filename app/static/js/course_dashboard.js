@@ -1,6 +1,10 @@
 import { ajaxRequest, deleteEntity } from './utils.js';
 
-
+/**
+ * Create Course Template
+ *
+ * @param {string} response - Response object from API
+ */
 function courseTableTemplate(response) {
   return `<tr id="course_${response.id}">
     <td><input type="checkbox" class="dashboard__table-th--checkbox"></td>
@@ -28,6 +32,8 @@ function courseTableTemplate(response) {
 }
 
 $(document).ready(function () {
+
+  // The Course Management to indicate the active dashboard section
   $('#manage__course-click').addClass('dashboard__nav--top-outline');
 
   // Define course managemnt API globally
@@ -76,16 +82,16 @@ $(document).ready(function () {
       (response) => {
         if (response.status === 'Success') {
           const course = response.course;
-          $('table tbody').append(courseTableTemplate(course));
           
           if (method === 'POST') {
             $('#popup__modal').load('/static/modal-course-added-success', function () {
+              $('table tbody').append(courseTableTemplate(course));
               $('.fa-times').click(function () {
                 $('#popup__modal').empty();
               });
             });
           } else {
-            window.location.reload(); // Refresh to get the update from Database
+            window.location.reload();
           }
 
           $('#course__modal').remove();
@@ -111,14 +117,13 @@ $(document).ready(function () {
   $('body').on('click', '#add__course, .edit', function () {
 
     const $clickedBtn = $(this);
-    const $row = $clickedBtn.closest('tr');
-    const courseId = $row.attr('id').split('_')[1];
-    alert(courseId);
 
     $('#popup__modal').load('/static/modal-course-form', function () {
 
       // Update input field with value when Edit btn is pressed.
       if ($clickedBtn.hasClass('edit')) {
+        const $row = $clickedBtn.closest('tr');
+        const courseId = $row.attr('id').split('_')[1];
         $.get(`${courseEndpoint}/${courseId}`)
           .done(response => {
             $('#course__code').val(response.course_code);

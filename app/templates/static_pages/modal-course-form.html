@@ -1,11 +1,12 @@
-<div id="course__modal" class="modal--course">
+<div id="course__modal" class="modal-container">
+  <div class="modal--dashboard-form">
   <h2 class="modal__title">Add New Course</h2>
-  <span id="close-icon" class="modal__close-icon">X</span>
+  <span id="close-icon" class="close-icon close-icon--modal">&times;</span>
   <form id="course-management" class="form--course-management">
 
     <!-- Set data and retrieved data from form field.  -->
-    <input  id="method" />
-    <input id="entity__id" />
+    <input type="hidden" id="method" />
+    <input type="hidden" id="entity__id" />
 
     <label>Course name<input type="text" id="course__name" class="form__input--text"
         placeholder="E.g: English Language"></label>
