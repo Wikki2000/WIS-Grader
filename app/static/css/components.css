@@ -216,6 +216,13 @@ a {
   color: #ffffff;
 }
 
+.button--save {
+  font-weight: 700;
+  padding: 15px 35px;
+  margin: 20px 0 10px 535px;
+  border-radius: 15px;
+}
+
 /* === Global Icons ==== */
 .fa-ellipsis-v {
   margin-right: 25px;
@@ -410,6 +417,7 @@ a {
   font-weight: bolder;
 }
 
+/* ==== Add course modal ===== */
 .form__input--text,
 .form__textarea {
   width: 100%;
@@ -475,16 +483,43 @@ a {
   border-radius: 10px;
 }
 
-.button--save {
-  font-weight: 700;
-  padding: 15px 35px;
-  margin: 20px 0 10px 535px;
-  border-radius: 15px;
+/* ==== Enroll stundents modal ==== */
+.form__row {
+  margin-bottom: 15px;
+  width: 100%;
 }
 
-.button--save:hover {
-  cursor: pointer;
+.form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
 }
+
+.form__input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.form__row--group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.form__levels {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.form__level {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 
 
 
