@@ -5,8 +5,11 @@
 """
 from app.routes import app
 from app.routes.utils import safe_api_request
-from flask import render_template, request, redirect, url_for, jsonify, session
-from flask_jwt_extended import set_access_cookies
+from flask import (
+    render_template, request, redirect, 
+    url_for, jsonify, session, make_response
+)
+from flask_jwt_extended import set_access_cookies, unset_jwt_cookies
 import requests
 from uuid import uuid4
 from models.storage import Storage
@@ -229,3 +232,11 @@ def password_recovery():
                 "msg": "Password Reset Successfully"
             }), 200
         return json_response, status_code
+
+
+@app.route("/account/logout")
+def logout():
+    """Clear set access_token from cookies."""
+    response = make_response(redirect(url_for('app.signin')))
+    unset_jwt_cookies(response)
+    return response
