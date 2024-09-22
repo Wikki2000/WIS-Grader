@@ -21,9 +21,9 @@ function courseTableTemplate(response) {
     <td class="manage">
         <nav class="manage__nav">
           <ul class="manage__list">
-            <li class="manage__item edit"><i class="fa fa-pencil"></i>Edit</li>
+            <li class="manage__item manage__item--border edit"><i class="fa fa-pencil"></i>Edit</li>
             <li class="manage__item manage__item--border delete"><i class="fa fa-trash"></i>Delete</li>
-            <li class="manage__item"><i class="fa fa-clone"></i>Copy course link</li>
+            <li class="manage__item manage__item--border"><i class="fa fa-clone"></i>Copy course link</li>
           </ul>
         </nav>
       </td>
@@ -108,9 +108,13 @@ $(document).ready(function () {
 
   /* =============== DELETE REQUEST ================*/
   $('body').on('click', '.delete', function () {
+    const tagContent = {
+      modal__title: 'Are you sure, you want to delete this item?',
+      modal__subtitle: '<p>Deleted items from your directory cannot be undone! <br> This action will remove this course for all enrolled students.'
+    }
     const $row = $(this).closest('tr');
     const courseId = $row.attr('id').split('_')[1];
-    deleteEntity(courseEndpoint, courseId);
+    deleteEntity('course', courseEndpoint, courseId, tagContent);
   });
 
  /* =============== Load Form for PUT Request ================*/

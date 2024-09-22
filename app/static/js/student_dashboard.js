@@ -1,34 +1,61 @@
-import { ajaxRequest } from './utils.js';
+import { ajaxRequest, deleteEntity } from './utils.js';
+
+/**
+ * Create Student Template
+ *
+ * @param {string} response - Response object from API
+ * @param {integer} index - Serial number of table
+ */
+function studentTableTemplate(index, response) {
+  const student = response.student;
+  const courses = response.courses_enrolled > 0 ? response.courses_enrolled : "None";
+
+  const full_name = student.last_name + " " +  student.first_name + " " + student.middle_name;
+
+  return `<tr id="student_${student.id}">
+    <td><input type="checkbox" class="dashboard__table-th--checkbox"></td>
+    <td>${index}</td>
+    <td>${full_name}</td>
+    <td>${courses}</td>
+    <td>${student.reg_number}</td>
+    <td>${student.department}</td>
+    <td>${student.level}</td>
+    <td>
+      <i class="fa fa-ellipsis-v"></i>
+      <span class="dashboard__table-close-icon">&times;</span>
+    </td>
+    <td>
+    <td class="manage">
+        <nav class="manage__nav">
+          <ul class="manage__list">
+            <li class="manage__item manage__item--border edit"><i class="fa fa-pencil"></i>Edit Student Data</li>
+            <li class="manage__item manage__item--border enroll"><i class="fa fa-user-plus"></i>Enroll Student</li>
+            <li class="manage__item manage__item--border delete"><i class="fa fa-trash"></i>Remove Student</li>
+
+          </ul>
+        </nav>
+      </td>
+    </tr>
+  `
+}
 
 $(document).ready(function () {
 
-  $('#spinner-overlay').show();
-
+  // The Course Management to indicate the active dashboard section
   $('#manage__student-click').addClass('dashboard__nav--top-outline');
+
   // Define course managemnt API globally
-  const courseEndpoint = '/courses';
+  const studentEndpoint = '/students';
 
   $('#course__nav-item').addClass('dashboard__nav-item-highlight');
 
   /* =============== GET REQUEST ================*/
-  $.get(courseEndpoint)
+  $.get(studentEndpoint)
     .done(response => {
       if (response.status === 'Success') {
-        const courses = response.courses;
-        $.each(courses, (index, course) => {
-          const newCourse = `<tr id="course_${course.id}">
-	    <td><input type="checkbox" class="dashboard__table-th--checkbox"></td>
-            <td><i class="fa fa-book" aria-hidden="true"></i></td>
-            <td>${course.course_code}</td>
-            <td>${course.course_title}</td>
-            <td>${course.credit_load}</td>
-	    <td>${course.student_count}</td>
-	    <td>
-	      <i class="fa fa-ellipsis-v"></i>
-	      <span class="dashboard__table-close-icon">&times;</span>
-	    </td>
-          </tr>`
-          $('table tbody').append(newCourse);
+        const students = response.students;
+        $.each(students, (index, studentData) => {
+          $('table tbody').append(studentTableTemplate(index + 1, studentData));
         });
       }
     })
@@ -44,46 +71,48 @@ $(document).ready(function () {
 
     event.preventDefault();
 
-    // Retrieve form data
-    const course_title = $('#course__name').val();
-    const course_code = $('#course__code').val();
-    const credit_load = parseInt($('#credit__load').val());
-    const description = $('#course__description').val();
+    const first_name = $('#first-name').val();
+    const middle_name = $('#middle-name').val();
+    const last_name = $('#last-name').val();
+    const reg_number = $('#student__reg-no').val();
+    const department = $('#student-department').val();
+    const level = $('input[name="level"]:checked').val();
+
 
     // Retreive method and id set in hidden input during loading of form
     const method = $('#method').val();
-    const courseId = $('#course__id').val();
-    const url = method == 'POST' ? courseEndpoint : `${courseEndpoint}/${courseId}`;
+    const studentId = $('#entity__id').val();
+    const $row = $(`#student_${studentId}`); // Retrieved row object
+    const url = method == 'POST' ? studentEndpoint : `${studentEndpoint}/${studentId}`;
 
     const data = JSON.stringify({
-      course_title: course_title, course_code: course_code,
-      credit_load: credit_load, description: description
+      first_name: first_name, middle_name: middle_name,
+      last_name: last_name, reg_number: reg_number,
+      department: department, level: level
     });
 
     ajaxRequest(url, method, data,
       (response) => {
         if (response.status === 'Success') {
-          const newCourse = `<tr id="course_${response.course.id}">
-            <td><i class="fa fa-book" aria-hidden="true"></i></td>
-            <td>${response.course.course_code}</td>
-            <td>${response.course.course_name}</td>
-            <td>${response.course.credit_load}</td>
-            <td>${response.course.student_count}</td>
-            <td><button class="edit__btn" data-id="${response.course.id}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></td>
-            <td><button class="delete__btn" data-id="${response.course.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-          </tr>`
 
           if (method === 'POST') {
-            $('table tbody').append(newCourse);
-            $('#popup__modal').load('/static/modal-course-added-success', function () {
-              $('.fa-times').click(function () {
+            // Retrieved the last row number
+            let number = parseInt($('table tbody tr:last-child td:nth-child(2)').text());
+
+            // Assign '1' if table is empty or 'last row number + 1'
+            number = number ? number + 1 : 1;
+
+            $('#popup__modal').load('/static/modal-success', function () {
+              $('#success__text').append('Student Added Successfully');
+              $('table tbody').append(studentTableTemplate(number, response));
+
+              $('#button__confirm-continue').click(function () {
                 $('#popup__modal').empty();
               });
             });
           } else {
-            window.location.reload(); // Refresh to get the update from Database
+            window.location.reload();
           }
-
           $('#course__modal').remove();
         }
       },
@@ -97,38 +126,81 @@ $(document).ready(function () {
 
 
   /* =============== DELETE REQUEST ================*/
-  $('tbody').on('click', '.delete__btn', function () {
-    const courseId = $(this).data('id');
+  $('body').on('click', '.delete', function () {
+    const $row = $(this).closest('tr');
+    const studentId = $row.attr('id').split('_')[1];
+    const tagContent = {
+      modal__title: 'Are you sure, you want to remove this student?',
+      modal__subtitle: '<p>Student removed from your course cannot be undone! <br> This action will remove enrolled student course from your course'
+    }
+    deleteEntity('student', studentEndpoint, studentId, tagContent);
+  });
 
-    $('#popup__modal').load('/static/modal-confirm-delete', function () {
+  /* =============== Enrollment of Student ================*/
+  $('table tbody').on('click', '.enroll', function () {
 
-      // Send request to delete after clicking delete button
-      $('.button--delete').click(function () {
-        ajaxRequest(`${courseEndpoint}/${courseId}`, 'DELETE', null,
-          (response) => {
-            if (response.status == 'Success') {
+    // Retrieved the student id embeded in "tr" tag
+    const studentId = $(this).closest('tr').attr('id').split('_')[1];
 
-              $('#popup__modal').load('/static/modal-success', function () {
-                const $popupModal = $(this);
+    $('#popup__modal').load('/static/modal-enrollment-form', function () {
 
-                $('P.modal__subtitle').append('Item deleted successfully!');
-
-                $('body').on('click', 'button.button--continue', function () {
-                  $popupModal.empty();
-                  $(`#course_${courseId}`).remove();
-                });
-
-              });
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      // Click to cancel
+      $('#close-icon').click(function () {
+        $('#popup__modal').empty();
       });
 
-      $('.button--cancel, .fa-times').click(function () {
-        $('.modal--delete').remove();
+      // Fill the form field with student data
+      const url = studentEndpoint + '/' + studentId;
+      $.get(url, function (response) {
+        console.log(response);
+        const fullName = `${response.last_name} ${response.first_name} ${response.middle_name}`;
+        $('#full-name').val(fullName);
+        $('#reg-no').val(response.reg_number);
+        $('#dept').val(response.department);
+        $(`input[value="${response.level}"]`).prop('checked', true);
+      }, 'json');
+    });
+  });
+
+  /* =============== Load Form for PUT Request ================*/
+  $('body').on('click', '#add__new-item, .edit', function () {
+
+    const $clickedBtn = $(this);
+
+    $('#popup__modal').load('/static/modal-student-form', function () {
+
+      // Update input field with value when Edit btn is pressed.
+      if ($clickedBtn.hasClass('edit')) {
+        const $row = $clickedBtn.closest('tr');
+        const studentId = $row.attr('id').split('_')[1];
+        $.get(`${studentEndpoint}/${studentId}`)
+          .done(response => {
+            $('#first-name').val(response.first_name);
+            $('#middle-name').val(response.middle_name);
+            $('#last-name').val(response.last_name);
+            $('#student__reg-no').val(response.reg_number);
+            $('#student-department').val(response.department);
+            $(`input[value="${response.level}"`).prop('checked', true);
+
+
+            // hide id and HTTP request in input field
+            $('#method').val('PUT');
+            $('#entity__id').val(studentId);
+
+
+          })
+          .fail((jqXHR, textStatus, errorThrown) => {
+            console.log('Error status:', jqXHR.status);
+            console.log('Error thrown:', errorThrown);
+            console.log('Error text:', textStatus);
+          });
+      } else {
+        // Store method (POST) to be use in form submission
+        $('#method').val('POST');
+      }
+
+      $('#close-icon').click(function () {
+        $('#popup__modal').empty();
       });
 
     });

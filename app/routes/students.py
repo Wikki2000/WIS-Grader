@@ -9,7 +9,7 @@ import requests
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
 
 
-@app.route("/students", methods=["POST"])
+@app.route("/students", methods=["POST", "GET"])
 @jwt_required()
 def create_student():
     """
@@ -27,6 +27,7 @@ def create_student():
     if request.method == "POST":
         # Retrieve the JSON data from the request body
         data = request.get_json()
+        print(data)
 
         # Make a POST request to the API to create a new student
         response = requests.post(
@@ -38,27 +39,27 @@ def create_student():
 
     # ===================== GET ================================ #
     # Make a GET request to the API to retrieve all students for the lecturer
-    #response = requests.get(
-    #    f"{API_BASE_URL}/lecturer/courses",
-    #    headers=headers
-    #)
+    response = requests.get(
+        f"{API_BASE_URL}/students",
+        headers=headers
+    )
 
     # Check if the API response is successful (200)
-    #if response.status_code == 200:
-    #    courses = response.json()
+    if response.status_code == 200:
+        students = response.json()
         # Wrap the array in a dictionary to include the status
-    #    return jsonify(
-    #        {
-    #            'status': 'Success',
-    #            'courses': courses
-    #        }
-    #    ), 200
-    #else:
-    #    return jsonify(
-    #        {
-    #            "error": "Unable to retrieve courses."
-    #        }
-    #    ), response.status_code
+        return jsonify(
+            {
+                'status': 'Success',
+                'students': students
+            }
+        ), 200
+    else:
+        return jsonify(
+            {
+                "error": "Unable to retrieve courses."
+            }
+        ), response.status_code
 
 
 @app.route('/students/<string:student_id>', methods=['DELETE', 'PUT', 'GET'])

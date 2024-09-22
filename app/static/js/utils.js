@@ -63,9 +63,15 @@ export function alertBox(
  *
  * @param {string} entityEndpoint - Endpoint for DELETE request in server side.
  * @param {string} entityId - Unique identifier of object to be deleted
+ * @param {string} entity - The item to be deleted (e.g., student, lecturer etc.)
+ * @param {string} idContentMapping - Key (id) and value (content) to be append
  */
-export function deleteEntity(entityEndpoint, entityId) {
+export function deleteEntity(entity, entityEndpoint, entityId, idContentMapping) {
   $('#popup__modal').load('/static/modal-confirm-delete', function () {
+
+    Object.keys(idContentMapping).forEach(key => {
+      $(`#${key}`).html(idContentMapping[key]);
+    });
 
     // Send request to delete after clicking delete button
     $('#button__confirm-delete').click(function () {
@@ -79,10 +85,11 @@ export function deleteEntity(entityEndpoint, entityId) {
 
               $('body').on('click', '#button__confirm-continue', function () {
                 $('#popup__modal').empty();
-                $(`#course_${entityId}`).remove();
+                $(`#${entity.toLowerCase()}_${entityId}`).remove();
               });
-
             });
+
+            window.location.reload();
           }
         },
         (error) => {

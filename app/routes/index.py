@@ -42,7 +42,7 @@ def template(page):
 
     # Pages that require authentication
     authenticated_pages = [
-        "modal-course-form" 
+        "modal-course-form", "modal-student-form", "modal-enrollment-form"
     ]
 
     template_directory = "static_pages/"

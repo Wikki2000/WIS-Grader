@@ -24,6 +24,7 @@ $(document).ready(function () {
       $('#help__nav-item').addClass('dashboard__nav-item-highlight');
     } else if ($navItem.attr('id') === 'logout') {
       $('#logout').addClass('dashboard__nav-item-highlight');
+      window.location.href = ('/account/logout');
     }
   });
 
