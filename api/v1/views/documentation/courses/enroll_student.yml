@@ -1,0 +1,66 @@
+
+Enroll a Student
+---
+tags:
+  - Courses
+
+description: |
+  This endpoint enrolls a student in a specific course. The student must not already be enrolled in the course.
+
+parameters:
+  - in: path
+    name: course_id
+    description: The unique identifier of the course to enroll the student in.
+    required: true
+    type: string
+    example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+
+  - in: path
+    name: student_id
+    description: The unique identifier of the student to enroll in the course.
+    required: true
+    type: string
+    example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+
+responses:
+  200:
+    description: Successfully enrolled student in the course.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Success message.
+              example: "Student successfully enrolled in the course"
+            course_id:
+              type: string
+              description: The ID of the course.
+              example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+            student_id:
+              type: string
+              description: The ID of the student.
+              example: 5f2b4f3e-51d3-4db3-85d1-0123456789ab
+  400:
+    description: Bad request (e.g., student already enrolled).
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message describing the issue.
+              example: "Student is already enrolled in the course."
+  404:
+    description: Course or student not found.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message indicating the course or student was not found.
+              example: "Course not found."

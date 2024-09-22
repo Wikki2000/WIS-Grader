@@ -24,9 +24,8 @@ def create_student():
 
     # Validate request data
     required_fields = [
-        'first_name',                                                                                                                                                                                     
-        'last_name',
-        'reg_number'
+        "first_name", "middle_name", "last_name",
+        "reg_number", "department", "level"
     ]
 
     for field in required_fields:
@@ -44,7 +43,9 @@ def create_student():
         first_name=data['first_name'],
         last_name=data['last_name'],
         reg_number=data['reg_number'],
-        middle_name=data.get('middle_name', None)  # Optional field
+        middle_name=data.get('middle_name'),  # Optional field
+        department=data['department'],
+        level=data['level']
     )
     
     # Save to database
@@ -59,8 +60,11 @@ def create_student():
                     "first_name": new_student.first_name,
                     "middle_name": new_student.middle_name,
                     "last_name": new_student.last_name,
-                    "reg_number": new_student.reg_number
+                    "reg_number": new_student.reg_number,
+                    "department": new_student.department,
+                    "level": new_student.level
                 },
+                "courses_enrolled": new_student.courses,
                 "status": "Success",
                 "msg": "Student Created Successfully"
             }
@@ -82,10 +86,24 @@ def create_student():
     finally:
         storage.close()
 
+
+@app_views.route('/students')
+@jwt_required()
+def get_students():
+    """Retrieve detailed information about a all student."""
+    students = storage.all(Student).values()
+    student_list = [
+        {
+            "student": student.to_dict(), "courses_enrolled": student.courses
+        } for student in students
+    ]
+    return jsonify(student_list), 200
+
+
 @app_views.route('/students/<string:student_id>', methods=['GET'])
 @jwt_required()
 @swag_from('./documentation/students/get_student.yml')
-def get_student(student_id):
+def get_student_by_id(student_id):
     """Retrieve detailed information about a specific student."""
     # Retrieve the student from the database
     student = storage.get_by_id(Student, student_id)
@@ -93,11 +111,12 @@ def get_student(student_id):
     # If the student doesn't exist, return a 404 error
     if not student:
         storage.close()
-        return jsonify({"error": "Student not found"}), 404
+        abort(404)
 
     storage.close()
     # Return the student information in JSON format
     return jsonify(student.to_dict()), 200
+
 
 @app_views.route('/students/<string:student_id>', methods=['DELETE'])
 @jwt_required()
@@ -138,6 +157,7 @@ def delete_student(student_id):
     finally:
         storage.close()
 
+
 @app_views.route('/students/<string:student_id>', methods=['PUT'], strict_slashes=False)
 @jwt_required()
 @swag_from('./documentation/students/update_student.yml')
@@ -158,25 +178,11 @@ def update_student(student_id):
         storage.close()
         return jsonify({"error": "Student not found"}), 404
 
-    # Update the student's details with the provided data
-    if 'first_name' in data:
-        student.first_name = data['first_name']
-    if 'last_name' in data:
-        student.last_name = data['last_name']
-    if 'middle_name' in data:
-        student.middle_name = data.get('middle_name', student.middle_name)
-    if 'reg_number' in data:
-
-        # Ensure reg_number is unique if it's being changed
-        existing_student = storage.get_by_field(Student,  "reg_no", data['reg_number'])
-        if existing_student and existing_student.id != student.id:
-            storage.close()
-            return jsonify({"error": "reg_number must be unique"}), 400
-
-        student.reg_number = data['reg_number']
-
     try:
         # Commit changes to the database
+        for attr, val in data.items():
+            if attr != "id":
+                setattr(student, attr, val)
         storage.save()
         return jsonify(
             {
@@ -185,14 +191,18 @@ def update_student(student_id):
                     "first_name": student.first_name,
                     "middle_name": student.middle_name,
                     "last_name": student.last_name,
-                    "reg_number": student.reg_number
+                    "reg_number": student.reg_number,
+                    "department": student.department,
+                    "level": student.level
                 },
+                "courses_enrolled": student.courses,
                 "status": "Success",
-                "msg": "Student Updated Successfully"
+                "msg": "Student Created Successfully"
             }
         ), 200
     except Exception as e:
         storage.rollback()
+        print(str(e))
         return jsonify(
             {
                 'error': 'An error occurred while updating the student',

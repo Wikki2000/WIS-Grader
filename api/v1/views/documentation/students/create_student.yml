@@ -66,6 +66,12 @@ responses:
             reg_number:
               type: string
               example: 12345
+            department:
+              type: string
+              example: Software Engineering
+            level:
+              type: string
+              example: 500
         status:
           type: string
           example: Success
