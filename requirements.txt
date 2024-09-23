@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 flasgger==0.9.7.1
 Flask==3.0.3
 Flask_Cors==4.0.1
@@ -8,3 +9,4 @@ redis==5.0.7
 Requests==2.32.3
 sib_api_v3_sdk==7.6.0
 SQLAlchemy==2.0.30
+
