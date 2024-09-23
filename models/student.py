@@ -12,7 +12,9 @@ class Student(BaseModel, Base):
     first_name = Column(String(100), nullable=False)
     middle_name = Column(String(100))
     last_name = Column(String(100), nullable=False)
-    reg_number = Column(String(50), nullable=False, unique=True)
+    reg_number = Column(String(50), nullable=False)
+    department = Column(String(100), nullable=False)
+    level = Column(String(100), nullable=False)
 
     results = relationship('Result', backref='student',
                             cascade='all, delete-orphan')
