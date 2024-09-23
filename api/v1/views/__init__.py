@@ -12,4 +12,4 @@ from api.v1.views.index import *
 from api.v1.views.course import *
 from api.v1.views.lecturer import *
 from api.v1.views.student import *
-#from api.v1.views.enrollment import *
+from api.v1.views.enrollment import *

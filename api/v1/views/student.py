@@ -92,12 +92,21 @@ def create_student():
 def get_students():
     """Retrieve detailed information about a all student."""
     students = storage.all(Student).values()
-    student_list = [
-        {
-            "student": student.to_dict(), "courses_enrolled": student.courses
-        } for student in students
-    ]
-    return jsonify(student_list), 200
+    try:
+        student_list = [
+                {
+                    "student": student.to_dict(),
+                    "courses_enrolled": [
+                        course.to_dict() for course in student.courses
+                    ],
+
+                } for student in students
+        ]
+        return jsonify(student_list), 200
+    except Exception as e:
+        print(str(e));
+        storage.close()
+        return jsonify({"error": "Internal Error Occured"}), 500
 
 
 @app_views.route('/students/<string:student_id>', methods=['GET'])
