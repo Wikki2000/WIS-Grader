@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="../static/css/components.css?{{ cache_id }}" />
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="module" src="../static/js/course_management.js?{{ cache_id }}"></script>
+  <script type="module" src="../static/js/dashboard/grade_dashboard.js?{{ cache_id }}"></script>
+  <script type="module" src="../static/js/global/menu.js?{{ cache_id}}"></script>
 </head>
 
 <body>
@@ -26,12 +27,12 @@
 
       <nav class="dashboard__nav-element">
         <ul class="dashboard__nav-list">
-          <li class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
-          <li class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
-          <li class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
-          <li class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
-          <li class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
-          <li class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
+          <li id="main__nav-item" class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
+          <li id="course__nav-item" class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
+          <li id="grade__nav-item" class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
+          <li id="setting__nav-item" class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
+          <li id="help__nav-item" class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
+          <li id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
         </ul>
       </nav>
 
