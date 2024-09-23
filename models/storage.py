@@ -5,8 +5,10 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
 from models.base_model import Base
 from typing import Type, Any, Optional
+from dotenv import load_dotenv
 
 
+load_dotenv()
 classes = ["Lecturer", "Student", "Result", "School", "Course"]
 
 
