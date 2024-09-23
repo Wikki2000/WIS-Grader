@@ -8,7 +8,16 @@ import { ajaxRequest, deleteEntity } from './utils.js';
  */
 function studentTableTemplate(index, response) {
   const student = response.student;
-  const courses = response.courses_enrolled > 0 ? response.courses_enrolled : "None";
+  const courses = response.courses_enrolled;
+  let courseCodeList = [];
+
+  // Iterate through enrolled course list by student.
+  // If not empty, store the courseCode in courseCodeList.
+  if (courses.length > 0) {
+    $.each(courses, (index, course) => {
+      courseCodeList[index] = course.course_code;
+    });
+  }
 
   const full_name = student.last_name + " " +  student.first_name + " " + student.middle_name;
 
@@ -16,7 +25,7 @@ function studentTableTemplate(index, response) {
     <td><input type="checkbox" class="dashboard__table-th--checkbox"></td>
     <td>${index}</td>
     <td>${full_name}</td>
-    <td>${courses}</td>
+    <td class="courses">${courseCodeList}</td>
     <td>${student.reg_number}</td>
     <td>${student.department}</td>
     <td>${student.level}</td>
@@ -142,6 +151,8 @@ $(document).ready(function () {
     // Retrieved the student id embeded in "tr" tag
     const studentId = $(this).closest('tr').attr('id').split('_')[1];
 
+    const $row = $(this).closest('tr');
+
     $('#popup__modal').load('/static/modal-enrollment-form', function () {
 
       // Click to cancel
@@ -150,15 +161,38 @@ $(document).ready(function () {
       });
 
       // Fill the form field with student data
-      const url = studentEndpoint + '/' + studentId;
-      $.get(url, function (response) {
-        console.log(response);
+      const getStudentUrl = studentEndpoint + '/' + studentId;
+      $.get(getStudentUrl, function (response) {
         const fullName = `${response.last_name} ${response.first_name} ${response.middle_name}`;
         $('#full-name').val(fullName);
         $('#reg-no').val(response.reg_number);
         $('#dept').val(response.department);
         $(`input[value="${response.level}"]`).prop('checked', true);
       }, 'json');
+    });
+
+    // Send request to enrollment API to add a student to course
+    const courseCode = $('#course-code').val();
+
+    $('#popup__modal').on('submit', '#enroll-student', function (event) {
+      event.preventDefault();
+
+      const enrollStudentUrl = `/course/sudents/${studentId}/enroll-student`;
+      const courseCode = $('#course-code').val();
+      ajaxRequest(enrollStudentUrl, 'POST', JSON.stringify({course_code: courseCode}),
+        (response) => {
+          if (response.status === "Success") {
+            alert("Enrollment Success");
+            $('#popup__modal').empty();
+            //$row.find('td.courses').append(courseCode);
+            window.location.reload();
+          }
+        },
+        (error) => {
+          alert('Student Enrolled Already');
+          console.log(error);
+        }
+      );
     });
   });
 

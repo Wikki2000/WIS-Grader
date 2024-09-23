@@ -9,3 +9,4 @@ from app.routes.dashboard import *
 from app.routes.courses import *
 from app.routes.index import *
 from app.routes.students import *
+from app.routes.enrollments import *
