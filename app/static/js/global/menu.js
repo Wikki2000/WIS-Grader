@@ -18,8 +18,8 @@ $(document).ready(function () {
       window.location.href = '/dashboard/course-management';
     } else if ($navItem.attr('id') === 'grade__nav-item') {
       $('#grade__nav-item').addClass('dashboard__nav-item-highlight');
-    } else if ($navItem.attr('id') === 'setting__nav-item') {
       window.location.href = '/dashboard/grade-management';
+    } else if ($navItem.attr('id') === 'setting__nav-item') {
       $('#setting__nav-item').addClass('dashboard__nav-item-highlight');
     } else if ($navItem.attr('id') === 'help__nav-item') {
       $('#help__nav-item').addClass('dashboard__nav-item-highlight');
