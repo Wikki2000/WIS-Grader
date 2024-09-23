@@ -1,4 +1,4 @@
-import { ajaxRequest, alertBox } from './utils.js';
+import { ajaxRequest, alertBox } from '../global/utils.js';
 
 $(document).ready(function () {
   $('#auth-form').submit(function (event) {

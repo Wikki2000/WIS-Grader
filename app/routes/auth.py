@@ -19,12 +19,13 @@ from models.lecturer import Lecturer
 storage = Storage()
 
 API_BASE_URL = 'http://127.0.0.1:5001/api/v1/auth'
+template_directory = 'auth/'
 
 @app.route('/account/signin', methods=['GET', 'POST'])
 def signin():
     """Handle user login."""
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template(f'{template_directory}login.html')
 
     data = request.get_json()
 
@@ -63,7 +64,9 @@ def signin():
 def signup():
     """Handle user registration."""
     if request.method == 'GET':
-        return render_template('register.html', cache_id=uuid4())
+        return render_template(
+            f'{template_directory}register.html', cache_id=uuid4()
+        )
 
     data = request.get_json()
 
@@ -111,7 +114,7 @@ def verify():
     if request.method == 'GET':
         email = session.get('registration_data').get('email')
         data = {'email': email, 'cache_id': uuid4()}
-        return render_template('verify_email.html', **data)
+        return render_template(f'{template_directory}verify_email.html', **data)
 
     data = request.get_json()
     if not data.get("token"):
@@ -164,7 +167,9 @@ def forgot_password():
     """
     # ================ GET REQUEST ================== #
     if request.method == "GET":
-        return render_template("forgot_pwd.html", cache_id=uuid4())
+        return render_template(
+            f"{template_directory}forgot_pwd.html", cache_id=uuid4()
+        )
 
     # ================ POST REQUEST ================== #
     # Recieved json of email and sent in request body.
@@ -206,7 +211,9 @@ def password_recovery():
                 url, method='POST', params={"token": token}
         )
         if status_code == 200:
-            return render_template("reset_pwd.html", cache_id=uuid4())
+            return render_template(
+                f"{template_directory}reset_pwd.html", cache_id=uuid4()
+            )
         return jsonify({"error": "Invalid or Expired Token"}), 401
 
 

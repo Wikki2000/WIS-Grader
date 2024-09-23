@@ -1,4 +1,4 @@
-import { ajaxRequest, deleteEntity } from './utils.js';
+import { ajaxRequest, alertBox } from '../global/utils.js';
 
 /**
  * Create Student Template

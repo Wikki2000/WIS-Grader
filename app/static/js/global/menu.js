@@ -19,6 +19,7 @@ $(document).ready(function () {
     } else if ($navItem.attr('id') === 'grade__nav-item') {
       $('#grade__nav-item').addClass('dashboard__nav-item-highlight');
     } else if ($navItem.attr('id') === 'setting__nav-item') {
+      window.location.href = '/dashboard/grade-management';
       $('#setting__nav-item').addClass('dashboard__nav-item-highlight');
     } else if ($navItem.attr('id') === 'help__nav-item') {
       $('#help__nav-item').addClass('dashboard__nav-item-highlight');

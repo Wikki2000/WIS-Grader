@@ -8,6 +8,7 @@ import requests
 from uuid import uuid4
 
 API_BASE_URL = 'http://127.0.0.1:5001/api/v1' 
+TEMPLATE_DIRECTORY = "dashboard/"
 
 
 @app.route("/dashboard", methods=['GET'])
@@ -27,6 +28,5 @@ def dashboard(dashboard_section=None):
     data = {"email": email, "first_name": first_name,
             "last_name": last_name, "cache_id": uuid4()}
     if dashboard_section:
-        template_dirctory = "/static_pages"
-        return render_template(f"{template_dirctory}/{dashboard_section}.html", **data)
-    return render_template("user_dashboard.html", **data)
+        return render_template(f"{TEMPLATE_DIRECTORY}{dashboard_section}.html", **data)
+    return render_template(f"{TEMPLATE_DIRECTORY}user_dashboard.html", **data)
