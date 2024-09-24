@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MANAGE STUDENTS</title>
+  <title>USER PROFILE</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../static/css/user_dashboard.css">
   <link rel="stylesheet" href="../../static/css/course_management.css">
@@ -32,7 +32,7 @@
           <li id="grade__nav-item" class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
           <li id="setting__nav-item" class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
           <li id="help__nav-item"  class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
-          <li id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
+          <li  id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
         </ul>
       </nav>
 
@@ -46,9 +46,9 @@
     </section>
 
     <!-- ========= DASHBOARD MAIN SECTION ======== -->
-    <section  class="dashboard__main">
+    <section  class="dashboard__main dashboard__main--profile">
       <div class="dashboard__header">
-        <h1>Course Management</h1>
+        <h1>Profile</h1>
         <div class="dashboard__top-right">
           <span class="dashboard__search-box">
             <i class="fa fa-search" aria-hidden="true"></i>
@@ -59,48 +59,40 @@
         </div>
       </div>
 
+      <div class="dashboard__banner">
+        <img src="../../static/images/cover_image.jpeg" alt="">
+      </div>
 
-      <div class="dashboard__course-management">
-        <div class="dashboard__nav--top">
-          <div class="dashboard__nav--top-titles">
-            <span  id="manage__course-click" class="dashboard__nav--top-title">Manage courses</span>
-            <span  id="manage__student-click" class="dashboard__nav--top-title">Manage students</span>
+      <div class="dashboard__profile">
+        <div class="profile__user-details">
+          <div class="profile__header">
+            <img src="../../static/images/img_avatar2.jpeg" alt="" class="profile__image">
+            <h3 class="proile__title">Jason Macdowell</h3>
+            <p class="profile__subtitle">jasonmacdowell@gmail.com</p>
           </div>
 
-          <div class="dashboard__nav--top-group">
-            <label class="dashboard__nav--top-label">Mark
-              <input type="checkbox" class="dashboard__nav--top-checkbox">
+          <form action="POST" class="form--profile">
+            <label>Name
+              <input type="text" value="Jason Macdowell" class="form__input--text">
             </label>
-            <span>All<i class="fa fa-chevron-down"></i></span>
-            <button id="add__new-item" class="button button--add-course"><i class="fa fa-plus"></i>New Student</button>
-          </div>
+            <label>Email address
+              <input type="text" value="jasonmacdowell@gmail.com" class="form__input--text">
+            </label>
+            <label>Title
+              <input type="text" class="form__input--text">
+            </label>
+            <label>Phone
+              <input type="text" class="form__input--text">
+            </label>
+            <label>Institution
+              <input type="text" class="form__input--text">
+            </label>
+          </form>
+        </div>
+        <div class="profile__more-details">
 
         </div>
-
-        <table class="dashboard__table">
-          <thead>
-            <tr class="dashboard__table-row">
-              <th class="dashboard__table-th--first"></th>
-              <th>S/N</th>
-              <th>Student Name (Surname first)</th>
-              <th>Course enrolled</th>
-              <th>Student ID</th>
-              <th>Department</th>
-	      <th>Level</th>
-              <th class="dashboard__table-th--last"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <!-- Table body will be loaded dynamically given value from database. -->
-         </tbody>
-
-        </table>
       </div>
-    </section>
-
-    <section id="popup__modal" class="dashboard__dynamic">
-      <!-- This will be loaded dynamically from a file  -->
     </section>
 
   </div>
