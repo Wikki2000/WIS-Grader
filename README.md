@@ -6,7 +6,7 @@
 
 WIS Grader is a robust grading and student management platform designed to simplify the academic grading process for lecturers and institutions. It enables lecturers to manage students, track their progress, and assign grades effortlessly. With a user-friendly dashboard, API-powered backend, and seamless frontend integration, WIS Grader bridges the gap between student performance and efficient grading workflows.
 
-You can find the live version of the project [here](#deployed-site). Also, check out the project blog article [here](#blog-link), and connect with the authors on LinkedIn].
+You can find the live version of the project [here](https://wis-grader.onepage.me/). Also, check out the project blog article [here](https://anarchotech.hashnode.dev/how-we-built-wis-grader-a-portfolio-project-journey), and connect with the authors on LinkedIn].
 [Wisdom Okposin](https://www.linkedin.com/in/wisdom-okposin/), [Solomon C. Nwante](https://www.linkedin.com/in/solomon-c-nwante-539986162/), and [Idris Elgarrab](https://www.linkedin.com/in/idris-el-garrab-8b749217b/)
 
 ## Table of Contents
