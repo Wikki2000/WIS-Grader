@@ -36,8 +36,8 @@ $(document).ready(function () {
   // The Course Management to indicate the active dashboard section
   $('#manage__course-click').addClass('dashboard__nav--top-outline');
 
-  // Define course managemnt API globally
-  const courseEndpoint = '/courses';
+  // Define course managemnt API and server url prefix globally
+  const courseEndpoint = '/wisgrader/courses';
 
   $('#course__nav-item').addClass('dashboard__nav-item-highlight');
 
@@ -84,7 +84,7 @@ $(document).ready(function () {
           const course = response.course;
           
           if (method === 'POST') {
-            $('#popup__modal').load('/static/modal-course-added-success', function () {
+            $('#popup__modal').load('/web_static/modal-course-added-success.html', function () {
               $('table tbody').append(courseTableTemplate(course));
               $('.fa-times').click(function () {
                 $('#popup__modal').empty();
@@ -122,7 +122,7 @@ $(document).ready(function () {
 
     const $clickedBtn = $(this);
 
-    $('#popup__modal').load('/static/modal-course-form', function () {
+    $('#popup__modal').load('/web_static/modal-course-form.html', function () {
 
       // Update input field with value when Edit btn is pressed.
       if ($clickedBtn.hasClass('edit')) {

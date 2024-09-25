@@ -9,10 +9,11 @@ from uuid import uuid4
 
 API_BASE_URL = 'http://127.0.0.1:5001/api/v1' 
 TEMPLATE_DIRECTORY = "dashboard/"
+URL_PREFIX = "/wisgrader"
 
 
-@app.route("/dashboard", methods=['GET'])
-@app.route("/dashboard/<string:dashboard_section>", methods=['GET'])
+@app.route(f"{URL_PREFIX}/dashboard", methods=['GET'])
+@app.route(f"{URL_PREFIX}/dashboard/<string:dashboard_section>", methods=['GET'])
 @jwt_required()
 def dashboard(dashboard_section=None):
     """Handle views for user dashboard."""

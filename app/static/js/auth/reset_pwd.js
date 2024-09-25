@@ -2,6 +2,8 @@ import { ajaxRequest, alertBox } from '../global/utils.js';
 
 $(document).ready(function () {
 
+  const SERVER_URL_PREFIX = '/wisgrader';
+
   $('#reset-pwd-form').submit(function (event) {
     event.preventDefault();
 
@@ -31,12 +33,12 @@ $(document).ready(function () {
     }
 
     const data = JSON.stringify({ password: $('#pwd1').val() });
-    const url = '/account/password-recovery';
+    const url = SERVER_URL_PREFIX + '/account/password-recovery';
 
     ajaxRequest(url, 'PUT', data,
       (response) => {
         if (response.status == "Success") {
-          window.location.href = '/static/reset-password-success';
+          window.location.href = '/web_static/reset-password-success';
          }
       },
       (error) => {

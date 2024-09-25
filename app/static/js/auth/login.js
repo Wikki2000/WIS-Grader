@@ -1,6 +1,9 @@
 import { ajaxRequest, alertBox } from '../global/utils.js';
 
 $(document).ready(function () {
+
+  const SERVER_URL_PREFIX = '/wisgrader';
+
   $('#auth-form').submit(function (event) {
     event.preventDefault();
     const alertDivClass = 'auth-alert';
@@ -21,14 +24,14 @@ $(document).ready(function () {
       password: password
     });
 
-    ajaxRequest('/account/signin', 'POST', data,
+    ajaxRequest(SERVER_URL_PREFIX + '/account/signin', 'POST', data,
       function (response) {
         if (response.message === "Login Successful") {
           const msg = 'Login Successfull';
           alertBox(alertDivClass, msg, false);
 
           setTimeout(() => {
-            window.location.href = '/dashboard';
+            window.location.href = SERVER_URL_PREFIX + '/dashboard';
           }, 2000);
         }
       },

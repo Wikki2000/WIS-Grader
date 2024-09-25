@@ -54,7 +54,7 @@ $(document).ready(function () {
   $('#manage__student-click').addClass('dashboard__nav--top-outline');
 
   // Define course managemnt API globally
-  const studentEndpoint = '/students';
+  const studentEndpoint = '/wisgrader/students';
 
   $('#course__nav-item').addClass('dashboard__nav-item-highlight');
 
@@ -111,7 +111,7 @@ $(document).ready(function () {
             // Assign '1' if table is empty or 'last row number + 1'
             number = number ? number + 1 : 1;
 
-            $('#popup__modal').load('/static/modal-success', function () {
+            $('#popup__modal').load('/web_static/modal-success.html', function () {
               $('#success__text').append('Student Added Successfully');
               $('table tbody').append(studentTableTemplate(number, response));
 
@@ -153,7 +153,7 @@ $(document).ready(function () {
 
     const $row = $(this).closest('tr');
 
-    $('#popup__modal').load('/static/modal-enrollment-form', function () {
+    $('#popup__modal').load('/web_static/modal-enrollment-form.html', function () {
 
       // Click to cancel
       $('#close-icon').click(function () {
@@ -177,7 +177,7 @@ $(document).ready(function () {
     $('#popup__modal').on('submit', '#enroll-student', function (event) {
       event.preventDefault();
 
-      const enrollStudentUrl = `/course/sudents/${studentId}/enroll-student`;
+      const enrollStudentUrl = `/wisgrader/course/sudents/${studentId}/enroll-student`;
       const courseCode = $('#course-code').val();
       ajaxRequest(enrollStudentUrl, 'POST', JSON.stringify({course_code: courseCode}),
         (response) => {
@@ -201,7 +201,7 @@ $(document).ready(function () {
 
     const $clickedBtn = $(this);
 
-    $('#popup__modal').load('/static/modal-student-form', function () {
+    $('#popup__modal').load('/web_static/modal-student-form.html', function () {
 
       // Update input field with value when Edit btn is pressed.
       if ($clickedBtn.hasClass('edit')) {

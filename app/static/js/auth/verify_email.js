@@ -1,7 +1,9 @@
 import { ajaxRequest, alertBox } from '../global/utils.js';
 
-
 $(document).ready(function () {
+
+  const SERVER_URL_PREFIX = '/wisgrader';
+
   $('#verify-form').submit(function (event) {
     event.preventDefault();
 
@@ -16,13 +18,13 @@ $(document).ready(function () {
     )
 
     const data = JSON.stringify({ token: token});
-    const url = '/account/verify';
+    const url = SERVER_URL_PREFIX + '/account/verify';
 
     ajaxRequest(url, "POST", data,
       (response) => {
         if (response.status == "Success") {
 	  //window.location.href = '/account/verify-success';
-	  window.location.href = '/static/email-confirmed';
+	  window.location.href = '/web_static/email-confirmed.html';
          }
       },
       (error) => {

@@ -19,9 +19,10 @@ from models.lecturer import Lecturer
 storage = Storage()
 
 API_BASE_URL = 'http://127.0.0.1:5001/api/v1/auth'
+URL_PREFIX = '/wisgrader'
 template_directory = 'auth/'
 
-@app.route('/account/signin', methods=['GET', 'POST'])
+@app.route(f'{URL_PREFIX}/account/signin', methods=['GET', 'POST'])
 def signin():
     """Handle user login."""
     if request.method == 'GET':
@@ -60,7 +61,7 @@ def signin():
     return jsonify({"error": "Something went wrong"})
 
 
-@app.route('/account/signup', methods=['GET', 'POST'])
+@app.route(f'{URL_PREFIX}/account/signup', methods=['GET', 'POST'])
 def signup():
     """Handle user registration."""
     if request.method == 'GET':
@@ -108,7 +109,7 @@ def signup():
     return jsonify({'error': 'Internal Error Occured'}), 500
 
 
-@app.route('/account/verify', methods=['GET', 'POST'])
+@app.route(f'{URL_PREFIX}/account/verify', methods=['GET', 'POST'])
 def verify():
     """Verify the email using a token."""
     if request.method == 'GET':
@@ -159,7 +160,7 @@ def verify():
         return jsonify({"error": "Registration Failed"}), 422
 
 
-@app.route('/account/forgot-password', methods=["GET", "POST"])
+@app.route(f'{URL_PREFIX}/account/forgot-password', methods=["GET", "POST"])
 def forgot_password():
     """
     Render template for user to enter email,
@@ -196,7 +197,7 @@ def forgot_password():
     return json_response, status_code
 
 
-@app.route('/account/password-recovery', methods=['GET', 'PUT'])
+@app.route(f'{URL_PREFIX}/account/password-recovery', methods=['GET', 'PUT'])
 def password_recovery():
     """Routes definition for recovering user password."""
 
@@ -241,7 +242,7 @@ def password_recovery():
         return json_response, status_code
 
 
-@app.route("/account/logout")
+@app.route(f"{URL_PREFIX}/account/logout")
 def logout():
     """Clear set access_token from cookies."""
     response = make_response(redirect(url_for('app.signin')))

@@ -67,7 +67,7 @@ export function alertBox(
  * @param {string} idContentMapping - Key (id) and value (content) to be append
  */
 export function deleteEntity(entity, entityEndpoint, entityId, idContentMapping) {
-  $('#popup__modal').load('/static/modal-confirm-delete', function () {
+  $('#popup__modal').load('/web_static/modal-confirm-delete.html', function () {
 
     Object.keys(idContentMapping).forEach(key => {
       $(`#${key}`).html(idContentMapping[key]);
@@ -79,7 +79,7 @@ export function deleteEntity(entity, entityEndpoint, entityId, idContentMapping)
         (response) => {
           if (response.status == 'Success') {
 
-            $('#popup__modal').load('/static/modal-success', function () {
+            $('#popup__modal').load('/web_static/modal-success.html', function () {
 
               $('P.modal__subtitle').append('Item deleted successfully!');
 

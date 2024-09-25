@@ -1,6 +1,9 @@
 import { ajaxRequest, alertBox } from '../global/utils.js';
 
 $(document).ready(function () {
+
+  const SERVER_URL_PREFIX = '/wisgrader';
+
   $('#forgot-form').submit(function (event) {
     event.preventDefault();
 
@@ -10,13 +13,13 @@ $(document).ready(function () {
     $('.auth-card__button').hide();
 
     const data = JSON.stringify({ email: $('#email').val() });
-    const url = '/account/forgot-password';
+    const url = SERVER_URL_PREFIX + '/account/forgot-password';
 
     ajaxRequest(url, "POST", data,
       (response) => {
         if (response.status == "Success") {
 	  alert("success");
-	  window.location.href = 'static/reset-password-email-sent';
+	  window.location.href = 'web_static/reset-password-email-sent.html';
          }
       },
       (error) => {

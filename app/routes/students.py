@@ -5,11 +5,12 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from app.routes.utils import get_auth_headers, safe_api_request
 import requests
 
-# Define the base API URL
+# Define the base URL
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
+APP_URL_PREFIX = "/wisgrader"
 
 
-@app.route("/students", methods=["POST", "GET"])
+@app.route(f"{APP_URL_PREFIX}/students", methods=["POST", "GET"])
 @jwt_required()
 def create_student():
     """
@@ -62,7 +63,10 @@ def create_student():
         ), response.status_code
 
 
-@app.route('/students/<string:student_id>', methods=['DELETE', 'PUT', 'GET'])
+@app.route(
+    f'{APP_URL_PREFIX}/students/<string:student_id>',
+    methods=['DELETE', 'PUT', 'GET']
+)
 @jwt_required()
 def delete_update_student(student_id):
     """

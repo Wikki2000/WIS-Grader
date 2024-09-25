@@ -1,0 +1,51 @@
+<div id="student__modal" class="modal-container">
+  <div class="modal--dashboard-form">
+
+    <h2 class="modal__title">Course enrollment</h2>
+    <span id="close-icon" class="close-icon close-icon--modal">&times;</span>
+    <form id="enroll-student" class="form--course-management">
+
+
+      <div class="form__row">
+        <label for="full-name" class="form__label">Student Full Name (Surname First)</label>
+        <input type="text" id="full-name" class="form__input form__input--disabled" readonly />
+      </div>
+
+      <div class="form__row--group">
+        <div class="form__row">
+          <label for="reg-no" class="form__label">Student Reg. No.</label>
+          <input type="text" id="reg-no" class="form__input" readonly />
+        </div>
+        <div class="form__row">
+          <label for="dept" class="form__label">Student Department</label>
+          <input type="text" id="dept" class="form__input" readonly />
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label for="course-code" class="form__label">Course Code</label>
+        <input type="text" id="course-code" class="form__input" placeholder="Enter course code to enroll student" />
+      </div>
+
+      <div class="form__row">
+        <label class="form__label">Program Level</label>
+        <div class="form__levels">
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="100" disabled /> 100 Level
+          </label>
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="200" disabled /> 200 Level
+          </label>
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="300" disabled /> 300 Level
+          </label>
+          <label class="form__level">
+            <input type="radio" name="level" class="form__radio" value="400" disabled /> 400 Level
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="button button--save">Enroll</button>
+    </form>
+  </div>
+</div>

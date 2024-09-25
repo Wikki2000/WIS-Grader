@@ -7,9 +7,10 @@ import requests
 
 # Define the base API URL
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
+APP_URL_PREFIX = "/wisgrader"
 
 
-@app.route("/courses", methods=["POST", "GET"])
+@app.route(f"{APP_URL_PREFIX}/courses", methods=["POST", "GET"])
 @jwt_required()
 def get_post_course():
     """
@@ -61,7 +62,10 @@ def get_post_course():
         ), response.status_code
 
 
-@app.route('/courses/<string:course_id>', methods=['DELETE', 'PUT', 'GET'])
+@app.route(
+    f'{APP_URL_PREFIX}/courses/<string:course_id>',
+    methods=['DELETE', 'PUT', 'GET']
+)
 @jwt_required()
 def put_del_course(course_id):
     """

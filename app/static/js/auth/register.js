@@ -1,6 +1,8 @@
 import { ajaxRequest, alertBox } from '../global/utils.js';
 
 $(document).ready(function () {
+  
+  const SERVER_URL_PREFIX = '/wisgrader';
 
   const alertDivClass = 'auth-alert';
   const pwd_input_border = $('input[type="password"]');
@@ -54,7 +56,7 @@ $(document).ready(function () {
           alertBox(alertDivClass, msg, false);
 
           setTimeout(() => {
-            window.location.href = '/account/verify';
+            window.location.href = SERVER_URL_PREFIX + '/account/verify';
           }, 2000);
 
          }

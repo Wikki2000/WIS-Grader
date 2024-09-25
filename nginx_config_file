@@ -1,0 +1,37 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name www.wisdomokposinservices.tech;
+
+    # The root directory for your static files (optional)
+    root /var/www/html;
+    index index.html index.htm;
+
+    # Serve static files (js, css, and images)
+    location /static {
+        alias /home/ubuntu/WIS-Grader/app/static;
+    }
+
+    # Serve other static HTML files from a custom directory (e.g., web_static)
+    location /web_static {
+        alias /home/ubuntu/WIS-Grader/app/web_static;
+        try_files $uri $uri/ =404;
+    }
+
+    # Proxy requests to your local application
+    location /wisgrader {
+        proxy_pass http://127.0.0.1:5000/wisgrader;  # Forward requests to localhost:5000
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Custom error page for 404 errors
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
+}

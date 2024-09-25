@@ -4,6 +4,8 @@
  * of the dashboard is loaded.
  */
 $(document).ready(function () {
+  const URL_PREFIX = '/wisgrader';
+
   $('.dashboard__nav-item').click(function () {
     // Track exact navbar click by retrieving it ID
     const $navItem = $(this);
@@ -12,20 +14,20 @@ $(document).ready(function () {
     $('.dashboard__nav-item').removeClass('dashboard__nav-item-highlight');
     if ($navItem.attr('id') === 'main__nav-item') {
       $('#main__nav-item').addClass('dashboard__nav-item-highlight');
-      window.location.href = '/dashboard';
+      window.location.href = `${URL_PREFIX}/dashboard`;
     } else if ($navItem.attr('id') === 'course__nav-item') {
       $('#course__nav-item').addClass('dashboard__nav-item-highlight');
-      window.location.href = '/dashboard/course-management';
+      window.location.href = `${URL_PREFIX}/dashboard/course-management`;
     } else if ($navItem.attr('id') === 'grade__nav-item') {
       $('#grade__nav-item').addClass('dashboard__nav-item-highlight');
-      window.location.href = '/dashboard/grade-management';
+      window.location.href = `${URL_PREFIX}/dashboard/grade-management`;
     } else if ($navItem.attr('id') === 'setting__nav-item') {
       $('#setting__nav-item').addClass('dashboard__nav-item-highlight');
     } else if ($navItem.attr('id') === 'help__nav-item') {
       $('#help__nav-item').addClass('dashboard__nav-item-highlight');
     } else if ($navItem.attr('id') === 'logout') {
       $('#logout').addClass('dashboard__nav-item-highlight');
-      window.location.href = ('/account/logout');
+      window.location.href = (`${URL_PREFIX}/account/logout`);
     }
   });
 
@@ -44,11 +46,11 @@ $(document).ready(function () {
     }
   });
 
-  /* =========== Swithch Dashboard Section =============*/
+  /* === Swithch Dashboard Section (Student & Courses Management) ===*/
   $('#manage__student-click').click(function () {
-    window.location.href = '/dashboard/student-management';
+    window.location.href = URL_PREFIX + '/dashboard/student-management';
   });
   $('#manage__course-click').click(function () {
-    window.location.href = '/dashboard/course-management';
+    window.location.href = URL_PREFIX + '/dashboard/course-management';
   });
 });

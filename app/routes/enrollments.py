@@ -11,17 +11,17 @@ import requests
 
 # Define the base API URL
 API_BASE_URL = "http://127.0.0.1:5001/api/v1"
+APP_URL_PREFIX = "/wisgrader"
 
 
 @app.route(
-    "/course/sudents/<string:student_id>/enroll-student",
+    f"{APP_URL_PREFIX}/course/sudents/<string:student_id>/enroll-student",
     methods=["POST"]
 )
 def enroll_student(student_id):
     """Defines function for enrollment in a course."""
     data = request.get_json()
 
-    print(data)
     url = f"{API_BASE_URL}/course/students/{student_id}/enroll"
     json_response, status_code = safe_api_request(
         url, method="POST", params=data
