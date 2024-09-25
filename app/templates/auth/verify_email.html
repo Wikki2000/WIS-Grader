@@ -5,9 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VERIFY EMAIL</title>
-  <link rel="stylesheet" href="../../static/css/components.css?{{ cache_id }}" />
+  <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}" />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="module" src="../static/js/auth/verify_email.js?{{ cache_id }}"></script>
+  <script type="module" src="/static/js/auth/verify_email.js?{{ cache_id }}"></script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
         <h1 class="auth-card__title">Verify your email address</h1>
         <div class="auth-alert"></div>
 
-        <p class="auth-card__subtitle">Please enter the six-digit code {{ email }}</p>
+        <p class="auth-card__suverify_email.htmlbtitle">Please enter the six-digit code {{ email }}</p>
         <form id="verify-form" class="auth-card__verify-form">
           <input type="text" id="f1" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
           <input type="text" id="f2" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
