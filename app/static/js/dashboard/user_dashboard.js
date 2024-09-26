@@ -3,7 +3,7 @@ import { ajaxRequest, alertBox } from '../global/utils.js';
 $(document).ready(function () {
 
 
-  const courseEndpoint = '/courses';
+  const courseEndpoint = '/wisgrader/courses';
 
   // Highlight course navbar upon click
   $('#main__nav-item').addClass('dashboard__nav-item-highlight');
@@ -48,7 +48,7 @@ $(document).ready(function () {
       credit_load: credit_load, description: description
     });
 
-    ajaxRequest(url, 'POST', data,
+    ajaxRequest(courseEndpoint, 'POST', data,
       (response) => {
         if (response.status === 'Success') {
           const newCourse = `<tr id="course_${response.course.id}">
