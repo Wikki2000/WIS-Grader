@@ -3,9 +3,10 @@
     Handle index view of Flask App and,
     some common routes accross it.
 """
-from app.routes import app
+#from app.routes import app
 from flask import abort, render_template, request
 from app.routes.utils import safe_api_request
+from app.routes import static
 
 
 def is_authorize():
@@ -18,13 +19,7 @@ def is_authorize():
     return safe_api_request(url, "POST", params=token, timeout=30)
 
 
-@app.route('/')
-def home():
-    """Render app landing page"""
-    pass
-
-
-@app.route("/static/<string:page>")
+@static.route("/web_static/<string:page>")
 def template(page):
     """
     Responsible for rendering template that do not need
@@ -42,15 +37,18 @@ def template(page):
 
     # Pages that require authentication
     authenticated_pages = [
-        "modal-course-form", "modal-student-form", "modal-enrollment-form"
+        "modal-course-form.html", "modal-student-form.html",
+        "modal-enrollment-form.html"
     ]
 
-    template_directory = "static_pages/"
+    #template_directory = "web_static/"
     if page in public_pages:
-        return render_template(template_directory + page + ".html")
+        #return render_template(template_directory + page)
+        return render_template(page)
     elif page in authenticated_pages:
         if is_authorize:
-            return render_template(template_directory + page + ".html")
+            return render_template(page)
+            #return render_template(template_directory + page)
         else:
             abort(404)
     else:

@@ -2,6 +2,7 @@
 """ Create Flask Application. """
 from app.config import Config
 from app.routes import app as bp
+from app.routes import static
 from flask import Flask, jsonify, redirect, url_for
 from flask_jwt_extended import JWTManager
 import os
@@ -15,6 +16,7 @@ jwt = JWTManager(app)
 
 # Register blueprint
 app.register_blueprint(bp)
+app.register_blueprint(static)
 
 
 @jwt.expired_token_loader
