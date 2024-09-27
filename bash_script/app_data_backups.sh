@@ -1,10 +1,10 @@
 #!/bin/bash
-
-# Variables
+# Creates backup of database monthly,
+# and push to a privat repository.
 DB_NAME="wis_test_db"
 DB_USER="wis_test"
 DB_PWD="wis_test_pwd"
-REPO_DIR="/home/wikki2000/App-Data-Backups/wisgrader"
+REPO_DIR="/home/ubuntu/App-Data-Backups/wisgrader"
 DATE=$(date +'%Y-%m-%d')
 BACKUP_FILE="backup_$DATE.sql"
 ARCHIVE_FILE="backup_$DATE.tar.gz"
