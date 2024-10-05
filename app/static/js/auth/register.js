@@ -47,7 +47,7 @@ $(document).ready(function () {
       firstname: firstName, email: email,
       lastname: lastName, password: password
     });
-    const url = '/account/signup';
+    const url = SERVER_URL_PREFIX + '/account/signup';
 
     ajaxRequest(url, "POST", data,
       (response) => {

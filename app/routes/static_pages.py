@@ -30,9 +30,9 @@ def template(page):
 
     # Pages that do not require authentication
     public_pages = [
-        "reset-password-success", "modal-confirm-delete", "modal-success",
-        "reset-password-email-sent", "email-confirmed",
-        "modal-course-added-success", "loading",
+        "reset-password-success.html", "modal-confirm-delete.html", "modal-success.html",
+        "reset-password-email-sent.html", "email-confirmed.html",
+        "modal-course-added-success.html"
     ]
 
     # Pages that require authentication
@@ -43,12 +43,10 @@ def template(page):
 
     #template_directory = "web_static/"
     if page in public_pages:
-        #return render_template(template_directory + page)
         return render_template(page)
     elif page in authenticated_pages:
         if is_authorize:
             return render_template(page)
-            #return render_template(template_directory + page)
         else:
             abort(404)
     else:
