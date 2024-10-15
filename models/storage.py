@@ -26,7 +26,6 @@ class Storage:
         url = f"mysql://{username}:{password}@localhost:5432/{database}"
         self.__engine = create_engine(url)
         Base.metadata.create_all(self.__engine)
-        #session = sessionmaker(bind=self.__engine)
         # Create a configured "scoped session"
         session_factory = sessionmaker(bind=self.__engine)
         self.__session = scoped_session(session_factory)
