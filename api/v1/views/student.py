@@ -6,6 +6,7 @@ from . import app_views
 from flask import jsonify, request, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.student import Student
+from models.lecturer import Lecturer
 from models.storage import Storage
 from flasgger.utils import swag_from
 from sqlalchemy.exc import IntegrityError
@@ -18,6 +19,7 @@ storage = Storage()
 @swag_from('./documentation/students/create_student.yml')
 def create_student():
     """Create a new student record."""
+    lecturer_id = get_jwt_identity()
     data = request.get_json()
     if not data:
         abort(400, description="Not a JSON")
@@ -33,10 +35,12 @@ def create_student():
             return jsonify({'error': f'{field} is required'}), 400
 
     # Ensure reg_number is unique
+    """
     existing_student = storage.get_by_field(Student,  "reg_no", data['reg_number'])
     if existing_student:
         storage.close()
         return jsonify({"error": "reg_number must be unique"}), 400
+    """
     
     # Create new student instance
     new_student = Student(
@@ -45,7 +49,8 @@ def create_student():
         reg_number=data['reg_number'],
         middle_name=data.get('middle_name'),  # Optional field
         department=data['department'],
-        level=data['level']
+        level=data['level'],
+        lecturer_id = lecturer_id
     )
     
     # Save to database
@@ -90,8 +95,14 @@ def create_student():
 @app_views.route('/students')
 @jwt_required()
 def get_students():
-    """Retrieve detailed information about a all student."""
-    students = storage.all(Student).values()
+    """
+    Retrieve detailed information about a all student,
+    created by a particular lecturer.
+    """
+    lecturer_id = get_jwt_identity()
+    lecturer = storage.get_by_id(Lecturer, lecturer_id)
+    if not lecturer:
+        abort(404)
     try:
         student_list = [
                 {
@@ -100,7 +111,7 @@ def get_students():
                         course.to_dict() for course in student.courses
                     ],
 
-                } for student in students
+                } for student in lecturer.students
         ]
         return jsonify(student_list), 200
     except Exception as e:
