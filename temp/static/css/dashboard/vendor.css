@@ -1,0 +1,77 @@
+.vendor__management-container {
+  padding: 10px;
+  white-space: nowrap;
+  width: 100%;
+  #vendor__list > table {
+    margin-top: 25px;
+  }
+}
+
+#vendor__list  #vendor__list-table--body tr {
+  padding: 10px;
+  td {
+    padding-top: 20px;
+  }
+  td:nth-child(1) {
+    padding-left: 30px;
+  }
+}
+
+.vendor__management-section--btn {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-left: 25px;
+
+  div:first-child {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+  }
+  .add_new-vendor {
+    color: black;
+    padding: 0px 50px;
+    min-width: 80px;
+    height: 35px;
+    border: none;
+    font-size: 16px;
+    font-family: inherit;
+    border-radius: 20px;
+    margin-right: 80px;
+    margin-left: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+}
+
+#vendor__add-edit {
+  .vendor__popup-modal-content {
+    width: 35%;
+    margin-left: 20%;
+    height: auto;
+    padding: 30px;
+
+    h2 {
+      text-align: center;
+    }
+
+    .vendor__add-edit--btnContainer {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      .vendor__add-edit--btn {
+        margin-left: auto;
+        width: 80px;
+        height: 40px;
+        border-radius: 10px;
+      }
+    }
+    input {
+      border-radius: 5px;
+      padding: 10px;
+      border: 1px solid orange;
+      width:80%;
+      height: 40px;
+      
+    }
+  }
+}

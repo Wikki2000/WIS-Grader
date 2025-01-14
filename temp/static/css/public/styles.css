@@ -1,0 +1,62 @@
+/*=========== TABLE OF CONTENTS ===========
+1. CSS Variables
+2. Utility CSS
+==========================================*/
+
+/*-------------------------------------
+  1. CSS Variables
+--------------------------------------*/
+:root {
+  /*------Color variables------*/
+  --amber_500_59: #ffbf0859;
+  --amber_a200: #ffc845;
+  --amber_a300: #fcca37;
+  --black_900: #040a0e;
+  --black_900_01: #000000;
+  --black_900_19: #00000019;
+  --black_900_3f: #0000003f;
+  --black_900_8c: #0000008c;
+  --blue_a200: #4285f4;
+  --blue_a700: #3262f9;
+  --blue_gray_900: #33363f;
+  --gray_900: #1f1f1e;
+  --green_500: #33bf48;
+  --orange_50: #fcf2d9;
+  --orange_a100: #f5d077;
+  --orange_a100_33: #f5d07733;
+  --white_a700: #ffffff;
+  --red_a800: hsl(0, 95%, 50%);
+
+  /*------Shadow variables------*/
+  --shadow-xs: 2px 2px 2px 0 #00000019;
+  --shadow-sm: 4px 4px 8px 0 #00000019;
+  --shadow-lg: 8px 8px 8px 0 #0000007a;
+
+  /*------Border radius variables------*/
+  --radius-xs: 10px;
+  --radius-sm: 24px;
+  --radius-md: 28px;
+  --radius-lg: 38px;
+  --radius-xl: 40px;
+  --radius-2xl: 50px;
+  --radius-round: 50%;
+
+  /*------Spacing variables------*/
+  --space-xs: 0.38rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.63rem;
+  --space-lg: 1.38rem;
+  --space-xl: 1.6rem;
+  --space-2xl: 4.38rem;
+
+}
+
+/*-------------------------------------
+  2. Utility CSS
+--------------------------------------*/
+.flex-col-center-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}

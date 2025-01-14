@@ -1,0 +1,292 @@
+.main__container {
+  margin-top: 20px;
+  margin-right: 1.5rem;
+  margin: 1rem;
+  height: 600px;
+  white-space: nowrap;
+  overflow-y: auto;
+}
+
+div[class="card"] {
+  height: 33%; 
+  width: 37%;
+  border: 2px solid var(--orange_a100);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+
+  .emoji {
+    margin-top: 10px;
+  }
+  .main__welcom-user {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+.card h1 {
+  font-size: 24px;
+}
+
+.emoji {
+  font-size: 24px;
+}
+
+.date {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.toggle {
+  text-align: left;
+}
+
+.toggle p {
+  margin: 10px 0 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ffa500;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.performance {
+  text-align: left;
+}
+
+.percent {
+  color: green;
+  font-weight: bold;
+}
+
+.track-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.track-btn:hover {
+  background-color: gray;
+}
+
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  background-color: #FDF6E4;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 10px;
+
+  .main__btn button {
+    background-color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0);
+    padding: 10px 35px;
+    border-radius: 10px;
+    color: #ffffff;
+    width: 25%;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  input {
+    border: 2px solid var(--orange_a100);
+    padding: 15px;
+    border-radius: 5px;
+    height: 60%;
+  }
+  .main__btn {
+    display: flex;
+    justify-content: end;
+  }
+
+  h3 {
+    margin-top: 20px;
+  }
+}
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  input, .dropdown {
+    border: 2px solid var(--orange_a100);
+    padding: 15px;
+    border-radius: 5px;
+    width: 300px;
+    height: 60%;
+  }
+  .dropdown .main__dropdown-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.check__icon-container {
+  position: relative;
+}
+
+.check__icon {
+  position: absolute;
+  top: 60%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.main__room-status {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+  .main__room-status1,
+  .main__room-status2,
+  .main__room-status3,
+  .main__room-status4 {
+    width: 23%;
+    height: 100px;
+    border-radius: 15px;
+    padding: 15px;
+  }
+  .main__room-status1 {
+    background-color: #34BF4917;
+  }
+  .main__room-status2 {
+    background-color: #C63F3F21;
+  }
+  .main__room-status3 {
+    background-color: #4285F41C;
+  }
+  .main__room-status4 {
+    background-color: #F5D0776B;
+  }
+  .main__room-status1,
+  .main__room-status2,
+  .main__room-status3,
+  .main__room-status4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div {
+      display: flex;
+      justify-content: space-around;
+    }
+    .main__row-1 {
+      width: 35px;
+      height: 35px;
+      border-radius: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .green {
+      background-color: #34BF49;
+    }
+    .red {
+      background-color: #C63F4F;
+    }
+    .blue {
+      background-color: #4285F4;
+    }
+    .orange {
+      background-color: #F5D077;
+    }
+
+    button {
+      border-radius: 10px;
+      width: 50%;
+      height: 25px;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}
+
+/* VAT popup modal */
+.vat__cat-popup--modal {
+  padding: 20px;
+}
+.main__monthly-vatCat--title {
+  margin-top: 20px;
+}
+.main__vatCat-year--input {
+  border: 2px solid orange;
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.main__vatCat-container {
+  display: flex;
+  justify-content: center;
+  button:last-child {
+    padding: 10px;
+    border-radius: 10px;
+    height: 35px;
+    margin-top: 10px;
+    width: 50%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1310px) {
+  .flex-row {
+    input, .dropdown {
+      width: 270px;
+    }
+  }
+}

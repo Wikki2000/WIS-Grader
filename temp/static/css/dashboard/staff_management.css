@@ -1,0 +1,129 @@
+.staff__management-container {
+  padding: 10px;
+  white-space: nowrap;
+  width: 100%;
+  .loan-content {
+    height: 70vh;
+  }
+  .loan-content #staff-loan-description {
+    margin-left: auto;
+    margin-bottom: 15px;
+  }
+}
+
+#staff__list  #staff__list-table--body tr {
+  td:nth-child(5) {
+    padding-left: 10px;
+  }
+}
+
+#staff__loan-list #staff__loan-table--body tr {
+  .manage {
+    right: 15%;
+    top: 50px;
+  }
+  td:nth-child(1), td:nth-child(2),
+  td:nth-child(4), td:nth-child(5) {
+    padding-left: 30px; 
+  }
+}
+
+#staff__leave-list #staff__leave-table--body tr {
+  td:nth-child(1) {
+    padding-left: 30px;
+  }
+  .staff__management-leave--menu {
+    right: 20%;
+    top: 50px;
+  }
+}
+
+#staff__profile.staff__profile-section {
+  height: 75vh;
+  overflow-y: scroll;
+  #staff__management-form {
+    width: 120%;
+    .input-label-combo {
+      margin-left: 10px;
+    }
+    .input-label-combo span {
+      color: red;
+    }
+  }
+}
+#profile__role-menu .profile__dropdown-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.staff__management-section--btn {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-left: 25px;
+
+  div:first-child {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+  }
+  .add_new-staff {
+    color: black;
+    padding: 0px 50px;
+    min-width: 80px;
+    height: 35px;
+    border: none;
+    font-size: 16px;
+    font-family: inherit;
+    border-radius: 20px;
+    margin-right: 80px;
+    margin-left: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+}
+
+.staff__management-container table {
+  margin-top: 30px;
+}
+
+#staff__list-table--body td:first-child,
+#staff__list-table--body td:nth-child(2),
+#staff__list-table--body td:nth-child(5),
+#staff__list-table--body td:nth-child(6) {
+  padding-left: 30px;
+}
+#staff__list-table--body tr .manage.staff__management-request {
+  top: 150%;
+  right: 13%;
+}
+
+/* Style pop up modal for rejection of staff request */
+.rejection__reason.popup-modal {
+  .rejection__reason-content {
+    width: 35%;
+    margin-left: 20%;
+    height: auto;
+    padding: 30px;
+
+    .rejection__reason-textarea { 
+      border: 2px solid orange;
+      width: 100%;
+      height: 80px;;
+      resize: none;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    .rejection__btn--container {
+      width: 100%;
+      display: flex;
+      justify-content: right;
+      button.rejection__continue-btn {
+        padding: 10px;
+        width: 20%;
+        text-align: center;
+        border-radius: 5px;
+      }
+    }
+  }
+}

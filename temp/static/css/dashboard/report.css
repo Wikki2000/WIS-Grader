@@ -1,0 +1,180 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.report__container {
+    padding: 5px 5px 0 5px;
+}
+.form-container select:hover {
+  cursor: pointer;
+}
+
+.links ul {
+    display: flex;
+    width: 15%;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.links ul li a {
+    color: #000000;
+    font-size: 0.7rem;
+    font-weight: 400;
+    white-space: nowrap;
+    border-radius: 20px;
+    border: 1px solid #FFC009;
+    padding: 5px 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.links .report a {
+    color: #fff;
+    background-color: #000;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.report-body {
+    background-color: #FDF6E4;
+    min-height: 70vh;
+    border-radius: 30px;
+    padding: 20px;
+    margin-top: 8px;
+    position: relative;
+}
+
+
+.image-text {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.report-details-flex{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.report_img_body {
+    position: relative;
+}
+
+img.report_img{
+    width: 382px;
+    border: 2px solid orange;
+    height: 373px;
+    border-radius: 15px;
+}
+
+.report-body .edit {
+    position: absolute;
+    right: 15%;
+    top: 90%;
+    transform: translate(50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-icon {
+    width: 20px;
+    cursor: pointer;
+}
+
+.drop_down {
+    min-width: 150px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 14px 7px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+}
+
+.take_photo,
+.choose_photo,
+.delete_photo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    color: #000;
+    white-space: nowrap;
+}
+
+.report-body .edit-icon:hover+.drop_down {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 50%;
+}
+.form-column-1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.report__container label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000;
+}
+
+.form-container select{
+    font-size: 1rem;
+    font-weight: 400;
+    width: 200px;
+    border: 1px solid #FFC009;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: inherit;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.form-column-two{
+    margin-top: 30px;
+}
+.form-container textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #FFC009;
+    border-radius: 7px;
+    resize: none;
+}
+textarea[readonly] {
+    cursor: not-allowed;
+}
+
+.report-btn {
+    display: block;
+    margin-left: auto;
+    background-color: #000000;
+    color: #fff;
+    padding: 0px 100px;
+    min-width: 100px;
+    height: 40px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+    border-radius: 15px;
+    margin-top: 80px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}

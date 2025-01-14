@@ -1,0 +1,55 @@
+.common-table-column {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: auto;
+  background-color: var(--orange_a100_33);
+  border-radius: 20px 20px 0px 0px;
+  top: 1rem;
+}
+
+.common-table-column > table {
+  width: 100%; /* Make the table occupy full width */
+  border-collapse: collapse; /* Ensure borders don't overlap */
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 70px;
+}
+
+.common-table-heading {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-top: 20px;
+}
+.common-table-heading :nth-child(2):hover {
+  color: var(--white_a700);
+  background-color: var(--amber_a200);
+}
+
+.common-tabletype {
+  margin-top: 5.5rem;
+  align-self: stretch;
+}
+
+.common-table-body tr {
+  justify-content: space-between;
+  align-items: center; /* Center align content vertically */
+  border-bottom: 2px solid var(--orange_a100_33); /* Add bottom border to each row */
+}
+
+.common-table-body td {
+  flex: 1; /* Make cells flexible */
+  padding: 0rem 0.5rem; /* Add padding for better readability */
+  text-align: left;
+}
+
+
+/* Optional: Add hover effect for better UI */
+.common-table-body tr:hover {
+  background-color: var(--amber_a100); /* Highlight row on hover */
+}

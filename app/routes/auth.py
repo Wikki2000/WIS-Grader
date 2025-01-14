@@ -30,9 +30,8 @@ def verify():
     """Verify the email using a token."""
     email = session.get('registration_data').get('email')
     data = {'email': email, 'cache_id': uuid4()}
-    print(data)
     return render_template(
-        f'{AUTH_TEMPLATES_DIRECTORY}/verify_email.html', **data
+        f'{AUTH_TEMPLATES_DIRECTORY}/verify_account.html', **data
     )
 
 

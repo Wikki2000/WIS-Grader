@@ -3,13 +3,10 @@
 from api.v1.views import api_views
 from flask import request, jsonify
 from flasgger.utils import swag_from
-from redis import Redis
 from models.user import User
 from models import storage
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import create_access_token, set_access_cookies
 
-r = Redis(host="localhost", port=6379, db=0)
 
 
 @api_views.route("/account/register", methods=["POST"])
@@ -42,16 +39,7 @@ def register():
         storage.new(user)
         storage.save()
         r.delete(token)
-
-        # Create JWT token with addditional claims
-        access_token = create_access_token(
-            identity=user.id, additional_claims={"role": user.role}
-        )
-        set_access_cookies(response, access_token)  # Set JWT in cookie
-        # Return response with aceess token
-        response =  jsonify({**user.to_dict()})
-        set_access_cookies(response, access_token)  # Set JWT in cookie
-        return response, 200
+        return jsonify({"message": "Registration Successfull"}), 200
     except IntegrityError:
         storage.rollback()
         return jsonify({"error": "User Exists Already"}), 409

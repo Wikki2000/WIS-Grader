@@ -1,0 +1,11 @@
+Faker==28.0.0
+flasgger==0.9.7.1
+Flask==3.0.3
+Flask_Cors==4.0.1
+Flask_JWT_Extended==4.6.0
+python-dotenv==1.0.1
+python_bcrypt==0.3.2
+redis==5.0.7
+Requests==2.32.3
+sib_api_v3_sdk==7.6.0
+SQLAlchemy==2.0.30

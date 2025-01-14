@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERIFY EMAIL</title>
+  <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}" />
+  <link rel="stylesheet" href="/static/css/authenication.css?{{ cache_id }}" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="module" src="/static/js/auth/verify_account.js?{{ cache_id }}"></script>
+</head>
+
+<body>
+  <div class="app-background__card--auth-card">
+
+    <div class="app-background__card--right-secondary">
+      <div class="app-background__card--right-base"></div>
+      <div class="app-background__card--right-alt"></div>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-card__content">
+	      <div class="auth-alert auth-alert--success auth-alert--error" id="message"></div>
+        <h1 class="auth-card__title">Verify your email address</h1>
+
+        <p class="auth-card__suverify_email.htmlbtitle">Please enter the six-digit code {{ email }}</p>
+        <form id="verify-form" class="auth-card__verify-form">
+          <input type="text" id="f1" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+          <input type="text" id="f2" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+          <input type="text" id="f3" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+          <input type="text" id="f4" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+          <input type="text" id="f5" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+          <input type="text" id="f6" inputmode="numeric" pattern="[0-9]" maxlength="1" required />
+
+          <p><a class="auth-card__alt-option" href="#">Resend Code</a></p>
+
+          <button type="submit" class="button auth-card__button">Verify Email</button>
+        </form>
+
+        <div class="loader"></div>
+
+	<p><a class="auth-card__alt-option" href="{{ url_for('app_views.login') }}">Go to Login</a></p>
+      </div>
+    </div>
+
+    <div class="app-background__card--left-secondary">
+      <div class="app-background__card--left-base"></div>
+      <div class="app-background__card--left-alt"></div>
+    </div>
+
+  </div>
+</body>
+
+</html>

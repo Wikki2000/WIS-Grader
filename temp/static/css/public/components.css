@@ -1,0 +1,350 @@
+/*=========== TABLE OF CONTENTS ===========
+1. Text CSS
+2. Heading CSS
+3. Table CSS
+4. Others CSS
+==========================================*/
+
+/*-------------------------------------
+1. Text CSS
+--------------------------------------*/
+.ui.text.size-textxs {
+  font-size: 0.56rem;
+  font-weight: 400;
+}
+
+.ui.text.size-textmd {
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+
+.ui.text {
+  color: var(--black_900_01);
+  font-family: Poppins;
+}
+
+/*-------------------------------------
+2. Heading CSS
+--------------------------------------*/
+.ui.heading.size-texts {
+  font-size: 0.63rem;
+  font-weight: 500;
+}
+
+.ui.heading.size-textlg {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ui.heading.size-headingxs {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ui.heading.size-headings {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.ui.heading.size-headingmd {
+  font-size: 1.06rem;
+  font-weight: 600;
+}
+
+.ui.heading {
+  color: var(--black_900_01);
+  font-family: Poppins;
+}
+
+/*-------------------------------------
+3. Table CSS
+--------------------------------------*/
+
+
+/*==================================
+Notification Modal
+===================================*/
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: #a94442;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 500px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  height: 50px;
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #721c24;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+
+  .close-btn:hover {
+    color: #a94442;
+  }
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.notification.success {
+  color: white;
+  border-color: green;
+  background-color: #90EE90;
+}
+/*-------------------------------------
+4. Other CSS
+--------------------------------------*/
+.highlight-btn {
+  background-color: #000 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+.filter {
+  padding: 5px 15px;
+  border-radius: 40px;
+  border: 2px solid var(--orange_a100);
+  color: black;
+  cursor: pointer;
+}
+
+.drop-down {
+  cursor: pointer;
+}
+.highlight-sidebar {
+  background-color: var(--amber_500_59);
+  box-shadow: inset 0 4px 8px 0 #0000003f;
+}
+
+.see__details {
+  color: orange !important;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hide {
+  display: none;
+}
+/*==============================================
+Confirmation Modal Styles
+==============================================*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8); /* Light blurred overlay */
+  backdrop-filter: blur(10px); /* Blur effect on the background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #ffffff; /* White background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  position: relative; /* To position the close button inside */
+  animation: fadeIn 0.3s ease-in-out;
+
+  padding: 30px;
+  width: 30%;
+  text-align: center;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .cancel-btn {
+    border: 2px solid var(--orange_a100) !important;
+    color: black !important;
+    background-color: white !important;
+  }
+  button {
+    width: 35%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 15px;
+  }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Disable Scrolling */
+body.modal-open {
+  overflow: hidden;
+}
+
+/*==============================
+Menu List
+===============================*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  max-height: 200px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--amber_500_59);
+  }
+}
+
+
+/*=====================================
+Table Menu Design
+======================================*/
+tr {
+  position: relative;
+  .fa:hover { 
+    cursor: pointer;
+  }
+}
+
+.manage {
+  color: #24232399;
+  background-color: #f9f9f9;
+  position: absolute;
+  top: 30%;
+  right: 30px;
+  width: 200px;
+  border: 1px solid #706e6e99;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+  display: none;
+
+  transform: translateY(-50%);
+}
+
+.manage__nav {
+  text-align: left;
+}
+
+.manage__list {
+  list-style: none;
+}
+
+.manage__item {
+  padding: 15px 0;
+  &:hover {
+    background-color: var(--amber_500_59);
+  }
+}
+.manage__item:hover {
+  cursor: pointer;
+}
+
+.manage__item i {
+  padding: 0 15px;
+}
+
+.manage__item--border {
+  outline: 1px solid #706e6e99;
+}
+
+/*=======================================================
+        Popup Modal Design
+=========================================================*/
+
+/* Popup Modal Styles */
+.popup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1); /* Slight background blur effect */
+  backdrop-filter: blur(0.5px); /* Slight blur */
+  opacity: 1; /* Fully opaque by default */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-modal-content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Box shadow */
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: orange;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  color: #ff0000;
+}

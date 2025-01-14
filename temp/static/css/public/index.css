@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+  overflow: hidden;
+}
+
+/* Hide pages' scrollbar for chrome*/
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide pages' scrollbar for firefox*/
+* {
+  scrollbar-width: none;
+}
+
+
+* {
+  box-sizing: border-box;
+  line-height: normal;
+  font-family: inherit;
+  margin: unset;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input[readonly] {
+  background-color: #f0f0f0;
+  color: #666;
+  border: 1px solid #cc;
+  cursor: not-allowed;
+}
+.table-column {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  overflow: auto;
+  background-color: var(--orange_a100_33);
+  border-radius: 20px 20px 0px 0px;
+  top: 1rem;
+}
+
+.table {
+  position: absolute;
+}
+
+
+.table > thead {
+  position: sticky;
+  top: 1rem;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+}
+
+input {
+  background-color: transparent;
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+  margin-inline: unset !important;
+  padding: 0;
+  list-style: none;
+}
+
+[type="text"],
+input:where(:not([type])),
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select,
+button {
+  appearance: none;
+  background-color: transparent;
+  border-color: unset;
+  border-width: 0;
+  border-radius: unset;
+  padding: unset;
+  font-size: unset;
+  line-height: unset;
+  color: inherit;
+}
+input:focus-visible,
+[multiple]:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}

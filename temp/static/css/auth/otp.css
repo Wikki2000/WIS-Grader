@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F5D077;
+  padding-top: 130px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#bg-circles {
+  position: absolute;
+  width: 150px;
+  height: 138px;
+  top: 12.69%;
+  left: 1.39%;
+
+}
+
+section {
+  height: 100%;
+}
+
+.content {
+  width: 66.66%;
+  height: 85%;
+  margin: auto;
+  position: relative;
+  background: #fff;
+  border-radius: 15px;
+}
+
+#back-arrow {
+  position: absolute;
+  top: 10.84%;
+  left: 4.49%;
+  cursor: pointer;
+}
+
+#padlock-img {
+  position: absolute;
+  left: calc(50% - 46px);
+  top: 10.84%;
+}
+
+.inner-box {
+  width: 52%;
+  height: 36%;
+  /* top: 290px; */
+  margin: auto;
+  padding: 15% 0 0 0;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.inner-box > h1 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+}
+
+.inner-box > p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+}
+/* 
+.inner-box input {
+width: 423px;
+height: 63px;
+border-radius: 40px;
+margin-top: 51px;
+padding: 32px;
+} */
+
+  /* .inner-box input::placeholder {
+  color: #000;
+  } */
+
+  #warn-reminder {
+    font-size: 0.625rem;
+    text-align: right;
+    margin-top: 16px;
+    margin-right: 50px;
+    color: #000;
+  }
+
+  .digits  input {
+    width: 59px;
+    height: 59px;
+    border-radius: 6px;
+    background: #D9D9D9C9;
+    border: none;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  .digits input ::placeholder {
+    /* font-family: Inter; */
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29.05px;
+
+  }
+
+  #resend-p {
+    font-size: 0.7rem;
+    text-align: right;
+    margin-right: 50px;
+    color: #000;
+  }
+  
+  #resend-p a {
+    color: #F5D077;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  #resend-p a:active {
+    color: red;
+  }
+  
+  button {
+    width: 500px;
+    height: 63px;
+    top: 596px;
+    left: 471px;
+    border-radius: 40px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: #fff;
+    background: #000000;
+    margin-top: 8%;
+    cursor: pointer;
+  }
+
+  #complete-modal {
+    position: absolute;
+    width: 66.66%;
+    height: 38.28%;
+    top: 419px;
+    left: 16.7%;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px 0px #00000040;
+    text-align: center;
+    background: #FFFFFF;
+    padding: 50px;
+    display: none;
+}
+
+#complete-modal p {
+  margin-top: 10px;
+  color: #C63F3F;
+
+}
+
+#reset-btn {
+  margin-top: 4%;
+}
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+#cancel-btn {
+  color: #000;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  text-decoration: none;
+}

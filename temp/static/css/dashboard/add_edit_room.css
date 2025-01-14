@@ -1,0 +1,106 @@
+.room__container{
+  height: 70vh;
+  padding: 20px;
+  overflow-y: scroll;
+  background-color: #FDF6E4;
+  border-radius: 1rem;
+  margin-top: 20px;
+  margin: 1rem;
+  padding-left: 3rem;
+  display: none;
+}
+
+.room__container h1:first-of-type{
+  margin-left: 45px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.room__container .add-btn:active, .save-btn:active {
+  background-color: hsl(0, 0%, 35%);
+}
+
+.add_room h2{
+  margin-bottom: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+.image-text{
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.room_img{
+  position: relative;
+  .room__image {
+    width: 400px;
+    height: 200px;
+    border-radius: 15px;
+    border: 2px solid orange;
+  }
+}
+
+.add_room .edit {
+  position: absolute;
+  right: 63%;
+  top: 87%;
+  width: 20px;
+  height: 20px;
+  transform: translate(50%, -50%);
+}
+
+.edit-icon {
+  width: 20px;
+  cursor: pointer;
+}
+.room_info{
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  .room__first-col {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+}
+
+.room_info input{
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+  border: 1px solid #FFC009;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: inherit;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.add__room-btns {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 60%;
+}
+.add__room-btns button[type="reset"], .save-btn{
+  display: block;
+  min-width: 100px;
+  height: 40px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  border-radius: 15px;
+  margin-top: 40px;
+  button[type="reset"] {
+    color: white;
+  }
+
+}

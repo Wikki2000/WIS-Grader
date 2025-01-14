@@ -1,0 +1,157 @@
+.staff__loan-container {
+  overflow-y: scroll;
+  height: 74vh;
+}
+.staff_section-btn {
+  display: flex;
+  justify-content: space-around;
+  width: 25%;
+  margin-left: 2%;
+  button {
+    font-size: 15px;
+  }
+}
+
+.staff-loan-heading {
+  margin-top: 1.4%;
+}
+.loan-content {
+  width: 97%;
+  background: #FDF6E4;
+  margin: 0 auto;
+  margin-top: 2.34%;
+  padding: 3% 0 6.6% 3.6%;
+  gap: var(--space-xs);
+  border-radius: 10px;
+}
+
+.loan-content input {
+  border: 1px solid #FFC009;
+  text-align: center;
+  height: 50px;
+  border-radius: 10px;
+}
+
+label {
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  font-weight: 500;
+}
+
+.loan-details {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  align-items: flex-start;
+}
+
+#loan-details-section {
+  width: 46.6%;
+}
+
+#loan-details-heading,
+.bank-title {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  font-style: normal;
+  margin-bottom: 1.5%;
+}
+
+.loan-details-form {
+  width: 79.4%;
+  height: 20.623%;
+}
+
+#loan-amount,
+#loan-term {
+  width: 29.62%;
+  margin-bottom: 3.3%;
+}
+
+#loan-amount {
+  margin-left: 0.836%;
+  margin-right: 5.376%;
+}
+
+#loan-term {
+  margin-left: 1.43369%;
+}
+
+#repayment-mode {
+  width: 24.05%;
+  margin-left: 1.448%;
+}
+
+.bank-details {
+  width: 91.08%;
+}
+
+.bank-title {
+  text-align: center;
+}
+
+.bank-details input {
+  width: 27.71%;
+}
+
+#account-number {
+  margin: 2.08% 0 5.08% 0;
+}
+
+.loan-action {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 3rem;
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+
+  #staff__loan-cancel--btn,
+  #staff__loan-proceed--btn {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid orange;
+    width: 40%;
+    text-align: center;
+  }
+}
+
+#staff-loan-description {
+  /* margin-top: 2.85%; */
+  padding: 8.6px 0;
+  width: 18.2%;
+  height: 7.9%;
+  text-align: center;
+  background: #FFC8455C;
+  border-radius: 20px 0 0 20px;
+}
+#loan__list #loan__table-body.common-table-body .manage {
+  left: 62%;
+}
+
+#loan__list #loan__table-body.common-table-body .left-margin {
+  padding-left: 30px;
+}
+#loan__list {
+  margin: 10px;
+  display: none;
+}
+
+/*====================================
+ 	Loan Popup Modal
+=====================================*/
+.loan__popup-modal {
+  width: 60%;
+  margin-left: 20%;
+  height: auto;
+  padding: 30px;
+  h1 {
+    text-align: center;
+  }
+}
+#loan__status-comment {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
