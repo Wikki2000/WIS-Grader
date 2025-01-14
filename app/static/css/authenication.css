@@ -104,7 +104,7 @@ a {
 /* ======= Responsive Design ======== */
 @media (max-width: 1300px) {
   .glassmorphism {
-    padding: 40px;
+    padding: 40px 30px;
   }
 }
 
