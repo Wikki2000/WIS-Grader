@@ -48,7 +48,6 @@ a {
   mix-blend-mode: color-dodge;
 }
 
-
 .app-background__card--right-alt {
   position: absolute;
   top: 62.0689px;
@@ -85,7 +84,6 @@ a {
   background-color: rgba(128, 128, 128, 0.3);
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(10px);
-
 }
 
 .app-background__card--left-alt {
@@ -173,7 +171,7 @@ a {
 }
 
 .button--view-all {
-  background: #F0FFB6;
+  background: #f0ffb6;
   border: none;
   font-weight: bold;
   border-radius: 10px;
@@ -231,7 +229,7 @@ a {
 
 /* ===== Authentication cards components ==== */
 .app-background__card--auth-card {
-  background: #FF9F1C;
+  background: #ff9f1c;
   height: 100vh;
   margin: 0;
 }
@@ -255,11 +253,11 @@ a {
 }
 
 .auth-card__subtitle {
-  color: #1A1919;
+  color: #1a1919;
 }
 
 .auth-card__content input {
-  background: #E7E7E7;
+  background: #e7e7e7;
   border: none;
   width: 80%;
   padding: 15px;
@@ -319,8 +317,12 @@ a {
 }
 
 @keyframes spin {
-  0% {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* ====== Dashboard cards components ====== */
@@ -357,7 +359,7 @@ a {
 }
 
 .modal__card {
- margin-left: 20px;
+  margin-left: 20px;
 }
 
 .modal__title {
@@ -377,7 +379,8 @@ a {
 }
 
 /* Delet Course modal style */
-.delete__course__modal .sub__title { /*Fix this class name later*/
+.delete__course__modal .sub__title {
+  /*Fix this class name later*/
   font-size: 30px;
   font-weight: lighter;
 }
@@ -445,7 +448,8 @@ a {
   margin: 10px 0;
 }
 
-.date__course { /* <- The class name will change later */
+.date__course {
+  /* <- The class name will change later */
   display: flex;
   justify-content: space-between;
   /* margin-top: 10px; */
@@ -514,9 +518,6 @@ a {
   align-items: center;
   gap: 6px;
 }
-
-
-
 
 /*====== Responsive styles =======*/
 @media (min-width: 600px) {
