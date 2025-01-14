@@ -81,7 +81,6 @@ a {
 .horizontal-line {
   display: flex;
   align-items: center;
-  width: 300px;
   margin: auto;
 }
 
