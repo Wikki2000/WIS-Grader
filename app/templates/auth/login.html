@@ -48,7 +48,7 @@
             <input type="email" name="email" id="email" placeholder="Email" required />
             <input type="password" name="password" id="password" placeholder="Enter password" required />
 
-            <p><a href="{{ url_for('app.forgot_password') }}" class="link">Forgot password?</a></p>
+            <p><a href="{ url_for('app.forgot_password') }" class="link">Forgot password?</a></p>
 
             <button type="submit" name="submit" id="submit" class="button button--signin">Sign In</button>
           </form>
@@ -80,7 +80,7 @@
 
             <a href="#">Continue with google</a>
           </button>
-          <p>Not a member? <a class="signin-text" href="{{ url_for('app.signup') }}">Sign up</a></p>
+	  <p>Not a member? <a class="signin-text" href="{{ url_for('app_views.register') }}">Sign up</a></p>
         </div>
       </div>
     </div>

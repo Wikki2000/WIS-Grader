@@ -227,3 +227,5 @@ def get_course_id(course_id):
     course_dict = course_obj.to_dict()
     course_dict['student_count'] = len(course_obj.students)
     return jsonify(course_dict), 200
+
+

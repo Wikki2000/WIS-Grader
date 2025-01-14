@@ -15,8 +15,8 @@ class Student(BaseModel, Base):
     reg_number = Column(String(50), nullable=False)
     department = Column(String(100), nullable=False)
     level = Column(String(100), nullable=False)
-    lecturer_id = Column(
-        String(100), ForeignKey("lecturers.id"), nullable=False
+    user_id = Column(
+        String(100), ForeignKey("users.id"), nullable=False
     )
 
     results = relationship('Result', backref='student',
@@ -26,6 +26,6 @@ class Student(BaseModel, Base):
     __table_args__ = (
         # Create a tuple of lecturer per student reg_number
         UniqueConstraint(
-            "reg_number", "lecturer_id", name="lecturer_per_student"
+            "reg_number", "user_id", name="user_per_student"
         ),
     )

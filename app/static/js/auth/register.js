@@ -1,8 +1,9 @@
-import { ajaxRequest, alertBox } from '../global/utils.js';
+import { ajaxRequest, alertBox, getBaseUrl,  } from '../global/utils.js';
 
 $(document).ready(function () {
-  
-  const SERVER_URL_PREFIX = '/wisgrader';
+
+  const API_BASE_URL = getBaseUrl()['apiBaseUrl'];
+  const APP_BASE_URL = getBaseUrl()['appBaseUrl'];
 
   const alertDivClass = 'auth-alert';
   const pwd_input_border = $('input[type="password"]');
@@ -22,7 +23,7 @@ $(document).ready(function () {
     } else if (!passwordPattern.test(pwd1)) {
       event.preventDefault();
       const msg = 'Password must be atleast 8 characters and ' +
-                  'contains uper, lowercase and special character';
+        'contains uper, lowercase and special character';
       alertBox(alertDivClass, msg);
     }
   });
@@ -44,27 +45,30 @@ $(document).ready(function () {
     const password = $('#password').val()
 
     const data = JSON.stringify({
-      firstname: firstName, email: email,
-      lastname: lastName, password: password
+      first_name: firstName, email: email,
+      last_name: lastName, password: password
     });
-    const url = SERVER_URL_PREFIX + '/account/signup';
+    const url = API_BASE_URL + '/account/send-token';
 
     ajaxRequest(url, "POST", data,
       (response) => {
-        if (response.status == "Success") {
-          const msg = 'Registration Successfull. Continue to Verify Email';
-          alertBox(alertDivClass, msg, false);
+        const msg = 'Registration Successfull. Continue to Verify Email';
+        alertBox(alertDivClass, msg, false);
 
-          setTimeout(() => {
-            window.location.href = SERVER_URL_PREFIX + '/account/verify';
-          }, 2000);
+        setTimeout(() => {
+          window.location.href = APP_BASE_URL + '/account/verify';
+        }, 2000);
 
-         }
       },
       (error) => {
-        const msg = 'This user already exist';
-        alertBox(alertDivClass, msg);
-
+        if (error.status == 409) {
+          const msg = 'This user already exist';
+          alertBox(alertDivClass, msg);
+          return;
+        }
+        console.log(error);
+        const msg = 'An error occured. Try again !';
+        alertBox(alertDivClass, msg)
         // Hide loader and display button to user on error
         $('.loader').hide();
         $('.button--signup').show()

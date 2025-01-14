@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VERIFY EMAIL</title>
   <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}" />
+  <link rel="stylesheet" href="/static/css/authenication.css?{{ cache_id }}" />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="module" src="/static/js/auth/verify_email.js?{{ cache_id }}"></script>
+  <script type="module" src="/static/js/auth/confirmed_email.js?{{ cache_id }}"></script>
 </head>
 
 <body>
@@ -20,8 +21,8 @@
 
     <div class="auth-card">
       <div class="auth-card__content">
+	      <div class="auth-alert auth-alert--success auth-alert--error" id="message"></div>
         <h1 class="auth-card__title">Verify your email address</h1>
-        <div class="auth-alert"></div>
 
         <p class="auth-card__suverify_email.htmlbtitle">Please enter the six-digit code {{ email }}</p>
         <form id="verify-form" class="auth-card__verify-form">
@@ -39,7 +40,7 @@
 
         <div class="loader"></div>
 
-        <p><a class="auth-card__alt-option" href="#">Change Email</a></p>
+	<p><a class="auth-card__alt-option" href="{{ url_for('app_views.login') }}">Go to Login</a></p>
       </div>
     </div>
 

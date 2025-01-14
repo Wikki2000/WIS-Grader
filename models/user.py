@@ -8,10 +8,10 @@ from models.school import School
 import bcrypt
 
 
-class Lecturer(BaseModel, Base):
-    """Lecturer class represents a lecturer in the grading system."""
+class User(BaseModel, Base):
+    """User class."""
 
-    __tablename__ = "lecturers"
+    __tablename__ = "users"
 
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)

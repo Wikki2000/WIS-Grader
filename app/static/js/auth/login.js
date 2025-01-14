@@ -1,52 +1,45 @@
-import { ajaxRequest, alertBox } from '../global/utils.js';
+import { togglePasswordVisibility, ajaxRequest, getBaseUrl } from '../global/utils.js'; 
 
 $(document).ready(function () {
 
-  const SERVER_URL_PREFIX = '/wisgrader';
+  const API_BASE_URL = getBaseUrl()['apiBaseUrl'];
+  const APP_BASE_URL = getBaseUrl()['appBaseUrl'];
 
-  $('#auth-form').submit(function (event) {
+  togglePasswordVisibility('password', 'passwordIconId');
+  $('#login-form').submit(function (event) {
     event.preventDefault();
-    const alertDivClass = 'auth-alert';
-
-    const email_input_border = $('input[type="email"]');
-    const pwd_input_border = $('input[type="password"]');
-    // Clear Previous Message
+    const alertDivClass = 'auth__alert__msg';
     $(`.${alertDivClass}`).hide();
-
     $('.loader').show();
-    $('.button--signin').hide()
+    $('#signin-btn').hide();
 
-    const email = $('#email').val();
-    const password = $('#password').val();
-
-    const data = JSON.stringify({
-      email: email,
-      password: password
-    });
-
-    ajaxRequest(SERVER_URL_PREFIX + '/account/signin', 'POST', data,
-      function (response) {
-        if (response.message === "Login Successful") {
-          const msg = 'Login Successfull';
-          alertBox(alertDivClass, msg, false);
-
-          setTimeout(() => {
-            window.location.href = SERVER_URL_PREFIX + '/dashboard';
-          }, 2000);
-        }
-      },
-      function (error) {
-        const msg = 'Invalid Email or Password';
-
-        email_input_border.addClass('highlight__pwd__input');
-        pwd_input_border.addClass('highlight__pwd__input');
-        // Hide loader and display button to user on error
-        alertBox(alertDivClass, msg);
-        $('.loader').hide();
-        $('.button--signin').show()
-
+    const data = JSON.stringify(
+      {
+        email_or_username: $('#email_or_username').val(),
+        password: $('#password').val(),
       }
     );
-  });
-});
+    const url = API_BASE_URL + '/account/login';
+    ajaxRequest(url, "POST", data,
+      (response) => {
+        // Set user ID and name in session for quick recovery.
+	localStorage.setItem('userName', response.username);
+        localStorage.setItem('userId', response.id);
+        localStorage.setItem('role', response.role);
+	localStorage.setItem('performance', response.performance);
 
+	$('input').addClass('correct-password');
+        setTimeout(() => {
+          window.location.href = APP_BASE_URL + '/dashboard';
+        }, 2000);
+      },
+      (error) => {
+	$('#error-box').show();
+	$('input').addClass('error-password');
+        // Hide loader and display button to user on error
+        $('.loader').hide();
+        $('#signin-btn').show();
+      }
+    );
+  })
+});

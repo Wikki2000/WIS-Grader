@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-classes = ["Lecturer", "Student", "Result", "School", "Course"]
+classes = ["User", "Student", "Result", "School", "Course"]
 
 
 class Storage:

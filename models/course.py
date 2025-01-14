@@ -1,6 +1,8 @@
 #ssuss$/bin/env python3
 """Course model implementation using SQLAlchemy."""
-from sqlalchemy import Column, String, Integer, ForeignKey, UniqueConstraint
+from sqlalchemy import (
+    Column, String, Integer, Boolean, ForeignKey, UniqueConstraint
+)
 from models.enrollment import Enrollment
 from sqlalchemy.orm import relationship
 from models.base_model import Base, BaseModel
@@ -18,7 +20,8 @@ class Course(BaseModel, Base):
     credit_load = Column(Integer, nullable=False)
     semester = Column(String(20))
     description = Column(String(500))
-    lecturer_id = Column(String(60), ForeignKey('lecturers.id'))
+    user_id = Column(String(60), ForeignKey('users.id'))
+    course_link = Column(String(60))
 
     students = relationship("Student", secondary="enrollments",
                             backref="courses")
@@ -26,6 +29,6 @@ class Course(BaseModel, Base):
     # Enforce uniqueness of course code per lecturer (composite)
     __table_args__ = (
         UniqueConstraint(
-            'lecturer_id', 'course_code', name='unique_lecturer_course_code'
+            'user_id', 'course_code', name='unique_user_course_code'
         ),
     )

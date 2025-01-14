@@ -9,14 +9,10 @@ class Enrollment(Base, BaseModel):
     """Models enrollment class."""
     __tablename__ = "enrollments"
     student_id = Column(
-            String(60),
-            ForeignKey("students.id"),
-            primary_key=True,
-            nullable=False
+        String(60), ForeignKey("students.id"),
+        primary_key=True, nullable=False
     )
     course_id = Column(
-            String(60),
-            ForeignKey("courses.id"),
-            primary_key=True,
-            nullable=False
+        String(60), ForeignKey("courses.id"),
+        primary_key=True, nullable=False
     )
