@@ -12,14 +12,14 @@ a {
 /* ==================== App Background Style ======================= */
 
 .app-background__card {
-  width: 50%;
+  width: 100%;
 }
 
 /* ==================== RIGHT RECTANGLES ======================= */
 .app-background__card--right {
   position: relative;
-  top: 50px;
-  left: 50%;
+  top: 0px;
+  left: 25%;
   width: 255px;
   height: 262px;
   margin-top: 40px;
@@ -62,12 +62,7 @@ a {
 
 /* ==================== LEFT RECTANGLES ======================= */
 .app-background__card--left {
-  position: relative;
-  left: 50px;
-  bottom: -200px;
-  width: 255px;
-  height: 262px;
-  margin-top: -100px;
+  display: none;
 }
 
 .app-background__card--left-secondary {
@@ -537,6 +532,26 @@ a {
 }
 
 @media (min-width: 768px) {
+  .app-background__card {
+    width: 50%;
+  }
+
+  /* ==================== RIGHT RECTANGLES ======================= */
+  .app-background__card--right {
+    top: 50px;
+    left: 50%;
+  }
+
+  .app-background__card--left {
+    display: block;
+    position: relative;
+    left: 50px;
+    bottom: -200px;
+    width: 255px;
+    height: 262px;
+    margin-top: -100px;
+  }
+
   .auth-card {
     max-width: 500px;
     padding: 60px;
