@@ -116,6 +116,7 @@ a {
 @media (max-width: 760px) {
   .title {
     font-size: 48px;
+    padding-bottom: 1em;
   }
 
   .app-background {
