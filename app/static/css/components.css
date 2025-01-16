@@ -27,8 +27,6 @@ a {
 
 .app-background__card--right-secondary {
   position: relative;
-  /* top: 50px;
-  left: 80%; */
   width: 255px;
   height: 262px;
   margin-top: 0px;
@@ -66,11 +64,8 @@ a {
 
 .app-background__card--left-secondary {
   position: relative;
-  /* left: 50px;
-  bottom: -200px; */
   width: 255px;
   height: 262px;
-  /* margin-top: -400px; */
 }
 
 .app-background__card--left-base {
@@ -230,7 +225,6 @@ a {
 /* ===== Authentication cards components ==== */
 .app-background__card--auth-card {
   background: #ff9f1c;
-  /* height: 100vh; */
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -263,7 +257,6 @@ a {
   background: #e7e7e7;
   border: none;
   width: 80%;
-  /* padding: 15px; */
   font-size: 16px;
   font-weight: 500;
   border-radius: 16px;
@@ -456,7 +449,6 @@ a {
   /* <- The class name will change later */
   display: flex;
   justify-content: space-between;
-  /* margin-top: 10px; */
 }
 
 .form__group--date input[type="date"] {
