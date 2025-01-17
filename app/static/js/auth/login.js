@@ -1,4 +1,6 @@
-import { togglePasswordVisibility, ajaxRequest, getBaseUrl } from '../global/utils.js'; 
+import {
+  togglePasswordVisibility, ajaxRequest, getBaseUrl, alertBox
+} from '../global/utils.js'; 
 
 $(document).ready(function () {
 
@@ -8,7 +10,7 @@ $(document).ready(function () {
   togglePasswordVisibility('password', 'passwordIconId');
   $('#login-form').submit(function (event) {
     event.preventDefault();
-    const alertDivClass = 'auth__alert__msg';
+    const alertDivClass = 'auth-alert';
     $(`.${alertDivClass}`).hide();
     $('.loader').show();
     $('#signin-btn').hide();
@@ -23,20 +25,13 @@ $(document).ready(function () {
     ajaxRequest(url, "POST", data,
       (response) => {
         // Set user ID and name in session for quick recovery.
-	localStorage.setItem('userName', response.username);
-        localStorage.setItem('userId', response.id);
-        localStorage.setItem('role', response.role);
-	localStorage.setItem('performance', response.performance);
-
-	$('input').addClass('correct-password');
-        setTimeout(() => {
-          window.location.href = APP_BASE_URL + '/dashboard';
-        }, 2000);
+        //localStorage.setItem('userName', response.username);
+        window.location.href = APP_BASE_URL + '/dashboard';
       },
       (error) => {
-	$('#error-box').show();
-	$('input').addClass('error-password');
         // Hide loader and display button to user on error
+        const msg = 'Invalid Login Credentials';
+        alertBox(alertDivClass, msg);
         $('.loader').hide();
         $('#signin-btn').show();
       }

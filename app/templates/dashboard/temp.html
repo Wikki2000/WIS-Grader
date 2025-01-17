@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER DASHBOARD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/user_dashboard.css">
+    <link rel="stylesheet" href="/static/css/course_management.css">
+    <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="module" src="/static/js/dashboard/main_dashboard.js?{{ cache_id }}"></script>
+  </head>
+
+  <body>
+    <object type="image/svg+xml" data="/path/to/icons.svg" style="display: none;"></object>
+
+    <!-- ===== USER DASHBOARD DESIGN ===== -->
+    <div class="dashboard">
+      <section  class="dashboard__nav">
+        <div class="dashboard__logo">
+          <img src="/static/images/logo.png" alt="" class="logo">
+        </div>
+
+        <nav class="dashboard__nav-element">
+          <ul class="dashboard__nav-list">
+            <li id="main__nav-item" class="dashboard__nav-item"><i class="fa fa-th-large"></i>Dashboard</li>
+            <li id="course__nav-item" class="dashboard__nav-item"><i class="fa fa-newspaper"></i>Course Management</li>
+            <li id="grade__nav-item" class="dashboard__nav-item"><i class="fa fa-book"></i>Grade Book</li>
+            <li id="setting__nav-item" class="dashboard__nav-item"><i class="fa fa-cog"></i>Settings</li>
+            <li id="help__nav-item" class="dashboard__nav-item"><i class="fa fa-headphones"></i>Help & Support</li>
+            <li id="logout" class="dashboard__nav-item"><i class="fa fa-sign-out"></i>Logout</li>
+          </ul>
+        </nav>
+
+        <div class="dashboard__user">
+          <img src="/static/images/img_avatar1.jpeg" alt="" class="dashboard__user-avatar">
+          <div class="dashboard__user-info">
+            <h3 class="dashboard__user-name">Wisdom Okposin</h3>
+            <h4 class="dashboard__user-email">wisdomokposin@gmail.com</h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========= DASHBOARD MAIN SECTION ======== -->
+
+      <div class="dashboard__header">
+        <h1>Dashboard</h1>
+        <div class="dashboard__top-right">
+          <span class="dashboard__search-box">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="search" placeholder="Search">
+          </span>
+        </div>
+      </div>
+
+      <section id="dynamic__load-dashboard">
+        <div class="dashboard__main">
+
+          <div class="dashboard__intro">
+            <div class="dashboard__welcome ">
+              <div class="dashboard__welcome-message">
+                <h2>Hello Okposin!</h2>
+                <span>It's good to see you again.</span>
+              </div>
+
+              <img src="/static/images/waving_lady.svg" alt="" srcset="" class="waving__lady">
+            </div>
+
+            <div class="dashboard__calendar">
+              <img src="/static/images/calendar.jpeg" alt="" srcset="" class="dashboard__calendar-image">
+            </div>
+          </div>
+
+          <div class="dashboard__courses">
+            <h3>Courses</h3>
+
+            <div id="courses-cards" class="courses-cards">
+              <div id="add__course" class="dashboard__add-course">
+
+                <img src="/static/images/stacked_books.png" alt="" class="dashboard__add-course-image">
+                <p class="dashboard__add-course-text">Add new course</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard__course-management">
+            <div class="dashboard__nav--top">
+              <h3>Course Management</h3>
+              <button class="button--view-all">View all</button>
+            </div>
+
+            <table class="dashboard__table">
+              <thead>
+                <tr class="dashboard__table-row">
+                  <th class="dashboard__table-th--first">Course Icon</th>
+                  <th>Course Code</th>
+                  <th>Course name</th>
+                  <th>Credit</th>
+                  <th>Number of students</th>
+                  <th class="dashboard__table-th--last"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <!-- Table body will be loaded dynamically given value from database. -->
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div id="popup__modal">
+        <!-- This will be loaded dynamically from a file -->
+      </div>
+    </div>
+  </body>
+</html>

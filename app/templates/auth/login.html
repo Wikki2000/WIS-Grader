@@ -39,13 +39,13 @@
     <div class="auth-background-image">
       <div class="glassmorphism">
 
-        <div class="auth-alert auth-alert--success auth-alert--error" id="message">
+        <div class="auth-alert auth-alert--success auth-alert--error">
         </div>
         <div class="auth-form-container">
 
           <h1>Sign <span style="color: #ffb44b;">In</span></h1>
-          <form id="auth-form" class="auth-form">
-            <input type="email" name="email" id="email" placeholder="Email" required />
+          <form id="login-form" class="auth-form">
+            <input id="email_or_username" placeholder="Enter email or Username" required />
             <input type="password" name="password" id="password" placeholder="Enter password" required />
 
             <p><a href="{ url_for('app.forgot_password') }" class="link">Forgot password?</a></p>
