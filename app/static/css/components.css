@@ -12,14 +12,14 @@ a {
 /* ==================== App Background Style ======================= */
 
 .app-background__card {
-  width: 50%;
+  width: 100%;
 }
 
 /* ==================== RIGHT RECTANGLES ======================= */
 .app-background__card--right {
   position: relative;
-  top: 50px;
-  left: 50%;
+  top: 0px;
+  left: 25%;
   width: 255px;
   height: 262px;
   margin-top: 40px;
@@ -27,8 +27,6 @@ a {
 
 .app-background__card--right-secondary {
   position: relative;
-  top: 50px;
-  left: 80%;
   width: 255px;
   height: 262px;
   margin-top: 0px;
@@ -48,7 +46,6 @@ a {
   mix-blend-mode: color-dodge;
 }
 
-
 .app-background__card--right-alt {
   position: absolute;
   top: 62.0689px;
@@ -62,21 +59,13 @@ a {
 
 /* ==================== LEFT RECTANGLES ======================= */
 .app-background__card--left {
-  position: relative;
-  left: 50px;
-  bottom: -200px;
-  width: 255px;
-  height: 262px;
-  margin-top: -100px;
+  display: none;
 }
 
 .app-background__card--left-secondary {
   position: relative;
-  left: 50px;
-  bottom: -200px;
   width: 255px;
   height: 262px;
-  margin-top: -400px;
 }
 
 .app-background__card--left-base {
@@ -90,7 +79,6 @@ a {
   background-color: rgba(128, 128, 128, 0.3);
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(10px);
-
 }
 
 .app-background__card--left-alt {
@@ -178,7 +166,7 @@ a {
 }
 
 .button--view-all {
-  background: #F0FFB6;
+  background: #f0ffb6;
   border: none;
   font-weight: bold;
   border-radius: 10px;
@@ -236,9 +224,11 @@ a {
 
 /* ===== Authentication cards components ==== */
 .app-background__card--auth-card {
-  background: #FF9F1C;
-  height: 100vh;
+  background: #ff9f1c;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .auth-card {
@@ -260,14 +250,13 @@ a {
 }
 
 .auth-card__subtitle {
-  color: #1A1919;
+  color: #1a1919;
 }
 
 .auth-card__content input {
-  background: #E7E7E7;
+  background: #e7e7e7;
   border: none;
   width: 80%;
-  padding: 15px;
   font-size: 16px;
   font-weight: 500;
   border-radius: 16px;
@@ -276,7 +265,8 @@ a {
 
 .auth-card__verify-form input {
   text-align: center;
-  width: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 5px;
 }
 
@@ -324,8 +314,12 @@ a {
 }
 
 @keyframes spin {
-  0% {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* ====== Dashboard cards components ====== */
@@ -362,7 +356,7 @@ a {
 }
 
 .modal__card {
- margin-left: 20px;
+  margin-left: 20px;
 }
 
 .modal__title {
@@ -382,7 +376,8 @@ a {
 }
 
 /* Delet Course modal style */
-.delete__course__modal .sub__title { /*Fix this class name later*/
+.delete__course__modal .sub__title {
+  /*Fix this class name later*/
   font-size: 30px;
   font-weight: lighter;
 }
@@ -450,10 +445,10 @@ a {
   margin: 10px 0;
 }
 
-.date__course { /* <- The class name will change later */
+.date__course {
+  /* <- The class name will change later */
   display: flex;
   justify-content: space-between;
-  /* margin-top: 10px; */
 }
 
 .form__group--date input[type="date"] {
@@ -520,9 +515,6 @@ a {
   gap: 6px;
 }
 
-
-
-
 /*====== Responsive styles =======*/
 @media (min-width: 600px) {
   .auth-card {
@@ -533,6 +525,28 @@ a {
   .auth-card__content input,
   .auth-card__button {
     max-width: 350px;
+  }
+}
+
+@media (min-width: 760px) {
+  .app-background__card {
+    width: 50%;
+  }
+
+  /* ==================== RIGHT RECTANGLES ======================= */
+  .app-background__card--right {
+    top: 50px;
+    left: 50%;
+  }
+
+  .app-background__card--left {
+    display: block;
+    position: relative;
+    left: 50px;
+    bottom: -200px;
+    width: 255px;
+    height: 262px;
+    margin-top: -100px;
   }
 }
 

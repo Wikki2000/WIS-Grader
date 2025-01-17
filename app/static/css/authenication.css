@@ -74,14 +74,13 @@ a {
 }
 
 .highlight__pwd__input {
-  background: #F9DEDC;
+  background: #f9dedc;
   border: 2px solid #dc362e !important;
 }
 
 .horizontal-line {
   display: flex;
   align-items: center;
-  width: 300px;
   margin: auto;
 }
 
@@ -104,7 +103,7 @@ a {
 /* ======= Responsive Design ======== */
 @media (max-width: 1300px) {
   .glassmorphism {
-    padding: 40px;
+    padding: 40px 30px;
   }
 }
 
@@ -117,6 +116,7 @@ a {
 @media (max-width: 760px) {
   .title {
     font-size: 48px;
+    padding-bottom: 1em;
   }
 
   .app-background {
