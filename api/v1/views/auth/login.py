@@ -44,6 +44,7 @@ def login():
     required_fields = ["email_or_username", "password"]
     missing_fields = [field for field in required_fields if field not in data]
     if missing_fields:
+        print(missing_fields)
         return jsonify({
             "error": f"{''.join(missing_fields)} Field Missing"
         }), 400
@@ -59,10 +60,8 @@ def login():
     user.is_active = True
     storage.save()
 
-    # Create JWT token with addditional claims
-    access_token = create_access_token(
-        identity=user.id, additional_claims={"role": user.role}
-    )
+    # Create JWT token
+    access_token = create_access_token(identity=user.id)
 
     # Return response with aceess token
     response =  jsonify({**user.to_dict()})
