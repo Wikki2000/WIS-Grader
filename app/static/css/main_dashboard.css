@@ -167,23 +167,24 @@
   padding: 20px 0;
 }
 
-
 .dashboard__welcome {
   background: #F0FFB6;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 10px 0px 15px;
+  padding: 0px 10px 0px 15px;
   border-radius: 20px;
 }
 
 .dashboard__welcome-message h2 {
   color: #D98D55;
   font-size: 48px;
+  font-weight: 400;
 }
 
 .dashboard__welcome-message span {
-  font-weight: 700;
+  font-weight: 500px;
+  font-size: 20px;
 }
 
 .waving__lady {
