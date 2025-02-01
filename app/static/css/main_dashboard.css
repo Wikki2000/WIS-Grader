@@ -27,6 +27,10 @@
   justify-content: space-between;
 }
 
+.dashboard__header h1 {
+  font-weight: 400;
+}
+
 .dashboard__banner{
   margin-top: 25px;
 }
@@ -108,7 +112,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px 10px 0px 15px;
+  flex-wrap: wrap;
+  padding: 10px 10px 10px 15px;
   border-radius: 20px;
   max-width: 600px;
   margin: 20px auto;
@@ -116,7 +121,7 @@
 
 .dashboard__welcome-message h2 {
   color: #D98D55;
-  font-size: 48px;
+  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
   font-weight: 400;
 }
 
@@ -127,6 +132,8 @@
 
 .waving__lady {
   margin-left: 30px;
+  width: 180px;
+  height: 180px;
 }
 
 /* ======= Inspirational Quotes ========= */
@@ -346,7 +353,6 @@ td {
 
 
 /* ======= Media Query ======== */
-
 @media (min-width: 1000px) {
   .dashboard__intro {
     display: flex;
@@ -366,6 +372,7 @@ td {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    /* align-items: center; */
     gap: 20px;
   }
 
