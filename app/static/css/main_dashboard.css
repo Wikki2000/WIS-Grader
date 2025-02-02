@@ -20,6 +20,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ff9f1c;
+  z-index: 1;
 }
 
 .top_bar .logo_name {
