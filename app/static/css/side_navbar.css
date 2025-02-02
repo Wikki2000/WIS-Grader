@@ -1,6 +1,6 @@
 /*============ SIDE BAR NAV STYLES ===========*/
 .sidebar {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   height: 50px;
@@ -131,15 +131,10 @@
 /* ======== MEDIA QUERIES ======== */
 @media (min-width: 600px) {
   .sidebar {
-    position: fixed;
     left: 0;
     top: 0;
     height: 100%;
     width: 78px;
-    background: #ff9f1c;
-    padding: 6px 14px;
-    z-index: 1;
-    transition: all 0.5s ease;
   }
 
   .sidebar .logo-details {
