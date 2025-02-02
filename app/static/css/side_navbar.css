@@ -109,19 +109,19 @@
   background: #ffffff83;
 }
 
-.home-section {
+.home_dashboard {
   position: relative;
   background: #e4e9f7;
   min-height: 100vh;
   transition: all 0.5s ease;
 }
 
-.sidebar.open ~ .home-section {
+.sidebar.open ~ .home_dashboard {
   left: 250px;
   width: calc(100% - 250px);
 }
 
-.home-section .text {
+.home_dashboard .text {
   display: inline-block;
   font-size: 25px;
   font-weight: 500;
@@ -273,7 +273,7 @@
 
 
 
-  .home-section {
+  .home_dashboard {
     top: 0;
     left: 78px;
     width: calc(100% - 78px);
