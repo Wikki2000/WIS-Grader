@@ -31,13 +31,15 @@
   color: #040a0e;
 }
 
-.sidebar li {
-  width: 32px;
-  height: 32px;
+.sidebar li a {
+  display: inline-block;
+  height: 38px;
+  width: 38px;
+  padding: 3px 3px 2px 3px;
   border-radius: 10px;
 }
 
-.sidebar li:hover {
+.sidebar li a:hover {
   background: #ffffff83;
 }
 
@@ -192,9 +194,6 @@
   }
 
   .sidebar li {
-    width: unset;
-    height: unset;
-    border-radius: unset;
     position: relative;
     margin: 8px 0;
     list-style: none;
@@ -220,10 +219,7 @@
     text-decoration: none;
     transition: all 0.4s ease;
     background: #ff9f1c;
-  }
-
-  .sidebar li a:hover {
-    background: #ffffff83;
+    padding: unset;
   }
 
   .sidebar li a .links_name {
