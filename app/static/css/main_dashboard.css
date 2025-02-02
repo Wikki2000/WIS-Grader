@@ -9,6 +9,31 @@
   display: flex;
 }
 
+/* ======= Top bar ===== */
+.top_bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff9f1c;
+}
+
+.top_bar .logo_name {
+  color: #040a0e;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.top_bar .profile_img {
+  height: 45px;
+  width: 45px;
+  object-fit: contain;
+  border-radius: 50%;
+}
 
 /* ===== The Dashboard Main Area ===== */
 .dashboard__main {
