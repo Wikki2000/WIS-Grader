@@ -3,17 +3,14 @@
 from flask import abort, jsonify, render_template
 from flask_jwt_extended import jwt_required
 from app.routes import app_views
-from api.v1.views.utils import role_required
 from jinja2.exceptions import TemplateNotFound
 
 
 @app_views.route("/pages/<string:page>")
-@role_required(["staff", "manager", "admin"])
-def page(user_role: str, user_id: str, page: str):
+@jwt_required()
+def page(page: str):
     """Render any given pages pass as an arguements.
     
-    :user_role - The role of logged-in user (e.g., ceo, staff or manager).
-    :user_id: The ID of login user.
     :page - The HTML page to be rendered.
     """
     # Check and load page from corresponding directory.

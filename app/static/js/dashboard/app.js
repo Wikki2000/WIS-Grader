@@ -12,10 +12,8 @@ $(document).ready(function() {
     const $clickItem = $(this);
     const clickId = $clickItem.attr('id');
 
-    /*
-    $clickItem.siblings().removeClass('highlight-sidebar');
-    $clickItem.addClass('highlight-sidebar');
-    */
+    $clickItem.siblings().find('a').removeClass('highlight__sidebar');
+    $clickItem.find('a').addClass('highlight__sidebar');
 
 
     $('#dynamic__load-dashboard').empty(); // Empty to load a new section.
@@ -23,7 +21,6 @@ $(document).ready(function() {
 
     switch(clickId) {
       case 'sidebar__main': {
-        alert(clickId);
 
         /*
         const staffUrl = APP_BASE_URL + '/pages/main_dashboard';
@@ -34,7 +31,6 @@ $(document).ready(function() {
         break;
       }
       case 'sidebar__course': {
-        alert(clickId);
         /*
         const url = APP_BASE_URL + '/pages/room_service';
         $('#dynamic__load-dashboard').load(url, function() {
@@ -43,7 +39,6 @@ $(document).ready(function() {
         break;
       }
       case 'sidebar__grade': {
-        alert(clickId);
         /*
         const url = APP_BASE_URL + '/pages/guest_list';
         $('#dynamic__load-dashboard').load(url, function() {
@@ -53,7 +48,6 @@ $(document).ready(function() {
         break;
       }
       case 'sidebar__setting' : {
-        alert(clickId);
         /*
         const url = APP_BASE_URL + '/pages/restaurant';
         $('#dynamic__load-dashboard').load(url, function() {
@@ -62,7 +56,6 @@ $(document).ready(function() {
         break;
       }
       case 'sidebar__help': {
-        alert(clickId);
         /*
         const url = APP_BASE_URL + '/pages/order';
         $('#dynamic__load-dashboard').load(url, function() {
@@ -71,7 +64,6 @@ $(document).ready(function() {
         break;
       }
       case 'sidebar__logout': {
-        alert(clickId);
         break;
       }
     }

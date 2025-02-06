@@ -1,4 +1,9 @@
 /*============ SIDE BAR NAV STYLES ===========*/
+.highlight__sidebar {
+  background: #ffffff83 !important;
+  color: #ffffff83 !important;
+}
+
 .sidebar {
   position: fixed;
   left: 0;

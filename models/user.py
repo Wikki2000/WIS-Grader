@@ -25,9 +25,9 @@ class User(BaseModel, Base):
     students = relationship("Student", backref="lecturer",
                             cascade="all, delete-orphan")
 
-    def hash_password(self, password: str) -> None:
+    def hash_password(self) -> None:
         """Hash the password and store it."""
-        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed = bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt())
         self.password = hashed.decode('utf-8')
 
     def check_password(self, password: str) -> bool:

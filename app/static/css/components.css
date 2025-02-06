@@ -1,3 +1,53 @@
+/*==================================
+Notification Modal
+===================================*/
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: #a94442;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 500px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  height: 50px;
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #721c24;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+
+  .close-btn:hover {
+    color: #a94442;
+  }
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+.notification.success {
+  color: white;
+  border-color: green;
+  background-color: #90EE90;
+}
+
+
+
+
 * {
   font-family: Arial, sans-serif;
   margin: 0;

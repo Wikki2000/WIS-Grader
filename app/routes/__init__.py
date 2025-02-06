@@ -10,5 +10,3 @@ web_static = Blueprint(
 from app.routes.auth import *
 from app.routes.index import *
 from app.routes.dashboard import *
-from app.routes.receipt import *
-from app.routes.member_chat_group import *

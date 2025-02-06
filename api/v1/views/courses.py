@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 """ Handle course API CRUD operations. """
-from . import app_views
+from . import api_views
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger.utils import swag_from
 from flask import request, jsonify, abort
-from models.course import Course
-from models.lecturer import Lecturer
+from api.v1.views.utils import bad_request, role_required
 from models import storage
+from models.course import Course
+from datetime import date
 from sqlalchemy.exc import IntegrityError
 
 
-@app_views.route('/lecturer/courses', methods=['POST'])
+@api_views.route('/courses', methods=['POST'])
 @jwt_required()
 @swag_from('./documentation/courses/create_course.yml')
 def create_course():
@@ -19,74 +20,45 @@ def create_course():
     retrieved from the JWT token.
     """
     # Retrieve lecturer's ID from the token
-    lecturer_id = get_jwt_identity()
+    user_id = get_jwt_identity()
     data = request.get_json()
 
     # Validate request data
-    required_fields = [
-        'course_title',
-        'course_code',
-        'credit_load',
-        #'semester'
-    ]
+    required_fields = ['name', 'code', 'load', 'semester',
+                       'start_date', 'end_date', 'level']
 
-    for field in required_fields:
-        if field not in data:
-            return jsonify({'error': f'{field} is required'}), 400
+    error_404 = bad_request(data, required_fields)
+    if error_404:
+        return jsonify(error_404), 400
 
-    # Check if the lecturer exists
-    lecturer = storage.get_by_id(Lecturer, lecturer_id)
-    if not lecturer:
-        return jsonify({'error': 'Lecturer not found'}), 404
+    data["user_id"] = user_id  # Inject user ID to data.
 
-    # Create a new Course instance
-    new_course = Course(
-        course_title=data['course_title'],
-        course_code=data['course_code'],
-        credit_load=data['credit_load'],
-        #semester=data['semester'],
-        lecturer_id=lecturer_id
-    )
+    # Ensure that no same course can be stored in database.
+    data["code"] = data.get("code") + "_" + str(date.today().year)
 
     try:
         # Add the new course to the database
+        new_course = Course(**data)
         storage.new(new_course)
         storage.save()
-        return jsonify(
-            {
-                "course": {
-                    "id": new_course.id,
-                    "course_title": new_course.course_title,
-                    "course_code": new_course.course_code,
-                    "credit_load": new_course.credit_load,
-                    "lecturer_id": new_course.lecturer_id,
-                    "description": new_course.description,
-                    "semester": new_course.semester,
-                    "student_count": len(new_course.students)
-                },
-                "status": "Success",
-                "msg": "Course Created Successfully"
-            }
-        ), 201
-
+        new_course = storage.get_by(Course, id=new_course.id)
+        return jsonify(new_course.to_dict()), 200
     except IntegrityError:
-        # Rollback the session if an IntegrityError occurs
-        storage.rollback()
-        return jsonify(
-            {
-                'error': 'Course already exists with the provided course code'
-            }
-        ), 409
-
+        code_year = new_course.code.split('_')
+        code = code_year[0]
+        year = code_year[1]
+        return jsonify({
+            "error": f"{code} for {year} Session Exist's Already"
+        }), 409
     except Exception as e:
         # Catch the exception and return the error message as JSON
+        print(str(e))
         return jsonify({"error": str(e)}), 500
-
     finally:
         storage.close()
 
 
-@app_views.route('/lecturer/courses', methods=['GET'])
+@api_views.route('/courses', methods=['GET'])
 @jwt_required()
 @swag_from('./documentation/courses/get_courses.yml')
 def get_courses():
@@ -94,27 +66,25 @@ def get_courses():
     Retrieve all courses created by the authenticated lecturer.
     """
     # Retrieve lecturer's ID from the JWT token
-    lecturer_id = get_jwt_identity()
+    user_id = get_jwt_identity()
 
-    # Check if the lecturer exists
-    lecturer = storage.get_by_id(Lecturer, lecturer_id)
-    if not lecturer:
-        return jsonify({'error': 'Lecturer not found'}), 404
-
-    # Retrieve all courses associated with the lecturer
-    courses = lecturer.courses
+    # Retrieve all courses associated with the user
+    courses = storage.all_get_by(Course, user_id=user_id)
+    if not courses:
+        return jsonify([]), 200
+    sorted_courses = sorted(courses, key=lambda course : course.updated_at)
 
     # Convert the list of Course objects to a list of dictionaries
     courses_list = [{
         **course.to_dict(),  # Include all course fields
-        'student_count': len(course.students)  # Add student count
-    } for course in courses]
+        #'student_count': len(course.students)  # Add student count
+    } for course in sorted_courses]
 
     storage.close()
-    return jsonify(courses_list), 200
+    return jsonify(courses_list[:5]), 200
 
 
-@app_views.route('/courses/<string:course_id>', methods=['DELETE'])
+@api_views.route('/courses/<string:course_id>', methods=['DELETE'])
 @jwt_required()
 @swag_from('./documentation/courses/delete_course.yml')
 def delete_course(course_id):
@@ -150,7 +120,7 @@ def delete_course(course_id):
         ), 500
 
 
-@app_views.route('/courses/<string:course_id>', methods=['PUT'])
+@api_views.route('/courses/<string:course_id>', methods=['PUT'])
 @jwt_required()
 @swag_from('./documentation/courses/update_course.yml')
 def update_course(course_id):
@@ -209,7 +179,7 @@ def update_course(course_id):
         storage.close()
 
 
-@app_views.route('/lecturer/courses/<string:course_id>', methods=['GET'])
+@api_views.route('/lecturer/courses/<string:course_id>', methods=['GET'])
 @jwt_required()
 @swag_from('./documentation/courses/get_course.yml')
 def get_course_id(course_id):
