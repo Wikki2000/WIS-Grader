@@ -4,29 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>USER DASHBOARD</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
 
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/main_dashboard.css" />
     <link rel="stylesheet" href="/static/css/side_navbar.css" />
     <link rel="stylesheet" href="/static/css/course_management.css" />
     <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}" />
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script
-      type="module"
-      src="/static/js/dashboard/main_dashboard.js?{{ cache_id }}"
-    ></script>
-    <script
-      type="module"
-      src="/static/js/dashboard/side_navbar.js{{ cache_id }}"
-    ></script>
+    <script type="module" src="/static/js/dashboard/main_dashboard.js?{{ cache_id }}"></script>
+    <script type="module" src="/static/js/dashboard/side_navbar.js{{ cache_id }}"></script>
+    <script type="module" src="/static/js/dashboard/course_management.js"></script>
+    <script type="module" src="/static/js/dashboard/common.js"></script>
+    <script type="module" src="/static/js/dashboard/app.js"></script>
   </head>
 
   <body>
@@ -38,42 +29,42 @@
           <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list">
-          <li id="main__nav-item">
+          <li id="sidebar__main" class="sidebar__nav-icon">
             <a href="#">
               <i class="bx bx-grid-alt"></i>
               <span class="links_name">Dashboard</span>
             </a>
             <span class="tooltip">Dashboard</span>
           </li>
-          <li id="course__nav-item">
+          <li id="sidebar__course" class="sidebar__nav-icon">
             <a href="#">
               <i class='bx bx-book-content' ></i>
               <span class="links_name">Course Management</span>
             </a>
             <span class="tooltip">Course Management</span>
           </li>
-          <li id="grade__nav-item">
+          <li id="sidebar__grade" class="sidebar__nav-icon">
             <a href="#">
               <i class='bx bx-book' ></i>
               <span class="links_name">Grade Book</span>
             </a>
             <span class="tooltip">Grade Book</span>
           </li>
-          <li id="setting__nav-item">
+          <li id="sidebar__setting" class="sidebar__nav-icon">
             <a href="#">
               <i class="bx bx-chat"></i>
               <span class="links_name">Help & Support</span>
             </a>
             <span class="tooltip">Help & Support</span>
           </li>
-          <li id="help__nav-item">
+          <li id="sidebar__help" class="sidebar__nav-icon">
             <a href="#">
               <i class="bx bx-cog"></i>
               <span class="links_name">Settings</span>
             </a>
             <span class="tooltip">Settings</span>
           </li>
-          <li id="logout">
+          <li id="sidebar__logout" class="sidebar__nav-icon">
             <a href="#">
               <i class="bx bx-log-out"></i>
               <span class="links_name">Logout</span>
@@ -142,7 +133,7 @@
             <div class="dashboard__courses">
               <div class="course__button">
                 <h3>Courses</h3>
-                <button id="add__course" class="button">Add New Course</button>
+                <button id="main__add-course" class="button">Add New Course</button>
               </div>
 
               <div id="courses-cards" class="courses-cards">

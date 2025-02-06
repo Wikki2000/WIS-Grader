@@ -1,0 +1,39 @@
+<div id="modal" class="modal-container">
+  <div class="modal--dashboard-form">
+  <h2 class="modal__title">Add New Course</h2>
+  <span id="close-icon" class="close-icon close-icon--modal common__cancel-btn">&times;</span>
+  <form id="course-management" class="form--course-management">
+
+    <!-- Set data and retrieved data from form field.  -->
+    <input type="hidden" id="method" />
+    <input type="hidden" id="entity__id" />
+
+    <label>Course name<input type="text" name="name" class="form__input--text" placeholder="E.g: English Language" required></label>
+    <label>Course code<input type="text" name="code" class="form__input--text" placeholder="E.g: ENG-202" required></label>
+    <p>Description
+      <textarea class="form__textarea" name="description" rows="8" placeholder="Course description"></textarea>
+      </label>
+
+    <p class="form__heading">Course Level</p>
+    <div class="form__group--course-level">
+      <label>Basics<input type="checkbox" value="basics" name="level"></label>
+      <label>Undergraduate<input type="checkbox" value="undergraduate" name="level"></label>
+      <label>Masters<input type="checkbox" value="masters" name="level"></label>
+      <label>Doctorate<input type="checkbox" value="doctorate" name="level"></label>
+    </div>
+
+    <p class="form__heading--commence">Commence date</p>
+    <div class="date__course">
+      <div class="form__group--date">
+        <label>Start date<input name="start_date" type="date" required></label>
+        <label>End date<input name="end_date" type="date" required></label>
+      </div>
+      <div class="form__group--course-details">
+        <label>Semester<input min="1" max="2" name="semester" type="number" required ></label>
+        <label>Credit Load<input name="load" type="number" required ></label>
+      </div>
+    </div>
+
+    <button type="submit" class="button button--save">Save</button>
+  </form>
+</div>
