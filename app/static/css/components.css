@@ -255,9 +255,11 @@ a {
 }
 
 .button--save {
+  display: block;
   font-weight: 700;
   padding: 15px 35px;
-  margin: 20px 0 10px 535px;
+  width: 100%;
+  margin: 10px auto;
   border-radius: 15px;
 }
 
@@ -446,7 +448,7 @@ a {
 .modal--dashboard-form {
   background: #ffffff;
   position: relative;
-  width: 700px;
+  max-width: 700px;
   margin: 15vh auto;
   padding: 15px;
   border-radius: 20px;
@@ -463,6 +465,15 @@ a {
 }
 
 /* ==== Add course modal ===== */
+@media (min-width: 643px) {
+  .course_name_code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
 .form__input--text,
 .form__textarea {
   width: 100%;
@@ -482,31 +493,39 @@ a {
   resize: vertical;
 }
 
-.form__group--course-level {
-  display: flex;
-  justify-content: space-around;
+.form__group-select label,
+.form__group-select select {
+  display: block;
+  margin: 5px 0;
 }
+
+.form__group-select select {
+  padding: 8px 0;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.form__group-select option {
+  background: #ff9f1c;
+}
+
+@media (min-width: 460px) {
+  .form__group-select {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+
+  .form__group-select select {
+    width: 140px;
+  }
+}
+
 
 .form--course-management input[type="checkbox"] {
   margin: 10px;
 }
 
-.form__heading--commence {
-  margin: 10px 0;
-}
-
-.date__course {
-  /* <- The class name will change later */
-  display: flex;
-  justify-content: space-between;
-}
-
-.form__group--date input[type="date"] {
-  height: 40px;
-  margin: 5px 0 0 10px;
-  padding: 0 5px;
-  border-radius: 10px;
-}
 
 .form__group--course-details label {
   display: inline-block;
@@ -527,6 +546,8 @@ a {
   padding: 0 5px;
   border-radius: 10px;
 }
+
+
 
 /* ==== Enroll stundents modal ==== */
 .form__row {
