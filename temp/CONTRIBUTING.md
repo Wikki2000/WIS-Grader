@@ -6,7 +6,7 @@
 - **Class Names**: Use `PascalCase` (e.g., `UserProfile`, `OrderProcessor`).
 - **Constants**: Use `UPPER_SNAKE_CASE` (e.g., `MAX_RETRY_ATTEMPTS`, `DEFAULT_TIMEOUT`).
 - **Private Variables**: Prefix with an underscore `_` (e.g., `_private_data`).
-- **Descriptive Names**: Ensure names clearly describe the variable’s purpose.
+- **Descriptive Names**: Ensure names clearly describe the variable’s purpose (e.g., last_name is valid but lname not valid.)
 
 
 ## Function Naming
@@ -47,7 +47,7 @@
 
 
 ## Code Formatting for HTML
-- **Indentation**: Use four spaces.
+- **Indentation**: Use two spaces.
 - **Naming Convention for HTML Tags**: Use lower-case.
 
 

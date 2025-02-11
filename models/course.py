@@ -19,8 +19,6 @@ class Course(BaseModel, Base):
     load = Column(Integer, nullable=False)
     semester = Column(String(20))
     description = Column(String(500))
-    start_date = Column(Date, nullable=False)
-    end_date = Column(Date, nullable=False)
     level = Column(String(225), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'))
     #course_link = Column(String(60))

@@ -24,8 +24,7 @@ def create_course():
     data = request.get_json()
 
     # Validate request data
-    required_fields = ['name', 'code', 'load', 'semester',
-                       'start_date', 'end_date', 'level']
+    required_fields = ["name", "code", "load", "semester", "level"]
 
     error_404 = bad_request(data, required_fields)
     if error_404:
@@ -47,6 +46,7 @@ def create_course():
         code_year = new_course.code.split('_')
         code = code_year[0]
         year = code_year[1]
+        storage.rollback()
         return jsonify({
             "error": f"{code} for {year} Session Exist's Already"
         }), 409

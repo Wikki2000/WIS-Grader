@@ -8,18 +8,18 @@
  * @param {object} date - The course date in british format.
  * @return {String} - The course template.
  */
-export function courseListTableTemplate(index, data, date) {
+export function courseListTableTemplate(data, date) {
   const [code, year] = data.code.split('_');
   const row = `<tr>
     <td class="">
-      <p>${index}</p>
+      <p>${data.name}</p>
     </td>
     <td class="">
         <p>${code}</p>
       </div>
     </td>
     <td class="">
-      <p class="">${year} Session</p>
+      <p class="">${year}</p>
     </td>
     <td class="">
       <p class="">50</p>
