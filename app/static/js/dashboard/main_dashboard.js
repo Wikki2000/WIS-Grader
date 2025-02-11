@@ -28,7 +28,7 @@ $(document).ready(function() {
       data.forEach((course, index) => {
         const date = britishDateFormat(course.created_at);
         $('#main__course-table--body').append(
-          courseListTableTemplate(index + 1, course, date)
+          courseListTableTemplate(course, date)
         );
       });
     })

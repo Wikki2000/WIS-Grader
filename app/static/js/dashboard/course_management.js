@@ -27,7 +27,7 @@ $(document).ready(function() {
         const date = britishDateFormat(data.created_at);
         const $serialNumber = $('#main__course-table--body td:first-child');
         $('#main__course-table--body')
-          .prepend(courseListTableTemplate(0, data, date));
+          .prepend(courseListTableTemplate(data, date));
         $formElement.trigger('reset');
         showNotification('Course Added Successfully !');
       },
