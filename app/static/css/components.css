@@ -437,11 +437,17 @@ a {
 /* ===== Dashboard form component ===== */
 .modal-container {
   background: rgba(0, 0, 0, 0.4);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
+  height: 100vh;
+  padding: 0 15px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
 }
 
@@ -509,7 +515,7 @@ a {
   background: #ff9f1c;
 }
 
-@media (min-width: 460px) {
+@media (min-width: 500px) {
   .form__group-select {
     display: flex;
     justify-content: space-around;
