@@ -32,13 +32,25 @@ export function courseListTableTemplate(data, date) {
       <nav class="manage__nav">
         <ul class="manage__list">
           <li data-id="${data.id}" class="manage__item guest__list-bookDetail guest__listMenu">
-            <i class="fa fa-eye"></i>Booking Details
+            <i class="fa fa-eye"></i>Details
           </li>
           <li data-id="${data.id}" class="manage__item guest__listEdit  guest__listMenu">
-            <i class="fa fa-edit"></i>Edit Data
+            <i class="fa fa-edit"></i>Edit
           </li>
           <li data-id="${data.id}" class="manage__item guest__listPrint  guest__listMenu">
-            <i class="fa fa-print"></i>Print Receipt
+            <i class="fa fa-share"></i>Share Link
+          </li>
+          <li data-id="${data.id}" class="manage__item guest__listPrint  guest__listMenu">
+            <i class="fa fa-user-plus"></i>Enroll Student
+          </li>
+          <li data-id="${data.id}" class="manage__item guest__listPrint  guest__listMenu">
+            <i class="fa fa-ban"></i>Stop Registration
+          </li>
+          <li data-id="${data.id}" class="manage__item guest__listPrint  guest__listMenu">
+            <i class="fa fa-tasks"></i>Allow Registration
+          </li>
+          <li data-id="${data.id}" class="manage__item guest__listPrint  guest__listMenu">
+            <i class="fa fa-trash"></i>Delete
           </li>
         </ul>
       </nav>
