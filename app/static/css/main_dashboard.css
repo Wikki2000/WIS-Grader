@@ -275,7 +275,7 @@
 
 } */
 
-/*======= TABLE STYLING ========*/
+
 .courses__view {
   display: flex;
   justify-content: space-between;
@@ -283,41 +283,6 @@
   margin-bottom: 20px;
 }
 
-.dashboard__table {
-  text-align: center;
-  width: 100%;
-  border-spacing: 0;
-}
-
-.dashboard__table-row {
-  background: #E7E7E7;
-  color: #24232399;
-}
-
-.dashboard__table-th--first {
-  border-top-left-radius: 10px;
-}
-
-.dashboard__table-th--last {
-  border-top-right-radius: 10px;
-}
-
-.dashboard__table th,
-td {
-  border-bottom: 1px solid #706e6e99;
-  padding: 10px 0;
-}
-
-.dashboard__table .fa-book {
-  color: #D98D55;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
 
 .fa-book {
   background: #F0FFB6;
