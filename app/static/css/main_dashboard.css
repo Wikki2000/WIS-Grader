@@ -328,16 +328,6 @@ td {
   cursor: pointer;
 }
 
-.dashboard__table button {
-  background: #007AFF66;
-  color: #007AFF;
-  border: none;
-  font-weight: bold;
-  border-radius: 10px;
-  width: 100px;
-  padding: 10px 0;
-}
-
 .dashboard__edit-pencil {
   /*==== Take note of this chnage on th JS file ===*/
   margin-right: 10px;
