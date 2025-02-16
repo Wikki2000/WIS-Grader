@@ -1,10 +1,10 @@
-
 /*===== Manage courses styles =====*/
 * {
   box-sizing: border-box;
 }
 
-.dashboard__nav--top { /* Parent element in user_dasboard.css */
+.dashboard__nav--top {
+  /* Parent element in user_dasboard.css */
   font-size: 18px;
 }
 
@@ -66,40 +66,56 @@ tr {
   position: relative;
 }
 
-.manage {
-  background: #e7e7e7e7;
-  color: #24232399;
-  position: absolute;
-  top: 50%;
-  right: 70px;
-  width: 200px;
-  border: 1px solid #706e6e99;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  z-index: 9;
-  /* display: none; */
-}
-
-.manage__nav {
+.dashboard__table-th--first,
+.course_name {
   text-align: left;
+  padding-left: 30px;
 }
 
-.manage__list {
-  list-style: none;
+.dashboard__table .menu_toggle {
+  border: none;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 45px;
+  padding: 10px 0;
+  font-size: 20px;
 }
 
-.manage__item {
-  padding: 15px 0;
-}
-.manage__item:hover {
+.dashboard__table .menu_toggle:hover {
+  background: #007AFF66;
   cursor: pointer;
 }
 
-.manage__item i {
+.menu_list {
+  display: none;
+  position: absolute;
+  background: #e7e7e7e7;
+  color: #060606;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  width: 200px;
+}
+
+.menu_item {
+  padding: 15px 0;
+}
+
+.menu_item:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.menu_item i {
   padding: 0 15px;
 }
 
-.manage__item--border {
+.menu_item--border {
   outline: 1px solid #706e6e99;
 }
 
