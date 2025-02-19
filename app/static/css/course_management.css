@@ -1,53 +1,33 @@
 /*===== Manage courses styles =====*/
-* {
-  box-sizing: border-box;
-}
-
-.dashboard__nav--top {
-  /* Parent element in user_dasboard.css */
+.top_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  gap: 20px;
   font-size: 18px;
 }
 
-.dashboard__nav--top-title,
-.dashboard__nav--top-label,
-.fa-chevron-down {
+.top_menu_titles {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.top_menu_title {
   cursor: pointer;
 }
 
-.dashboard__nav--top-outline {
+.top_menu_outline {
   border-bottom: 1px solid black;
 }
 
-.dashboard__nav--top-titles {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.dashboard__nav--top-checkbox {
-  background: #333333; /* Need to be customized to work */
-}
-
-.dashboard__nav--top-group {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.dashboard__nav--top-checkbox,
-.fa-chevron-down {
-  margin-left: 15px;
-}
-
-.button--add-course {
+.button_add_course {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 150px;
-}
-
-.dashboard__table-th--checkbox {
-  margin-left: 20px;
 }
 
 .fa-ellipsis-v {
@@ -55,7 +35,7 @@
   cursor: pointer;
 }
 
-.dashboard__table-close-icon {
+.course_table-close-icon {
   font-size: 25px;
   cursor: pointer;
   display: none;
@@ -65,7 +45,7 @@
 
 
 /*======= TABLE STYLING ========*/
-.dashboard__table {
+.course_table {
   text-align: center;
   width: 100%;
   border-spacing: 0;
@@ -75,32 +55,32 @@ tr {
   position: relative;
 }
 
-.dashboard__table-th--first,
+.th_row :first-child,
 .course_name {
   text-align: left;
   padding-left: 30px;
 }
 
-.dashboard__table-row {
+.th_row {
   background: #E7E7E7;
   color: #24232399;
 }
 
-.dashboard__table-th--first {
+.th_row :first-child {
   border-top-left-radius: 10px;
 }
 
-.dashboard__table-th--last {
+.th_row :last-child {
   border-top-right-radius: 10px;
 }
 
-.dashboard__table th,
+.course_table th,
 td {
   border-bottom: 1px solid #706e6e99;
   padding: 10px 0;
 }
 
-.dashboard__table .fa-book {
+.course_table .fa-book {
   color: #D98D55;
   display: flex;
   align-items: center;
@@ -111,7 +91,7 @@ td {
   border-radius: 50%;
 }
 
-.dashboard__table .menu_toggle {
+.course_table .menu_toggle {
   border: none;
   font-weight: bold;
   border-radius: 50%;
@@ -120,7 +100,7 @@ td {
   font-size: 20px;
 }
 
-.dashboard__table .menu_toggle:hover {
+.course_table .menu_toggle:hover {
   background: #007AFF66;
   cursor: pointer;
 }
@@ -152,10 +132,6 @@ td {
 
 .menu_item i {
   padding: 0 15px;
-}
-
-.menu_item--border {
-  outline: 1px solid #706e6e99;
 }
 
 /*===== Manage students styles =====*/
