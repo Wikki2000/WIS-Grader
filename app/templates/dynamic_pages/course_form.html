@@ -1,12 +1,14 @@
 <div id="modal" class="modal-container">
   <div class="modal--dashboard-form">
-    <h2 class="modal__title">Add New Course</h2>
+    <h2 id="course__modal" class="modal__title">
+      <!-- Heading dynamically loaded here -->
+    </h2>
     <span id="close-icon" class="close-icon close-icon--modal common__cancel-btn">&times;</span>
     <form id="course-management" class="form--course-management">
 
       <!-- Set data and retrieved data from form field.  -->
       <input type="hidden" id="method" />
-      <input type="hidden" id="entity__id" />
+      <input type="hidden" id="course__id" />
 
       <div class="course_name_code">
         <label>
@@ -25,27 +27,27 @@
       <div class="form__group-select">
         <label for="">
           Course Level
-          <select name="level" id="">
+          <select name="level" required>
             <option value="" disabled selected>Select Level</option>
-	    <option value="basics">Basic Level</option>
-            <option value="undergraduate">Undergraduate</option>
-            <option value="masters">Masters</option>
-            <option value="doctorate">Doctorate</option>
+	    <option value="Basics">Basic Level</option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Masters">Masters</option>
+            <option value="Doctorate">Doctorate</option>
           </select>
         </label>
 
         <label for="">
           Semester
-          <select name="semester" id="">
-            <option value="" disabled selected>Select Semeseter</option>
-            <option value="first-semester">First Semester</option>
-            <option value="second-semester">Second Semester</option>
+          <select name="semester" required>
+            <option id="semester__autofill" value="" disabled selected>Select Semeseter</option>
+            <option value="First Semester">First Semester</option>
+            <option value="Second Semester">Second Semester</option>
           </select>
         </label>
 
         <label for="">
           Credit Unit
-          <select name="load" id="">
+          <select name="load" required>
             <option value="" disabled selected>Select Credit Unit</option>
             <option value="1">1</option>
             <option value="2">2</option>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/side_navbar.css" />
     <link rel="stylesheet" href="/static/css/course_management.css" />
     <link rel="stylesheet" href="/static/css/components.css?{{ cache_id }}" />
+    <link rel="stylesheet" href="/static/css/common.css" />
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="module" src="/static/js/dashboard/main_dashboard.js?{{ cache_id }}"></script>
@@ -85,19 +86,19 @@
 
       <div class="home_dashboard">
         <!-- ========= HEADER SECTION ======== -->
-         <header class="top_bar">
-            <div class="logo_name">WIS-Grader</div>
-            <div class="m_profile">
-              <img class="profile_img" src="https://intranet.alxswe.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMmt4QlE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0480b45fc2e89b479f62b2a2a126fd67adb480ae/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtCeUdrQnlBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596ca5c9d0091ccfe5374ad3fb3471cc1878f984/Nwante_Modified-01.jpg" alt="profileImg" />
-            </div>
-         </header>
+        <header class="top_bar">
+          <div class="logo_name">WIS-Grader</div>
+          <div class="m_profile">
+            <img class="profile_img" src="https://intranet.alxswe.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMmt4QlE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0480b45fc2e89b479f62b2a2a126fd67adb480ae/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtCeUdrQnlBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--596ca5c9d0091ccfe5374ad3fb3471cc1878f984/Nwante_Modified-01.jpg" alt="profileImg" />
+          </div>
+        </header>
         <div class="dashboard__header">
           <h1>Dashboard</h1>
           <div class="dashboard__top-right">
             <!-- <span class="dashboard__search-box">
               <i class="fa fa-search" aria-hidden="true"></i>
               <input type="search" placeholder="Search" />
-            </span> -->
+              </span> -->
           </div>
         </div>
 
@@ -118,7 +119,7 @@
                   alt=""
                   srcset=""
                   class="waving__lady"
-                />
+                  />
               </div>
               <!-- Teachers Inspirational Quotes-->
               <div class="quote__container">
@@ -139,50 +140,50 @@
               <div id="courses-cards" class="courses-cards">
                 <!-- <div id="add__course" class="dashboard__add-course">
                   <img
-                    src="/static/images/stacked_books.png"
-                    alt=""
-                    class="dashboard__add-course-image"
+                  src="/static/images/stacked_books.png"
+                  alt=""
+                  class="dashboard__add-course-image"
                   />
                   <p class="dashboard__add-course-text">Add new course</p>
-                </div> -->
+                  </div> -->
 
-                <div class="card">
-                  <div class="card__eclipse card__eclipse--top">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                  </div>
-                  <span>
-                    <h4 class="course__code">__ __ __ __ __ __</h4>
-                    <h6 class="course__title">__ __ __</h6>
-                  </span>
-                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                  <div class="card__eclipse card__eclipse--bottom"></div>
-                </div>
-
-                <div class="card">
-                  <div class="card__eclipse card__eclipse--top">
-                    <i class="fa fa-book" aria-hidden="true"></i>
+                  <div class="card">
+                    <div class="card__eclipse card__eclipse--top">
                       <i class="fa fa-book" aria-hidden="true"></i>
+                    </div>
+                    <span>
+                      <h4 class="course__code">__ __ __ __ __ __</h4>
+                      <h6 class="course__title">__ __ __</h6>
+                    </span>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <div class="card__eclipse card__eclipse--bottom"></div>
                   </div>
-                  <span>
-                    <h4 class="course__code">MAT - 101</h4>
-                    <h6 class="course__title">Introduction Mathematics</h6>
-                  </span>
-                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                  <div class="card__eclipse card__eclipse--bottom"></div>
-                </div>
 
-                <div class="card">
-                  <div class="card__eclipse card__eclipse--top">
-                    <i class="fa fa-book" aria-hidden="true"></i>
+                  <div class="card">
+                    <div class="card__eclipse card__eclipse--top">
                       <i class="fa fa-book" aria-hidden="true"></i>
+                      <i class="fa fa-book" aria-hidden="true"></i>
+                    </div>
+                    <span>
+                      <h4 class="course__code">MAT - 101</h4>
+                      <h6 class="course__title">Introduction Mathematics</h6>
+                    </span>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <div class="card__eclipse card__eclipse--bottom">20</div>
                   </div>
-                  <span>
-                    <h4 class="course__code">ENG - 243</h4>
-                    <h6 class="course__title">Business English</h6>
-                  </span>
-                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                  <div class="card__eclipse card__eclipse--bottom"></div>
-                </div>
+
+                  <div class="card">
+                    <div class="card__eclipse card__eclipse--top">
+                      <i class="fa fa-book" aria-hidden="true"></i>
+                      <i class="fa fa-book" aria-hidden="true"></i>
+                    </div>
+                    <span>
+                      <h4 class="course__code">ENG - 243</h4>
+                      <h6 class="course__title">Business English</h6>
+                    </span>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <div class="card__eclipse card__eclipse--bottom"></div>
+                  </div>
               </div>
             </div>
 
@@ -199,7 +200,7 @@
                     <th>Course Code</th>
                     <!--<th>Course Details</th>-->
                     <th>Academic Year</th>
-                    <th>Student's Count</th>
+                    <th>Student's Enrolled</th>
                     <th class="dashboard__table-th--last"></th>
                   </tr>
                 </thead>
@@ -210,7 +211,50 @@
               </table>
             </div>
           </div>
+
+          <!-- Popup Modal For Guest details -->
+          <div id="course__details-modal" class="popup-modal">
+            <div class="popup-modal-content course__modal-content">
+              <!-- Close Button -->
+              <button class="close-btn closePopupModal">&times;</button>
+              <h1>Course Details</h1>
+
+              <!-- Data in this section is dynamically loaded -->
+	      <div class="course__details-flex">
+                <h4>Course Title: </h4>
+                <p id="course-title"></p>
+	      </div>
+              <div class="course__details-flex">
+                <h4>Course Code: </h4>
+                <p id="course-code"></p>
+              </div>
+              <div class="course__details-flex">
+                <h4>Course Level: </h4>
+                <p id="course-level"></p>
+              </div>
+              <div class="course__details-flex">
+                <h4>Course Semester / Year: </h4>
+                <p id="course-semester"></p>
+              </div>
+              <div class="course__details-flex">
+                <h4>Course Load: </h4>
+                <p id="course-load"></p>
+              </div>
+              <div class="course__details-flex">
+                <h4>Student's Enrolled: </h4>
+                <p id="course-enroll">30 Student</p>
+              </div>
+              <div class="course__details-flex">
+                <h4>Registration Status: </h4>
+                <p id="course__reg-status" style="color: green;">Active</p>
+              </div>
+           </div>
+          </div>
         </section>
+
+        <!-- Data storage -->
+        <div id="main__data-storage" data-main-dashboard="yes"></div>
+
       </div>
 
       <div id="popup__modal">

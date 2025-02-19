@@ -158,4 +158,22 @@ td {
   outline: 1px solid #706e6e99;
 }
 
-/*===== Manage students styles =====*/
+/*===== Course Details Popup Modal =====*/
+.course__modal-content {
+  width: 35%;
+  height: auto;
+  margin-left: 5%;
+  h1 {
+    border-bottom: 3px dotted orange;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .course__details-flex {
+    display: flex;
+    margin-top: 15px;
+    p {
+      margin-left: 20px;
+    }
+  }
+}
