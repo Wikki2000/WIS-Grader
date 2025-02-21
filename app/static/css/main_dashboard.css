@@ -184,7 +184,7 @@
 }
 
 /* ====== Course card styles ======= */
-.button_add_course {
+.courses_actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
