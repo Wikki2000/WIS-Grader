@@ -254,7 +254,7 @@ a {
   color: #ffffff;
 }
 
-.button--save {
+.button_save {
   display: block;
   font-weight: 700;
   padding: 15px 35px;
@@ -269,7 +269,7 @@ a {
   cursor: pointer;
 }
 
-.close-icon {
+.close_icon {
   font-size: 25px;
   cursor: pointer;
 }
@@ -411,7 +411,7 @@ a {
   margin-left: 20px;
 }
 
-.modal__title {
+.modal_title {
   font-weight: 500;
   padding: 20px 0;
 }
@@ -433,7 +433,7 @@ a {
 }
 
 /* ===== Dashboard form component ===== */
-.modal-container {
+.modal_container {
   background: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
@@ -449,7 +449,7 @@ a {
   z-index: 10;
 }
 
-.modal--dashboard-form {
+.modal_form {
   background: #ffffff;
   position: relative;
   max-width: 500px;
@@ -458,7 +458,7 @@ a {
   border-radius: 20px;
 }
 
-.close-icon--modal {
+.modal_container .close_icon {
   position: absolute;
   right: 15px;
   top: 10px;
@@ -468,65 +468,42 @@ a {
   font-weight: bolder;
 }
 
-.form__input--text {
+.course_name_code input {
   width: 100%;
   margin: 10px 0;
   padding: 10px;
   border-radius: 12px;
 }
 
-.form--course-management input {
+.form_add_course input {
   background: #e7e7e7;
   border: none;
 }
 
-.form__group-select label,
-.form__group-select select {
+.form_group label,
+.form_group select {
   display: block;
   margin: 5px 0;
 }
 
-.form__group-select select {
+.form_group select {
   padding: 8px 0;
   width: 100%;
   border-radius: 12px;
 }
 
-.form__group-select label {
+.form_group label {
   display: block;
   margin: 15px 0;
 }
 
-.form__group-select option {
+.form_group option {
   background: #ff9f1c;
 }
 
-.form--course-management input[type="checkbox"] {
+.form_add_course input[type="checkbox"] {
   margin: 10px;
 }
-
-
-.form__group--course-details label {
-  display: inline-block;
-  width: 100px;
-  margin-top: -20px;
-}
-
-.form__group--course-details {
-  display: flex;
-  column-gap: 15px;
-}
-
-.form__group--course-details input[type="number"] {
-  display: block;
-  width: 100px;
-  height: 40px;
-  margin-top: 5px;
-  padding: 0 5px;
-  border-radius: 10px;
-}
-
-
 
 /* ==== Enroll stundents modal ==== */
 .form__row {

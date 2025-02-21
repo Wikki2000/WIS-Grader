@@ -1,10 +1,10 @@
-<div id="modal" class="modal-container">
-  <div class="modal--dashboard-form">
-    <h2 id="course__modal" class="modal__title">
+<div id="modal" class="modal_container">
+  <div class="modal_form">
+    <h2 id="course__modal" class="modal_title">
       <!-- Heading dynamically loaded here -->
     </h2>
-    <span id="close-icon" class="close-icon close-icon--modal common__cancel-btn">&times;</span>
-    <form id="course-management" class="form--course-management">
+    <span id="close-icon" class="close_icon common__cancel-btn">&times;</span>
+    <form id="course-management" class="form_add_course">
 
       <!-- Set data and retrieved data from form field.  -->
       <input type="hidden" id="method" />
@@ -13,14 +13,14 @@
       <div class="course_name_code">
         <label>
           Course name
-          <input type="text" name="name" class="form__input--text" placeholder="E.g: English Language" required>
+          <input type="text" name="name" placeholder="E.g: English Language" required>
         </label>
         <label>
           Course code
-          <input type="text" name="code" class="form__input--text" placeholder="E.g: ENG-202" required>
+          <input type="text" name="code" placeholder="E.g: ENG-202" required>
         </label>
       </div>
-      <div class="form__group-select">
+      <div class="form_group">
         <label for="">
           Course Level
           <select name="level" required>
@@ -59,7 +59,7 @@
         </label>
       </div>
 
-      <button type="submit" class="button button--save">Save</button>
+      <button type="submit" class="button button_save">Save</button>
     </form>
   </div>
 </div>
