@@ -452,7 +452,7 @@ a {
 .modal--dashboard-form {
   background: #ffffff;
   position: relative;
-  max-width: 700px;
+  max-width: 500px;
   margin: 15vh auto;
   padding: 15px;
   border-radius: 20px;
@@ -468,33 +468,16 @@ a {
   font-weight: bolder;
 }
 
-/* ==== Add course modal ===== */
-@media (min-width: 643px) {
-  .course_name_code {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-}
-
-.form__input--text,
-.form__textarea {
+.form__input--text {
   width: 100%;
   margin: 10px 0;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
-.form--course-management input,
-.form__textarea {
+.form--course-management input {
   background: #e7e7e7;
   border: none;
-}
-
-.form__textarea {
-  -moz-resize: vertical;
-  resize: vertical;
 }
 
 .form__group-select label,
@@ -506,25 +489,17 @@ a {
 .form__group-select select {
   padding: 8px 0;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 12px;
+}
+
+.form__group-select label {
+  display: block;
+  margin: 15px 0;
 }
 
 .form__group-select option {
   background: #ff9f1c;
 }
-
-@media (min-width: 500px) {
-  .form__group-select {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-  }
-
-  .form__group-select select {
-    width: 140px;
-  }
-}
-
 
 .form--course-management input[type="checkbox"] {
   margin: 10px;
