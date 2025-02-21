@@ -194,25 +194,12 @@
   position: relative;
   overflow: hidden;
   background: #333333;
-  width: 300px;
+  width: 350px;
   height: 150px;
   border-radius: 20px;
   color: #ffffff;
   text-align: center;
   margin: 20px auto;
-}
-
-.card .fa-book {
-  color: #D98D55;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
 }
 
 .card span {
@@ -222,8 +209,14 @@
 
 .course__code,
 .course__title {
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: 1.5px;
+  z-index: 999;
+}
+
+.course__title {
+  color: #E7E7E7;
+  margin-top: 5px;
 }
 
 .fa-long-arrow-right {
@@ -233,22 +226,34 @@
 }
 
 .card__eclipse {
-  width: 50px;
-  height: 50px;
-  outline: 20px solid #262424;
+  width: 55px;
+  height: 55px;
+  outline: 15px solid #262424;
   border-radius: 50%;
+  background: #F0FFB6;
+  color: #D98D55;
 }
 
 .card__eclipse--top {
   position: absolute;
-  top: 15px;
-  left: 13px;
+  top: 10px;
+  left: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
 }
 
 .card__eclipse--bottom {
   position: absolute;
   bottom: 5px;
   right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 20px;
 }
 
 .courses__view {
