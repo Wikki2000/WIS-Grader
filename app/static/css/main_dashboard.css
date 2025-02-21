@@ -207,14 +207,14 @@
   margin-top: 50px;
 }
 
-.course__code,
-.course__title {
+.course_code,
+.course_title {
   font-weight: 700;
   letter-spacing: 1.5px;
   z-index: 999;
 }
 
-.course__title {
+.course_title {
   color: #E7E7E7;
   margin-top: 5px;
 }
@@ -225,7 +225,7 @@
   right: 40px;
 }
 
-.card__eclipse {
+.card .eclipse {
   width: 55px;
   height: 55px;
   outline: 15px solid #262424;
@@ -234,7 +234,7 @@
   color: #D98D55;
 }
 
-.card__eclipse--top {
+.card .eclipse_top {
   position: absolute;
   top: 10px;
   left: 9px;
@@ -244,7 +244,7 @@
   font-size: 23px;
 }
 
-.card__eclipse--bottom {
+.card .eclipse_bottom {
   position: absolute;
   bottom: 5px;
   right: 5px;
