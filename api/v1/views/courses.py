@@ -4,7 +4,7 @@ from . import api_views
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger.utils import swag_from
 from flask import request, jsonify, abort
-from api.v1.views.utils import bad_request, role_required
+from api.v1.views.utils import bad_request
 from models import storage
 from models.course import Course
 from datetime import date
@@ -26,13 +26,13 @@ def create_course():
     # Validate request data
     required_fields = ["name", "code", "load", "semester", "level"]
 
-    error_404 = bad_request(data, required_fields)
-    if error_404:
-        return jsonify(error_404), 400
+    error_400 = bad_request(data, required_fields)
+    if error_400:
+        return jsonify(error_400), 400
 
     data["user_id"] = user_id  # Inject user ID to data.
 
-    # Ensure that no same course can be stored in database.
+    # Ensure that no same course is created for same year.
     data["code"] = data.get("code") + "_" + str(date.today().year)
 
     try:
@@ -120,7 +120,7 @@ def delete_course(course_id):
         ), 500
 
 
-@api_views.route('/courses/<string:course_id>', methods=['PUT'])
+@api_views.route('/courses/<string:course_id>/edit', methods=['PUT'])
 @jwt_required()
 @swag_from('./documentation/courses/update_course.yml')
 def update_course(course_id):
@@ -128,74 +128,32 @@ def update_course(course_id):
     Update details of a specific course by its ID.
     """
     data = request.get_json()
-
-    # Validate request data
-    if not data:
-        return jsonify({'error': 'Request body is empty'}), 400
-
-    # Check if the course exists
-    course = storage.get_by_id(Course, course_id)
+    course = storage.get_by(Course, id=course_id)
     if not course:
-        return jsonify({'error': 'Course not found'}), 404
+        abort(404)
 
-    # Update course details
-    if 'course_title' in data:
-        course.course_title = data['course_title']
-    if 'course_code' in data:
-        course.course_code = data['course_code']
-    if 'credit_load' in data:
-        course.credit_load = data['credit_load']
-    if 'semester' in data:
-        course.semester = data['semester']
+    # Ensure that no same course is created for same year.
+    data["code"] = data.get("code") + "_" + str(date.today().year)
 
-    try:
-        # Commit changes to the database
-        storage.save()
-        return jsonify(
-            {
-                "course": {
-                    "id": course.id,
-                    "course_title": course.course_title,
-                    "course_code": course.course_code,
-                    "credit_load": course.credit_load,
-                    "lecturer_id": course.lecturer_id,
-                    "description": course.description,
-                    "semester": course.semester,
-                    "student_count": len(course.students)
-                },
-                "status": "Success",
-                "msg": "Course Updated Successfully"
-            }
-        ), 200
-    except Exception as e:
-        storage.rollback()
-        return jsonify(
-            {
-                'error': 'An error occurred while updating the course',
-                'message': str(e)
-            }
-        ), 500
-    finally:
-        storage.close()
+    for key, val in data.items():
+        setattr(course, key, val)
+    storage.save()
+    course = storage.get_by(Course, id=course_id)
+    return jsonify(course.to_dict()), 200
 
 
-@api_views.route('/lecturer/courses/<string:course_id>', methods=['GET'])
+@api_views.route('/courses/<string:course_id>/get', methods=['GET'])
 @jwt_required()
 @swag_from('./documentation/courses/get_course.yml')
 def get_course_id(course_id):
     """ Retrieve a course by its ID. """
-    # Retrieve lecturer's ID from the JWT token
-    lecturer_id = get_jwt_identity()
 
-    # Fetch course from db
-    course_obj = storage.get_by_field(Course, "id", course_id)
-
-    if not course_obj:
+    user_id = get_jwt_identity()
+    course = storage.get_by(Course, id=course_id, user_id=user_id)
+    if not course:
         abort(404)
 
-    # Return course dic
-    course_dict = course_obj.to_dict()
-    course_dict['student_count'] = len(course_obj.students)
-    return jsonify(course_dict), 200
+    #course_dict['student_count'] = len(course_obj.students)
+    return jsonify(course.to_dict()), 200
 
 

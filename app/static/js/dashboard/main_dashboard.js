@@ -25,12 +25,16 @@ $(document).ready(function() {
 
   fetchData(courseUrl)
     .then((data) => {
-      data.forEach((course, index) => {
+      data.forEach((course) => {
         const date = britishDateFormat(course.created_at);
         $('#main__course-table--body').append(
           courseListTableTemplate(course, date)
         );
       });
+      // Hide delete fro course table menu in main dashboard.
+      if ($('#main__data-storage').data('main-dashboard') === 'yes') {
+        $('#main__course-table--body .course__delete').hide();
+      }
     })
     .catch((error) => {
       console.log(error);
