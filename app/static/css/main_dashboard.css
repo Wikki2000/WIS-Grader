@@ -251,31 +251,6 @@
   right: 5px;
 }
 
-/* .dashboard__add-course {
-  background: #ffffff;
-  border: 1px solid #e7e7e7;
-  width: 150px;
-  height: 150px;
-  border-radius: 20px;
-  padding-top: 10px;
-  color: #000000;
-  text-align: center;
-  font-size: 18px;
-}
-
-.dashboard__add-course:hover {
-  background-color: #e7e7e7;
-  cursor: pointer;
-}
-
-.dashboard__add-course-image {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-
-} */
-
-
 .courses__view {
   display: flex;
   justify-content: space-between;
