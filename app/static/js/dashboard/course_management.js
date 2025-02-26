@@ -121,6 +121,10 @@ $(document).ready(function() {
       let parentTd = event.target.closest("td"); // Get table cell
       let parentRect = parentTd.getBoundingClientRect(); // Get table cell position
 
+      let activeRow = event.target.closest("tr");
+      console.log(activeRow)
+      activeRow.style.color = "red";
+
       // Close any other open menus
       homeDashboardTable.querySelectorAll(".menu_list").forEach((list) => {
         if (list !== menu) {
