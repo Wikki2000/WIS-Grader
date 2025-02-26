@@ -135,17 +135,11 @@ $(document).ready(function() {
         }
       });
 
-      // Toggle visibility
-      if (menu.style.display === "block") {
-        menu.style.display = "none";
-        return;
-      }
       menu.style.display = "block";
       menu.style.position = "absolute";
       menu.style.visibility = "hidden";
 
       let menuHeight = menu.offsetHeight;
-      let menuWidth = menu.offsetWidth;
 
       // Position menu close to the button
       let topPosition = buttonRect.bottom - parentRect.top - 20;
