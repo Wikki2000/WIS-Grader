@@ -121,10 +121,13 @@ $(document).ready(function() {
       let parentTd = event.target.closest("td"); // Get table cell
       let parentRect = parentTd.getBoundingClientRect(); // Get table cell position
 
-      let activeRow = event.target.closest("tr");
-      console.log(activeRow)
-      activeRow.style.color = "red";
+      // Remove active_row class from all rows before adding to the new one
+      homeDashboardTable.querySelectorAll("tr").forEach((row) => {
+        row.classList.remove("active_row");
+      });
 
+      let activeRow = event.target.closest("tr");
+      activeRow.classList.add("active_row");
       // Close any other open menus
       homeDashboardTable.querySelectorAll(".menu_list").forEach((list) => {
         if (list !== menu) {
@@ -153,11 +156,6 @@ $(document).ready(function() {
         topPosition = buttonRect.top - parentRect.top - menuHeight + 20; // Move above button
       }
 
-      /*====== Please dont't remove =======
-    if (rightPosition + menuWidth > parentTd.clientWidth) {
-      rightPosition = parentTd.clientWidth - menuWidth; // Keep inside the cell
-    }*/
-
       // Apply positioning
       menu.style.top = `${topPosition}px`;
       menu.style.right = `${rightPosition}px`;
@@ -175,5 +173,11 @@ $(document).ready(function() {
         menu.style.display = "none";
       }
     });
+
+    if(!event.target.classList.contains("menu_toggle")) {
+      document.querySelectorAll("tr").forEach((row) => {
+        row.classList.remove("active_row");
+      });
+    }
   });
 });

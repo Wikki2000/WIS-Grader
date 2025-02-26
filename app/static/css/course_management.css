@@ -55,6 +55,10 @@ tr {
   position: relative;
 }
 
+.active_row {
+  background-color: #F0FFB6;
+}
+
 .th_row :first-child,
 .course_name {
   text-align: left;
