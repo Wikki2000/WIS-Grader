@@ -50,7 +50,6 @@ const quotes = [
   { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
   { text: "Children learn more from who you are than what you teach.", author: "Unknown" },
   { text: "You can’t stop a teacher when they want to do something. They just do it.", author: "J.D. Salinger" },
-  { text: "A good teacher isn’t someone who gives the answers out to their kids but is understanding of needs and challenges and gives tools to help other people succeed.", author: "Justin Trudeau" },
   { text: "Teachers who love teaching, teach children to love learning.", author: "Unknown" },
   { text: "My teacher gave me the best gift of all… Believing in me!", author: "Unknown" }
 ];
