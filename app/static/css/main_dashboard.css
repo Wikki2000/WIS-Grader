@@ -164,8 +164,10 @@
   border-left: 4px solid #2c3e50;
   box-shadow: 0 4px 8px rgb(240, 255, 182);
   max-width: 600px;
+  height: 200px;
   margin: auto;
   margin: 20px auto;
+  position: relative;
 }
 
 .quote {
@@ -181,6 +183,33 @@
   color: #7f8c8d;
   display: block;
   text-align: right;
+}
+
+.quote_controls {
+  position: absolute;
+  bottom: 5px;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prev_quote, .next_quote {
+  cursor: pointer;
+  width: auto;
+  padding: 5px 10px;
+  width: 45px;
+  margin-top: -62px;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  user-select: none;
+}
+
+.prev_quote:hover, .next_quote:hover {
+  background: #F0FFB6;
+  border: 1px solid #000000;
 }
 
 /* ====== Course card styles ======= */
@@ -337,5 +366,9 @@
     margin: 20px 0;
   }
 
+  .quote__container {
+    width: 600px;
+    height: unset;
+  }
 }
 
