@@ -1,7 +1,7 @@
 import {
   ajaxRequest, fetchData, compareDate, britishDateFormat, getFormattedDate,
   validateForm, updateElementCount,showNotification, getBaseUrl,
-  displayMenuList, 
+  displayMenuList,
 } from '../global/utils.js';
 import { courseListTableTemplate } from '../global/templates.js';
 
@@ -40,3 +40,43 @@ $(document).ready(function() {
       console.log(error);
     });
 });
+
+// Teacher Insprational Quotes Carousel
+const quotes = [
+  { text: "Teaching kids to count is fine, but teaching kids what counts is best.", author: "Bob Talbert" },
+  { text: "I touch the future. I teach.", author: "Christa McAuliffe" },
+  { text: "A good education can change anyone. A good teacher can change everything!", author: "Unknown" },
+  { text: "Teachers can make such a profound impact on our lives and should be honored as heroes.", author: "Rainn Wilson" },
+  { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
+  { text: "Children learn more from who you are than what you teach.", author: "Unknown" },
+  { text: "You can’t stop a teacher when they want to do something. They just do it.", author: "J.D. Salinger" },
+  { text: "A good teacher isn’t someone who gives the answers out to their kids but is understanding of needs and challenges and gives tools to help other people succeed.", author: "Justin Trudeau" },
+  { text: "Teachers who love teaching, teach children to love learning.", author: "Unknown" },
+  { text: "My teacher gave me the best gift of all… Believing in me!", author: "Unknown" }
+];
+
+let index = 0;
+const quoteText = document.getElementById("quote-text");
+const quoteAuthor = document.getElementById("quote-author");
+const prevButton = document.getElementById("prev-quote");
+const nextButton = document.getElementById("next-quote");
+
+function updateQuote() {
+  quoteText.textContent = `"${quotes[index].text}"`;
+  quoteAuthor.textContent = `- ${quotes[index].author}`;
+}
+
+prevButton.addEventListener("click", () => {
+  index = (index - 1 + quotes.length) % quotes.length;
+  updateQuote();
+});
+
+nextButton.addEventListener("click", () => {
+  index = (index + 1) % quotes.length;
+  updateQuote();
+});
+
+setInterval(() => {
+  index = (index + 1) % quotes.length;
+  updateQuote();
+}, 5000);
