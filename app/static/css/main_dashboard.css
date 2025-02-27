@@ -126,7 +126,7 @@
   gap: 20px;
 }
 
-.dashboard__welcome {
+.welcome {
   background: #F0FFB6;
   display: flex;
   align-items: center;
@@ -138,25 +138,25 @@
   margin: 20px auto;
 }
 
-.dashboard__welcome-message h2 {
+.welcome_message h2 {
   color: #D98D55;
   font-size: clamp(1.8rem, 2.5vw, 2.8rem);
   font-weight: 400;
 }
 
-.dashboard__welcome-message span {
+.welcome_message span {
   font-weight: 500px;
   font-size: 20px;
 }
 
-.waving__lady {
+.waving_lady {
   margin-left: 30px;
   width: 180px;
   height: 180px;
 }
 
 /* ======= Inspirational Quotes ========= */
-.quote__container {
+.quote_container {
   font-family: 'Georgia', serif;
   padding: 20px;
   background-color: #f9f9f9;
@@ -355,18 +355,18 @@
 }
 
 @media (min-width: 1000px) {
-  .dashboard__intro {
+  .dashboard_intro {
     display: flex;
     justify-content: space-between;
     gap: 20px;
   }
 
-  .dashboard__welcome,
-  .quote__container {
+  .welcome,
+  .quote_container {
     margin: 20px 0;
   }
 
-  .quote__container {
+  .quote_container {
     width: 600px;
     height: unset;
   }
