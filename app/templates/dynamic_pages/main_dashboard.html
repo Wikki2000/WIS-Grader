@@ -1,0 +1,139 @@
+<!-- ========= DASHBOARD SECTION GOES HERE ======== -->
+<div class="dashboard_section">
+  <div class="dashboard_intro">
+    <div class="welcome">
+      <div class="welcome_message">
+        <h2 id="main__user-welcome--text">
+          <!-- Welcome dynamically loaded here -->
+        </h2>
+        <span>It's good to see you again.</span>
+      </div>
+
+      <img
+        src="/static/images/waving_lady.svg"
+        alt=""
+        srcset=""
+        class="waving_lady"
+        />
+    </div>
+    <!-- Teachers Inspirational Quotes-->
+    <div class="quote_container">
+      <blockquote class="quote" id="quote-text">
+        "Teaching kids to count is fine, but teaching kids what counts is best."
+      </blockquote>
+      <cite class="author" id="quote-author">- Bob Talbert</cite>
+      <div class="quote_controls">
+        <button id="prev-quote" class="prev_quote">❮</button>
+        <button id="next-quote" class="next_quote">❯</button>
+      </div>
+    </div>
+  </div>
+  <!-- ====== Course cards preview ====== -->
+  <div class="course_cards_container">
+    <div class="courses_actions">
+      <h3>Courses</h3>
+      <button id="main__add-course" class="button">Add New Course</button>
+    </div>
+
+    <div id="courses-cards" class="courses_cards">
+      <div class="card">
+        <div class="eclipse eclipse_top">
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </div>
+        <span>
+          <h4 class="course_code">__ __ __ __ __ __</h4>
+          <h6 class="course_title">__ __ __</h6>
+        </span>
+        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        <div class="eclipse eclipse_bottom">0</div>
+      </div>
+
+      <div class="card">
+        <div class="eclipse eclipse_top">
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </div>
+        <span>
+          <h4 class="course_code">MAT - 101</h4>
+          <h6 class="course_title">Introduction Mathematics</h6>
+        </span>
+        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        <div class="eclipse eclipse_bottom">20</div>
+      </div>
+
+      <div class="card">
+        <div class="eclipse eclipse_top">
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </div>
+        <span>
+          <h4 class="course_code">ENG - 243</h4>
+          <h6 class="course_title">Business English</h6>
+        </span>
+        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        <div class="eclipse eclipse_bottom">9958</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard__course-management">
+    <div class="courses__view">
+      <h3>Course Management</h3>
+      <button class="button--view-all">View all</button>
+    </div>
+
+    <table id="home_dashboard_table" class="course_table">
+      <thead>
+        <tr class="th_row">
+          <th>Course Name</th>
+          <th>Course Code</th>
+          <!--<th>Course Details</th>-->
+          <th>Academic Year</th>
+          <th>Student's Count</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody id="main__course-table--body">
+        <!-- Table body will be loaded dynamically given value from database. -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Popup Modal For Guest details -->
+<div id="course__details-modal" class="popup-modal">
+  <div class="popup-modal-content course__modal-content">
+    <!-- Close Button -->
+    <button class="close-btn closePopupModal">&times;</button>
+    <h1>Course Details</h1>
+
+    <!-- Data in this section is dynamically loaded -->
+    <div class="course__details-flex">
+      <h4>Course Title: </h4>
+      <p id="course-title"></p>
+    </div>
+    <div class="course__details-flex">
+      <h4>Course Code: </h4>
+      <p id="course-code"></p>
+    </div>
+    <div class="course__details-flex">
+      <h4>Course Level: </h4>
+      <p id="course-level"></p>
+    </div>
+    <div class="course__details-flex">
+      <h4>Course Semester / Year: </h4>
+      <p id="course-semester"></p>
+    </div>
+    <div class="course__details-flex">
+      <h4>Course Load: </h4>
+      <p id="course-load"></p>
+    </div>
+    <div class="course__details-flex">
+      <h4>Student's Enrolled: </h4>
+      <p id="course-enroll">30 Student</p>
+    </div>
+    <div class="course__details-flex">
+      <h4>Registration Status: </h4>
+      <p id="course__reg-status" style="color: green;">Active</p>
+    </div>
+  </div>
+</div>

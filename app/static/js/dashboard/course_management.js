@@ -127,74 +127,69 @@ $(document).ready(function () {
     }
   );
 
-  // Handle table row and menu states
-  const homeDashboardTable = document.getElementById("home_dashboard_table");
-  homeDashboardTable.addEventListener("click", function (event) {
-    if (event.target.classList.contains("menu_toggle")) {
-      handleTableRowState(event);
-      handleTableMenuState(event);
-    }
+
+  $("#dynamic__load-dashboard").on("click", ".menu_toggle", function (event) {
+    handleTableRowState($(this));
+    handleTableMenuState($(this));
+    event.stopPropagation();
   });
 
-  // Close menu and remove active row highlight when clicking outside
-  document.addEventListener("click", function (event) {
-    if (!event.target.classList.contains("menu_toggle")) {
+  $(document).on("click", function (event) {
+    if (!$(event.target).hasClass("menu_toggle")) {
       closeMenu();
       removeActiveRowClass();
     }
   });
 
-  function handleTableRowState(event) {
-    let activeRow = event.target.closest("tr");
-
-    if (!activeRow) return;
-    if (activeRow.classList.contains("active_row")) return;
-
+  function handleTableRowState($target) {
+    let $activeRow = $target.closest("tr");
+    if (!$activeRow.length || $activeRow.hasClass("active_row")) return;
     removeActiveRowClass();
-    activeRow.classList.add("active_row");
+    $activeRow.addClass("active_row");
   }
 
-  function handleTableMenuState(event) {
-    let menu = event.target.nextElementSibling;
-    if (!menu) return;
+  function handleTableMenuState($target) {
+    let $menu = $target.next(".menu_list");
+    if (!$menu.length) return;
 
-    let buttonRect = event.target.getBoundingClientRect();
-    let parentTd = event.target.closest("td");
+    let buttonRect = $target[0].getBoundingClientRect();
+    let $parentTd = $target.closest("td");
+    if (!$parentTd.length) return;
 
-    if (!parentTd) return;
-    let parentRect = parentTd.getBoundingClientRect();
+    let parentRect = $parentTd[0].getBoundingClientRect();
+    closeMenu($menu);
 
-    closeMenu(menu);
+    $menu.css({
+      display: "block",
+      position: "absolute",
+      visibility: "hidden",
+    });
 
-    menu.style.display = "block";
-    menu.style.position = "absolute";
-    menu.style.visibility = "hidden";
-
-    // Calculate menu position
     let topPosition = buttonRect.bottom - parentRect.top - 20;
     let rightPosition = parentRect.right - buttonRect.right + 50;
 
-    let menuHeight = menu.offsetHeight;
-    if (topPosition + menuHeight > parentTd.clientHeight) {
-      topPosition = buttonRect.top - parentRect.top - menuHeight + 20; // Move above button
+    let menuHeight = $menu.outerHeight();
+    if (topPosition + menuHeight > $parentTd.height()) {
+      topPosition = buttonRect.top - parentRect.top - menuHeight + 20;
     }
 
-    menu.style.top = `${topPosition}px`;
-    menu.style.right = `${rightPosition}px`;
-    menu.style.visibility = "visible";
+    $menu.css({
+      top: `${topPosition}px`,
+      right: `${rightPosition}px`,
+      visibility: "visible",
+    });
   }
 
   function removeActiveRowClass() {
-    homeDashboardTable.querySelectorAll(".active_row").forEach((row) => {
-      row.classList.remove("active_row");
-    });
+    $("#dynamic__load-dashboard").find(".active_row").removeClass("active_row");
   }
 
-  function closeMenu(activeMenu = null) {
-    homeDashboardTable.querySelectorAll(".menu_list").forEach((menu) => {
-      if (menu !== activeMenu) {
-        menu.style.display = "none";
+  function closeMenu($activeMenu = null) {
+    $("#dynamic__load-dashboard").find(".menu_list").each(function () {
+      if (!$activeMenu || !$(this).is($activeMenu)) {
+        $(this).hide();
       }
     });
   }
+
 });

@@ -2,6 +2,7 @@ import {
   britishDateFormat, compareDate, getFormattedDate, fetchData, ajaxRequest,
   getBaseUrl, highLightOrderBtn, cartItemsTotalAmount
 } from '../global/utils.js';
+import { courseListTableTemplate } from '../global/templates.js';
 
 $(document).ready(function() {
 
@@ -22,20 +23,62 @@ $(document).ready(function() {
     switch(clickId) {
       case 'sidebar__main': {
 
-        /*
         const staffUrl = APP_BASE_URL + '/pages/main_dashboard';
         $('#dynamic__load-dashboard').load(staffUrl, function() {
-          const roomUrl = API_BASE_URL + '/rooms';
+          const userUrl = API_BASE_URL + '/users';
+          const courseUrl = API_BASE_URL + '/courses';
+
+          fetchData(userUrl)
+            .then((data) => {
+              $('#main__user-welcome--text').text(`Hello ${data.last_name}`);
+              $('#dashboard__user-name')
+                .text(data.first_name + " " + data.last_name);
+              $('#dashboard__user-email').text(data.email);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
+          fetchData(courseUrl)
+            .then((data) => {
+              data.forEach((course) => {
+                const date = britishDateFormat(course.created_at);
+                $('#main__course-table--body').append(
+                  courseListTableTemplate(course, date)
+                );
+              });
+              // Hide delete fro course table menu in main dashboard.
+              if ($('#main__data-storage').data('main-dashboard') === 'yes') {
+                $('#main__course-table--body .course__delete').hide();
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         });
-        */
         break;
       }
       case 'sidebar__course': {
-        /*
-        const url = APP_BASE_URL + '/pages/room_service';
+        const url = APP_BASE_URL + '/pages/course_management';
         $('#dynamic__load-dashboard').load(url, function() {
+          const courseUrl = API_BASE_URL + '/courses';
+          fetchData(courseUrl)
+            .then((data) => {
+              data.forEach((course) => {
+                const date = britishDateFormat(course.created_at);
+                $('#main__course-table--body').append(
+                  courseListTableTemplate(course, date)
+                );
+              });
+              // Hide delete fro course table menu in main dashboard.
+              if ($('#main__data-storage').data('main-dashboard') === 'yes') {
+                $('#main__course-table--body .course__delete').hide();
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         });
-        */
         break;
       }
       case 'sidebar__grade': {
@@ -49,18 +92,18 @@ $(document).ready(function() {
       }
       case 'sidebar__setting' : {
         /*
-        const url = APP_BASE_URL + '/pages/restaurant';
-        $('#dynamic__load-dashboard').load(url, function() {
-        });
-        */
+                                const url = APP_BASE_URL + '/pages/restaurant';
+                                $('#dynamic__load-dashboard').load(url, function() {
+                                });
+                                */
         break;
       }
       case 'sidebar__help': {
         /*
-        const url = APP_BASE_URL + '/pages/order';
-        $('#dynamic__load-dashboard').load(url, function() {
-        });
-        */
+                                const url = APP_BASE_URL + '/pages/order';
+                                $('#dynamic__load-dashboard').load(url, function() {
+                                });
+                                */
         break;
       }
       case 'sidebar__logout': {
