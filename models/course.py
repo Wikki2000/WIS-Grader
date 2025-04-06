@@ -19,12 +19,17 @@ class Course(BaseModel, Base):
     load = Column(Integer, nullable=False)
     semester = Column(String(20))
     description = Column(String(500))
+    #department = 
     level = Column(String(225), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'))
     #course_link = Column(String(60))
 
-    students = relationship("Student", secondary="enrollments",
-                            backref="courses")
+    departments = relationship(
+        "Department", cascade="all, delete-orphan",backref="course"
+    )
+    students = relationship(
+        "Student", secondary="enrollments", backref="courses"
+    )
 
     # Enforce uniqueness of course code per lecturer (composite)
     __table_args__ = (

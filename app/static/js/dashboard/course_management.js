@@ -25,6 +25,15 @@ $(document).ready(function () {
     });
   });
 
+  // Switch section between course and student management.
+  $("#dynamic__load-dashboard")
+    .off("click", "#manage__course-click, #manage__student-click")
+    .on("click", "#manage__course-click, #manage__student-click", function() {
+      const $clickItem = $(this);
+      $clickItem.siblings().removeClass('higlight__border');
+      $clickItem.addClass('higlight__border');
+    });
+  // Handle form submission for creating course.
   $("#popup__modal").on("submit", "#course-management", function (e) {
     e.preventDefault();
     const $formElement = $(this);

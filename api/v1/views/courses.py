@@ -42,7 +42,8 @@ def create_course():
         storage.save()
         new_course = storage.get_by(Course, id=new_course.id)
         return jsonify(new_course.to_dict()), 200
-    except IntegrityError:
+    except IntegrityError as e:
+        print(str(e))
         code_year = new_course.code.split('_')
         code = code_year[0]
         year = code_year[1]

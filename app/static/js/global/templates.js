@@ -12,7 +12,10 @@ export function courseListTableTemplate(data, date) {
   const [code, year] = data.code.split('_');
   const row = `<tr data-id="${data.id}">
     <td class="course_name">
-      <p class="name">${data.name}</p>
+      <div class="course__name-container">
+        <p><input type="checkbox"></p>
+        <p class="name">${data.name}</p>
+      </div>
     </td>
     <td class="">
         <p class="code">${code}</p>
@@ -33,6 +36,9 @@ export function courseListTableTemplate(data, date) {
         <li data-id="${data.id}" class="menu_item course__table-menu course__edit">
           <i class="fa fa-edit"></i>Edit
         </li>
+	<li data-id="${data.id}" class="menu_item course__table-menu">
+	  <i class="fa fa-plus"></i>Add Department
+	</li>
         <li data-id="${data.id}" class="menu_item course__table-menu">
           <i class="fa fa-share"></i>Share Link
         </li>

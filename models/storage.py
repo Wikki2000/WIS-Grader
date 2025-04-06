@@ -5,9 +5,11 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 from models.user import User
 from models.base_model import Base
+from models.department import Department
 
 from dotenv import load_dotenv
 from os import getenv
+from urllib.parse import quote_plus
 from typing import Type, Any, List
 
 load_dotenv()
@@ -28,7 +30,10 @@ class Storage:
             error = "Environment variables must be set for database URL"
             raise ValueError(error)
 
-        url = f'mysql+mysqldb://{username}:{password}@localhost:5432/{database}'
+        # URL encode the password to handle special characters   
+        encoded_password = quote_plus(password)
+
+        url = f'mysql+mysqldb://{username}:{encoded_password}@localhost:3306/{database}'
         self.__engine = create_engine(url, pool_pre_ping=True)
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine)

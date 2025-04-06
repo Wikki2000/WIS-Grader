@@ -5,14 +5,21 @@ from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import declarative_base
 from uuid import uuid4
 import base64
+import pytz
+
+
+def get_nigeria_time():
+    nigeria_tz = pytz.timezone("Africa/Lagos")
+    return datetime.now(nigeria_tz)
+
 
 Base = declarative_base()
 
 class BaseModel:
     """Define the class models for related method and attribute."""
     id = Column(String(60), primary_key=True, default=lambda: str(uuid4()))
-    created_at = Column(DateTime(6), default=datetime.utcnow)
-    updated_at = Column(DateTime(6), default=datetime.utcnow)
+    created_at = Column(DateTime(6), default=get_nigeria_time)
+    updated_at = Column(DateTime(6), default=get_nigeria_time)
 
     def __str__(self):
         """String representation of objrct."""

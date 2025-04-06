@@ -5,7 +5,7 @@ from flask import request, jsonify, session
 from flasgger.utils import swag_from
 from api.v1.views.utils import (
         delete_token, validate_token, generate_token, send_mail, read_html_file
-        )
+)
 from models.user import User
 from models import storage
 from flask_jwt_extended import create_access_token, set_access_cookies
@@ -37,7 +37,7 @@ def verify_account():
     if is_valid:
         user = User(**reg_data)
         password = reg_data.get("password")  # Get password from session.
-        user.hash_password(password)  # Hash password
+        user.hash_password()  # Hash password
         storage.new(user)
         storage.save()
 

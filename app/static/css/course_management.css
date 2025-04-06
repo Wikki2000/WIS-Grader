@@ -51,6 +51,12 @@
   border-spacing: 0;
 }
 
+.higlight__border {
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 tr {
   position: relative;
 }
@@ -72,6 +78,7 @@ tr {
 
 .th_row :first-child {
   border-top-left-radius: 10px;
+  padding-left: 50px;
 }
 
 .th_row :last-child {
@@ -102,6 +109,21 @@ td {
   width: 45px;
   padding: 10px 0;
   font-size: 20px;
+}
+
+.course__name-container {
+  display: flex;
+
+  .name {
+    padding-left: 15px;
+  }
+  input {
+    width: 15px;
+    height: 15px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .course_table .menu_toggle:hover {
