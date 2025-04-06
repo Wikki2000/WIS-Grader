@@ -9,12 +9,12 @@
  * @return {String} - The course template.
  */
 export function courseListTableTemplate(data, date) {
-  const [code, year] = data.code.split('_');
-  const row = `<tr data-id="${data.id}">
+  const [code, year] = data.course.code.split('_');
+  const row = `<tr data-id="${data.course.id}">
     <td class="course_name">
       <div class="course__name-container">
         <p><input type="checkbox"></p>
-        <p class="name">${data.name}</p>
+        <p class="name">${data.course.name}</p>
       </div>
     </td>
     <td class="">
@@ -25,33 +25,33 @@ export function courseListTableTemplate(data, date) {
       <p>${year}</p>
     </td>
     <td class="">
-      <p class="">50</p>
+      <p class="">${data.student_count}</p>
     </td>
     <td class="menu_cell">
       <button class="menu_toggle">⋮</button>
       <ul class="menu_list">
-        <li data-id="${data.id}" class="menu_item course__table-menu course__details">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu course__details">
           <i class="fa fa-eye"></i>Details
         </li>
-        <li data-id="${data.id}" class="menu_item course__table-menu course__edit">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu course__edit">
           <i class="fa fa-edit"></i>Edit
         </li>
-	<li data-id="${data.id}" class="menu_item course__table-menu">
+	<li data-id="${data.course.id}" class="menu_item course__table-menu">
 	  <i class="fa fa-plus"></i>Add Department
 	</li>
-        <li data-id="${data.id}" class="menu_item course__table-menu">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu">
           <i class="fa fa-share"></i>Share Link
         </li>
-        <li data-id="${data.id}" class="menu_item course__table-menu">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu">
           <i class="fa fa-user-plus"></i>Enroll Student
         </li>
-        <li data-id="${data.id}" class="menu_item course__table-menu">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu">
           <i class="fa fa-ban"></i>Stop Registration
         </li>
-        <li data-id="${data.id}" class="menu_item course__table-menu">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu">
           <i class="fa fa-tasks"></i>Allow Registration
         </li>
-        <li data-id="${data.id}" class="menu_item course__table-menu course__delete">
+        <li data-id="${data.course.id}" class="menu_item course__table-menu course__delete">
           <i class="fa fa-trash"></i>Delete
         </li>
       </ul>

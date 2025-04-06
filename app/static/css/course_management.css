@@ -45,7 +45,7 @@
 
 
 /*======= TABLE STYLING ========*/
-.course_table {
+.course_table, .student_table {
   text-align: center;
   width: 100%;
   border-spacing: 0;
@@ -85,13 +85,12 @@ tr {
   border-top-right-radius: 10px;
 }
 
-.course_table th,
-td {
+.course_table th, .student_table th, td {
   border-bottom: 1px solid #706e6e99;
   padding: 10px 0;
 }
 
-.course_table .fa-book {
+.course_table .fa-book, .student_table .fa-book {
   color: #D98D55;
   display: flex;
   align-items: center;

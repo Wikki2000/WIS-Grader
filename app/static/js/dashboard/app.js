@@ -78,6 +78,7 @@ $(document).ready(function() {
             .catch((error) => {
               console.log(error);
             });
+	  $("#section__loaded").val("course");
         });
         break;
       }

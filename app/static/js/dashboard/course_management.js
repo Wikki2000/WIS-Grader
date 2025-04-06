@@ -17,12 +17,16 @@ $(document).ready(function () {
 
   const FORM_Url = APP_BASE_URL + "/pages/course_form";
   $("#dynamic__load-dashboard").on("click", "#main__add-course", function () {
-    $("#popup__modal").load(FORM_Url, function () {
-      $("#method").val("POST");
+    const loadedPage = $("#section__loaded").val();
+    if (loadedPage === "course") {
+      $("#popup__modal").load(FORM_Url, function () {
+        $("#method").val("POST");
 
-      // Add form heading
-      $("#course__modal").text("Add New Course");
-    });
+        // Add form heading
+        $("#course__modal").text("Add New Course");
+      });
+    } else if (loadedPage === "student") {
+    }
   });
 
   // Switch section between course and student management.
@@ -30,8 +34,27 @@ $(document).ready(function () {
     .off("click", "#manage__course-click, #manage__student-click")
     .on("click", "#manage__course-click, #manage__student-click", function() {
       const $clickItem = $(this);
-      $clickItem.siblings().removeClass('higlight__border');
-      $clickItem.addClass('higlight__border');
+      const clickItemId = $clickItem.attr("id");
+      $clickItem.siblings().removeClass("higlight__border");
+      $clickItem.addClass("higlight__border");
+
+      $("#course_table").addClass("hide");
+      $("#student_table").addClass("hide"); 
+
+      switch (clickItemId) {
+        case "manage__course-click": {
+          $("#course_table").removeClass("hide");
+          $('#add__new-student-course').text("New Course");
+          $("#section__loaded").val("course");
+          break;
+        }
+        case "manage__student-click": {
+          $("#student_table").removeClass("hide");
+          $('#add__new-student-course').text("New Student");
+          $("#section__loaded").val("student");
+          break;
+        }
+      }
     });
   // Handle form submission for creating course.
   $("#popup__modal").on("submit", "#course-management", function (e) {

@@ -77,8 +77,8 @@ def get_courses():
 
     # Convert the list of Course objects to a list of dictionaries
     courses_list = [{
-        **course.to_dict(),  # Include all course fields
-        #'student_count': len(course.students)  # Add student count
+        'course': course.to_dict(),
+        'student_count': len(course.students)  # Add student count
     } for course in sorted_courses]
 
     storage.close()

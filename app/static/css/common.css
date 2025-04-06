@@ -45,3 +45,8 @@
 .close-btn:hover {
   color: #ff0000;
 }
+
+
+.hide {
+  display: none;
+}

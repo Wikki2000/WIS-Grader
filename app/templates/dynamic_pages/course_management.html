@@ -11,11 +11,12 @@
     </div>
 
     <button id="main__add-course" class="button button_add_course">
-      <i class="fa fa-plus"></i> New Course
+      <i class="fa fa-plus"></i> <span id="add__new-student-course">New Course</span>
     </button>
   </div>
 
-  <table class="course_table">
+  <!-- Course Table Begins -->
+  <table id="course_table" class="course_table">
     <thead>
       <tr class="th_row">
         <th>Course Name</th>
@@ -25,10 +26,25 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody id="main__course-table--body">
       <!-- Table body will be loaded dynamically given value from database. -->
     </tbody>
-
   </table>
+
+  <!-- Student Table Begins -->
+  <table id="student_table" class="student_table hide">
+    <thead>       
+      <tr class="th_row">     
+        <th>Student Name</th>    
+        <th>Reg. Number</th>  
+        <th>Level</th>   
+        <th>Department</th>    
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="main__student-table--body">                                                                                                                                     <!-- Table body will be loaded dynamically given value from database. -->
+    </tbody>
+  </table>
+
+  <input id="section__loaded" type="hidden" />
 </div>
