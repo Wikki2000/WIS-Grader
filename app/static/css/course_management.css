@@ -101,7 +101,8 @@ tr {
   border-radius: 50%;
 }
 
-.course_table .menu_toggle {
+.course_table .menu_toggle,
+.student_table .menu_toggle {
   border: none;
   font-weight: bold;
   border-radius: 50%;
@@ -125,7 +126,8 @@ tr {
   }
 }
 
-.course_table .menu_toggle:hover {
+.course_table .menu_toggle:hover,
+.student_table .menu_toggle:hover {
   background: #007AFF66;
   cursor: pointer;
 }

@@ -61,6 +61,9 @@ $(document).ready(function() {
       case 'sidebar__course': {
         const url = APP_BASE_URL + '/pages/course_management';
         $('#dynamic__load-dashboard').load(url, function() {
+
+	  $("#add__student-form-container").hide();
+
           const courseUrl = API_BASE_URL + '/courses';
           fetchData(courseUrl)
             .then((data) => {

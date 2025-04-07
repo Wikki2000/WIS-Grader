@@ -9,112 +9,43 @@ import {
   showNotification,
   updateElementCount,
 } from "../global/utils.js";
-import { courseListTableTemplate, studentTableTemplate } from "../global/templates.js";
+import { studentTableTemplate } from "../global/templates.js";
 
 $(document).ready(function () {
   const API_BASE_URL = getBaseUrl()["apiBaseUrl"];
   const APP_BASE_URL = getBaseUrl()["appBaseUrl"];
 
-  const FORM_Url = APP_BASE_URL + "/pages/course_form";
-  $("#dynamic__load-dashboard").on("click", "#main__add-course", function () {
-    const loadedPage = $("#section__loaded").val();
-    if (loadedPage === "course") {
-      $("#popup__modal").load(FORM_Url, function () {
-        $("#method").val("POST");
-
-        // Add form heading
-        $("#course__modal").text("Add New Course");
-      });
-    } else if (loadedPage === "student") {
-      $("#add__student-form-container").show();
-      $("#student__modal").text("Add New Student");
-      $("#student__method").val("POST");
-    }
-  });
-
-  // Switch section between course and student management.
+ // Handle form submission for creating course.
   $("#dynamic__load-dashboard")
-    .off("click", "#manage__course-click, #manage__student-click")
-    .on("click", "#manage__course-click, #manage__student-click", function() {
-      const $clickItem = $(this);
-      const clickItemId = $clickItem.attr("id");
-      $clickItem.siblings().removeClass("higlight__border");
-      $clickItem.addClass("higlight__border");
-
-      $("#course_table").addClass("hide");
-      $("#student_table").addClass("hide"); 
-
-      switch (clickItemId) {
-        case "manage__course-click": {
-          $("#course_table").removeClass("hide");
-          $('#add__new-student-course').text("New Course");
-          $("#section__loaded").val("course");
-          
-          const courseUrl = API_BASE_URL + '/courses';      
-          fetchData(courseUrl)       
-          .then((data) => {  
-            $("#main__course-table--body").empty();
-            data.forEach((course) => {     
-              const date = britishDateFormat(course.created_at);  
-              $('#main__course-table--body').append(     
-                courseListTableTemplate(course, date)       
-              );    
-            });      
-          })     
-          .catch((error) => {     
-            console.log(error);     
-          });  
-
-          break;
-        }
-        case "manage__student-click": {
-          $("#student_table").removeClass("hide");
-          $('#add__new-student-course').text("New Student");
-          $("#section__loaded").val("student");
-          const courseUrl = API_BASE_URL + '/students';     
-          fetchData(courseUrl)     
-          .then((data) => {        
-            $("#student__table-body").empty();
-            data.forEach((student) => {
-              $('#student__table-body').append(studentTableTemplate(student));     
-            });    
-          })       
-          .catch((error) => {    
-            console.log(error);      
-          });  
-          break;
-        }
-      }
-    });
-  // Handle form submission for creating course.
-  $("#popup__modal").on("submit", "#course-management", function (e) {
+    .off("submit", "#student-management")
+    .on("submit", "#student-management", function (e) {
     e.preventDefault();
     const $formElement = $(this);
 
     const data = sanitizeInput(getFormDataAsDict($formElement));
-    const method = $("#method").val();
-    const courseId = $("#course__id").val();
+    const method = $("#student__method").val();
+    //const courseId = $("#course__id").val();
+    const studentId = "12345";
 
-    $("#popup__modal").empty();
+    const addStudentUrl = API_BASE_URL + "/students";
+    const editStudentUrl = API_BASE_URL + `/students/${studentId}/edit`;
 
-    const addCouresUrl = API_BASE_URL + "/courses";
-    const editCouresUrl = API_BASE_URL + `/courses/${courseId}/edit`;
-
-    const url = method === "POST" ? addCouresUrl : editCouresUrl;
+    const url = method === "POST" ? addStudentUrl : editStudentUrl;
+	  console.log(data);
 
     ajaxRequest(
       url,
       method,
       JSON.stringify(data),
       (data) => {
+	      console.log(data);
         if (method === "POST") {
-          const date = britishDateFormat(data.created_at);
-          const $serialNumber = $("#main__course-table--body td:first-child");
+
           $("#main__course-table--body").prepend(
-            courseListTableTemplate(data, date)
+            studentTableTemplate(data)
           );
           $formElement.trigger("reset");
-          showNotification("Course Added Successfully !");
+          showNotification("Student Added Successfully !");
         } else if (method === "PUT") {
           const [code, year] = data.code.split("_");
           $(`#main__course-table--body tr[data-id="${data.id}"] .name`).text(

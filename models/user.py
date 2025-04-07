@@ -23,9 +23,9 @@ class User(BaseModel, Base):
     """
     schools = relationship("School", backref="lecturer",
                            cascade="all, delete-orphan")
-    students = relationship("Student", backref="lecturer",
-                            cascade="all, delete-orphan")
     """
+    students = relationship("Student", backref="user",
+                            cascade="all, delete-orphan")
 
     def hash_password(self) -> None:
         """Hash the password and store it."""

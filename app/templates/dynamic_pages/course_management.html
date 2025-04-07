@@ -42,9 +42,72 @@
         <th></th>
       </tr>
     </thead>
-    <tbody id="main__student-table--body">                                                                                                                                     <!-- Table body will be loaded dynamically given value from database. -->
+    <tbody id="student__table-body">                                                                                                                                     <!-- Table body will be loaded dynamically given value from database. -->
     </tbody>
   </table>
 
   <input id="section__loaded" type="hidden" />
+</div>
+
+
+
+<div id="add__student-form-container" class="modal_container">
+  <div class="modal_form">
+    <h2 id="student__modal" class="modal_title">
+      <!-- Heading dynamically loaded here -->
+    </h2>
+    <span id="close-icon" class="close_icon common__cancel-btn">&times;</span>
+    <form id="student-management" class="form_add_course">
+
+      <div class="course_name_code">
+        <label>
+          First Name
+          <input type="text" name="first_name" placeholder="E.g: John" required>
+        </label>
+        <label>
+          Last Name
+          <input type="text" name="middle_name" placeholder="E.g: David" required>
+        </label>
+        <label>
+          Last Name
+          <input type="text" name="last_name" placeholder="E.g: Victor" required>
+        </label>
+        <label>
+          Registration Number
+          <input type="text" name="reg_number" placeholder="E.g: AK17/ENG/EEE/055" required> 
+          <label> 
+      </div>
+      <div class="form_group">
+        <label for="">
+          Department
+          <select name="department" required>
+            <option value="" disabled selected>Select Level</option>
+            <option value="Basics">Computer Science</option>
+            <option value="Undergraduate">Chemistry Educatiom</option>
+            <option value="Masters">Mathematics Education</option>
+          </select>
+        </label>
+        <label for="">
+          Level
+          <select name="level" required>   
+            <option value="" disabled selected>Select Level</option>       
+            <option value="100">100</option>  
+            <option value="200">200</option>
+            <option value="300">300</option>       
+            <option value="400">400</option> 
+            <option value="500">500</option> 
+            <option value="600">600</option> 
+            <option value="700">700</option> 
+            <option value="800">800</option> 
+            <option value="900">900</option> 
+          </select>      
+        </label> 
+      </div>
+
+      <button type="submit" class="button button_save">Save</button>
+
+      <input id="student__method" />
+
+    </form>
+  </div>
 </div>

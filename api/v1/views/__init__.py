@@ -12,3 +12,4 @@ from api.v1.views.auth.send_token import *
 from api.v1.views.auth.verify_account import *
 from api.v1.views.users import *
 from api.v1.views.courses import *
+from api.v1.views.students import *

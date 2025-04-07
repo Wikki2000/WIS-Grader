@@ -2,27 +2,24 @@
 """
 This module defines routes for managing student records.
 """
-from . import app_views
+from . import api_views
 from flask import jsonify, request, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.student import Student
-from models.lecturer import Lecturer
-from models.storage import Storage
+from models.user import User
+from models import storage
 from flasgger.utils import swag_from
 from sqlalchemy.exc import IntegrityError
+from api.v1.views.utils import bad_request
 
-storage = Storage()
 
-
-@app_views.route('/students', methods=['POST'], strict_slashes=False)
+@api_views.route('/students', methods=['POST'], strict_slashes=False)
 @jwt_required()
 @swag_from('./documentation/students/create_student.yml')
 def create_student():
     """Create a new student record."""
-    lecturer_id = get_jwt_identity()
+    user_id = get_jwt_identity()
     data = request.get_json()
-    if not data:
-        abort(400, description="Not a JSON")
 
     # Validate request data
     required_fields = [
@@ -30,59 +27,26 @@ def create_student():
         "reg_number", "department", "level"
     ]
 
-    for field in required_fields:
-        if field not in data:
-            return jsonify({'error': f'{field} is required'}), 400
-
-    # Ensure reg_number is unique
-    """
-    existing_student = storage.get_by_field(Student,  "reg_no", data['reg_number'])
-    if existing_student:
-        storage.close()
-        return jsonify({"error": "reg_number must be unique"}), 400
-    """
+    error_404_response = bad_request(data, required_fields)
+    if error_404_response:
+        print(error_404_response)
+        return jsonify(error_404_response), 400
     
-    # Create new student instance
-    new_student = Student(
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        reg_number=data['reg_number'],
-        middle_name=data.get('middle_name'),  # Optional field
-        department=data['department'],
-        level=data['level'],
-        lecturer_id = lecturer_id
-    )
-    
-    # Save to database
+    data["user_id"] = user_id
     try:
+        new_student = Student(**data)
         storage.new(new_student)
         storage.save()
     
-        return jsonify(
-            {
-                "student": {
-                    "id": new_student.id,
-                    "first_name": new_student.first_name,
-                    "middle_name": new_student.middle_name,
-                    "last_name": new_student.last_name,
-                    "reg_number": new_student.reg_number,
-                    "department": new_student.department,
-                    "level": new_student.level
-                },
-                "courses_enrolled": new_student.courses,
-                "status": "Success",
-                "msg": "Student Created Successfully"
-            }
-        ), 201
-
+        return jsonify(new_student.to_dict())
     except IntegrityError:
         # Rollback the session if an IntegrityError occurs
         storage.rollback()
-        return jsonify(
-            {
-                'error': 'Student already exists with the provided reg_number'
-            }
-        ), 409
+        msg = (
+            f'Student with {data["reg_number"]} with ' +
+            'the provided reg_number exist already'
+        )
+        return jsonify({'error': msg}), 409
 
     except Exception as e:
         # Catch the exception and return the error message as JSON
@@ -92,35 +56,28 @@ def create_student():
         storage.close()
 
 
-@app_views.route('/students')
+@api_views.route('/students')
 @jwt_required()
 def get_students():
     """
     Retrieve detailed information about a all student,
     created by a particular lecturer.
     """
-    lecturer_id = get_jwt_identity()
-    lecturer = storage.get_by_id(Lecturer, lecturer_id)
-    if not lecturer:
+    user_id = get_jwt_identity()
+    user = storage.get_by(User, id=user_id)
+    if not user:
         abort(404)
     try:
-        student_list = [
-                {
-                    "student": student.to_dict(),
-                    "courses_enrolled": [
-                        course.to_dict() for course in student.courses
-                    ],
-
-                } for student in lecturer.students
-        ]
-        return jsonify(student_list), 200
+        students = user.students
+        sorted_students = sorted(students, key=lambda student : student.last_name)
+        return jsonify([student.to_dict() for student in sorted_students]), 200
     except Exception as e:
         print(str(e));
         storage.close()
-        return jsonify({"error": "Internal Error Occured"}), 500
+        return jsonify({"error": str(e)}), 500
 
 
-@app_views.route('/students/<string:student_id>', methods=['GET'])
+@api_views.route('/students/<string:student_id>', methods=['GET'])
 @jwt_required()
 @swag_from('./documentation/students/get_student.yml')
 def get_student_by_id(student_id):
@@ -138,7 +95,7 @@ def get_student_by_id(student_id):
     return jsonify(student.to_dict()), 200
 
 
-@app_views.route('/students/<string:student_id>', methods=['DELETE'])
+@api_views.route('/students/<string:student_id>', methods=['DELETE'])
 @jwt_required()
 @swag_from('./documentation/students/delete_student.yml')
 def delete_student(student_id):
@@ -178,7 +135,7 @@ def delete_student(student_id):
         storage.close()
 
 
-@app_views.route('/students/<string:student_id>', methods=['PUT'], strict_slashes=False)
+@api_views.route('/students/<string:student_id>', methods=['PUT'], strict_slashes=False)
 @jwt_required()
 @swag_from('./documentation/students/update_student.yml')
 def update_student(student_id):

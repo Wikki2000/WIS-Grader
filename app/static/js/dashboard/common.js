@@ -4,7 +4,8 @@ $(document).ready(function() {
   });
 
   // Close Popup Modal for Details.
-  $('#dynamic__load-dashboard').on('click', '.close-btn.closePopupModal', function() {
+  $('#dynamic__load-dashboard').on('click', '.close-btn.closePopupModal, #close-icon', function() {
     $('.popup-modal').hide();
+    $(".modal_container").hide();
   });
 });

@@ -162,6 +162,25 @@ def delete_token(token: str) -> bool:
 #       Common API Helper Function             #
 # ============================================ #
 def bad_request(
+    data: Dict, required_fields: List[Any] = []
+) -> Optional[Dict[str, str]]:
+    """Handle response for Bad Request (400) error.
+
+    :data - The request body to API endpoint.
+    :required_fields - Required fields in request body.
+    """
+    if not data:
+        return {"error": "Empty Request Body"}
+    for field in required_fields:
+        if not data.get(field):
+            return {"error": f"{field} is required"}
+    return None
+
+
+# =============================================#
+#       Common API Helper Function             #
+# ============================================ #
+def bad_request(
     data: Dict, required_fields: List[Any]
 ) -> Optional[Dict[str, str]]:
     """Handle response for Bad Request (400) error.
