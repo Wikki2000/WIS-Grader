@@ -63,7 +63,8 @@ a {
 
 .auth-form input,
 .auth-form .button--signup,
-.auth-form .button--signin {
+.auth-form .button--signin,
+select {
   border: none;
   font-weight: 500;
   font-size: 16px;
