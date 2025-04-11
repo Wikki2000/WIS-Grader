@@ -1,0 +1,520 @@
+/*==================================
+Notification Modal
+===================================*/
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: #a94442;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 500px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  height: 50px;
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #721c24;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+
+  .close-btn:hover {
+    color: #a94442;
+  }
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+.notification.success {
+  color: white;
+  border-color: green;
+  background-color: #90EE90;
+}
+
+
+
+
+* {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ==================== App Background Style ======================= */
+
+.app-background__card {
+  width: 100%;
+}
+
+/* ==================== RIGHT RECTANGLES ======================= */
+.app-background__card--right {
+  position: relative;
+  top: 0px;
+  left: 25%;
+  width: 255px;
+  height: 262px;
+  margin-top: 40px;
+}
+
+.app-background__card--right-secondary {
+  position: relative;
+  width: 255px;
+  height: 262px;
+  margin-top: 0px;
+}
+
+.app-background__card--right-base {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+  mix-blend-mode: color-dodge;
+}
+
+.app-background__card--right-alt {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+/* ==================== LEFT RECTANGLES ======================= */
+.app-background__card--left {
+  display: none;
+}
+
+.app-background__card--left-secondary {
+  position: relative;
+  width: 255px;
+  height: 262px;
+}
+
+.app-background__card--left-base {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(128, 128, 128, 0.3);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.app-background__card--left-alt {
+  position: absolute;
+  top: 62.0689px;
+  left: 101.955px;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  transform: rotate(17.0399deg);
+  background-color: rgba(94, 94, 94, 0.13);
+  mix-blend-mode: color-dodge;
+}
+
+/* ===== Button components =====*/
+.button {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #333333;
+}
+
+.button--google {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 0;
+  margin: 30px 0;
+  border-radius: 16px;
+  border: 2px solid #ffffff;
+}
+
+.button--google a {
+  color: #ffffff;
+}
+
+.button--share,
+.button--profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 200px;
+  padding: 12px 0;
+  font-size: 17px;
+}
+
+.button--share .fa-share-alt,
+.button--profile .fa-long-arrow-right {
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.button--profile {
+  margin-top: 40px;
+}
+
+.auth-card__button {
+  background: #000000;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 16px;
+  margin: 20px 0;
+}
+
+.button--report {
+  width: 180px;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.button--view-all {
+  background: #f0ffb6;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+}
+
+/*===== Dashboard modal component =====*/
+.modal__span {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.button--delete,
+.button--cancel,
+.button--continue {
+  width: 180px;
+  font-size: medium;
+}
+
+.button--delete {
+  background: #dc362e;
+}
+
+.button--cancel {
+  background: transparent;
+  border: 2px solid #333333;
+  color: #333333;
+}
+
+.button--cancel:hover {
+  background: #333333;
+  color: #ffffff;
+}
+
+.button_save {
+  display: block;
+  font-weight: 700;
+  padding: 15px 35px;
+  width: 100%;
+  margin: 10px auto;
+  border-radius: 15px;
+}
+
+/* === Global Icons ==== */
+.fa-ellipsis-v {
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.close_icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* ===== Authentication cards components ==== */
+.app-background__card--auth-card {
+  background: #ff9f1c;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-card {
+  position: relative;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 350px;
+  margin: auto;
+  border-radius: 10px;
+  padding: 60px 20px;
+  z-index: 9;
+}
+
+.auth-card__title {
+  margin: 10px 0;
+}
+
+.auth-card__subtitle {
+  color: #1a1919;
+}
+
+.auth-card__content input {
+  background: #e7e7e7;
+  border: none;
+  width: 80%;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 16px;
+  margin: 10px 0;
+}
+
+.auth-card__verify-form input {
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.link {
+  color: #ffffff;
+}
+
+.auth-card__alt-option {
+  color: #000000;
+}
+
+/* ==== Authentication alert components ==== */
+.auth-alert--success {
+  background: #28a745;
+  border: 1px solid #1e7e34;
+}
+
+.auth-alert--error {
+  background: #f9dedc;
+  color: white;
+}
+
+.auth-alert {
+  display: none;
+  color: #000000;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 16px;
+  width: 250px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+/* ==== Spiner animation while waiting for server response ==== */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ====== Dashboard cards components ====== */
+.modal {
+  background: #ffffff;
+  position: relative;
+  margin: 25vh auto;
+  width: 800px;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.modal--course,
+.modal--profile {
+  display: flex;
+}
+
+.modal--delete,
+.modal--delete-success {
+  text-align: center;
+}
+
+.modal__image {
+  width: 250px;
+  height: 280px;
+}
+
+.fa-times {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal__card {
+  margin-left: 20px;
+}
+
+.modal_title {
+  font-weight: 500;
+  padding: 20px 0;
+}
+
+.modal__subtitle {
+  font-size: 25px;
+  /* line-height: 30px; */
+}
+
+.modal__link {
+  padding: 20px 0;
+}
+
+/* Delet Course modal style */
+.delete__course__modal .sub__title {
+  /*Fix this class name later*/
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+/* ==== Enroll stundents modal ==== */
+.form__row {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.form__input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.form__row--group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.form__levels {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.form__level {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/*====== Responsive styles =======*/
+@media (min-width: 600px) {
+  .auth-card {
+    max-width: 400px;
+    padding: 60px;
+  }
+
+  .auth-card__content input,
+  .auth-card__button {
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 760px) {
+  .app-background__card {
+    width: 50%;
+  }
+
+  /* ==================== RIGHT RECTANGLES ======================= */
+  .app-background__card--right {
+    top: 50px;
+    left: 50%;
+  }
+
+  .app-background__card--left {
+    display: block;
+    position: relative;
+    left: 50px;
+    bottom: -200px;
+    width: 255px;
+    height: 262px;
+    margin-top: -100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .auth-card {
+    max-width: 500px;
+    padding: 60px;
+  }
+
+  .auth-card__title {
+    font-size: 2em;
+  }
+
+  .auth-card__subtitle {
+    font-size: 1.1em;
+  }
+}

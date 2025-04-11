@@ -1,0 +1,158 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ff9f1c;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-background {
+  display: flex;
+  height: 100vh;
+}
+
+/* ========Form styling begins here======== */
+.auth-background-image {
+  background-image: url(../images/form_bg_img.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.glassmorphism {
+  width: 70%;
+  padding: 40px 0;
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-form-container {
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-weight: 700;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.auth-form input,
+.auth-form .button--signup,
+.auth-form .button--signin,
+select {
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 16px;
+  margin: 10px 0;
+}
+
+.highlight__pwd__input {
+  background: #f9dedc;
+  border: 2px solid #dc362e !important;
+}
+
+.horizontal-line {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.line {
+  border-width: 1.5px;
+  border: 1px solid #ffffff;
+  width: 125px;
+  margin: 20px auto;
+}
+
+.or-text {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.signin-text {
+  color: #ff9f1c;
+}
+
+/* ======= Responsive Design ======== */
+@media (max-width: 1300px) {
+  .glassmorphism {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 950px) {
+  .title {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 760px) {
+  .title {
+    font-size: 48px;
+    padding-bottom: 1em;
+  }
+
+  .app-background {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .gradient_rect_container,
+  .auth-background-image {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 35px;
+  }
+
+  .glassmorphism {
+    padding: 20px;
+  }
+
+  .auth-form-container {
+    width: 90%;
+  }
+
+  .button {
+    padding: 12px;
+  }
+
+  .or-text {
+    bottom: 85px;
+  }
+
+  .button--google {
+    padding: 8px 0;
+  }
+}

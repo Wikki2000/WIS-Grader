@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REGISTER</title>
+  <link rel="stylesheet" href="css/authenication.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+
+<body>
+  <!-- ============= BACKGROUND =========== -->
+
+  <!-- GRADIENT RECTANGLES -->
+  <section class="app-background">
+    <div class="app-background__card">
+
+      <div class="app-background__card--right">
+        <div class="app-background__card--right-base"></div>
+        <div class="app-background__card--right-alt"></div>
+      </div>
+
+      <h1 class="title">
+        Fill in the Course <br />
+        Registration. <br />
+        Form Correctly.
+      </h1>
+
+      <div class="app-background__card--left">
+        <div class="app-background__card--left-base"></div>
+        <div class="app-background__card--left-alt"></div>
+      </div>
+    </div>
+
+    <!-- ======== COURSE REGISTRATION MARKUP ========== -->
+    <div class="auth-background-image">
+      <div class="glassmorphism">
+
+        <div class="auth-alert auth-alert--success auth-alert--error">
+        </div>
+        <div class="auth-form-container">
+          <h1>Course Registration <span style="color: #ffb44b;">Form</span></h1>
+
+          <form id="reg-form" method="POST" class="auth-form">
+            <input type="text" name="firstname" id="firstname" placeholder="Firstname" required />
+            <input type="text" name="lastname" id="lastname" placeholder="Lastname" required />
+            <input type="text" name="other_names" id="other_names" placeholder="Other names" />
+            <input type="text" name="reg_number" id="reg_number" placeholder="Reg Number" />
+            <select name="department" id="department">
+              <option value="" selected disabled>Select your Department</option>
+              <option value="department_1">Department_1</option>
+              <option value="department_2">Department_2</option>
+              <option value="department_3">Department_3</option>
+            </select>
+            <select name="department" id="department">
+              <option value="" selected disabled>Select Level</option>
+              <option value="100_level">100</option>
+              <option value="200_level">200</option>
+              <option value="3000_level">300</option>
+            </select>
+            <button type="submit" class="button button--signup">Submit</button>
+          </form>
+
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
